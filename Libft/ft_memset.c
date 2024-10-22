@@ -1,22 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 12:10:41 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/22 16:31:06 by abnsila          ###   ########.fr       */
+/*   Created: 2024/10/22 16:46:02 by abnsila           #+#    #+#             */
+/*   Updated: 2024/10/22 17:04:00 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int	ft_isalpha(int c)
+#include "libft.h"
+
+void    *memset(void *ptr, int x, size_t n)
 {
-	return ((c >= 65 && c < 90) || (c >= 97 && c < 122));
+    char *p;
+    unsigned char c;
+    int i;
+
+    i = 0;
+    p = ptr;
+    c = x;
+    while (p[i] && i < n)
+    {
+        p[i] = c;
+        i++;
+    };
+    return (ptr);
 }
 
-int ft_toupper(int c)
+
+#include <stdio.h>
+int main()
 {
-    if (ft_isalpha(c))
-        return ();
+    char str[] = "Hello World";
+    memset(str + 1, '#', 3);
+    printf("%s", str);
 }

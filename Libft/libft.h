@@ -6,12 +6,14 @@
 /*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 10:12:03 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/22 12:04:36 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/10/22 16:48:58 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 #define LIBFT_H
+
+#include <stdlib.h>
 
 int ft_isalpha(int c);
 int ft_isdigit(int c);
