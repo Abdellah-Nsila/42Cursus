@@ -6,11 +6,13 @@
 /*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 11:58:15 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/22 12:03:43 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/10/23 08:41:34 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_strlen(char *str)
+#include "libft.h"
+
+size_t ft_strlen(const char *str)
 {
     int len;
 

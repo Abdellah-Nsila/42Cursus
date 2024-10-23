@@ -6,17 +6,14 @@
 /*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:10:41 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/22 16:31:06 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/10/23 09:25:24 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int	ft_isalpha(int c)
-{
-	return ((c >= 65 && c < 90) || (c >= 97 && c < 122));
-}
-
 int ft_toupper(int c)
 {
-    if (ft_isalpha(c))
-        return ();
+    if ((c >= 97 && c <= 122))
+        return (c - 32);
+    else
+        return (c);
 }

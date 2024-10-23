@@ -1,27 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 16:46:02 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/23 10:30:16 by abnsila          ###   ########.fr       */
+/*   Created: 2024/10/23 09:27:05 by abnsila           #+#    #+#             */
+/*   Updated: 2024/10/23 09:30:15 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	*ft_memset(void *ptr, int x, size_t n)
+char	*strchr(const char *str, int search_str)
 {
-	char	*p;
-	unsigned char	c;
-	size_t	i;
-
-	i = 0;
-	p = ptr;
-	c = x;
-	while (i < n)
-		p[i++] = c;
-	return (ptr);
+    
 }

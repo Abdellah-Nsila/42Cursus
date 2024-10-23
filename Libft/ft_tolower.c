@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 16:46:02 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/23 10:30:16 by abnsila          ###   ########.fr       */
+/*   Created: 2024/10/23 09:24:21 by abnsila           #+#    #+#             */
+/*   Updated: 2024/10/23 09:25:16 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	*ft_memset(void *ptr, int x, size_t n)
+int ft_tolower(int c)
 {
-	char	*p;
-	unsigned char	c;
-	size_t	i;
-
-	i = 0;
-	p = ptr;
-	c = x;
-	while (i < n)
-		p[i++] = c;
-	return (ptr);
+    if ((c >= 65 && c <= 90))
+        return (c + 32);
+    else
+        return (c);
 }
