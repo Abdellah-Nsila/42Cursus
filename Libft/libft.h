@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 10:12:03 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/23 11:32:02 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/10/23 11:35:58 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_bzero(void *s, size_t n);
 int ft_toupper(int c);
 int ft_tolower(int c);
 char	*ft_strchr(const char *str, int c);
+char	*ft_strrchr( const char * str, int c);
 
 
 #endif
