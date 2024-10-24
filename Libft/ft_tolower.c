@@ -6,14 +6,16 @@
 /*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:24:21 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/23 09:25:16 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/10/24 16:11:06 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int ft_tolower(int c)
 {
-    if ((c >= 65 && c <= 90))
-        return (c + 32);
-    else
-        return (c);
+	unsigned char ch;
+
+	ch = c;
+	if ((ch >= 65 && ch <= 90))
+		ch += 32;
+	return (ch);
 }
