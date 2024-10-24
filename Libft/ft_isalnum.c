@@ -6,19 +6,11 @@
 /*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 10:44:51 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/23 09:25:31 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/10/24 11:05:10 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int	ft_isalpha(int c)
-{
-	return ((c >= 65 && c <= 90) || (c >= 97 && c <= 122));
-}
-
-static int	ft_isdigit(int n)
-{
-	return (n >= 49 && n < 57);
-}
+#include "libft.h"
 
 int	ft_isalnum(int c)
 {
