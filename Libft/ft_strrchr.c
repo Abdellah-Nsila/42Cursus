@@ -6,15 +6,15 @@
 /*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 11:34:27 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/23 14:41:58 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/10/24 08:49:48 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t _ft_strlen(const char *str)
+static	size_t _ft_strlen(const char *str)
 {
-	int len;
+	size_t	len;
 
 	len = 0;
 	while (str[len])
