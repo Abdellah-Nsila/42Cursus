@@ -6,23 +6,22 @@
 /*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 16:46:02 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/24 14:04:14 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/10/25 15:27:16 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "libft.h"
-#include <stdio.h>
-#include <string.h>
-void	*ft_memset(void *ptr, char x, size_t n)
+#include "libft.h"
+
+void	*ft_memset(void *b, int c, size_t len)
 {
-	char	*p;
-	unsigned char	c;
+	char	*ptr;
+	unsigned char	ch;
 	size_t	i;
 
 	i = 0;
-	p = ptr;
-	c = x;
-	while (i < n)
-		p[i++] = c;
-	return (ptr);
+	ptr = b;
+	ch = c;
+	while (i < len)
+		ptr[i++] = ch;
+	return (b);
 }
