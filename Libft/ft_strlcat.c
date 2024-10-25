@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:11:03 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/24 15:58:21 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/10/25 10:33:51 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	size_t	dst_len;
 
 	i = 0;	
-	src_len = strlen(src);
+	src_len = ft_strlen(src);
 
 	if (dstsize == 0)
 		return (src_len);
