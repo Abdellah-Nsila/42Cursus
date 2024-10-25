@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 10:12:03 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/24 16:12:20 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/10/25 14:10:51 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ int ft_toupper(int c);
 int ft_tolower(int c);
 char	*ft_strchr(const char *str, int c);
 char	*ft_strrchr( const char * str, int c);
-int	strncmp(const char *s1, const char *s2, size_t n);
+int	ft_strncmp(const char *s1, const char *s2, size_t n);
 #endif
