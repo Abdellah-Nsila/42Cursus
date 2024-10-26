@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 09:33:43 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/26 10:08:33 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/10/26 15:23:27 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_atoi(const char *str)
 	}
 	else if (str[i] == '+')
 		i++;
-	while (str[i] && ft_isdigit((int)str[i]))
+	while (str[i] && isdigit((int)str[i]))
 	{
 		num = (num * 10) + (str[i] - 48);
 		i++;

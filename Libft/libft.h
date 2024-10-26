@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 10:12:03 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/26 12:04:12 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/10/26 15:23:41 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 int	ft_atoi(const char *str);
 
 void	*ft_calloc(size_t count, size_t size);
-char	*strdup(const char *s1);
+char	*ft_strdup(const char *s1);
 
 #endif
