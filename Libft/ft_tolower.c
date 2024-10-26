@@ -6,13 +6,13 @@
 /*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:24:21 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/24 16:11:06 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/10/26 09:27:18 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_tolower(int c)
+int	ft_tolower(int c)
 {
-	unsigned char ch;
+	unsigned char	ch;
 
 	ch = c;
 	if ((ch >= 65 && ch <= 90))

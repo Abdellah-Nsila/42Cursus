@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:27:05 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/25 15:00:20 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/10/26 09:05:35 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 char	*ft_strchr(const char *str, int c)
 {
-	unsigned char search_str = c;
-	int i;
+	unsigned char	search_str;
+	int				i;
 
+	search_str = c;
 	i = 0;
 	while (str[i])
 	{

@@ -6,15 +6,15 @@
 /*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:10:41 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/24 16:09:52 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/10/26 09:26:55 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_toupper(int c)
+int	ft_toupper(int c)
 {
-	unsigned char ch;
-	
-	ch = c; 
+	unsigned char	ch;
+
+	ch = c;
 	if ((ch >= 97 && ch <= 122))
 		ch -= 32;
 	return (ch);

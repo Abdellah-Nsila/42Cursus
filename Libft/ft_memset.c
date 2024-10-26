@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 16:46:02 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/25 15:27:16 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/10/26 09:24:57 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	*ft_memset(void *b, int c, size_t len)
 {
-	char	*ptr;
+	char			*ptr;
 	unsigned char	ch;
-	size_t	i;
+	size_t			i;
 
 	i = 0;
 	ptr = b;
