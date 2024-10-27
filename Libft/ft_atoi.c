@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 09:33:43 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/26 15:23:27 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/10/27 10:25:43 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static int	ft_isspace(char c)
 
 int	ft_atoi(const char *str)
 {
-	int	i;
-	int	num;
-	int	sign;
+	int					i;
+	int					sign;
+	int					num;
 
 	i = 0;
 	num = 0;
