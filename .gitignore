@@ -1,3 +1,5 @@
 .Ds_Store
 .vscode
 *.out
+*.o
+*.a
