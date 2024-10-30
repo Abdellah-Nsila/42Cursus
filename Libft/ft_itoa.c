@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 11:10:02 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/30 13:18:45 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/10/30 15:17:18 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,6 @@ char	*ft_itoa(int n)
 // {
 // 	char	*str;
 
-// 	str = ft_itoa(-2147483649);
-// 	printf("Num: %s", str);
+// 	str = ft_itoa(-2147483648);
+// 	printf("Number: %s", str);
 // }
