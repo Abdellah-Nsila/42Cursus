@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 08:55:11 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/30 10:48:34 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/10/30 11:29:51 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	words_count = ft_wordscount(s, c);
-	arr = malloc((words_count + 1) * sizeof(char *));
+	arr = (char **) malloc((words_count + 1) * sizeof(char *));
 	if (!arr)
 		return (NULL);
 	return (ft_lethimcook(arr, s, c));
