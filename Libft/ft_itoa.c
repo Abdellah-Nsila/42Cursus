@@ -6,15 +6,13 @@
 /*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 11:10:02 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/30 12:25:00 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/10/30 12:27:36 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "libft.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
 
-static void ft_storeint(char *ptr, int n, int index, int sign)
+static void	ft_storeint(char *ptr, int n, int index, int sign)
 {
 	if (index >= sign)
 	{
@@ -30,7 +28,7 @@ static void ft_storeint(char *ptr, int n, int index, int sign)
 static int	ft_getlen(int n)
 {
 	if (n > 9)
-		return(1 + ft_getlen(n / 10));
+		return (1 + ft_getlen(n / 10));
 	return (1);
 }
 
@@ -45,7 +43,7 @@ char	*ft_itoa(int n)
 	if (n < 0)
 	{
 		n *= -1;
-		sign = 1;	
+		sign = 1;
 	}
 	len = sign + ft_getlen(n);
 	ptr = (char *) malloc(len + 1);
@@ -57,15 +55,3 @@ char	*ft_itoa(int n)
 	ptr[len + 1] = '\0';
 	return (ptr);
 }
-
-// int	main()
-// {
-// 	int	n = 2147483647;
-// 	char	*str;
-	
-// 	str = ft_itoa(n);
-// 	printf("\nft_itoa(%ld) Num: %s\n\n", n, str);
-	
-// 	free(str);
-// 	return (0);
-// }
