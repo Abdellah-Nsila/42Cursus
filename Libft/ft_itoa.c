@@ -6,13 +6,13 @@
 /*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 11:10:02 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/30 12:27:36 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/10/30 13:18:45 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	ft_storeint(char *ptr, int n, int index, int sign)
+static void	ft_storeint(char *ptr, unsigned int n, int index, int sign)
 {
 	if (index >= sign)
 	{
@@ -25,7 +25,7 @@ static void	ft_storeint(char *ptr, int n, int index, int sign)
 	}
 }
 
-static int	ft_getlen(int n)
+static int	ft_getlen(unsigned int n)
 {
 	if (n > 9)
 		return (1 + ft_getlen(n / 10));
@@ -34,24 +34,34 @@ static int	ft_getlen(int n)
 
 char	*ft_itoa(int n)
 {
-	int		len;
-	int		sign;
-	char	*ptr;
+	unsigned int		number;
+	int					len;
+	int					sign;
+	char				*ptr;
 
+	number = n;
 	len = 0;
 	sign = 0;
 	if (n < 0)
 	{
-		n *= -1;
+		number = n * -1;
 		sign = 1;
 	}
-	len = sign + ft_getlen(n);
-	ptr = (char *) malloc(len + 1);
+	len = sign + ft_getlen(number);
+	ptr = (char *) malloc((len + 1 * sizeof(char)));
 	if (!ptr)
 		return (NULL);
-	ft_storeint(ptr, n, len - 1, sign);
+	ft_storeint(ptr, number, len - 1, sign);
 	if (sign)
 		ptr[0] = '-';
-	ptr[len + 1] = '\0';
+	ptr[len] = '\0';
 	return (ptr);
 }
+
+// int	main()
+// {
+// 	char	*str;
+
+// 	str = ft_itoa(-2147483649);
+// 	printf("Num: %s", str);
+// }
