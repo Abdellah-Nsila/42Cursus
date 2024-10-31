@@ -198,3 +198,63 @@
     5. Inode and Data Blocks on Disk (Steps 5-7): The OS accesses the inode and retrieves file data from disk storage, copying it to a kernel buffer and then to user space.
 
 This step-by-step illustration shows the interaction between application code, OS resources, and memory areas (user and kernel), highlighting the roles of the CPU and OS at each stage in a detailed yet structured manner.
+
+
+
+
+Example 1:
+
++--------------------+             +---------------------------+              +---------------------+
+| Process 1         |             | Process 2                 |              | Process 3           |
+| ----------------- |             | ------------------------- |              | -----------------   |
+| FD 0 -> STDIN     |             | FD 0 -> STDIN             |              | FD 0 -> STDIN       |
+| FD 1 -> STDOUT    |             | FD 1 -> STDOUT            |              | FD 1 -> STDOUT      |
+| FD 2 -> STDERR    |             | FD 2 -> STDERR            |              | FD 2 -> STDERR      |
+| FD 3 -> File A    |-------------| FD 3 -> File B            |--------------| FD 3 -> File A      |
++--------------------+             +---------------------------+              +---------------------+
+              \                               /                                   /
+               \                             /                                   /
+                \                           /                                   /
+                 \                         /                                   /
+                  \                       /                                   /
+                   \                     /                                   /
+                    \                   /                                   /
+                  +-----------------------------------------------------------+
+                  |                System-Wide Open File Table                |
+                  |-----------------------------------------------------------|
+                  | FD (3) -> File A (Offset, Permissions, Inode Info)        |
+                  | FD (4) -> File B (Offset, Permissions, Inode Info)        |
+                  | FD (5) -> File C (Offset, Permissions, Inode Info)        |
+                  +-----------------------------------------------------------+
+                                      |
+                                      |
+                                      |
+                           +-----------------------------+
+                           |        Inode Table          |
+                           |-----------------------------|
+                           | Inode for File A            |
+                           | Inode for File B            |
+                           | Inode for File C            |
+                           +-----------------------------+
+
+
+
+Example 2:
+
++------------------+       +-----------------------+       +-----------------------------+
+|  Application     | ----> | File Descriptor Table | ----> | System-Wide Open File Table |
+| (User Space)     |       | (Per Process, RAM)    |       | (Kernel Memory, RAM)        |
++------------------+       +-----------------------+       +-----------------------------+
+                                                                    |
+                                                                    |
+                                                            +----------------+
+                                                            |   Inode Table  |
+                                                            | (Disk, Cached) |
+                                                            +----------------+
+                                                                    |
+                                                                    |
+                                                            +----------------+
+                                                            |   Data Blocks  |
+                                                            | (Disk Storage) |
+                                                            +----------------+
+                                                            
