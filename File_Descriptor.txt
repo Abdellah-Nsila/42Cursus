@@ -187,14 +187,14 @@
 
 # Explanation of Each Step
 
-    Application/User Space (Steps 1, 9): The application initiates file operations in user space, which then trigger system calls. Upon completion, the read data is returned to the application’s buffer.
+    1. Application/User Space (Steps 1, 9): The application initiates file operations in user space, which then trigger system calls. Upon completion, the read data is returned to the application’s buffer.
 
-    Kernel Mode Transitions (Steps 2, 10): Each system call (open, read, close) requires a CPU mode switch from user mode to kernel mode for safe OS handling.
+    2. Kernel Mode Transitions (Steps 2, 10): Each system call (open, read, close) requires a CPU mode switch from user mode to kernel mode for safe OS handling.
 
-    Process File Descriptor Table (Step 3, 11): The OS manages a separate file descriptor table for each process. Entries here point to the System-Wide Open File Table and are released upon closing the file.
+    3. Process File Descriptor Table (Step 3, 11): The OS manages a separate file descriptor table for each process. Entries here point to the System-Wide Open File Table and are released upon closing the file.
 
-    System-Wide Open File Table (Steps 4, 8, 12): This global table in kernel memory tracks open files across all processes, managing the inode, file offset, and permissions.
+    4. System-Wide Open File Table (Steps 4, 8, 12): This global table in kernel memory tracks open files across all processes, managing the inode, file offset, and permissions.
 
-    Inode and Data Blocks on Disk (Steps 5-7): The OS accesses the inode and retrieves file data from disk storage, copying it to a kernel buffer and then to user space.
+    5. Inode and Data Blocks on Disk (Steps 5-7): The OS accesses the inode and retrieves file data from disk storage, copying it to a kernel buffer and then to user space.
 
 This step-by-step illustration shows the interaction between application code, OS resources, and memory areas (user and kernel), highlighting the roles of the CPU and OS at each stage in a detailed yet structured manner.
