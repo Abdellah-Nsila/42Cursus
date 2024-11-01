@@ -200,8 +200,6 @@
 This step-by-step illustration shows the interaction between application code, OS resources, and memory areas (user and kernel), highlighting the roles of the CPU and OS at each stage in a detailed yet structured manner.
 
 
-
-
 Example 1:
 
 +--------------------+             +---------------------------+              +---------------------+
