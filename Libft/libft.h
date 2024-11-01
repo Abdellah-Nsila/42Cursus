@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 10:12:03 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/01 18:02:38 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/01 18:08:27 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 # include <stdio.h>
 # include <string.h>
-#include <fcntl.h>
+# include <fcntl.h>
 # include <ctype.h>
 
 int		ft_isalpha(int c);
