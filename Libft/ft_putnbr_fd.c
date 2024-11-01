@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 11:06:52 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/01 17:59:31 by abnsila          ###   ########.fr       */
+/*   Created: 2024/11/01 18:02:49 by abnsila           #+#    #+#             */
+/*   Updated: 2024/11/01 18:06:11 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
-	if (!s)
-		return ;
-	while (*s)
-	{
-		ft_putchar_fd(*s, fd);
-		s++;
-	}
+	char	*s;
+
+	s = ft_itoa(n);
+	ft_putstr_fd(s, fd);
+}
+
+int	main()
+{
+	int	n;
+	int	fd;
+
+	n = -2024;
+	fd = open("./Test/t.txt", O_WRONLY);
+	if (fd == -1)
+		return (0);
+	ft_putnbr_fd(n, fd);
+	return (1);
 }
