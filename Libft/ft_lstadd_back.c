@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 22:45:47 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/01 23:09:33 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/02 14:44:59 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,16 @@
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	int	i;
 	if (!lst || !new)
 		return ;
-	i = 0;
 	while (*lst)
 	{
-		if ((*lst) == NULL)
+		if (!((*lst)->next))
 		{
-			// (*lst)->next = new;
-			printf("Len: %d", i);
+			(*lst)->next = new;
 			return ;
 		}
-		*lst = (*lst)->next;
-		i++;
+		lst = &((*lst)->next);
 	}
 }
 

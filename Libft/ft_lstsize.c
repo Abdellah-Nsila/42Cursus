@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 18:52:39 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/01 22:38:50 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/02 13:09:46 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ int	ft_lstsize(t_list *lst)
 {
 	int	len;
 
-	if (!lst)
-		return (0);
 	len = 0;
 	while (lst)
 	{
