@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:27:05 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/26 09:05:35 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/03 15:02:35 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strchr(const char *str, int c)
 	unsigned char	search_str;
 	int				i;
 
-	search_str = c;
+	search_str = (unsigned char)c;
 	i = 0;
 	while (str[i])
 	{

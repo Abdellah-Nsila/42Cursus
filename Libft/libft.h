@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 10:12:03 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/02 18:27:41 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/03 15:43:02 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-
-# include <stdio.h>
-# include <string.h>
-# include <fcntl.h>
-# include <ctype.h>
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
