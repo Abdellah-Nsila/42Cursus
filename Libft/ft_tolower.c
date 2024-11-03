@@ -3,19 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:24:21 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/26 09:27:18 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/03 16:22:09 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_tolower(int c)
 {
-	unsigned char	ch;
-
-	ch = c;
-	if ((ch >= 65 && ch <= 90))
-		ch += 32;
-	return (ch);
+	if ((c >= 65 && c <= 90))
+		c += 32;
+	return (c);
 }

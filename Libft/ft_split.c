@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 08:55:11 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/30 11:29:51 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/03 18:29:26 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static char	**ft_freearray(char **arr, int count)
 {
 	while (count > 0)
 	{
-		free(arr[count]);
 		count--;
+		free(arr[count]);
 	}
 	free(arr);
 	return (NULL);
@@ -46,24 +46,21 @@ static int	ft_wordscount(char const *s, char c)
 
 static char	**ft_lethimcook(char **arr, char const *s, char c)
 {
-	int		i;
+	int		current;
 	int		start;
-	int		end;
 	int		count;
 
-	i = 0;
-	start = 0;
-	end = 0;
 	count = 0;
-	while (s[i])
+	while (s[current])
 	{
-		while (s[i] == c)
-			i++;
-		start = i;
-		while (s[i] && s[i] != c)
-			i++;
-		end = i;
-		arr[count] = ft_substr(s, start, end - start);
+		while (s[current] == c)
+			current++;
+		if (s[current] == '\0')
+			break ;
+		start = current;
+		while (s[current] && s[current] != c)
+			current++;
+		arr[count] = ft_substr(s, start, current - start);
 		if (arr[count] == NULL)
 			return (ft_freearray(arr, count));
 		count++;
@@ -84,4 +81,26 @@ char	**ft_split(char const *s, char c)
 	if (!arr)
 		return (NULL);
 	return (ft_lethimcook(arr, s, c));
+}
+
+void	print_string_arr(char **array)
+{
+	int		i;
+	char	*res;
+
+	i = 0;
+	res = array[i];
+	printf("[");
+	while (res != NULL)
+	{
+		printf("%s, ", escape_str(res));
+		res = array[++i];
+	}
+	printf(" NULL]");
+}
+
+#include <stdio.h>
+int	main()
+{
+	print_string_arr(ft_split("^^^1^^2a,^^^^3^^^^--h^^^^", '^'));
 }
