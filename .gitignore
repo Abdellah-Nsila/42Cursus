@@ -3,7 +3,5 @@
 *.out
 *.o
 *.a
-*test.*
-*test
-/Test
+Test/
 *gch
