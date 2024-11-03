@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 18:52:39 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/02 13:09:46 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/03 12:56:58 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,3 @@ int	ft_lstsize(t_list *lst)
 	return (len);
 }
 
-// int	main(void)
-// {
-// 	t_list	*head;
-// 	t_list	*node1;
-// 	t_list	*node2;
-// 	t_list	*node3;
-
-// 	head = NULL;
-// 	node1 = ft_lstnew((void *)"First Node");
-// 	node2 = ft_lstnew((void *)"Second Node");
-// 	node3 = ft_lstnew((void *)"Third Node");
-// 	ft_lstadd_front(&head, node3);
-// 	ft_lstadd_front(&head, node2);
-// 	ft_lstadd_front(&head, node1);
-// 	printf("Head content: %s\n", (char *)head->content);
-// 	printf("Len of linked list: %d\n", ft_lstsize(head));
-// 	return (1);
-// }
