@@ -1,0 +1,81 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void	strtoupper(void *str)
+{
+	char	*s;
+
+	s = str;
+	while (*s)
+	{
+		*s = ft_toupper(*s);
+		s++;
+	}
+}
+
+// Function to duplicate the content of a node
+void	*duplicate_content(void *content)
+{
+	char	*str;
+
+	str = strdup((char *)content);
+	strtoupper(str);
+	return ((void *)str);
+}
+
+// Function to delete the content of a node
+void	del(void *content)
+{
+    free(content);
+}
+
+int	main(void)
+{
+    t_list	*head;
+    t_list	*node1;
+    t_list	*node2;
+    t_list	*node3;
+    t_list	*new_list;
+
+    head = NULL;
+    node1 = ft_lstnew(strdup("First Node"));
+    node2 = ft_lstnew(strdup("Second Node"));
+    node3 = ft_lstnew(strdup("Third Node"));
+    ft_lstadd_back(&head, node1);
+    ft_lstadd_back(&head, node2);
+    ft_lstadd_back(&head, node3);
+
+    new_list = ft_lstmap(head, duplicate_content, del);
+
+    printf("Original list:\n");
+    t_list *current = head;
+    while (current)
+    {
+        printf("%s -> ", (char *)current->content);
+        current = current->next;
+    }
+    printf("NULL\n");
+
+    printf("New list:\n");
+    current = new_list;
+    while (current)
+    {
+        printf("%s -> ", (char *)current->content);
+        current = current->next;
+    }
+    printf("NULL\n\n");
+
+	printf("Address of new_list: %p\n", (void *)&new_list);
+    printf("Address stored in new_list (first node): %p\n", (void *)new_list);
+    printf("Content stored in new_list (first node): %s\n", (char *) (new_list->content)); // Dereferencing the pointer and accessing the member in one step
+    printf("Content stored in new_list (first node): %s\n", (char *) ((*new_list).content)); // Dereferencing the pointer then ccessing the content member throut "."
+    // printf("Content stored in new_list (first node): %s\n", (char *) (*new_list.content)); // Not working
+    if (new_list)
+        printf("Address of new_list->next: %s\n", (char *)new_list->next->content);
+		
+    ft_lstclear(&head, del);
+    ft_lstclear(&new_list, del);
+
+    return (0);
+}
