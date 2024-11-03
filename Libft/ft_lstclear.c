@@ -6,16 +6,11 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 18:51:16 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/02 21:52:00 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/03 10:41:37 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-void	del(void *content)
-{
-	free(content);
-}
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
