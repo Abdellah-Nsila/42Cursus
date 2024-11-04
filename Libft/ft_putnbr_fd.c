@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 18:02:49 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/04 08:40:59 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/04 10:06:49 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,3 @@ void	ft_putnbr_fd(int n, int fd)
 		ft_putnbr_fd(n / 10, fd);
 	ft_putchar_fd(((n % 10) + 48), fd);
 }
-
-// #include <fcntl.h>
-// #include <stdio.h>
-// #include <unistd.h>
-
-// int	main()
-// {
-// 	int	n;
-// 	int	fd;
-
-// 	n = 2147483650;
-// 	fd = open("./Test/t.txt", O_WRONLY);
-// 	if (fd == -1)
-// 		return (0);
-// 	ft_putnbr_fd(n, fd);
-// 	return (1);
-// }

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:07:41 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/03 18:40:42 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/04 10:10:28 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,28 +55,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 	ptr[i] = '\0';
 	return (ptr);
 }
-
-// #include <stdio.h>
-// #include <string.h>
-// int	main(int ac, char **av)
-// {
-// 	char	*res;
-
-// 	if (ac != 3)
-// 		return (0);
-// 	res = ft_strtrim(av[1], av[2]);
-// 	printf("\nResult: %s\n\n", res);
-// 	free(res);
-
-// 	char *s1 = "ab**Hello World**ba";
-// 	char *set = "ab*";
-// 	char *trimmed = ft_strtrim(s1, set);
-// 	printf("Test 10: %s\n\n", trimmed);  // Expected result: "Hello World"
-// 	free(trimmed);
-
-// 	char *s2 = "abcabc";
-// 	char *set2 = "abc";
-// 	char *trimmed2 = ft_strtrim(s2, set2);
-// 	printf("Test 11: %s\n\n", trimmed2);  // Expected result: ""
-// 	free(trimmed2);
-// }

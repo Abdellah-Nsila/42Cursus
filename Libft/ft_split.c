@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 08:55:11 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/04 09:09:46 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/04 10:09:50 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,32 +83,3 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	return (ft_lethimcook(arr, s, c));
 }
-
-// #include <stdio.h>
-// void	print_string_arr(char **array)
-// {
-// 	int		i;
-// 	char	*res;
-
-// 	i = 0;
-// 	res = array[i];
-// 	printf("[");
-// 	while (res != NULL)
-// 	{
-// 		printf("\"%s\", ", res);
-// 		res = array[++i];
-// 	}
-// 	printf(" NULL]\n");
-// }
-
-// int	main()
-// {
-// 	print_string_arr(ft_split("^^^1^^2a,^^^^3^^^^--h^^^^", '^'));
-// 	print_string_arr(ft_split("hello!", ' '));
-// 	print_string_arr(ft_split("      split       this for   
-	// me  !       ", ' '));
-// 	print_string_arr(ft_split("                  olol", ' '));
-// 	print_string_arr(ft_split("olol                     ", ' '));
-// 	print_string_arr(ft_split("split  ||this|for|me|||||!|", '|'));
-// 	return 0;
-// }

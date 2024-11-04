@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 11:10:02 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/30 15:17:18 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/04 10:07:15 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,3 @@ char	*ft_itoa(int n)
 	ptr[len] = '\0';
 	return (ptr);
 }
-
-// int	main()
-// {
-// 	char	*str;
-
-// 	str = ft_itoa(-2147483648);
-// 	printf("Number: %s", str);
-// }
