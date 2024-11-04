@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 08:55:11 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/03 18:29:26 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/04 09:09:46 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	**ft_freearray(char **arr, int count)
 	return (NULL);
 }
 
-static int	ft_wordscount(char const *s, char c)
+static int	ft_wordscount(const char *s, char c)
 {
 	size_t	i;
 	size_t	count;
@@ -44,12 +44,13 @@ static int	ft_wordscount(char const *s, char c)
 	return (count);
 }
 
-static char	**ft_lethimcook(char **arr, char const *s, char c)
+static char	**ft_lethimcook(char **arr, const char *s, char c)
 {
 	int		current;
 	int		start;
 	int		count;
 
+	current = 0;
 	count = 0;
 	while (s[current])
 	{
@@ -77,30 +78,37 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	words_count = ft_wordscount(s, c);
-	arr = (char **) malloc((words_count + 1) * sizeof(char *));
+	arr = (char **)malloc((words_count + 1) * sizeof(char *));
 	if (!arr)
 		return (NULL);
 	return (ft_lethimcook(arr, s, c));
 }
 
-void	print_string_arr(char **array)
-{
-	int		i;
-	char	*res;
+// #include <stdio.h>
+// void	print_string_arr(char **array)
+// {
+// 	int		i;
+// 	char	*res;
 
-	i = 0;
-	res = array[i];
-	printf("[");
-	while (res != NULL)
-	{
-		printf("%s, ", escape_str(res));
-		res = array[++i];
-	}
-	printf(" NULL]");
-}
+// 	i = 0;
+// 	res = array[i];
+// 	printf("[");
+// 	while (res != NULL)
+// 	{
+// 		printf("\"%s\", ", res);
+// 		res = array[++i];
+// 	}
+// 	printf(" NULL]\n");
+// }
 
-#include <stdio.h>
-int	main()
-{
-	print_string_arr(ft_split("^^^1^^2a,^^^^3^^^^--h^^^^", '^'));
-}
+// int	main()
+// {
+// 	print_string_arr(ft_split("^^^1^^2a,^^^^3^^^^--h^^^^", '^'));
+// 	print_string_arr(ft_split("hello!", ' '));
+// 	print_string_arr(ft_split("      split       this for   
+	// me  !       ", ' '));
+// 	print_string_arr(ft_split("                  olol", ' '));
+// 	print_string_arr(ft_split("olol                     ", ' '));
+// 	print_string_arr(ft_split("split  ||this|for|me|||||!|", '|'));
+// 	return 0;
+// }

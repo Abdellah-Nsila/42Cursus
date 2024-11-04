@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:07:41 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/29 08:47:16 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/03 18:40:42 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	start_index = 0;
 	while (s1[start_index] && ft_checkchr(set, s1[start_index]))
 		start_index++;
-	end_index = strlen(s1) - 1;
+	end_index = ft_strlen(s1) - 1;
 	while (end_index >= start_index && ft_checkchr(set, s1[end_index]))
 		end_index--;
 	ptr = (char *) malloc((end_index - start_index + 1) + 1);

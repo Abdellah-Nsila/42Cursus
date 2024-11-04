@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 18:02:49 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/03 17:40:54 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/04 08:40:59 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_putnbr_fd(int n, int fd)
 		n *= -1;
 		ft_putchar_fd('-', fd);
 	}
-	if (n > 10)
+	if (n > 9)
 		ft_putnbr_fd(n / 10, fd);
 	ft_putchar_fd(((n % 10) + 48), fd);
 }
