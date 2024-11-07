@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 11:10:02 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/04 10:07:15 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/06 17:20:02 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@ static void	ft_storeint(char *ptr, unsigned int n, int index, int sign)
 	if (index >= sign)
 	{
 		if (n > 9)
-		{
 			ft_storeint(ptr, (n / 10), (index - 1), sign);
-			ptr[index] = (n % 10) + 48;
-		}
 		ptr[index] = (n % 10) + 48;
 	}
 }
@@ -48,7 +45,7 @@ char	*ft_itoa(int n)
 		sign = 1;
 	}
 	len = sign + ft_getlen(number);
-	ptr = (char *) malloc((len + 1 * sizeof(char)));
+	ptr = (char *) malloc(((len + 1) * sizeof(char)));
 	if (!ptr)
 		return (NULL);
 	ft_storeint(ptr, number, len - 1, sign);
@@ -57,3 +54,12 @@ char	*ft_itoa(int n)
 	ptr[len] = '\0';
 	return (ptr);
 }
+
+// #include <stdio.h>
+
+// int	main(int ac, char **av)
+// {
+// 	if (ac != 2)
+// 		return (0);
+// 	printf("Str Num: %s\n", ft_itoa(ft_atoi(av[1])));
+// }

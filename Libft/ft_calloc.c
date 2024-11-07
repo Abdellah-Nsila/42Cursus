@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 11:36:20 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/27 14:57:16 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/06 16:02:44 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,3 +26,24 @@ void	*ft_calloc(size_t count, size_t size)
 	ft_bzero(ptr, total);
 	return ((void *)ptr);
 }
+
+// #include <stdio.h>
+
+// int	main(int ac, char **av)
+// {
+// 	char	*arr;
+// 	int		i;
+
+// 	if (ac != 3)
+// 		return (0);
+// 	arr = ft_calloc(ft_atoi(av[1]), ft_atoi(av[2]));
+// 	if (arr == NULL)
+// 		printf("Allocation Fail !");
+// 	i = 0;
+// 	while (i < (ft_atoi(av[1]) * ft_atoi(av[2])))
+// 	{
+// 		printf("index: %d,  value: %d\n", i, arr[i]);
+// 		i++;
+// 	}
+// 	return (1);
+// }

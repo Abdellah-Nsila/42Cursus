@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 14:22:30 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/03 15:41:16 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/07 17:21:57 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	size_t			i;
 
 	str = (unsigned char *)s;
-	search_str = c;
+	search_str = (unsigned char)c;
 	i = 0;
 	while (i < n)
 	{
@@ -29,3 +29,13 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	}
 	return (NULL);
 }
+
+// #include <stdio.h>
+
+// int	main(int ac, char **av)
+// {
+// 	if (ac != 4)
+// 		return (0);
+// 	printf("memchr Str: %s\n", (char *)ft_memchr(av[1], 
+//	av[2][0], ft_atoi(av[3])));
+// }

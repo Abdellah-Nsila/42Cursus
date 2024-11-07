@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 18:18:30 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/04 08:44:32 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/07 17:13:47 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,3 +23,24 @@ t_list	*ft_lstnew(void *content)
 	node->next = NULL;
 	return (node);
 }
+
+// #include <stdio.h>
+
+// void	print_node(t_list *node)
+// {
+// 	printf("----------------------------------------\n");
+// 	printf("node Address: %p\n", &node);
+// 	printf("node Content: %s\n", (char *)node->content);
+// 	printf("node Next: %p\n", (t_list *)node->next);
+// 	printf("----------------------------------------\n");
+// }
+
+// int	main(void)
+// {
+// 	t_list	*node;
+// 	char	*content;
+
+// 	content = ft_strdup("Abdellah");
+// 	node = ft_lstnew((void *)content);
+// 	print_node(node);
+// }
