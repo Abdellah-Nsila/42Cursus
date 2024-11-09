@@ -6,22 +6,22 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:07:41 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/04 10:10:28 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/10 00:32:55 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_checkchr(const char *str, int c)
+int	ft_checkchr(const char *set, int c)
 {
-	unsigned char	search_str;
+	unsigned char	search_set;
 	int				i;
 
-	search_str = c;
+	search_set = c;
 	i = 0;
-	while (str[i])
+	while (set[i])
 	{
-		if (str[i] == search_str)
+		if (set[i] == search_set)
 			return (1);
 		i++;
 	}
