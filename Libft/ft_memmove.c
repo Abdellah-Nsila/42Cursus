@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 08:33:33 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/09 19:19:40 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/09 22:33:28 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ void	*ft_memmove(void *dst, const void *src, size_t n)
 //  char dst[20];
 //   printf("Dst: %s\n", (char *)memmove(src + 3, src, 4));
 //   printf("Src: %s\n", src);
-//   printf("dst: %s\n", (char *)ft_memmove(src, src, 4));
-
+//   printf("dst: %s\n", (char *)ft_memmove(src + 3, src, 4));
+//   printf("Src: %s\n", src);
 // }

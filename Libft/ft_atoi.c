@@ -6,11 +6,19 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 09:33:43 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/06 15:35:24 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/09 20:02:42 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
+
+static int	handlemaxcase(int sign)
+{
+	if (sign == 1)
+		return (-1);
+	return (0);
+}
 
 static int	ft_isspace(char c)
 {
@@ -21,34 +29,35 @@ int	ft_atoi(const char *str)
 {
 	int					i;
 	int					sign;
-	int					num;
+	unsigned long long	num;
+	unsigned long long	max;
 
 	i = 0;
 	num = 0;
 	sign = 1;
+	max = 9223372036854775807;
 	while (ft_isspace(str[i]))
 		i++;
-	if (str[i] == '-')
+	if (str[i] == '+' || str[i] == '-')
 	{
-		sign = -1;
-		i++;
+		if (str[i++] == '-')
+			sign = -1;
 	}
-	else if (str[i] == '+')
-		i++;
 	while (str[i] && ft_isdigit((int)str[i]))
 	{
 		num = (num * 10) + (str[i] - 48);
+		if (num >= max)
+			return (handlemaxcase(sign));
 		i++;
 	}
-	return (num * sign);
+	return ((int)(num * sign));
 }
-
-// #include <stdio.h>
 
 // int	main(int ac, char **av)
 // {
 // 	if (ac != 2)
 // 		return (0);
-// 	printf("Num: %d\n", ft_atoi(av[1]));
-//	return (1);
+// 	printf("\natoi() Num: %d\n\n", atoi(av[1]));
+// 	printf("ft_atoi() Num: %d\n\n", ft_atoi(av[1]));
+// 	return (1);
 // }

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 11:36:20 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/06 16:02:44 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/09 21:43:06 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ void	*ft_calloc(size_t count, size_t size)
 	void	*ptr;
 	size_t	total;
 
-	total = count * size;
 	if (size != 0 && count > ((size_t) -1 / size))
 		return (NULL);
+	total = count * size;
 	ptr = malloc(total);
 	if (!ptr)
 		return (NULL);
 	ft_bzero(ptr, total);
-	return ((void *)ptr);
+	return (ptr);
 }
 
 // #include <stdio.h>
@@ -45,5 +45,6 @@ void	*ft_calloc(size_t count, size_t size)
 // 		printf("index: %d,  value: %d\n", i, arr[i]);
 // 		i++;
 // 	}
+// 	free(arr);
 // 	return (1);
 // }

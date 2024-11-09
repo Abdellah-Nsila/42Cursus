@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 11:10:02 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/06 17:20:02 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/09 22:07:04 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*ft_itoa(int n)
 	sign = 0;
 	if (n < 0)
 	{
-		number = n * -1;
+		number = -n;
 		sign = 1;
 	}
 	len = sign + ft_getlen(number);
