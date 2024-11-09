@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 08:55:11 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/04 10:09:50 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/07 18:01:59 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	ft_wordscount(const char *s, char c)
 	return (count);
 }
 
-static char	**ft_lethimcook(char **arr, const char *s, char c)
+static char	**ft_splitwords(char **arr, const char *s, char c)
 {
 	int		current;
 	int		start;
@@ -81,5 +81,32 @@ char	**ft_split(char const *s, char c)
 	arr = (char **)malloc((words_count + 1) * sizeof(char *));
 	if (!arr)
 		return (NULL);
-	return (ft_lethimcook(arr, s, c));
+	return (ft_splitwords(arr, s, c));
 }
+
+// #include <stdio.h>
+
+// void	printarr(char	**arr)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	printf("[");
+// 	if (arr)
+// 	{
+// 		while (arr[i])
+// 		{
+// 			printf("\"%s\", ", arr[i]);
+// 			i++;
+// 		}
+// 	}
+// 	printf("NULL]\n");
+// }
+
+// int	main(int ac, char **av)
+// {
+// 	if (ac != 3)
+// 		return (0);
+// 	printarr(ft_split(av[1], av[2][0]));
+// 	printarr(ft_split(NULL, av[2][0]));
+// }

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 08:33:33 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/07 17:08:32 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/09 19:19:40 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	*ft_memmove(void *dst, const void *src, size_t n)
 
 	if (!dst && !src)
 		return (NULL);
+	if (dst == src)
+		return (dst);
 	d = (unsigned char *)dst;
 	s = (const unsigned char *)src;
 	i = 0;
@@ -36,9 +38,16 @@ void	*ft_memmove(void *dst, const void *src, size_t n)
 	return (dst);
 }
 
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include <string.h>
+
 // int main()
 // {
 //   char src[] = "Hello World";
-//   ft_memmove(src + 3, src, 4);
-//   printf("Dst: %s", (char *)ft_memmove(src + 3, src, 4));
+//  char dst[20];
+//   printf("Dst: %s\n", (char *)memmove(src + 3, src, 4));
+//   printf("Src: %s\n", src);
+//   printf("dst: %s\n", (char *)ft_memmove(src, src, 4));
+
 // }

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 18:18:30 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/07 17:13:47 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/08 16:26:04 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,7 @@ t_list	*ft_lstnew(void *content)
 // int	main(void)
 // {
 // 	t_list	*node;
-// 	char	*content;
-
-// 	content = ft_strdup("Abdellah");
+// 	char	content[] = "Abdellah";
 // 	node = ft_lstnew((void *)content);
 // 	print_node(node);
 // }

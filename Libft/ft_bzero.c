@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:50:09 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/06 15:39:45 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/08 17:49:01 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	ft_bzero(void *s, size_t n)
 // {
 // 	char	arr[10];
 // 	int		i;
-
 // 	ft_bzero(arr, sizeof(arr));
 // 	i = 0;
 // 	while (i < 10)
