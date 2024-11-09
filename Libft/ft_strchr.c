@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:27:05 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/03 15:02:35 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/09 23:08:01 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*ft_strchr(const char *str, int c)
 {
 	unsigned char	search_str;
-	int				i;
+	size_t			i;
 
 	search_str = (unsigned char)c;
 	i = 0;

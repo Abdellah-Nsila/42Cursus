@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 14:44:36 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/09 22:41:34 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/09 23:53:27 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 // {
 // 	char	src[] = "Hello World";
 // 	char	dst[20];
-// 	printf("Dst: %s\n", (char *)ft_memcpy(src + 3, src, 5));
+// 	printf("Dst: %s\n", (char *)memcpy(src + 3, src, 5));
 // 	printf("Src: %s\n\n", src);
 // }

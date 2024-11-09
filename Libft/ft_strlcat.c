@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:11:03 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/26 09:26:08 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/09 23:50:18 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 
 	i = 0;
 	src_len = ft_strlen(src);
-	if (dstsize == 0)
+	if (!dst && !src && dstsize == 0)
 		return (src_len);
 	dst_len = ft_strlen(dst);
 	if (dst_len >= dstsize)
@@ -33,3 +33,15 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	dst[dst_len + i] = '\0';
 	return (src_len + dst_len);
 }
+
+// #include <stdio.h>
+// #include <string.h>
+
+// int main()
+// {
+// 	char *src = NULL;
+// 	char dst[20];
+
+// 	size_t result = ft_strlcat(dst, src, 2);
+// 	printf("result value: %zu\n", result);
+// }

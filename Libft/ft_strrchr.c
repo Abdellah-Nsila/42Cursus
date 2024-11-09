@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abnsila <abnsila@student.42.fr>            +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 11:34:27 by abnsila           #+#    #+#             */
-/*   Updated: 2024/10/26 09:23:40 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/10 00:30:09 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,11 @@ char	*ft_strrchr( const char *str, int c)
 	}
 	return (NULL);
 }
+
+// #include <stdio.h>
+
+// int main(int ac, char **av)
+// {
+// 	char	*res = ft_strrchr(av[1], av[2][0]);
+// 	printf("Res found in: %s", res);
+// }

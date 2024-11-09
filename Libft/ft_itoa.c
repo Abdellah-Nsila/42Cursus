@@ -6,13 +6,13 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 11:10:02 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/09 22:07:04 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/09 23:13:38 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	ft_storeint(char *ptr, unsigned int n, int index, int sign)
+static void	ft_storeint(char *ptr, unsigned int n, size_t index, int sign)
 {
 	if (index >= sign)
 	{
@@ -32,7 +32,7 @@ static int	ft_getlen(unsigned int n)
 char	*ft_itoa(int n)
 {
 	unsigned int		number;
-	int					len;
+	size_t				len;
 	int					sign;
 	char				*ptr;
 

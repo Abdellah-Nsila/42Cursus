@@ -6,13 +6,13 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 08:55:11 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/07 18:01:59 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/09 23:11:22 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	**ft_freearray(char **arr, int count)
+static char	**ft_freearray(char **arr, size_t count)
 {
 	while (count > 0)
 	{
@@ -46,9 +46,9 @@ static int	ft_wordscount(const char *s, char c)
 
 static char	**ft_splitwords(char **arr, const char *s, char c)
 {
-	int		current;
-	int		start;
-	int		count;
+	size_t		current;
+	size_t		start;
+	size_t		count;
 
 	current = 0;
 	count = 0;
@@ -73,7 +73,7 @@ static char	**ft_splitwords(char **arr, const char *s, char c)
 char	**ft_split(char const *s, char c)
 {
 	char	**arr;
-	int		words_count;
+	size_t	words_count;
 
 	if (!s)
 		return (NULL);

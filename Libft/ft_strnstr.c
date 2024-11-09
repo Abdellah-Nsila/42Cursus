@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 16:07:42 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/03 16:20:10 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/10 00:25:37 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,3 +33,16 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	}
 	return (NULL);
 }
+
+// #include <stdio.h>
+// #include <string.h>
+
+// int	main(void)
+// {
+// 	char *str1 = ft_strdup("hello world");
+// 	char *str2 = "o w";
+// 	char *res = ft_strnstr((const char *)str1, (const char *)str2, 0);
+// 	printf("str1: %s\nstr2: %s\nfounded at:%s\n",
+// 			str1, str2, res);
+// 	return (0);
+// }
