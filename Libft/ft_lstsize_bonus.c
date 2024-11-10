@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 18:52:39 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/08 16:06:09 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/10 15:27:46 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int	ft_lstsize(t_list *lst)
 {
-	int	len;
+	int	size;
 
-	len = 0;
+	size = 0;
 	while (lst)
 	{
-		len++;
+		size++;
 		lst = lst->next;
 	}
-	return (len);
+	return (size);
 }
 
 // #include <stdio.h>
@@ -50,10 +50,8 @@ int	ft_lstsize(t_list *lst)
 // 	node1 = ft_lstnew("First (1)");
 // 	node2 = ft_lstnew("Second (2)");
 // 	node3 = ft_lstnew("Third (3)");
-	
 // 	ft_lstadd_back(&node1, node2);
 // 	ft_lstadd_back(&node1, node3);
-	
 // 	printlst(node1);
 // 	printf("Size: %d\n", ft_lstsize(node1));
 // }

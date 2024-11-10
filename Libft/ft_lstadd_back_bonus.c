@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 22:45:47 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/08 16:05:04 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/10 16:07:12 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list	*node;
-	
+	t_list	*last;
+
 	if (!lst || !new)
 		return ;
 	if (*lst == NULL)
@@ -23,10 +23,10 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		*lst = new;
 		return ;
 	}
-	node = ft_lstlast(*lst);
-	node->next = new;
+	last = ft_lstlast(*lst);
+	if (last)
+		last->next = new;
 }
-
 
 // #include <stdio.h>
 
@@ -53,9 +53,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 // 	node1 = ft_lstnew("First (1)");
 // 	node2 = ft_lstnew("Second (2)");
 // 	node3 = ft_lstnew("Third (3)");
-	
 // 	ft_lstadd_back(&node1, node2);
 // 	ft_lstadd_back(&node1, node3);
-	
 // 	printlst(node1);
 // }

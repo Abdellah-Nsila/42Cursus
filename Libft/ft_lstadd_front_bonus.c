@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 18:34:15 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/08 16:25:52 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/10 16:07:30 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,7 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 // 	node1 = ft_lstnew("First (1)");
 // 	node2 = ft_lstnew("Second (2)");
 // 	node3 = ft_lstnew("Third (3)");
-	
 // 	ft_lstadd_front(&node1, node2);
 // 	ft_lstadd_front(&node1, node3);
-	
 // 	printlst(node1);
 // }
