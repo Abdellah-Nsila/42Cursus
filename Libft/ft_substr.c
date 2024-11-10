@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 15:07:42 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/03 17:59:15 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/10 14:23:42 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,3 +32,15 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	ft_strlcpy(ptr, &s[start], substr_len + 1);
 	return ((char *)ptr);
 }
+
+// #include <stdio.h>
+// #include <string.h>
+
+// int main(int ac, char **av)
+// {
+// 	if (ac == 4)
+// 	{
+// 		printf("%s\n", ft_substr(av[1], atoi(av[2]), atoi(av[3])));
+// 	}
+// 	return (0);
+// }

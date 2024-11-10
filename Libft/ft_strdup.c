@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 12:02:15 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/09 23:16:29 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/10 14:43:04 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ char	*ft_strdup(const char *s1)
 	if (!dst)
 		return (NULL);
 	ft_strlcpy(dst, s1, src_len);
-	return ((char *)dst);
+	return (dst);
 }

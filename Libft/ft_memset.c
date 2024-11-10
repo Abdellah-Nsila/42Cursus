@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 16:46:02 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/10 00:49:57 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/10 14:36:22 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,11 @@ void	*ft_memset(void *b, int c, size_t len)
 //     int     *arr;
 //     size_t  i;
 //     size_t  j;
-//     // Allocate memory for 10 integers
 //     arr = (int *)malloc(10 * sizeof(int));
 //     if (!arr) {
 //         perror("malloc failed");
 //         return 1;
 //     }
-//     // Initialize the allocated memory to specific values
 //     j = 0;
 //     while (j < 10)
 //     {
@@ -75,11 +73,9 @@ void	*ft_memset(void *b, int c, size_t len)
 //         memset(p + 3, 0b00000000, 1); // Set the fourth byte
 //         j++;
 //     }
-//     // Print the values in the allocated memory
 //     for (i = 0; i < 10; i++) {
 //         printf("arr[%zu] = %d\n", i, arr[i]);
 //     }
-//     // Free the allocated memory
 //     free(arr);
 //     return 0;
 // }

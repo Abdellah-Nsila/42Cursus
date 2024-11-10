@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 11:36:20 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/09 21:43:06 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/10 14:33:03 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	*ft_calloc(size_t count, size_t size)
 
 // 	if (ac != 3)
 // 		return (0);
-// 	arr = ft_calloc(ft_atoi(av[1]), ft_atoi(av[2]));
+// 	arr = calloc(ft_atoi(av[1]), ft_atoi(av[2]));
 // 	if (arr == NULL)
 // 		printf("Allocation Fail !");
 // 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:07:41 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/10 00:32:55 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/10 14:06:57 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,3 +55,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 	ptr[i] = '\0';
 	return (ptr);
 }
+
+// #include <stdio.h>
+
+// int	main(int ac, char **av)
+// {
+// 	printf("Result: %s", ft_strtrim(av[1], av[2]));
+// }
