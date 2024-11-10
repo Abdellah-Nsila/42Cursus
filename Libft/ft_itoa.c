@@ -6,13 +6,13 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 11:10:02 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/09 23:13:38 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/10 17:58:34 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	ft_storeint(char *ptr, unsigned int n, size_t index, int sign)
+static void	ft_storeint(char *ptr, unsigned int n, int index, int sign)
 {
 	if (index >= sign)
 	{

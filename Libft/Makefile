@@ -20,16 +20,19 @@ CC = cc
 RM = rm -f
 CFLAGS = -Wall -Wextra -Werror
 
-all: ${NAME}
+all : $(NAME)
 
-${NAME}: ${OBJS}
-	${LIBC} ${NAME} ${OBJS}
+$(NAME) : $(OBJS)
+	ar rcs $(NAME) $(OBJS)
 
-%.o: %.c
-	${CC} ${CFLAGS} -c $< -o $@
+$(OBJS) : $(SRCS)
+	cc $(CFLAGS) -c $(SRCS)
 
-bonus: ${NAME} ${OBJSB}
-	${LIBC} ${NAME} ${OBJSB}
+bonus : $(OBJSB)
+
+$(OBJSB) : $(SRCSB)
+	cc $(CFLAGS) -c $(SRCSB)
+	ar rcs $(NAME) $(OBJSB)
 
 clean:
 	${RM} ${OBJS} ${OBJSB}
