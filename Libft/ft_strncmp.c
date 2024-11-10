@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 16:11:16 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/10 00:15:47 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/10 15:25:07 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 
 // int main(int ac, char **av)
 // {
-// 	printf("str1:%s\nstr2:%s\nretuned:%d\n", av[1], av[2], strncmp(av[1], av[2], atoi(av[3])));
-// 	printf("str1:%s\nstr2:%s\nretuned:%d\n", av[1], av[2], ft_strncmp(av[1], av[2], atoi(av[3])));
+// 	printf("str1:%s\nstr2:%s\nretuned:%d\n", av[1], av[2], 
+//	strncmp(av[1], av[2], atoi(av[3])));
+// 	printf("str1:%s\nstr2:%s\nretuned:%d\n", av[1], av[2], 
+//	ft_strncmp(av[1], av[2], atoi(av[3])));
 // 	return (1);
 // }

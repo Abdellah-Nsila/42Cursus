@@ -6,53 +6,31 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:07:41 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/10 14:06:57 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/10 15:24:26 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_checkchr(const char *set, int c)
-{
-	unsigned char	search_set;
-	int				i;
-
-	search_set = c;
-	i = 0;
-	while (set[i])
-	{
-		if (set[i] == search_set)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*ptr;
-	int		start_index;
-	int		end_index;
-	int		i;
+	size_t	start_index;
+	size_t	end_index;
+	size_t	len;
 
 	if (!s1 || !set)
 		return (NULL);
 	start_index = 0;
-	while (s1[start_index] && ft_checkchr(set, s1[start_index]))
+	while (s1[start_index] && ft_strchr(set, s1[start_index]))
 		start_index++;
-	end_index = ft_strlen(s1) - 1;
-	while (end_index >= start_index && ft_checkchr(set, s1[end_index]))
+	end_index = ft_strlen(s1);
+	while (end_index >= start_index && ft_strchr(set, s1[end_index - 1]))
 		end_index--;
-	ptr = (char *) malloc((end_index - start_index + 1) + 1);
+	len = end_index - start_index;
+	ptr = ft_substr(s1, start_index, len);
 	if (!ptr)
 		return (NULL);
-	i = 0;
-	while (start_index + i <= end_index)
-	{
-		ptr[i] = s1[start_index + i];
-		i++;
-	}
-	ptr[i] = '\0';
 	return (ptr);
 }
 
@@ -60,5 +38,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 // int	main(int ac, char **av)
 // {
-// 	printf("Result: %s", ft_strtrim(av[1], av[2]));
+// 	printf("Result: %s\n", ft_strtrim(av[1], av[2]));
+// 	printf("Result: %zu\n", ft_strlen(ft_strtrim(av[1], av[2])));
+// 	printf("Result: %lu\n\n", sizeof(ft_strtrim(av[1], av[2])));
 // }
