@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 09:34:49 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/10 16:20:12 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/11/11 14:41:59 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		new_node = ft_lstnew(new_content);
 		if (!new_node)
 		{
-			free(new_content);
+			del(new_content);
 			ft_lstclear(&new_lst, del);
 			return (NULL);
 		}
