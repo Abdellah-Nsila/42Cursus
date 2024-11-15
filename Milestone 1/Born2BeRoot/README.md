@@ -1,3 +1,4 @@
+<!-- What is Virtualization ? -->
 # What is Virtualization ?
 Virtualization is a technology that allows you to create a virtual version of a computer system within a single physical machine. This virtual system, called a "virtual machine" (VM), acts like a separate computer with its own operating system, applications, and resources, even though it shares the physical resources (like CPU, memory, and storage) of the host machine.
 
@@ -23,6 +24,10 @@ A virtual machine (VM) works by simulating a complete computer system within sof
 - Efficient Use of Resources
 - Education and Training
 
+
+
+
+<!-- Operating System Comparison: Debian vs Rocky Linux -->
 # Operating System Comparison: Debian vs Rocky Linux
 
 `Basic Differences Between Rocky Linux and Debian`
@@ -44,6 +49,36 @@ A virtual machine (VM) works by simulating a complete computer system within sof
 
 <i style="color:yellow">Rocky Linux, while highly stable and suited for enterprise environments, is better suited for users with familiarity in RHEL-based systems and a need for advanced security configurations such as SELinux.</i>
 
+
+
+
+<!-- What is LVM? -->
+# What is LVM?
+
+LVM stands for Logical Volume Manager. It is a storage management system used in Linux that provides a flexible and efficient way to manage disk storage. Instead of working directly with physical disks or partitions, LVM abstracts these physical storage devices and allows you to manage them in a more dynamic and user-friendly way.
+
+## Key Concepts of LVM
+
+    1. Physical Volumes (PVs):
+        These are physical storage devices like hard drives or partitions (e.g., /dev/sda1).
+        PVs form the foundation for LVM.
+
+    2. Volume Groups (VGs):
+        A Volume Group is a pool of storage created by combining multiple Physical Volumes.
+        You can think of it as a "storage pool" from which you can allocate space dynamically.
+
+    3. Logical Volumes (LVs):
+        Logical Volumes are the "virtual partitions" that are created from the space in a Volume Group.
+        These are what you format with a file system (like ext4, xfs) and mount for use.
+
+## What is Encrypted Storage?
+
+Encrypted storage refers to a mechanism where data stored on a device or partition is encoded using cryptographic algorithms, making it unreadable to unauthorized users. Only users with the proper decryption key (e.g., a password or a certificate) can access the data.
+
+
+
+
+<!-- AppArmor vs SELinux: A Comparison -->
 # AppArmor vs SELinux: A Comparison
 
 Here is a detailed comparison table highlighting the differences between **AppArmor** and **SELinux**:
@@ -68,3 +103,6 @@ Kernel Interaction: The process sends a request to the kernel to open the file f
 Security Systems:
 - AppArmor: Uses path-based security policies.
 - SELinux: Uses label-based security policies.
+
+[Core Differences Between SELinux and AppArmo](https://www.baeldung.com/linux/selinux-vs-apparmor)
+
