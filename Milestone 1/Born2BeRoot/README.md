@@ -61,3 +61,10 @@ Here is a detailed comparison table highlighting the differences between **AppAr
 | **Flexibility**                | Less flexible compared to SELinux.             | Highly flexible with multi-layered policies.                                                                                      |  
 | **Community & Documentation**  | Well-documented for Debian/Ubuntu users.       | Comprehensive documentation for RHEL-based systems.                                                                               |  
 | **Security Goals**             | Primarily designed to restrict applications.   | Provides comprehensive system-wide access control.                                                                                |
+
+### Example Scenario
+Process: A web server (e.g., Apache) wants to read a configuration file, /etc/httpd/conf/httpd.conf.
+Kernel Interaction: The process sends a request to the kernel to open the file for reading.
+Security Systems:
+- AppArmor: Uses path-based security policies.
+- SELinux: Uses label-based security policies.
