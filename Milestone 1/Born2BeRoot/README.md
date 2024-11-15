@@ -1,4 +1,4 @@
-# What is virtualization ?
+# What is Virtualization ?
 Virtualization is a technology that allows you to create a virtual version of a computer system within a single physical machine. This virtual system, called a "virtual machine" (VM), acts like a separate computer with its own operating system, applications, and resources, even though it shares the physical resources (like CPU, memory, and storage) of the host machine.
 
 ## What is virtual machine (VMs)?
@@ -13,5 +13,26 @@ A key component in virtualization, a hypervisor is the software layer that enabl
     Isolation: Different environments can run on the same hardware without interfering with each other.
     Scalability: Resources can be dynamically allocated to VMs as needed.
 
+## How does a virtual machine work and what is its purpose?
+A virtual machine (VM) works by simulating a complete computer system within software, enabling it to function as an independent computer with its own operating system and applications. The VM relies on a layer of software called a hypervisor to manage and allocate the physical resources of the host machine, such as CPU, memory, and storage, across multiple virtual environments.
 
+## Purpose of Virtual Machines
+- Testing and Development
+- Running Multiple OSs on One Machine
+- Enhanced Security and Isolation
+- Efficient Use of Resources
+- Education and Training
 
+# Operating System Comparison: Debian vs Rocky Linux
+
+This document provides an overview of the key differences between Debian and Rocky Linux, focusing on their suitability for server setup and administration, particularly in the context of learning system administration basics.
+| Basic Differences Between Rocky Linux and Debian
+| Feature                                   | Debian                                                    | Rocky Linux
+| ----------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------------
+| Origin                                    | Community-driven, created in 1993.                        | Fork of CentOS, created in 2021.
+| Base System                               | Based on Debian GNU/Linux.                                | Derived from Red Hat Enterprise Linux (RHEL).
+| Target Users                              | General-purpose, for servers and desktops.                | Primarily enterprise-level servers.
+| Package Management                        | Uses apt and .deb packages.                               | Uses dnf/yum and .rpm packages.
+| Stability	Three branches:                 | Stable, Testing, and Unstable. Stable is highly reliable. | Extremely stable, mirroring RHEL releases.
+| Security                                  | Utilizes AppArmor for security.                           | Uses SELinux, which is enabled and enforced by default.
+| Community                                 | Large and highly active.                                  | Growing community after the shift from CentOS to CentOS Stream.
