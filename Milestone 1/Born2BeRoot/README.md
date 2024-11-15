@@ -42,10 +42,7 @@ A virtual machine (VM) works by simulating a complete computer system within sof
 - Robust Community Support: Extensive documentation and community resources.
 - Security and Stability: Reliable for server setup without the complex security frameworks of Rocky Linux.
 
-<i>Rocky Linux, while highly stable and suited for enterprise environments, is better suited for users with familiarity in RHEL-based systems and a need for advanced security configurations such as SELinux.<i>
-
-
-
+<i style="color:yellow">Rocky Linux, while highly stable and suited for enterprise environments, is better suited for users with familiarity in RHEL-based systems and a need for advanced security configurations such as SELinux.</i>
 
 # AppArmor vs SELinux: A Comparison
 
