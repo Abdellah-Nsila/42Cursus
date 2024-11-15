@@ -25,8 +25,7 @@ A virtual machine (VM) works by simulating a complete computer system within sof
 
 # Operating System Comparison: Debian vs Rocky Linux
 
-This document provides an overview of the key differences between Debian and Rocky Linux, focusing on their suitability for server setup and administration, particularly in the context of learning system administration basics.
-| Basic Differences Between Rocky Linux and Debian
+`Basic Differences Between Rocky Linux and Debian`
 | Feature                                   | Debian                                                    | Rocky Linux
 | ----------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------------
 | Origin                                    | Community-driven, created in 1993.                        | Fork of CentOS, created in 2021.
@@ -36,3 +35,11 @@ This document provides an overview of the key differences between Debian and Roc
 | Stability	Three branches:                 | Stable, Testing, and Unstable. Stable is highly reliable. | Extremely stable, mirroring RHEL releases.
 | Security                                  | Utilizes AppArmor for security.                           | Uses SELinux, which is enabled and enforced by default.
 | Community                                 | Large and highly active.                                  | Growing community after the shift from CentOS to CentOS Stream.
+
+### Recommendation
+- For those new to system administration, Debian is recommended. It offers:
+- User-Friendliness: Simplified configurations, allowing beginners to focus on core concepts.
+- Robust Community Support: Extensive documentation and community resources.
+- Security and Stability: Reliable for server setup without the complex security frameworks of Rocky Linux.
+
+<i style="color: yellow">Rocky Linux, while highly stable and suited for enterprise environments, is better suited for users with familiarity in RHEL-based systems and a need for advanced security configurations such as SELinux.<i>
