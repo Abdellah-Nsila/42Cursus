@@ -116,6 +116,7 @@ By using LVM, we can expand the storage of any partition (now known as a logical
 - Volume Group (VG): to use the space provided by a PV, it must be allocated in a volume group. It is like a virtual storage disk that will be used by logical volumes. VGs can grow over time by adding new VPs.
 - Logical volume (LV): these devices will be the ones we will use to create file systems, swaps, virtual machines, etc. If the VG is the storage disk, the LV are the partitions that are made on this disk.
 
+```plaintext
 +-----------------------------------------------------+
 |                  Physical Volume (PV)               |
 |   /dev/sdX (e.g., hard disk)                        |
@@ -131,3 +132,4 @@ By using LVM, we can expand the storage of any partition (now known as a logical
 |   |  +-------------+   +---------------------+  |   |
 |   +---------------------------------------------+   |
 +-----------------------------------------------------+
+```
