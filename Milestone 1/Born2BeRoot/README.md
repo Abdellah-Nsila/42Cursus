@@ -106,3 +106,28 @@ Security Systems:
 
 [Core Differences Between SELinux and AppArmo](https://www.baeldung.com/linux/selinux-vs-apparmor)
 
+
+# What is LVM?
+
+LVM (Logical Volume Manager) is an abstraction layer between a storage device and a file system. We get many advantages from using LVM, but the main advantage is that we have much more flexibility when it comes to managing partitions. Suppose we create four partitions on our storage disk. If for any reason we need to expand the storage of the first three partitions, we will not be able to because there is no space available next to them. In case we want to extend the last partition, we will always have the limit imposed by the disk. In other words, we will not be able to manipulate partitions in a friendly way. Thanks to LVM, all these problems are solved.
+By using LVM, we can expand the storage of any partition (now known as a logical volume) whenever we want without worrying about the contiguous space available on each logical volume. We can do this with available storage located on different physical disks (which we cannot do with traditional partitions). We can also move different logical volumes between physical devices. Of course, services and processes will work the same way they always have. But to understand all this, we have to know:
+
+- Physical Volume (PV): physical storage device. It can be a hard disk, an SD card, a floppy disk, etc. This device provides us with storage available to use.
+- Volume Group (VG): to use the space provided by a PV, it must be allocated in a volume group. It is like a virtual storage disk that will be used by logical volumes. VGs can grow over time by adding new VPs.
+- Logical volume (LV): these devices will be the ones we will use to create file systems, swaps, virtual machines, etc. If the VG is the storage disk, the LV are the partitions that are made on this disk.
+
++-----------------------------------------------------+
+|                  Physical Volume (PV)               |
+|   /dev/sdX (e.g., hard disk)                        |
+|                                                     |
+|   +---------------------------------------------+   |
+|   |               Volume Group (VG)             |   |
+|   |    VG Name: my_vg                           |   |
+|   |                                             |   |
+|   |  +-------------+   +---------------------+  |   |
+|   |  | Logical Vol |   |    Logical Vol      |  |   |
+|   |  | Name: root  |   | Name: home          |  |   |
+|   |  | Size: 20GB  |   | Size: 10GB          |  |   |
+|   |  +-------------+   +---------------------+  |   |
+|   +---------------------------------------------+   |
++-----------------------------------------------------+
