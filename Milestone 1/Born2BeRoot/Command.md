@@ -47,8 +47,19 @@ sudo nano /etc/login.defs
     PASS_MIN_DAYS   2
     PASS_WARN_AGE   7
 sudo apt install libpam-pwquality
+[ Method 1 ]
+sudo nano /etc/security/pwquality.conf
+    minlen = 10           # Minimum password length.
+    ucredit = -1          # At least 1 uppercase letter required.
+    lcredit = -1          # At least 1 lowercase letter required.
+    dcredit = -1          # At least 1 digit required.
+    maxrepeat = 3         # Maximum consecutive identical characters allowed.
+    usercheck=0           # Not include the name of the user.
+    difok = 7             # Requires 7 characters different from the old password.
+    enforce_for_root      # Enforces the policy for root passwords.
+[ Method 2 ]
 sudo nano /etc/pam.d/common-password
-    password    requisite         pam_pwquality.so retry=3 minlen=10 lcredit =-1 ucredit=-1 dcredit=-1
+    password    requisite         pam_pwquality.so minlen=10 lcredit =-1 ucredit=-1 dcredit=-1
     maxrepeat=3 usercheck=0 difok=7 enforce_for_root
 sudo reboot
 
