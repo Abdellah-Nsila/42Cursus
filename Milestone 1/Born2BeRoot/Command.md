@@ -2,8 +2,8 @@
 su -
 
 # Update the sytseme
-sudo apt update 
-sudo apt upgrade 
+apt update 
+apt upgrade 
 
 # Install sudo and configure strict rules
 sudo apt install sudo
@@ -26,6 +26,8 @@ sudo visudo
 sudo adduser new_username new_group
 
 # SSH
+sudo apt update 
+sudo apt upgrade 
 sudo apt install openssh-server
 service ssh restart
 sudo nano /etc/ssh/sshd_config
@@ -46,8 +48,7 @@ sudo nano /etc/login.defs
     PASS_WARN_AGE   7
 sudo apt install libpam-pwquality
 sudo nano /etc/pam.d/common-password
-    password [success=2 default=ignore] pam_unix.so obscure sha512 minlen=10
-    password    requisite         pam_pwquality.so retry=3 lcredit =-1 ucredit=-1 dcredit=-1
+    password    requisite         pam_pwquality.so retry=3 minlen=10 lcredit =-1 ucredit=-1 dcredit=-1
     maxrepeat=3 usercheck=0 difok=7 enforce_for_root
 sudo reboot
 
