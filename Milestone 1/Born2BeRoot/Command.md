@@ -80,10 +80,9 @@ sudo reboot
 • The number of virtual processors: grep "processor" /proc/cpuinfo | wc -l
 • The current available RAM on your server and its utilization rate as a percentage:
     free RAM: free -m | awk '/Mem:/ {printf $4}'
-    * usage RAM: free -m | awk '/Mem:/ {printf $3}'
-    total RAM: free -m | awk '/Mem:/ {printf $2}'
-    * porcentage RAM: free -m | awk '/Mem:/ {printf "%.2f%%", $4/$2 * 100}'
-• The current available memory on your server and its utilization rate as a percentage: 
+    usage RAM: free -m | awk '/Mem:/ {printf $3}' --> $memory_used
+    total RAM: free -m | awk '/Mem:/ {printf $2}' -->  $memory_total
+    porcentage RAM: awk "BEGIN {printf \"%.2f\", $memory_used/$memory_total*100}"
 • The current utilization rate of your processors as a percentage: 
 • The date and time of the last reboot: 
 • Whether LVM is active or not: 
