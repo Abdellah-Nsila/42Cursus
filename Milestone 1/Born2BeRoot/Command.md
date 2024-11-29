@@ -82,12 +82,13 @@ sudo reboot
 • The number of virtual processors:
     grep "processor" /proc/cpuinfo | wc -l
 • The current available RAM on your server and its utilization rate as a percentage:
-    free RAM: free -m | awk '/Mem:/ {printf $4}'
     usage RAM: free -m | awk '/Mem:/ {printf $3}' --> $memory_used
     total RAM: free -m | awk '/Mem:/ {printf $2}' -->  $memory_total
     porcentage RAM: awk "BEGIN {printf \"%.2f\", $memory_used/$memory_total*100}"
 • The current available memory on your server and its utilization rate as a percentage.
-
+    usage Disk: df -h / | awk '/\// {print $3}' --> $disk_used
+    total Disk: df -h / | awk '/\// {print $2}' --> $disk_total
+    percentage Disk: df -h / | awk '/\// {print $5}'
 • The current utilization rate of your processors as a percentage:
     top -bn1 | awk '/Cpu\(s\)/ {printf "%.1f%%", $2 + $4}'
 • The date and time of the last reboot:
@@ -99,5 +100,24 @@ sudo reboot
 • The number of users using the server:
     users | wc -w
 • The IPv4 address of your server and its MAC (Media Access Control) address:
+    hostname -I | awk '{print $1}'     --> ip_address
+    ip link | awk '/ether/ {print $2}' --> mac_address
 • The number of commands executed with the sudo program:
+    journalctl -q _COMM=sudo | grep COMMAND | wc -l
 # Crontab Configuration
+
+
+
+#!/bin/bash
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
