@@ -75,19 +75,29 @@ sudo nano /etc/hosts
 sudo reboot
 
 # Create monitoring.sh
-• The architecture of your operating system and its kernel version: uname -a
-• The number of physical processors: grep "physical id" /proc/cpuinfo | sort | uniq | wc -l
-• The number of virtual processors: grep "processor" /proc/cpuinfo | wc -l
+• The architecture of your operating system and its kernel version:
+    uname -a
+• The number of physical processors:
+    grep "physical id" /proc/cpuinfo | sort | uniq | wc -l
+• The number of virtual processors:
+    grep "processor" /proc/cpuinfo | wc -l
 • The current available RAM on your server and its utilization rate as a percentage:
     free RAM: free -m | awk '/Mem:/ {printf $4}'
     usage RAM: free -m | awk '/Mem:/ {printf $3}' --> $memory_used
     total RAM: free -m | awk '/Mem:/ {printf $2}' -->  $memory_total
     porcentage RAM: awk "BEGIN {printf \"%.2f\", $memory_used/$memory_total*100}"
-• The current utilization rate of your processors as a percentage: 
-• The date and time of the last reboot: 
-• Whether LVM is active or not: 
-• The number of active connections: 
-• The number of users using the server: 
-• The IPv4 address of your server and its MAC (Media Access Control) address: 
-• The number of commands executed with the sudo program: 
+• The current available memory on your server and its utilization rate as a percentage.
+
+• The current utilization rate of your processors as a percentage:
+    top -bn1 | awk '/Cpu\(s\)/ {printf "%.1f%%", $2 + $4}'
+• The date and time of the last reboot:
+    who -b | awk '{print $3 " " $4}'
+• Whether LVM is active or not:
+    [ $(lsblk | grep "lvm" | wc -l) -gt 0 ] && echo "yes" || echo "no"
+• The number of active connections:
+    ss -Ht state established | wc -l
+• The number of users using the server:
+    users | wc -w
+• The IPv4 address of your server and its MAC (Media Access Control) address:
+• The number of commands executed with the sudo program:
 # Crontab Configuration
