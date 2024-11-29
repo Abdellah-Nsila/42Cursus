@@ -104,20 +104,76 @@ sudo reboot
     ip link | awk '/ether/ {print $2}' --> mac_address
 • The number of commands executed with the sudo program:
     journalctl -q _COMM=sudo | grep COMMAND | wc -l
+
+`Full Script`
+``` bash
+#!/bin/bash
+
+# Architecture and kernel version
+architecture=$(uname -a)
+
+# Number of physical and virtual processors
+physical_processors=$(grep "physical id" /proc/cpuinfo | sort -u | wc -l)
+virtual_processors=$(grep -c "processor" /proc/cpuinfo)
+
+# RAM usage
+memory_used=$(free -m | awk '/Mem:/ {print $3}')
+memory_total=$(free -m | awk '/Mem:/ {print $2}')
+memory_percentage=$(awk "BEGIN {printf \"%.2f\", $memory_used/$memory_total*100}")
+
+# Disk usage
+disk_used=$(df -h / | awk '/\// {print $3}')
+disk_total=$(df -h / | awk '/\// {print $2}')
+disk_percentage=$(df -h / | awk '/\// {print $5}')
+
+# CPU load
+cpu_load=$(top -bn1 | awk '/Cpu\(s\)/ {printf "%.1f%%", $2 + $4}')
+
+# Last reboot
+last_reboot=$(who -b | awk '{print $3 " " $4}')
+
+# LVM active or not
+lvm_status=$([ $(lsblk | grep -c "lvm") -gt 0 ] && echo "yes" || echo "no")
+
+# Number of active connections
+active_connections=$(ss -Ht state established | wc -l)
+
+# Number of users
+users_count=$(users | wc -w)
+
+# Network information
+ip_address=$(hostname -I | awk '{print $1}')
+mac_address=$(ip link | awk '/ether/ {print $2}')
+
+# Number of sudo commands
+sudo_commands=$(journalctl -q _COMM=sudo | grep COMMAND | wc -l)
+
+BANNER="
+########################################################
+#                                                      #
+#               Welcome to Monitoring!                 #
+#                                                      #
+########################################################
+"
+
+# Display information
+wall << EOF
+$BANNER
+#Architecture: $architecture
+#CPU physical: $physical_processors
+#vCPU: $virtual_processors
+#Memory Usage: $memory_used/$memory_total MB (${memory_percentage}%)
+#Disk Usage: $disk_used/$disk_total (${disk_percentage})
+#CPU load: $cpu_load
+#Last boot: $last_reboot
+#LVM use: $lvm_status
+#Connections TCP: $active_connections ESTABLISHED
+#User log: $users_count
+#Network: IP $ip_address ($mac_address)
+#Sudo: $sudo_commands cmd
+EOF
+
+```
+
 # Crontab Configuration
 
-
-
-#!/bin/bash
-wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \
-$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \
-$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \
-$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \
-$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \
-$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \
-$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \
-$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \
-$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \
-$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \
-$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \
-$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
