@@ -128,6 +128,9 @@ sudo reboot
 
 `Full Script`
 ``` bash
+nano /path/monitoring.sh
+```
+``` sh
 #!/bin/bash
 
 # Architecture and kernel version
@@ -193,8 +196,14 @@ $BANNER
 #Network: IP $ip_address ($mac_address)
 #Sudo: $sudo_commands cmd
 EOF
-
+```
+``` bash
+chmod +x /path/monitoring.sh
 ```
 
 # Crontab Configuration
+``` bash
+sudo crontab -u root -e
+    */10 * * * * /path/monitoring.sh
+```
 
