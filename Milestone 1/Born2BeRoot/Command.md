@@ -226,11 +226,28 @@ sudo systemctl status lighttpd
 sudo ufw allow 80
 sudo ufw status
 ```
-
+#### Installing PHP
 ``` bash
 sudo apt install php
 sudo apt install php-cgi
 sudo apt install mariadb-server
+```
+#### Installing MariaDB
+``` bash
+sudo apt install mariadb-server
+sudo systemctl start mariadb
+sudo systemctl enable mariadb
+sudo systemctl status mariadb
+sudo mysql_secure_installation
+    Enter current password for root (enter for none): <Enter>
+    Switch to unix_socket authentication [Y/n]: Y
+    Set root password? [Y/n]: Y
+    New password: 101Asterix!
+    Re-enter new password: 101Asterix!
+    Remove anonymous users? [Y/n]: Y
+    Disallow root login remotely? [Y/n]: Y
+    Remove test database and access to it? [Y/n]:  Y
+    Reload privilege tables now? [Y/n]:  Y
 ```
 
 ### Configuration
