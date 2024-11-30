@@ -4,7 +4,7 @@
 su -
 ```
 
-## Update the sytseme
+## Update the systeme
 ``` bash
 apt update 
 apt upgrade 
