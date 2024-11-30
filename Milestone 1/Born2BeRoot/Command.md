@@ -1,4 +1,5 @@
 # Mandatory part
+
 ## Switch to root user
 ``` bash
 su -
@@ -208,3 +209,44 @@ sudo crontab -u root -e
     */10 * * * * /path/monitoring.sh
 ```
 
+
+# Bonus part
+
+## Installing WordPress
+
+### Installing depencies
+
+#### Installing Lighttpd
+``` bash
+sudo apt install lighttpd
+sudo lighttpd -v
+sudo systemctl start lighttpd
+sudo systemctl enable lighttpd
+sudo systemctl status lighttpd
+sudo ufw allow 80
+sudo ufw status
+```
+
+``` bash
+sudo apt install php
+sudo apt install php-cgi
+sudo apt install mariadb-server
+```
+
+### Configuration
+``` bash
+sudo lighty-enable-mod fastcgi-php
+sudo service lighttpd force-reload
+```
+
+``` bash
+
+```
+
+``` bash
+
+```
+
+``` bash
+
+```
