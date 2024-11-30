@@ -1,15 +1,16 @@
-# Switch to root user
+# Mandatory part
+## Switch to root user
 ``` bash
 su -
 ```
 
-# Update the sytseme
+## Update the sytseme
 ``` bash
 apt update 
 apt upgrade 
 ```
 
-# Install sudo and configure strict rules
+## Install sudo and configure strict rules
 ``` bash
 sudo apt install sudo
 sudo visudo
@@ -21,7 +22,7 @@ sudo visudo
     Defaults    secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
 ```
 
-# Manage users
+## Manage users
 ``` bash
 sudo usermod -aG sudo login
 getent group sudo
@@ -33,7 +34,7 @@ sudo visudo
 sudo adduser new_username new_group
 ```
 
-# SSH
+## SSH
 ``` bash
 sudo apt update 
 sudo apt upgrade 
@@ -45,7 +46,7 @@ sudo nano /etc/ssh/sshd_config
 service ssh restart
 ```
 
-# UFW
+## UFW
 ``` bash
 sudo apt install ufw
 sudo ufw enable
@@ -53,7 +54,7 @@ sudo ufw allow 4242
 sudo ufw status
 ```
 
-# Setup strong password policy
+## Setup strong password policy
 ``` bash
 sudo nano /etc/login.defs
     PASS_MAX_DAYS   30
@@ -78,13 +79,13 @@ sudo nano /etc/security/pwquality.conf
 sudo reboot
 ```
 
-# Change Password
+## Change Password
 ``` bash
 chage -l login
 sudo passwd root
 ```
 
-# Change Hostname
+## Change Hostname
 ``` bash
 hostnamectl set-hostname new_hostname
 sudo nano /etc/hosts
@@ -93,7 +94,7 @@ sudo nano /etc/hosts
 sudo reboot
 ```
 
-# Create monitoring.sh
+## Create monitoring.sh
 ``` bash
 • The architecture of your operating system and its kernel version:
     uname -a
@@ -201,7 +202,7 @@ EOF
 chmod +x /path/monitoring.sh
 ```
 
-# Crontab Configuration
+## Crontab Configuration
 ``` bash
 sudo crontab -u root -e
     */10 * * * * /path/monitoring.sh
