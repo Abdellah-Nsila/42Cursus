@@ -149,11 +149,11 @@ mac_address=$(ip link | awk '/ether/ {print $2}')
 sudo_commands=$(journalctl -q _COMM=sudo | grep COMMAND | wc -l)
 
 BANNER="
-########################################################
-#                                                      #
-#               Welcome to Monitoring!                 #
-#                                                      #
-########################################################
+#######################################################
+#                                                     #
+#               Welcome to Monitoring!                #
+#                                                     #
+#######################################################
 "
 
 # Display information
