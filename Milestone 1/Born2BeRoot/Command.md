@@ -242,12 +242,19 @@ sudo mysql_secure_installation
     Enter current password for root (enter for none): <Enter>
     Switch to unix_socket authentication [Y/n]: Y
     Set root password? [Y/n]: Y
-    New password: 101Asterix!
-    Re-enter new password: 101Asterix!
+    New password: blabla
+    Re-enter new password: blabla
     Remove anonymous users? [Y/n]: Y
     Disallow root login remotely? [Y/n]: Y
     Remove test database and access to it? [Y/n]:  Y
     Reload privilege tables now? [Y/n]:  Y
+sudo systemctl restart mariadb
+mysql -u root -p
+    MariaDB [(none)]> CREATE DATABASE wordpress_db;
+    MariaDB [(none)]> CREATE USER 'admin'@'localhost' IDENTIFIED BY 'WPpassw0rd';
+    MariaDB [(none)]> GRANT ALL ON wordpress_db.* TO 'admin'@'localhost' IDENTIFIED BY 'WPpassw0rd' WITH GRANT OPTION;
+    MariaDB [(none)]> FLUSH PRIVILEGES;
+    MariaDB [(none)]> EXIT;
 ```
 
 ### Configuration
