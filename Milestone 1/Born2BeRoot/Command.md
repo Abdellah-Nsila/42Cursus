@@ -59,10 +59,13 @@ sudo nano /etc/login.defs
     PASS_MAX_DAYS   30
     PASS_MIN_DAYS   2
     PASS_WARN_AGE   7
+
 sudo apt install libpam-pwquality
-```
-[ Method 1 ]
-``` bash
+sudo nano /etc/pam.d/common-password
+    password    requisite         pam_pwquality.so minlen=10 lcredit =-1 ucredit=-1 dcredit=-1
+    maxrepeat=3 usercheck=0 difok=7 enforce_for_root
+
+# [ Same as bellow but enforce rule to apply ]
 sudo nano /etc/security/pwquality.conf
     minlen = 10           # Minimum password length.
     ucredit = -1          # At least 1 uppercase letter required.
@@ -72,12 +75,6 @@ sudo nano /etc/security/pwquality.conf
     usercheck=0           # Not include the name of the user.
     difok = 7             # Requires 7 characters different from the old password.
     enforce_for_root      # Enforces the policy for root passwords.
-```
-[ Method 2 ]
-``` bash
-sudo nano /etc/pam.d/common-password
-    password    requisite         pam_pwquality.so minlen=10 lcredit =-1 ucredit=-1 dcredit=-1
-    maxrepeat=3 usercheck=0 difok=7 enforce_for_root
 sudo reboot
 ```
 
@@ -97,7 +94,7 @@ sudo reboot
 ```
 
 # Create monitoring.sh
-``` plaintext
+``` bash
 • The architecture of your operating system and its kernel version:
     uname -a
 • The number of physical processors:
