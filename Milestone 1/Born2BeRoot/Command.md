@@ -249,6 +249,9 @@ sudo mysql_secure_installation
     Remove test database and access to it? [Y/n]:  Y
     Reload privilege tables now? [Y/n]:  Y
 sudo systemctl restart mariadb
+```
+##### Create db for wordpress && admin user
+``` bash
 mysql -u root -p
     MariaDB [(none)]> CREATE DATABASE wordpress_db;
     MariaDB [(none)]> CREATE USER 'admin'@'localhost' IDENTIFIED BY 'WPpassw0rd';
