@@ -1,11 +1,16 @@
 # Switch to root user
+``` bash
 su -
+```
 
 # Update the sytseme
+``` bash
 apt update 
 apt upgrade 
+```
 
 # Install sudo and configure strict rules
+``` bash
 sudo apt install sudo
 sudo visudo
     Defaults    passwd_tries=3
@@ -14,8 +19,10 @@ sudo visudo
     Defaults    log_input,log_output
     Defaults    requiretty
     Defaults    secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+```
 
 # Manage users
+``` bash
 sudo usermod -aG sudo login
 getent group sudo
 sudo addgroup user42
@@ -24,8 +31,10 @@ getent group user42
 sudo visudo
     login    ALL=(ALL) ALL
 sudo adduser new_username new_group
+```
 
 # SSH
+``` bash
 sudo apt update 
 sudo apt upgrade 
 sudo apt install openssh-server
@@ -34,20 +43,26 @@ sudo nano /etc/ssh/sshd_config
     Port 4242
     PermiRootLogin no
 service ssh restart
+```
 
 # UFW
+``` bash
 sudo apt install ufw
 sudo ufw enable
 sudo ufw allow 4242
 sudo ufw status
+```
 
 # Setup strong password policy
+``` bash
 sudo nano /etc/login.defs
     PASS_MAX_DAYS   30
     PASS_MIN_DAYS   2
     PASS_WARN_AGE   7
 sudo apt install libpam-pwquality
+```
 [ Method 1 ]
+``` bash
 sudo nano /etc/security/pwquality.conf
     minlen = 10           # Minimum password length.
     ucredit = -1          # At least 1 uppercase letter required.
@@ -57,24 +72,32 @@ sudo nano /etc/security/pwquality.conf
     usercheck=0           # Not include the name of the user.
     difok = 7             # Requires 7 characters different from the old password.
     enforce_for_root      # Enforces the policy for root passwords.
+```
 [ Method 2 ]
+``` bash
 sudo nano /etc/pam.d/common-password
     password    requisite         pam_pwquality.so minlen=10 lcredit =-1 ucredit=-1 dcredit=-1
     maxrepeat=3 usercheck=0 difok=7 enforce_for_root
 sudo reboot
+```
 
 # Change Password
+``` bash
 chage -l login
 sudo passwd root
+```
 
 # Change Hostname
+``` bash
 hostnamectl set-hostname new_hostname
 sudo nano /etc/hosts
     127.0.0.1       localhost
     127.0.0.1       new_hostname
 sudo reboot
+```
 
 # Create monitoring.sh
+``` plaintext
 • The architecture of your operating system and its kernel version:
     uname -a
 • The number of physical processors:
@@ -104,6 +127,7 @@ sudo reboot
     ip link | awk '/ether/ {print $2}' --> mac_address
 • The number of commands executed with the sudo program:
     journalctl -q _COMM=sudo | grep COMMAND | wc -l
+```
 
 `Full Script`
 ``` bash
