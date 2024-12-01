@@ -133,7 +133,7 @@ sudo reboot
     journalctl -q _COMM=sudo | grep COMMAND | wc -l
 ```
 
-`Full Script`
+## `Full Script`
 ``` bash
 nano /path/monitoring.sh
 ```
