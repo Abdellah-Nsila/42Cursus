@@ -13,7 +13,7 @@ apt upgrade
 
 ## Install sudo and configure strict rules
 ``` bash
-sudo apt install sudo
+apt install sudo
 sudo visudo
     Defaults    passwd_tries=3
     Defaults    badpass_message="Try again..."
@@ -65,7 +65,7 @@ sudo nano /etc/login.defs
 sudo apt install libpam-pwquality
 sudo nano /etc/pam.d/common-password
     password    requisite         pam_pwquality.so minlen=10 lcredit =-1 ucredit=-1 dcredit=-1
-    maxrepeat=3 usercheck=0 difok=7 enforce_for_root
+    maxrepeat=3 usercheck=1 difok=7 enforce_for_root
 
 # [ Same as bellow but enforce rule to apply ]
 sudo nano /etc/security/pwquality.conf
@@ -212,7 +212,7 @@ sudo crontab -u root -e
 
 # Bonus part
 
-## Installing WordPress
+## Setup WordPress
 
 ### Installing depencies
 
@@ -223,13 +223,16 @@ sudo lighttpd -v
 sudo systemctl start lighttpd
 sudo systemctl enable lighttpd
 sudo systemctl status lighttpd
-sudo ufw allow 80
+sudo ufw allow http
 sudo ufw status
+sudo service lighttpd force-reload
 ```
 #### Installing PHP
 ``` bash
 sudo apt install php
 sudo apt install php-cgi
+sudo lighty-enable-mod fastcgi
+sudo lighty-enable-mod fastcgi-php
 sudo apt install mariadb-server
 ```
 #### Installing MariaDB
@@ -260,11 +263,18 @@ mysql -u root -p
     MariaDB [(none)]> EXIT;
 ```
 
-### Configuration
+### Installing WordPress
 ``` bash
-sudo lighty-enable-mod fastcgi-php
-sudo service lighttpd force-reload
+sudo apt install wget
+sudo apt install tar
+$ wget http://wordpress.org/latest.tar.gz
+$ tar -xzvf latest.tar.gz
+$ sudo mv wordpress/* /var/www/html/
+$ rm -rf latest.tar.gz wordpress/
 ```
+
+### Installing depencies
+
 
 ``` bash
 
