@@ -208,36 +208,33 @@ chmod +x /path/monitoring.sh
 sudo crontab -u root -e
     */10 * * * * /path/monitoring.sh
 ```
-
+### Stop The cron
+``` bash
+sudo systemctl stop cron
+```
 
 # Bonus part
 
 ## Setup WordPress
 
 ### Installing depencies
-
-#### Installing Lighttpd
 ``` bash
-sudo apt install lighttpd
-sudo lighttpd -v
-sudo systemctl start lighttpd
-sudo systemctl enable lighttpd
-sudo systemctl status lighttpd
+sudo apt update
+sudo apt install -y lighttpd mariadb-server php php-cgi php-mysql php-common php-cli
+```
+
+### Configure Lighttpd
+``` bash
 sudo ufw allow http
 sudo ufw status
-sudo service lighttpd force-reload
-```
-#### Installing PHP
-``` bash
-sudo apt install php
-sudo apt install php-cgi
 sudo lighty-enable-mod fastcgi
 sudo lighty-enable-mod fastcgi-php
-sudo apt install mariadb-server
+sudo systemctl restart lighttpd
 ```
-#### Installing MariaDB
+
+### Set Up MariaDB
 ``` bash
-sudo apt install mariadb-server
+sudo mysql_secure_installation
 sudo systemctl start mariadb
 sudo systemctl enable mariadb
 sudo systemctl status mariadb
@@ -253,6 +250,7 @@ sudo mysql_secure_installation
     Reload privilege tables now? [Y/n]:  Y
 sudo systemctl restart mariadb
 ```
+
 ##### Create db for wordpress && admin user
 ``` bash
 mysql -u root -p
@@ -267,23 +265,65 @@ mysql -u root -p
 ``` bash
 sudo apt install wget
 sudo apt install tar
-$ wget http://wordpress.org/latest.tar.gz
-$ tar -xzvf latest.tar.gz
-$ sudo mv wordpress/* /var/www/html/
-$ rm -rf latest.tar.gz wordpress/
+wget http://wordpress.org/latest.tar.gz
+tar -xzvf latest.tar.gz
+sudo mv wordpress /var/www/html/
+rm -rf latest.tar.gz wordpress/
+```
+#### Configure Wordpress
+``` bash
+sudo mv /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
+nano /var/www/html/wp-config.php
+    <?php
+        /* ... */
+        /** The name of the database for WordPress */
+        define( 'DB_NAME', 'wordpress_db' );
+
+        /** Database username */
+        define( 'DB_USER', 'admin' );
+
+        /** Database password */
+        define( 'DB_PASSWORD', 'WPpassw0rd' );
+
+        /** Database host */
+        define( 'DB_HOST', 'localhost' );
+sudo chown -R www-data:www-data /var/www/html/
+sudo chmod -R 755 /var/www/html/
+sudo systemctl restart lighttpd
 ```
 
-### Installing depencies
-
-
+## Installing Fail2ban
 ``` bash
+sudo apt install fail2ban
+sudo systemctl start fail2ban
+sudo systemctl enable fail2ban
+sudo systemctl status fail2ban
+```
+### Configure Fail2ban
+``` bash
+sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+nano /etc/fail2ban/jail.local
+    [sshd]
 
+    # To use more aggressive sshd modes set filter parameter "mode" in jail.local:
+    # normal (default), ddos, extra or aggressive (combines all).
+    # See "tests/files/logs/sshd" or "filter.d/sshd.conf" for usage example and details.
+    # mode   = normal
+    enabled  = true
+    maxretry = 3
+    findtime = 10m
+    bantime  = 1d
+    port     = 4242
+    logpath  = %(sshd_log)s
+    backend  = systemd
+sudo systemctl start fail2ban
+sudo systemctl enable fail2ban
+sudo systemctl status fail2ban
 ```
 
+### Check banned IPs and unban
 ``` bash
-
-```
-
-``` bash
-
+sudo fail2ban-client status sshd
+sudo tail -f /var/log/fail2ban.log
+sudo fail2ban-client unban <ip_address>
 ```
