@@ -55,6 +55,11 @@ sudo ufw allow 4242
 sudo ufw status
 ```
 
+## AppArmor Status
+``` bash
+sudo aa-status
+```
+
 ## Setup strong password policy
 ``` bash
 sudo nano /etc/login.defs
