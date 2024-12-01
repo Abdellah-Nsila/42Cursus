@@ -82,8 +82,8 @@ sudo reboot
 
 ## Change Password
 ``` bash
-chage -l login
-sudo passwd root
+chage -l login             # For users
+sudo passwd root           # For root
 ```
 
 ## Change Hostname
