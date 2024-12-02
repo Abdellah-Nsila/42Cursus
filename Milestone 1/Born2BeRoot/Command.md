@@ -275,6 +275,7 @@ tar -xzvf latest.tar.gz
 sudo mv wordpress /var/www/html/
 rm -rf latest.tar.gz wordpress/
 ```
+
 #### Configure Wordpress
 ``` bash
 sudo mv /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
