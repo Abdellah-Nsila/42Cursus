@@ -23,6 +23,6 @@ int main()
 {
     int result;
 
-    result = sumNumbers(3, 10, 5, 5);
+    result = sumNumbers(3, 10, 5, 5); // variable number of argument
     printf("Result: %d\n", result);
 }
