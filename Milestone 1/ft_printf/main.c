@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "ft_printf.h"
 
+//TODO Please recode the others functions first xd
+
 int main()
 {	
 	int var = 42;
