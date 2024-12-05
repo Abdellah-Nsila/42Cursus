@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/05 16:47:20 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/05 16:48:26 by abnsila          ###   ########.fr       */
+/*   Created: 2024/12/05 16:48:20 by abnsila           #+#    #+#             */
+/*   Updated: 2024/12/05 16:48:23 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#ifndef LIBFT_H
+# define LIBFT_H
 
-int ft_printf(const char *, ...)
-{
-    
-}
+#include <stdarg.h>
 
-int main()
-{
-    printf("%d", 10);
-}
+
+
+#endif
