@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_print_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/05 16:48:20 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/05 18:15:23 by abnsila          ###   ########.fr       */
+/*   Created: 2024/12/05 17:52:38 by abnsila           #+#    #+#             */
+/*   Updated: 2024/12/05 17:54:40 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "ft_printf.h"
 
-#include <unistd.h>
-#include <stdarg.h>
-
-int	ft_printf(const char *format, ...);
-int ft_print_char(int c);
-int ft_print_str(char *s);
-int ft_print_nbr(int n);
-int ft_print_hexa(int n, char *base);
-int ft_print_ptr(unsigned int n);
-int ft_print_unsigned_nbr(unsigned int n);
-
-#endif
+int ft_print_char(int c)
+{
+    write(1, &c, 1);
+    return (1);
+}
