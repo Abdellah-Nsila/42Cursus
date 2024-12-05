@@ -8,8 +8,9 @@ int sumNumbers(int n, ...)
     int i;
     int sum;
 
+    printf("1 ap: %d\n", *ap);
     va_start(ap, n);
-    printf("ap: %d\n", *ap);
+    printf("2 ap: %p\n", *ap);
     printf("&n: %p\n", &n);
     i = -1;
     sum = 0;
