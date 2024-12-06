@@ -6,12 +6,13 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:52:38 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/06 11:39:37 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/06 12:02:20 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
+
 int ft_print_char(int c)
 {
-    write(1, &c, 1);
-    return (1);
+    return (write(1, &c, 1));
 }

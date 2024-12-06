@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:54:58 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/05 18:22:13 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/06 12:10:07 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ int ft_print_str(char *s)
 {
     size_t  i;
 
+    if (!s)
+        return (ft_print_str("(null)"));
     i = 0;
     while (s[i])
     {
-        write(1, &(s[i]), 1);
+        ft_print_char(s[i]);
         i++;
     }
     return (i);

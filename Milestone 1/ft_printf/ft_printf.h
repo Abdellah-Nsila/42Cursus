@@ -6,13 +6,14 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:48:20 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/05 18:15:23 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/06 11:53:21 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+#include <stdio.h>
 #include <unistd.h>
 #include <stdarg.h>
 
