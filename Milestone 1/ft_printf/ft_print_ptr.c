@@ -6,15 +6,16 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 18:27:36 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/06 17:03:37 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/06 18:22:29 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_print_ptr(unsigned long n)
+int ft_print_ptr(void *p)
 {
-    if ((void *)n == NULL)
+    if ((void *)p == NULL)
         return (ft_print_str("(nil)"));
-    return (ft_print_str("0x") + ft_print_hexa(n, "0123456789abcdef"));
+    return (ft_print_str("0x")
+        + ft_print_hexa((unsigned long int)p, "0123456789abcdef"));
 }

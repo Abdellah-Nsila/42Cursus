@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:47:20 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/06 17:21:38 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/06 19:09:27 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	handle_format(char format, va_list ap)
 	else if (format == 's')
 		return (ft_print_str(va_arg(ap, char *)));
 	else if (format == 'p')
-		return (ft_print_ptr(va_arg(ap, unsigned long)));
+		return (ft_print_ptr(va_arg(ap, void *)));
 	else if (format == 'd')
 		return (ft_print_nbr(va_arg(ap, int)));
 	else if (format == 'i')
@@ -28,9 +28,9 @@ int	handle_format(char format, va_list ap)
 	else if (format == 'u')
 		return (ft_print_unsigned_nbr(va_arg(ap, unsigned int)));
 	else if (format == 'x')
-		return (ft_print_hexa(va_arg(ap, unsigned int), "0123456789abcdef"));
+		return (ft_print_hexa(va_arg(ap, unsigned long int), "0123456789abcdef"));
 	else if (format == 'X')
-		return (ft_print_hexa(va_arg(ap, unsigned int), "0123456789ABCDEF"));
+		return (ft_print_hexa(va_arg(ap, unsigned long int), "0123456789ABCDEF"));
 	else
 		return (ft_print_char(format));
 }
@@ -41,7 +41,7 @@ int ft_printf(const char *s, ...)
 	size_t  i;
 	int		len;
 	
-	if (!s)
+	if (!s || (write(1,"",0) == -1))
 		return (-1);
 	i = 0;
 	len = 0;

@@ -6,13 +6,13 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 18:27:10 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/06 15:49:38 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/06 18:14:02 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_print_hexa(int n, char *base)
+int ft_print_hexa(unsigned long int n, char *base)
 {
     int len;
 
