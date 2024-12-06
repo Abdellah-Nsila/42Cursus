@@ -6,11 +6,9 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:52:38 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/05 17:54:40 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/06 11:39:37 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "ft_printf.h"
 
 int ft_print_char(int c)
 {
