@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:47:20 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/06 15:42:15 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/06 16:09:00 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,17 @@ int ft_printf(const char *s, ...)
 	ft_print_str((char *)s);
 	while (s[i])
 	{
-	// 	if (s[i] == '%' && s[i+1])
-	// 	{	
-	// 		len += handle_format(s[i], ap);
-	// 		i++;
-	// 	}
-	// 	else
-	// 	{	
-	// 		ft_print_char(s[i]);
-	// 		len++;
-	// 	}
-	// 	i++;
+		if (s[i] == '%' && s[i+1])
+		{	
+			len += handle_format(s[i], ap);
+			i++;
+		}
+		else
+		{	
+			ft_print_char(s[i]);
+			len++;
+		}
+		i++;
 	}
 	va_end(ap);
 	return (len);
