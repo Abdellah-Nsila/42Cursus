@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 18:28:02 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/06 15:19:43 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/06 17:16:35 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,23 @@
 
 int ft_print_nbr(int n)
 {
+	int	len;
+
+	len = 0;
 	if (n == -2147483648)
-		ft_print_str("-2147483648");
+		return (ft_print_str("-2147483648"));
 	else if (n < 0)
 	{
-		ft_print_char('-');
 		n = -n;
-		ft_print_nbr(n);
+		len += ft_print_char('-');
 	}
-	else if (n > 9)
-	{
-		ft_print_nbr(n / 10);
-		ft_print_nbr(n % 10);
-	}
-	else
-	{
-		ft_print_char(n + '0');
-	}
+	if (n > 9)
+		len += ft_print_nbr(n / 10);
+	len += ft_print_char(((n % 10) + 48));
+	return (len);
 }
+
+// int	main()
+// {
+// 	printf("\nlen: %d\n", ft_print_nbr(-1337));
+// }

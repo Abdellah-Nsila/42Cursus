@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:47:20 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/06 17:06:43 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/06 17:21:38 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int ft_printf(const char *s, ...)
 	{
 		if (s[i] == '%' && s[i+1])
 		{	
-			len += handle_format(s[i], ap);
+			len += handle_format(s[i+1], ap);
 			i++;
 		}
 		else
