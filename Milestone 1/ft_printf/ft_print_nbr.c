@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 18:28:02 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/06 17:16:35 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/07 14:55:24 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,3 @@ int ft_print_nbr(int n)
 	len += ft_print_char(((n % 10) + 48));
 	return (len);
 }
-
-// int	main()
-// {
-// 	printf("\nlen: %d\n", ft_print_nbr(-1337));
-// }
