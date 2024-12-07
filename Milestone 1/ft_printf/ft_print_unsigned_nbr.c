@@ -6,13 +6,13 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 18:28:23 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/06 15:34:19 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/07 14:50:04 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_print_unsigned_nbr(unsigned int n)
+int ft_print_unsigned_nbr(unsigned long int n)
 {
     int len;
 
