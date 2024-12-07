@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:47:20 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/07 15:22:26 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/07 16:15:21 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ static int	ft_handle_format(char format, va_list ap)
 	else if (format == 'u')
 		return (ft_print_unsigned_nbr(va_arg(ap, unsigned int)));
 	else if (format == 'x')
-		return (ft_print_hexa(va_arg(ap, unsigned long int),
+		return (ft_print_hexa(va_arg(ap, unsigned int),
 				"0123456789abcdef"));
 	else if (format == 'X')
-		return (ft_print_hexa(va_arg(ap, unsigned long int),
+		return (ft_print_hexa(va_arg(ap, unsigned int),
 				"0123456789ABCDEF"));
 	else if (format == '%')
 		return (ft_print_char(format));
