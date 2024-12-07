@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:47:20 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/07 15:08:08 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/07 15:22:26 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,30 +27,32 @@ static int	ft_handle_format(char format, va_list ap)
 	else if (format == 'u')
 		return (ft_print_unsigned_nbr(va_arg(ap, unsigned int)));
 	else if (format == 'x')
-		return (ft_print_hexa(va_arg(ap, unsigned long int), "0123456789abcdef"));
+		return (ft_print_hexa(va_arg(ap, unsigned long int),
+				"0123456789abcdef"));
 	else if (format == 'X')
-		return (ft_print_hexa(va_arg(ap, unsigned long int), "0123456789ABCDEF"));
+		return (ft_print_hexa(va_arg(ap, unsigned long int),
+				"0123456789ABCDEF"));
 	else if (format == '%')
 		return (ft_print_char(format));
 	return (ft_print_char('%') + ft_print_char(format));
 }
 
-int ft_printf(const char *s, ...)
+int	ft_printf(const char *s, ...)
 {
-	va_list ap;
-	size_t  i;
+	va_list	ap;
+	size_t	i;
 	int		len;
-	
-	if (!s || (write(1,"",0) == -1))
+
+	if (!s || (write(1, "", 0) == -1))
 		return (-1);
 	i = 0;
 	len = 0;
 	va_start(ap, s);
 	while (s[i])
 	{
-		if (s[i] == '%' && s[i+1])
-		{	
-			len += ft_handle_format(s[i+1], ap);
+		if (s[i] == '%' && s[i + 1])
+		{
+			len += ft_handle_format(s[i + 1], ap);
 			i++;
 		}
 		else if (s[i] != '%')
