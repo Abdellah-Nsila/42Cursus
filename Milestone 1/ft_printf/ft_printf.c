@@ -6,13 +6,13 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:47:20 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/07 14:56:20 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/07 15:08:08 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	handle_format(char format, va_list ap)
+static int	ft_handle_format(char format, va_list ap)
 {
 	if (format == 'c')
 		return (ft_print_char(va_arg(ap, int)));
@@ -50,11 +50,13 @@ int ft_printf(const char *s, ...)
 	{
 		if (s[i] == '%' && s[i+1])
 		{	
-			len += handle_format(s[i+1], ap);
+			len += ft_handle_format(s[i+1], ap);
 			i++;
 		}
-		else
+		else if (s[i] != '%')
 			len += ft_print_char(s[i]);
+		else
+			return (-1);
 		i++;
 	}
 	va_end(ap);
