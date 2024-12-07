@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:47:20 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/07 16:15:21 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/07 16:52:56 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ static int	ft_handle_format(char format, va_list ap)
 		return (ft_print_str(va_arg(ap, char *)));
 	else if (format == 'p')
 		return (ft_print_ptr(va_arg(ap, void *)));
-	else if (format == 'd')
-		return (ft_print_nbr(va_arg(ap, int)));
-	else if (format == 'i')
+	else if (format == 'd' || format == 'i')
 		return (ft_print_nbr(va_arg(ap, int)));
 	else if (format == 'u')
 		return (ft_print_unsigned_nbr(va_arg(ap, unsigned int)));
