@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 15:27:30 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/07 15:33:08 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/07 16:46:40 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,11 @@ int	main(void)
 	ret_orig = printf(NULL, 42);
 	ret_ft = ft_printf(NULL, 42);
 	put_it(ret_ft, ret_orig);
-	ret_orig = printf("Test 3.1: Char: %p\n");
+	ret_orig = printf("\nTest 3.1: Char: %p\n");
 	ret_ft = ft_printf("Test 3.2: Char: %p\n");
+	put_it(ret_ft, ret_orig);
+	ret_orig = printf("%s %d\n", NULL, 1337);
+	ret_ft = ft_printf("%s %d\n", NULL, 1337);
 	put_it(ret_ft, ret_orig);
 	return (0);
 }
