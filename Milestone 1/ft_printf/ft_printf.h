@@ -6,12 +6,12 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:48:20 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/07 14:41:43 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/07 14:42:24 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 #include <stdio.h>
 #include <unistd.h>
