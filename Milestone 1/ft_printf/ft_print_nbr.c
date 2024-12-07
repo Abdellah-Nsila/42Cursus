@@ -6,13 +6,13 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 18:28:02 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/07 14:55:24 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/07 15:23:44 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_print_nbr(int n)
+int	ft_print_nbr(int n)
 {
 	int	len;
 
