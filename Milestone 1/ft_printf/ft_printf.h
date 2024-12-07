@@ -6,22 +6,22 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 16:48:20 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/07 14:49:35 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/07 15:27:10 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-#include <unistd.h>
-#include <stdarg.h>
+# include <unistd.h>
+# include <stdarg.h>
 
 int	ft_printf(const char *format, ...);
-int ft_print_char(int c);
-int ft_print_str(char *s);
-int ft_print_nbr(int n);
-int ft_print_hexa(unsigned long int n, char *base);
-int ft_print_ptr(void *p);
-int ft_print_unsigned_nbr(unsigned long int n);
+int	ft_print_char(int c);
+int	ft_print_str(char *s);
+int	ft_print_nbr(int n);
+int	ft_print_hexa(unsigned long int n, char *base);
+int	ft_print_ptr(void *p);
+int	ft_print_unsigned_nbr(unsigned long int n);
 
 #endif
