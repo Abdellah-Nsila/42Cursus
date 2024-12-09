@@ -4,16 +4,29 @@ char	*get_next_line(int fd)
 {
 	static char	*s;
 	ssize_t		r;
+	int			i;
 	char 		buf[BUFFER_SIZE];
 
+	while (1)
+	{
+		r = read(fd, buf, BUFFER_SIZE);
+		if (r > 0)
+		{
+			
+		}
+	}
 	r = read(fd, buf, BUFFER_SIZE);
 	if (r > 0)
-		
-		write(1, buf, r);
+		while (buf[i])
+		{
+			if (buf[i] == '\n')
+
+			write(1, &buf[i], 1);
+			i++;
+		}
 	else
 		return (NULL);
 	return (NULL);
-
 }
 
 int main()
