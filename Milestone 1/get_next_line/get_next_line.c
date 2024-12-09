@@ -2,10 +2,16 @@
 
 char	*get_next_line(int fd)
 {
-	static char	*line;
+	static char	*s;
+	ssize_t		r;
+	char 		buf[BUFFER_SIZE + 1];
 
-	
-
+	r = read(fd, buf, BUFFER_SIZE);
+	if (r > 0)
+		write(1, buf, BUFFER_SIZE);
+	else
+		return (NULL);
+	return (NULL);
 
 }
 
