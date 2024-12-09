@@ -2,16 +2,19 @@
 
 char	*get_next_line(int fd)
 {
-    static char*line;
+	static char	*line;
+
+	
 
 
 }
 
 int main()
 {
-    int fd;
+	int fd;
 
-    fd = open("test.txt", O_RDONLY);
-    if (fd == -1)
-        printf("Error...");
+	fd = open("test.txt", O_RDONLY);
+	if (fd == -1)
+		printf("Error...");
+	printf("%s", get_next_line(fd));
 }
