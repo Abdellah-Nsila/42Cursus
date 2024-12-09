@@ -12,7 +12,8 @@ char	*get_next_line(int fd)
 		r = read(fd, buf, BUFFER_SIZE);
 		if (r > 0)
 		{
-			
+			// You ust read the buff count stored until /n, 
+			// return the line it save the remaining ...
 		}
 	}
 	r = read(fd, buf, BUFFER_SIZE);
