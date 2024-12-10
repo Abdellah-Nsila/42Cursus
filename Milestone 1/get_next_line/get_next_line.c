@@ -46,6 +46,53 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	return (src_len);
 }
 
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	unsigned char		*d;
+	const unsigned char	*s;
+	size_t				i;
+
+	if (!dst && !src)
+		return (NULL);
+	if (dst == src)
+		return (dst);
+	d = (unsigned char *)dst;
+	s = (const unsigned char *)src;
+	i = 0;
+	while (i < n)
+	{
+		d[i] = s[i];
+		i++;
+	}
+	return (dst);
+}
+
+void	*ft_memmove(void *dst, const void *src, size_t n)
+{
+	unsigned char		*d;
+	const unsigned char	*s;
+	size_t				i;
+
+	if (!dst && !src)
+		return (NULL);
+	if (dst == src)
+		return (dst);
+	d = (unsigned char *)dst;
+	s = (const unsigned char *)src;
+	i = 0;
+	if (d > s)
+	{
+		while (i < n)
+		{
+			d[n - 1] = s[n - 1];
+			n--;
+		}
+		return (dst);
+	}
+	ft_memcpy(dst, src, n);
+	return (dst);
+}
+
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
@@ -68,46 +115,21 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	return (src_len + dst_len);
 }
 
-char	*ft_extractLine(char *s)
+char	*ft_strndup(const char *s1, int n)
 {
-	char	*endline;
-	char	*line;
-	int		len;
+	char	*dst;
+	size_t	src_len;
 
-	endline = ft_strchr(s, '\n');
-	printf("end line addr: %s\n", endline);
-	len = 0;
-	if (endline)
-	{
-		while (s && s[len] != '\n')
-			len++;
-		line = (char *) malloc((len + 1) * sizeof(char));
-		if (!line)
-			return (NULL);
-		len = 0;
-		while (s && s[len] != '\n')
-		{
-			line[len] = s[len];
-			len++;
-		}
-		line[len] = '\n';
-		return (line);
-	}
-	return ("\n");
-}
-
-char	*ft_handleNextBuf(char *s, char buf[BUFFER_SIZE])
-{
-	char	*temp;
-
-	temp = (char *) malloc((ft_strlen(s) + ft_strlen(buf)) * sizeof(char));
-	if (!temp)
+	if (!s1)
 		return (NULL);
-	if (s)
-		ft_strlcat(temp, s, ft_strlen(s));
-	ft_strlcat(temp, buf, ft_strlen(buf));
-	s = temp;
-	return (s);
+	src_len = ft_strlen((char *)s1);
+	if (n > (int)src_len)
+		n = src_len;
+	dst = (char *)malloc(n + 1);
+	if (!dst)
+		return (NULL);
+	ft_strlcpy(dst, s1, n + 1);
+	return (dst);
 }
 
 static char	*ft_appendBuff(char *static_var, char *buf, ssize_t rb)
@@ -115,45 +137,57 @@ static char	*ft_appendBuff(char *static_var, char *buf, ssize_t rb)
 	char	*new_static_var;
 	size_t	len;
 
-    if (!static_var)
-        len = 0;
-    else
-        len = ft_strlen(static_var);
-	new_static_var = (char *) malloc((len + rb + 1) * sizeof(char));
+	if (!static_var)
+		len = 0;
+	else
+		len = ft_strlen(static_var);
+	new_static_var = (char *)malloc(len + rb + 1);
 	if (!new_static_var)
 		return (NULL);
 	if (static_var)
-        ft_strlcpy(new_static_var, static_var, len);
-    ft_strlcat(new_static_var, buf, rb);
-
-    free(static_var);
-    return (new_static_var);
-
+		ft_strlcpy(new_static_var, static_var, len + 1);
+	ft_strlcat(new_static_var, buf, len + rb + 1);
+	free(static_var); 
+	return (new_static_var);
 }
+
 
 char	*get_next_line(int fd)
 {
 	static char	*static_var;
 	ssize_t		rb;
-	int			i;
-	char 		buf[BUFFER_SIZE];
-	int		line_len;
-	char	*line;
+	char		buf[BUFFER_SIZE + 1];
+	char		*endline;
+	int			line_len;
+	char		*line;
 
-	while (rb = read(fd, buf, BUFFER_SIZE) > 0)
+	while ((rb = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[rb] = '\0';
 		static_var = ft_appendBuff(static_var, buf, rb);
-		line = ft_strchr(static_var, '\n');
-		if (line)
+		if (!static_var)
+			return (NULL);
+		endline = ft_strchr(static_var, '\n');
+		if (endline)
 		{
-			line_len = static_var - line + 1;
-			line = strndup(static_var, line_len);
+			line_len = endline - static_var + 1;
+			line = ft_strndup(static_var, line_len);
+			ft_memmove(static_var, endline + 1, ft_strlen(endline + 1) + 1);
+			return (line);
 		}
-
 	}
+	if (static_var && *static_var)
+	{
+		line = ft_strndup(static_var, ft_strlen(static_var));
+		free(static_var);
+		static_var = NULL;
+		return (line);
+	}
+	free(static_var);
+	static_var = NULL;
 	return (NULL);
 }
+
 
 int main()
 {
@@ -170,6 +204,7 @@ int main()
 		printf("line: %s\n", line);
 	else
 		printf("Error in get next line...\n");
+	free(line);
 
 	// Second Call
 	line = get_next_line(fd);
@@ -177,4 +212,15 @@ int main()
 		printf("line: %s\n", line);
 	else
 		printf("Error in get next line...\n");
+	free(line);
+
+
+	// Third Call
+	line = get_next_line(fd);
+	if (line)
+		printf("line: %s\n", line);
+	else
+		printf("Error in get next line...\n");
+	free(line);
+	
 }
