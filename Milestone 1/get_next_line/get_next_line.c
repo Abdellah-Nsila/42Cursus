@@ -141,7 +141,7 @@ static char	*ft_appendBuff(char *static_var, char *buf, ssize_t rb)
 		len = 0;
 	else
 		len = ft_strlen(static_var);
-	new_static_var = (char *)malloc(len + rb + 1);
+	new_static_var = (char *)malloc((len + rb + 1) * sizeof(char));
 	if (!new_static_var)
 		return (NULL);
 	if (static_var)
