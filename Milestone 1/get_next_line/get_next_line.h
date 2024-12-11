@@ -7,7 +7,7 @@
 # include <stdlib.h>
 # include <string.h>
 
-# define BUFFER_SIZE 5
+# define BUFFER_SIZE 70
 
 char	*get_next_line(int fd);
 

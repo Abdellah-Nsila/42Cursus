@@ -62,6 +62,7 @@ char	*get_next_line(int fd)
 	count = 0;
 	while (rb = read(fd, buff, BUFFER_SIZE))
 	{
+		//TODO Fix Multiple line on one read
 		count++;
 		buff[rb] = '\0';
 		static_var = ft_appendBuff(static_var, buff, rb);
@@ -106,6 +107,45 @@ int main()
 	printf("=============== END ================\n\n\n");
 
 	// 2 Call
+	line = get_next_line(fd);
+	if (line)
+		printf("\n[Line]:\n%s", line);
+	else
+		printf("Error in get next line...\n");
+	free(line);
+	printf("=============== END ================\n\n\n");
+
+	// 3 Call
+	line = get_next_line(fd);
+	if (line)
+		printf("\n[Line]:\n%s", line);
+	else
+		printf("Error in get next line...\n");
+	free(line);
+	printf("=============== END ================\n\n\n");
+
+
+	// 4 Call
+	line = get_next_line(fd);
+	if (line)
+		printf("\n[Line]:\n%s", line);
+	else
+		printf("Error in get next line...\n");
+	free(line);
+	printf("=============== END ================\n\n\n");
+
+
+	// 5 Call
+	line = get_next_line(fd);
+	if (line)
+		printf("\n[Line]:\n%s", line);
+	else
+		printf("Error in get next line...\n");
+	free(line);
+	printf("=============== END ================\n\n\n");
+
+
+	// 6 Call
 	line = get_next_line(fd);
 	if (line)
 		printf("\n[Line]:\n%s", line);
