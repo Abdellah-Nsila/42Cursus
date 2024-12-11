@@ -21,42 +21,34 @@ char	*ft_appendBuff(char *static_var, char *buff, ssize_t rb)
 
 char	*ft_getRemaining(char *static_var, char *endline)
 {
-	printf("\n[Line len]:\n%d\n", ft_strlen(static_var) - ft_strlen(endline));
-	printf("\n[EndLine]:%s\n", endline);
 	char	*new_static_var;
-	int		i;
+	size_t	remaining_len;
 
-	new_static_var = (char *) malloc((ft_strlen(endline) - 1) * sizeof(char));
+	remaining_len = ft_strlen(endline + 1);
+	new_static_var = (char *)malloc((remaining_len + 1) * sizeof(char));
 	if (!new_static_var)
 		return (NULL);
-	i = 0;
-	while (i < ft_strlen(endline))
-	{
-		//printf("%c", endline[i]);
-		new_static_var[i] = endline[i + 1];
-		i++;
-	}
+	ft_strlcpy(new_static_var, endline + 1, remaining_len + 1);
 	free(static_var);
 	return (new_static_var);
 }
+
 
 char	*getLine(char *static_var, char *endline)
 {
 	size_t	len;
 	char	*line;
-	size_t	i;
 
-	len = ft_strlen(static_var) - ft_strlen(endline) + 1;
-	line = (char *) malloc(len * sizeof(char));
-	i = 0;
-	while (i < len)
-	{
-		line[i] = static_var[i];
-		i++;
-	}
-	line[i] = '\n';
+	if (!static_var || !endline)
+		return (NULL);
+	len = (endline - static_var) + 1;
+	line = (char *)malloc((len + 1) * sizeof(char));
+	if (!line)
+		return (NULL);
+	ft_strlcpy(line, static_var, len + 1);
 	return (line);
 }
+
 
 char	*get_next_line(int fd)
 {
