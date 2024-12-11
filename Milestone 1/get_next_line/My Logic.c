@@ -21,8 +21,8 @@ char	*ft_appendBuff(char *static_var, char *buff, ssize_t rb)
 
 char	*ft_getRemaining(char *static_var, char *endline)
 {
-	printf("[Line len] %d\n\n", ft_strlen(static_var) - ft_strlen(endline));
-	printf("[EndLine]:%s\n", endline);
+	printf("\n[Line len]:\n%d\n", ft_strlen(static_var) - ft_strlen(endline));
+	printf("\n[EndLine]:%s\n", endline);
 	char	*new_static_var;
 	int		i;
 
@@ -75,14 +75,14 @@ char	*get_next_line(int fd)
 		static_var = ft_appendBuff(static_var, buff, rb);
 		if (!static_var)
 			return (NULL);
-		printf("[Read %d]\n%s\n\n", count, static_var);
+		printf("\n[Read Number %d]\n%s\n", count, static_var);
 
 		endline = ft_strchr(static_var, '\n');
 		if (endline)
 		{
 			line = getLine(static_var, endline);
 			static_var = ft_getRemaining(static_var, endline);
-			printf("[Remaining] %s\n", static_var);
+			printf("\n[Remaining]:\n%s\n", static_var);
 			return (line);
 		}
 		// printf("\n=============== END ================\n\n\n");
@@ -103,13 +103,22 @@ int main()
 	fd = open("test.txt", O_RDONLY);
 	if (fd == -1)
 		printf("Error...\n");
-		
-	// First Call
+
+	// 1 Call
 	line = get_next_line(fd);
 	if (line)
-		printf("[Line]:%s\n", line);
+		printf("\n[Line]:\n%s", line);
 	else
 		printf("Error in get next line...\n");
 	free(line);
-	printf("\n=============== END ================\n\n\n");
+	printf("=============== END ================\n\n\n");
+
+	// 2 Call
+	line = get_next_line(fd);
+	if (line)
+		printf("\n[Line]:\n%s", line);
+	else
+		printf("Error in get next line...\n");
+	free(line);
+	printf("=============== END ================\n\n\n");
 }
