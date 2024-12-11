@@ -50,7 +50,7 @@ char	*getLine(char *static_var, char *endline)
 }
 
 
-char	*get_next_line0(int fd)
+char	*get_next_line(int fd)
 {
 	static char	*static_var;
 	ssize_t		rb;
@@ -82,21 +82,16 @@ char	*get_next_line0(int fd)
 	}
 	if (static_var && *static_var)
 	{
-		endline = ft_strchr(static_var, '\n');
-		if (endline)
-		{
-			line = getLine(static_var, endline);
-			static_var = ft_getRemaining(static_var, endline);
-			printf("\n[Remaining]:\n%s\n", static_var);
-			return (line);
-		}
+		line = ft_strdup(static_var);
+		free(static_var);
+		return (line);
 	}
 	else
 		return(NULL);
 }
 
 
-char	*get_next_line(int fd)
+char	*get_next_line0(int fd)
 {
 	static char	*static_var = NULL;
 	ssize_t		rb;
