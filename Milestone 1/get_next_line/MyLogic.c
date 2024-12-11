@@ -182,72 +182,71 @@ char	*get_next_line(int fd)
 }
 
 
+// int main()
+// {
+// 	int fd;
+// 	char *line;
 
-int main()
-{
-	int fd;
-	char *line;
+// 	fd = open("test.txt", O_RDONLY);
+// 	if (fd == -1)
+// 		printf("Error...\n");
 
-	fd = open("test.txt", O_RDONLY);
-	if (fd == -1)
-		printf("Error...\n");
+// 	// 1 Call
+// 	line = get_next_line(fd);
+// 	if (line)
+// 		printf("\n\033[0;32m[Line]:\n%s\033[0m", line);
+// 	else
+// 		printf("Error in get next line...\n");
+// 	free(line);
+// 	printf("\n=============== END ================\n\n\n\n");
 
-	// 1 Call
-	line = get_next_line(fd);
-	if (line)
-		printf("\n\033[0;32m[Line]:\n%s\033[0m", line);
-	else
-		printf("Error in get next line...\n");
-	free(line);
-	printf("\n=============== END ================\n\n\n\n");
+// 	// 2 Call
+// 	line = get_next_line(fd);
+// 	if (line)
+// 		printf("\n\033[0;32m[Line]:\n%s\033[0m", line);
+// 	else
+// 		printf("Error in get next line...\n");
+// 	free(line);
+// 	printf("\n=============== END ================\n\n\n\n");
 
-	// 2 Call
-	line = get_next_line(fd);
-	if (line)
-		printf("\n\033[0;32m[Line]:\n%s\033[0m", line);
-	else
-		printf("Error in get next line...\n");
-	free(line);
-	printf("\n=============== END ================\n\n\n\n");
-
-	// 3 Call
-	line = get_next_line(fd);
-	if (line)
-		printf("\n\033[0;32m[Line]:\n%s\033[0m", line);
-	else
-		printf("Error in get next line...\n");
-	free(line);
-	printf("\n=============== END ================\n\n\n\n");
-
-
-	// 4 Call
-	line = get_next_line(fd);
-	if (line)
-		printf("\n\033[0;32m[Line]:\n%s\033[0m", line);
-	else
-		printf("Error in get next line...\n");
-	free(line);
-	printf("\n=============== END ================\n\n\n\n");
+// 	// 3 Call
+// 	line = get_next_line(fd);
+// 	if (line)
+// 		printf("\n\033[0;32m[Line]:\n%s\033[0m", line);
+// 	else
+// 		printf("Error in get next line...\n");
+// 	free(line);
+// 	printf("\n=============== END ================\n\n\n\n");
 
 
-	// 5 Call
-	line = get_next_line(fd);
-	if (line)
-		printf("\n\033[0;32m[Line]:\n%s\033[0m", line);
-	else
-		printf("Error in get next line...\n");
-	free(line);
-	printf("\n=============== END ================\n\n\n\n");
+// 	// 4 Call
+// 	line = get_next_line(fd);
+// 	if (line)
+// 		printf("\n\033[0;32m[Line]:\n%s\033[0m", line);
+// 	else
+// 		printf("Error in get next line...\n");
+// 	free(line);
+// 	printf("\n=============== END ================\n\n\n\n");
 
 
-	// 6 Call
-	line = get_next_line(fd);
-	if (line)
-		printf("\n\033[0;32m[Line]:\n%s\033[0m", line);
-	else
-		printf("Error in get next line...\n");
-	free(line);
-	printf("\n=============== END ================\n\n\n\n");
+// 	// 5 Call
+// 	line = get_next_line(fd);
+// 	if (line)
+// 		printf("\n\033[0;32m[Line]:\n%s\033[0m", line);
+// 	else
+// 		printf("Error in get next line...\n");
+// 	free(line);
+// 	printf("\n=============== END ================\n\n\n\n");
 
-	close(fd);
-}
+
+// 	// 6 Call
+// 	line = get_next_line(fd);
+// 	if (line)
+// 		printf("\n\033[0;32m[Line]:\n%s\033[0m", line);
+// 	else
+// 		printf("Error in get next line...\n");
+// 	free(line);
+// 	printf("\n=============== END ================\n\n\n\n");
+
+// 	close(fd);
+// }
