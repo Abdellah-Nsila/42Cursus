@@ -50,7 +50,7 @@ char	*getLine(char *static_var, char *endline)
 }
 
 
-char	*get_next_line(int fd)
+char	*get_next_line0(int fd)
 {
 	static char	*static_var;
 	ssize_t		rb;
@@ -82,11 +82,67 @@ char	*get_next_line(int fd)
 	}
 	if (static_var && *static_var)
 	{
-		printf("\033[0;32m[Line]:\n%s\033[0m", static_var);
-		printf("[Line len] %d\n\n", ft_strlen(static_var));
-		printf("%d\n", rb);
+		endline = ft_strchr(static_var, '\n');
+		if (endline)
+		{
+			line = getLine(static_var, endline);
+			static_var = ft_getRemaining(static_var, endline);
+			printf("\n[Remaining]:\n%s\n", static_var);
+			return (line);
+		}
 	}
+	else
+		return(NULL);
 }
+
+
+char	*get_next_line(int fd)
+{
+	static char	*static_var = NULL;
+	ssize_t		rb;
+	char		buff[BUFFER_SIZE + 1];
+	char		*endline;
+	char		*line;
+
+	while (1)
+	{
+		// Read from the file descriptor
+		rb = read(fd, buff, BUFFER_SIZE);
+		if (rb < 0) // Error case
+			return (NULL);
+		if (rb == 0) // EOF
+			break;
+
+		buff[rb] = '\0';
+		static_var = ft_appendBuff(static_var, buff, rb);
+		if (!static_var)
+			return (NULL);
+
+		// Check for a newline character
+		endline = ft_strchr(static_var, '\n');
+		if (endline)
+		{
+			// Extract the line and update the static variable
+			line = getLine(static_var, endline);
+			static_var = ft_getRemaining(static_var, endline);
+			return (line);
+		}
+	}
+
+	// Handle the last part of static_var if no more data to read
+	if (static_var && *static_var)
+	{
+		line = ft_strdup(static_var); // Return the remaining content as the last line
+		free(static_var);
+		static_var = NULL;
+		return (line);
+	}
+
+	free(static_var);
+	static_var = NULL;
+	return (NULL);
+}
+
 
 int main()
 {
@@ -153,4 +209,6 @@ int main()
 		printf("Error in get next line...\n");
 	free(line);
 	printf("=============== END ================\n\n\n");
+
+	close(fd);
 }

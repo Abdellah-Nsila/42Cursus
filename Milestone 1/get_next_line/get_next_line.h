@@ -7,7 +7,7 @@
 # include <stdlib.h>
 # include <string.h>
 
-# define BUFFER_SIZE 70
+# define BUFFER_SIZE 1
 
 char	*get_next_line(int fd);
 
@@ -15,7 +15,6 @@ size_t	ft_strlen(char	*s);
 char	*ft_strchr(const char *str, int c);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
-
-
+char    *ft_strdup(const char *s1);
 
 #endif
