@@ -82,7 +82,7 @@ char	*get_next_line(int fd)
 	}
 	if (static_var && *static_var)
 	{
-		printf("[Line] %s\n", static_var);
+		printf("\033[0;32m[Line]:\n%s\033[0m", static_var);
 		printf("[Line len] %d\n\n", ft_strlen(static_var));
 		printf("%d\n", rb);
 	}
@@ -100,7 +100,7 @@ int main()
 	// 1 Call
 	line = get_next_line(fd);
 	if (line)
-		printf("\n[Line]:\n%s", line);
+		printf("\n\033[0;32m[Line]:\n%s\033[0m", line);
 	else
 		printf("Error in get next line...\n");
 	free(line);
@@ -109,7 +109,7 @@ int main()
 	// 2 Call
 	line = get_next_line(fd);
 	if (line)
-		printf("\n[Line]:\n%s", line);
+		printf("\n\033[0;32m[Line]:\n%s\033[0m", line);
 	else
 		printf("Error in get next line...\n");
 	free(line);
@@ -118,7 +118,7 @@ int main()
 	// 3 Call
 	line = get_next_line(fd);
 	if (line)
-		printf("\n[Line]:\n%s", line);
+		printf("\n\033[0;32m[Line]:\n%s\033[0m", line);
 	else
 		printf("Error in get next line...\n");
 	free(line);
@@ -128,7 +128,7 @@ int main()
 	// 4 Call
 	line = get_next_line(fd);
 	if (line)
-		printf("\n[Line]:\n%s", line);
+		printf("\n\033[0;32m[Line]:\n%s\033[0m", line);
 	else
 		printf("Error in get next line...\n");
 	free(line);
@@ -138,7 +138,7 @@ int main()
 	// 5 Call
 	line = get_next_line(fd);
 	if (line)
-		printf("\n[Line]:\n%s", line);
+		printf("\n\033[0;32m[Line]:\n%s\033[0m", line);
 	else
 		printf("Error in get next line...\n");
 	free(line);
@@ -148,7 +148,7 @@ int main()
 	// 6 Call
 	line = get_next_line(fd);
 	if (line)
-		printf("\n[Line]:\n%s", line);
+		printf("\n\033[0;32m[Line]:\n%s\033[0m", line);
 	else
 		printf("Error in get next line...\n");
 	free(line);
