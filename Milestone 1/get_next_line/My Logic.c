@@ -40,12 +40,31 @@ char	*ft_getRemaining(char *static_var, char *endline)
 	return (new_static_var);
 }
 
+char	*getLine(char *static_var, char *endline)
+{
+	size_t	len;
+	char	*line;
+	size_t	i;
+
+	len = ft_strlen(static_var) - ft_strlen(endline) + 1;
+	line = (char *) malloc(len * sizeof(char));
+	i = 0;
+	while (i < len)
+	{
+		line[i] = static_var[i];
+		i++;
+	}
+	line[i] = '\n';
+	return (line);
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*static_var;
 	ssize_t		rb;
 	char		buff[BUFFER_SIZE + 1];
 	char		*endline;
+	char		*line;
 	int			count;
 
 	count = 0;
@@ -61,20 +80,12 @@ char	*get_next_line(int fd)
 		endline = ft_strchr(static_var, '\n');
 		if (endline)
 		{
-			int	i;
-
-			i = 0;
-			printf("[Line]:");
-			while (i < (ft_strlen(static_var) - ft_strlen(endline)))
-			{
-				printf("%c", static_var[i]);
-				i++;
-			}
-			printf("\n");
+			line = getLine(static_var, endline);
 			static_var = ft_getRemaining(static_var, endline);
 			printf("[Remaining] %s\n", static_var);
+			return (line);
 		}
-		printf("\n=============== END ================\n\n\n");
+		// printf("\n=============== END ================\n\n\n");
 	}
 	if (static_var && *static_var)
 	{
@@ -92,12 +103,13 @@ int main()
 	fd = open("test.txt", O_RDONLY);
 	if (fd == -1)
 		printf("Error...\n");
+		
 	// First Call
 	line = get_next_line(fd);
-	// if (line)
-	// 	printf("%s\n", line);
-	// else
-	
-	// 	printf("Error in get next line...\n");
-	// free(line);
+	if (line)
+		printf("[Line]:%s\n", line);
+	else
+		printf("Error in get next line...\n");
+	free(line);
+	printf("\n=============== END ================\n\n\n");
 }
