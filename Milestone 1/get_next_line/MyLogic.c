@@ -9,7 +9,7 @@ char	*ft_appendBuff(char *static_var, char *buff, ssize_t rb)
 	new_static_var = (char *)malloc((len + rb + 1) * sizeof(char));
 	if (!new_static_var)
 	{
-		free(static_var); // Prevent leak if allocation fails.
+		free(static_var);
 		return (NULL);
 	}
 	if (static_var)
@@ -31,7 +31,7 @@ char	*ft_getRemaining(char *static_var, char *endline)
 	new_static_var = (char *)malloc((remaining_len + 1) * sizeof(char));
 	if (!new_static_var)
 	{
-		free(static_var); // Prevent leak if allocation fails.
+		free(static_var);
 		return (NULL);
 	}
 	ft_strlcpy(new_static_var, endline + 1, remaining_len + 1);
@@ -57,60 +57,6 @@ char	*getLine(char *static_var, char *endline)
 }
 
 
-// char	*get_next_line(int fd)
-// {
-// 	static char	*static_var;
-// 	ssize_t		rb;
-// 	char		buff[BUFFER_SIZE + 1];
-// 	char		*endline;
-// 	char		*line;
-// 	int			count;
-
-// 	count = 0;
-// 	while (1)
-// 	{
-// 		rb = read(fd, buff, BUFFER_SIZE);
-// 		if (rb < 0)
-// 			return (NULL);
-// 		else if (rb == 0)
-// 			break;
-// 		//TODO Fix Multiple line on one read
-// 		count++;
-// 		buff[rb] = '\0';
-// 		static_var = ft_appendBuff(static_var, buff, rb);
-// 		if (!static_var)
-// 			return (NULL);
-// 		printf("\n[Read Number %d]\n%s\n", count, static_var);
-
-// 		endline = ft_strchr(static_var, '\n');
-// 		if (endline)
-// 		{
-// 			line = getLine(static_var, endline);
-// 			static_var = ft_getRemaining(static_var, endline);
-// 			if (!line)
-// 			{
-// 				free(line);
-// 				break;
-// 			}
-// 			printf("\n[Remaining]:\n%s\n", static_var);
-// 			return (line);
-// 		}
-// 		// printf("\n=============== END ================\n\n\n");
-// 	}
-// 	if (static_var && *static_var)
-// 	{
-// 		line = ft_strdup(static_var);
-// 		free(static_var);
-// 		static_var = NULL;
-// 		return (line);
-// 	}
-// 	free(static_var);
-// 	static_var = NULL;
-// 	return (NULL);
-// }
-
-
-
 char	*process_line(char **static_var, char *endline)
 {
 	char	*line;
@@ -125,34 +71,6 @@ char	*process_line(char **static_var, char *endline)
 	return (line);
 }
 
-char	*handle_remainder(char **static_var)
-{
-	char	*line;
-	char	*endline;
-
-	if (!static_var || !*static_var || !**static_var)
-	{
-		free(*static_var);
-		*static_var = NULL;
-		return (NULL);
-	}
-	endline = ft_strchr(*static_var, '\n');
-	if (endline)
-	{
-		line = getLine(*static_var, endline);
-		*static_var = ft_getRemaining(*static_var, endline);
-		if (!line || !*static_var)
-		{
-			free(*static_var);
-			*static_var = NULL;
-		}
-		return (line);
-	}
-	line = ft_strdup(*static_var);
-	free(*static_var);
-	*static_var = NULL;
-	return (line);
-}
 
 
 
@@ -162,24 +80,31 @@ char	*get_next_line(int fd)
 	ssize_t		rb;
 	char		buff[BUFFER_SIZE + 1];
 	char		*endline;
+	char		*line;
 
-	while (1)
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	while ((rb = read(fd, buff, BUFFER_SIZE)) > 0)
 	{
-		rb = read(fd, buff, BUFFER_SIZE);
-		if (rb < 0 || (rb == 0 && (!static_var || !*static_var)))
-			return (handle_remainder(&static_var));
-		if (rb == 0)
-			break;
 		buff[rb] = '\0';
 		static_var = ft_appendBuff(static_var, buff, rb);
 		if (!static_var)
 			return (NULL);
-		endline = ft_strchr(static_var, '\n');
-		if (endline)
+		if ((endline = ft_strchr(static_var, '\n')))
 			return (process_line(&static_var, endline));
 	}
-	return (handle_remainder(&static_var));
+	if (rb < 0)
+		return (ft_freeStaticVar(&static_var));
+	if (static_var && *static_var)
+	{
+		line = ft_strdup(static_var);
+		ft_freeStaticVar(&static_var);
+		return (line);
+	}
+	return (ft_freeStaticVar(&static_var));
 }
+
+
 
 
 // int main()
