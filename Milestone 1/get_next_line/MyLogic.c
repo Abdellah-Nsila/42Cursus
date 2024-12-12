@@ -1,61 +1,67 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   MyLogic.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/12 11:39:38 by abnsila           #+#    #+#             */
+/*   Updated: 2024/12/12 11:53:15 by abnsila          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
-char	*ft_freeStaticVar(char **static_var)
+char	*ft_free_static_var(char **static_var)
 {
 	free(*static_var);
 	*static_var = NULL;
 	return (NULL);
 }
 
-char	*ft_appendBuff(char *static_var, char *buff, ssize_t rb)
+char	*ft_append_buff(char **static_var, char *buff, ssize_t rb)
 {
 	char	*new_static_var;
 	int		len;
 
-	if (static_var)
-		len = ft_strlen(static_var);
+	if (*static_var)
+		len = ft_strlen(*static_var);
 	else
 		len = 0;
 	new_static_var = (char *)malloc((len + rb + 1) * sizeof(char));
 	if (!new_static_var)
-		return (ft_freeStaticVar(&static_var));
+		return (ft_free_static_var(static_var));
 	if (static_var)
 	{
-		ft_strlcpy(new_static_var, static_var, len + 1);
-		ft_freeStaticVar(&static_var);
+		ft_strlcpy(new_static_var, *static_var, len + 1);
+		ft_free_static_var(static_var);
 	}
 	ft_strlcat(new_static_var, buff, len + rb + 1);
 	return (new_static_var);
 }
 
-
-char	*ft_getRemaining(char *static_var, char *endline)
+char	*ft_get_remaining(char **static_var, char *end_line)
 {
 	char	*new_static_var;
 	size_t	remaining_len;
 
-	remaining_len = ft_strlen(endline + 1);
+	remaining_len = ft_strlen(end_line + 1);
 	new_static_var = (char *)malloc((remaining_len + 1) * sizeof(char));
 	if (!new_static_var)
-	{
-		free(static_var);
-		return (NULL);
-	}
-	ft_strlcpy(new_static_var, endline + 1, remaining_len + 1);
-	free(static_var);
+		return (ft_free_static_var(static_var));
+	ft_strlcpy(new_static_var, end_line + 1, remaining_len + 1);
+	ft_free_static_var(static_var);
 	return (new_static_var);
 }
 
-
-
-char	*getLine(char *static_var, char *endline)
+char	*ft_get_line(char *static_var, char *end_line)
 {
 	size_t	len;
 	char	*line;
 
-	if (!static_var || !endline)
+	if (!static_var || !end_line)
 		return (NULL);
-	len = (endline - static_var) + 1;
+	len = (end_line - static_var) + 1;
 	line = (char *)malloc((len + 1) * sizeof(char));
 	if (!line)
 		return (NULL);
@@ -63,25 +69,42 @@ char	*getLine(char *static_var, char *endline)
 	return (line);
 }
 
-
-char	*process_line(char **static_var, char *endline)
+char	*ft_process_line(char **static_var, char *end_line)
 {
 	char	*line;
 
-	line = getLine(*static_var, endline);
-	*static_var = ft_getRemaining(*static_var, endline);
+	line = ft_get_line(*static_var, end_line);
+	*static_var = ft_get_remaining(static_var, end_line);
 	if (!line)
-		return (ft_freeStaticVar(static_var));
+		return (ft_free_static_var(static_var));
 	return (line);
 }
 
+char	*ft_handle_end_of_read(char **static_var, ssize_t rb)
+{
+	char	*end_line;
+	char	*line;
+
+	if (static_var && *static_var
+		&& ft_strchr(*static_var, '\n'))
+			return (ft_process_line(static_var, end_line));
+	if (static_var && *static_var)
+	{
+		line = ft_strdup(*static_var);
+		ft_free_static_var(static_var);
+		return (line);
+	}
+	if (rb < 0)
+		return (ft_free_static_var(static_var));
+	return (ft_free_static_var(static_var));
+}
 
 char	*get_next_line(int fd)
 {
 	static char	*static_var;
 	ssize_t		rb;
 	char		buff[BUFFER_SIZE + 1];
-	char		*endline;
+	char		*end_line;
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
@@ -89,25 +112,15 @@ char	*get_next_line(int fd)
 	while ((rb = read(fd, buff, BUFFER_SIZE)) > 0)
 	{
 		buff[rb] = '\0';
-		static_var = ft_appendBuff(static_var, buff, rb);
+		static_var = ft_append_buff(&static_var, buff, rb);
+		end_line = ft_strchr(static_var, '\n');
 		if (!static_var)
 			return (NULL);
-		if ((endline = ft_strchr(static_var, '\n')))
-			return (process_line(&static_var, endline));
+		if (end_line)
+			return (ft_process_line(&static_var, end_line));
 	}
-	if (rb < 0)
-		return (ft_freeStaticVar(&static_var));
-	if (static_var && *static_var)
-	{
-		line = ft_strdup(static_var);
-		ft_freeStaticVar(&static_var);
-		return (line);
-	}
-	return (ft_freeStaticVar(&static_var));
+	ft_handle_end_of_read(&static_var, rb);
 }
-
-
-
 
 // int main()
 // {

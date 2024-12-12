@@ -10,7 +10,10 @@ int main()
   while (line)
   {
     printf("===============================================================\n");
-    printf("line:[%s]", line);
+    if (line)
+      printf("line:[%s]", line);
+    else
+      printf("END of read (Error)\n");
     printf("===============================================================\n");
     free(line);
     line = get_next_line(fd);
