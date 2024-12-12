@@ -1,21 +1,28 @@
 #include "get_next_line.h"
 
+char	*ft_freeStaticVar(char **static_var)
+{
+	free(*static_var);
+	*static_var = NULL;
+	return (NULL);
+}
+
 char	*ft_appendBuff(char *static_var, char *buff, ssize_t rb)
 {
 	char	*new_static_var;
 	int		len;
 
-	len = static_var ? ft_strlen(static_var) : 0;
+	if (static_var)
+		len = ft_strlen(static_var);
+	else
+		len = 0;
 	new_static_var = (char *)malloc((len + rb + 1) * sizeof(char));
 	if (!new_static_var)
-	{
-		free(static_var);
-		return (NULL);
-	}
+		return (ft_freeStaticVar(&static_var));
 	if (static_var)
 	{
 		ft_strlcpy(new_static_var, static_var, len + 1);
-		free(static_var);
+		ft_freeStaticVar(&static_var);
 	}
 	ft_strlcat(new_static_var, buff, len + rb + 1);
 	return (new_static_var);
@@ -64,14 +71,9 @@ char	*process_line(char **static_var, char *endline)
 	line = getLine(*static_var, endline);
 	*static_var = ft_getRemaining(*static_var, endline);
 	if (!line)
-	{
-		free(*static_var);
-		*static_var = NULL;
-	}
+		return (ft_freeStaticVar(static_var));
 	return (line);
 }
-
-
 
 
 char	*get_next_line(int fd)
