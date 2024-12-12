@@ -6,11 +6,11 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:39:38 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/12 18:31:57 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/12 18:37:47 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_append_buff(char **static_var, char *buff, ssize_t rb)
 {
@@ -84,7 +84,7 @@ char	*ft_handle_end_of_read(char **static_var, char *buff, ssize_t rb)
 
 char	*get_next_line(int fd)
 {
-	static char	*static_var;
+	static char	*static_var[MAX_FD];
 	ssize_t		rb;
 	char		*buff;
 	char		*end_line;
@@ -98,13 +98,13 @@ char	*get_next_line(int fd)
 	while (rb > 0)
 	{
 		buff[rb] = '\0';
-		static_var = ft_append_buff(&static_var, buff, rb);
-		if (!static_var)
+		static_var[fd] = ft_append_buff(&static_var[fd], buff, rb);
+		if (!static_var[fd])
 			return (free(buff), NULL);
-		end_line = ft_strchr(static_var, '\n');
+		end_line = ft_strchr(static_var[fd], '\n');
 		if (end_line)
-			return (free(buff), ft_get_line(&static_var, end_line));
+			return (free(buff), ft_get_line(&static_var[fd], end_line));
 		rb = read(fd, buff, BUFFER_SIZE);
 	}
-	return (ft_handle_end_of_read(&static_var, buff, rb));
+	return (ft_handle_end_of_read(&static_var[fd], buff, rb));
 }
