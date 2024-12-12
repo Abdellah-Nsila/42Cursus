@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:39:38 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/12 12:40:55 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/12 14:31:49 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ char	*ft_append_buff(char **static_var, char *buff, ssize_t rb)
 		len = 0;
 	new_static_var = (char *)malloc((len + rb + 1) * sizeof(char));
 	if (!new_static_var)
-	{	
-		free(buff);
 		return (ft_clean(static_var));
-	}
 	if (static_var)
 	{
 		ft_strlcpy(new_static_var, *static_var, len + 1);
@@ -79,18 +76,17 @@ char	*ft_process_read_content(char **static_var, char *buff, char *end_line)
 	line = ft_get_line(*static_var, end_line);
 	*static_var = ft_get_remaining(static_var, buff, end_line);
 	if (!line)
-	{
-		free(buff);	
 		return (ft_clean(static_var));
-	}
+	free(buff);
 	return (line);
 }
 
-char *ft_handle_end_of_read(char **static_var, ssize_t rb)
+char *ft_handle_end_of_read(char **static_var, char *buff, ssize_t rb)
 {
 	char *end_line;
 	char *line;
 
+	free(buff);
 	if (!static_var || !*static_var)
 		return (ft_clean(static_var));
 	end_line = ft_strchr(*static_var, '\n');
@@ -111,7 +107,6 @@ char	*get_next_line(int fd)
 	ssize_t		rb;
 	char		*buff;
 	char		*end_line;
-	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
@@ -129,14 +124,9 @@ char	*get_next_line(int fd)
 		}
 		end_line = ft_strchr(static_var, '\n');
 		if (end_line)
-		{
-			line = ft_process_read_content(&static_var, buff, end_line);
-			free(buff);
-			return (line);
-		}
+			return (ft_process_read_content(&static_var, buff, end_line));
 	}
-	free(buff);
-	return (ft_handle_end_of_read(&static_var, rb));
+	return (ft_handle_end_of_read(&static_var, buff, rb));
 }
 
 
