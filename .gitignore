@@ -5,5 +5,5 @@
 *.a
 Test/
 *gch
-*test
+*test*
 *test.*
