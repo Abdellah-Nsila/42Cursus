@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 14:44:28 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/12 15:52:43 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/12 16:15:03 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,19 +78,6 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	}
 	dst[dst_len + i] = '\0';
 	return (src_len + dst_len);
-}
-
-char	*ft_strdup(const char *s1)
-{
-	char	*dst;
-	size_t	src_len;
-
-	src_len = ft_strlen((char *)s1) + 1;
-	dst = (char *) malloc(src_len);
-	if (!dst)
-		return (NULL);
-	ft_strlcpy(dst, s1, src_len);
-	return (dst);
 }
 
 char	*ft_clean(char **static_var)

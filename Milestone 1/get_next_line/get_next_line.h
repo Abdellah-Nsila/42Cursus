@@ -15,10 +15,8 @@ size_t	ft_strlen(char	*s);
 char	*ft_strchr(const char *str, int c);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
-char    *ft_strdup(const char *s1);
-char	*ft_strjoin(char const *s1, char const *s2);
-
 char	*ft_clean(char **static_var);
+
 char	*ft_append_buff(char **static_var, char *buff, ssize_t rb);
 char	*ft_get_remaining(char **static_var, char *end_line);
 char	*ft_get_line(char **static_var, char *end_line);

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:39:38 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/12 15:44:22 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/12 16:16:36 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char	*ft_append_buff(char **static_var, char *buff, ssize_t rb)
 	return (new_static_var);
 }
 
+
 char	*ft_get_remaining(char **static_var, char *end_line)
 {
 	char	*new_static_var;
@@ -46,6 +47,7 @@ char	*ft_get_remaining(char **static_var, char *end_line)
 	ft_clean(static_var);
 	return (new_static_var);
 }
+
 
 char	*ft_get_line(char **static_var, char *end_line)
 {
@@ -76,6 +78,7 @@ char	*ft_handle_end_of_read(char **static_var, char *buff, ssize_t rb)
 		return (ft_get_line(static_var, end_line));
 	if (rb == 0 && *static_var && **static_var)
 	{
+		///TODO Replace this by malloc + ft_strlcpy
 		line = ft_strdup(*static_var);
 		ft_clean(static_var);
 		return (line);
