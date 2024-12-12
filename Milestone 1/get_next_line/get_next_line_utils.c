@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/12 14:44:28 by abnsila           #+#    #+#             */
+/*   Updated: 2024/12/12 15:52:43 by abnsila          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 size_t	ft_strlen(char	*s)
@@ -45,6 +57,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	dst[i] = '\0';
 	return (src_len);
 }
+
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
@@ -78,4 +91,11 @@ char	*ft_strdup(const char *s1)
 		return (NULL);
 	ft_strlcpy(dst, s1, src_len);
 	return (dst);
+}
+
+char	*ft_clean(char **static_var)
+{
+	free(*static_var);
+	*static_var = NULL;
+	return (NULL);
 }

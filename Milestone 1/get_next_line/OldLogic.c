@@ -1,52 +1,122 @@
-// char	*get_next_line(int fd)
-// {
-// 	static char	*static_var;
-// 	ssize_t		rb;
-// 	char		buff[BUFFER_SIZE + 1];
-// 	char		*endline;
-// 	char		*line;
-// 	int			count;
 
-// 	count = 0;
-// 	while (1)
-// 	{
-// 		rb = read(fd, buff, BUFFER_SIZE);
-// 		if (rb < 0)
-// 			return (NULL);
-// 		else if (rb == 0)
-// 			break;
-// 		//TODO Fix Multiple line on one read
-// 		count++;
-// 		buff[rb] = '\0';
-// 		static_var = ft_appendBuff(static_var, buff, rb);
-// 		if (!static_var)
-// 			return (NULL);
-// 		printf("\n[Read Number %d]\n%s\n", count, static_var);
+#include "get_next_line.h"
 
-// 		endline = ft_strchr(static_var, '\n');
-// 		if (endline)
-// 		{
-// 			line = getLine(static_var, endline);
-// 			static_var = ft_getRemaining(static_var, endline);
-// 			if (!line)
-// 			{
-// 				free(line);
-// 				break;
-// 			}
-// 			printf("\n[Remaining]:\n%s\n", static_var);
-// 			return (line);
-// 		}
-// 		// printf("\n=============== END ================\n\n\n");
-// 	}
-// 	if (static_var && *static_var)
-// 	{
-// 		line = ft_strdup(static_var);
-// 		free(static_var);
-// 		static_var = NULL;
-// 		return (line);
-// 	}
-// 	free(static_var);
-// 	static_var = NULL;
-// 	return (NULL);
-// }
+char	*ft_clean(char **static_var)
+{
+	free(*static_var);
+	*static_var = NULL;
+	return (NULL);
+}
 
+char	*ft_append_buff(char **static_var, char *buff, ssize_t rb)
+{
+	char	*new_static_var;
+	int		len;
+
+	if (*static_var)
+		len = ft_strlen(*static_var);
+	else
+		len = 0;
+	new_static_var = (char *)malloc((len + rb + 1) * sizeof(char));
+	if (!new_static_var)
+		return (ft_clean(static_var));
+	if (static_var)
+	{
+		ft_strlcpy(new_static_var, *static_var, len + 1);
+		ft_clean(static_var);
+	}
+	ft_strlcat(new_static_var, buff, len + rb + 1);
+	return (new_static_var);
+}
+
+char	*ft_get_remaining(char **static_var, char *buff, char *end_line)
+{
+	char	*new_static_var;
+	size_t	remaining_len;
+
+	remaining_len = ft_strlen(end_line + 1);
+	new_static_var = (char *)malloc((remaining_len + 1) * sizeof(char));
+	if (!new_static_var)
+		return (ft_clean(static_var));
+	ft_strlcpy(new_static_var, end_line + 1, remaining_len + 1);
+	ft_clean(static_var);
+	return (new_static_var);
+}
+
+char	*ft_get_line(char *static_var, char *end_line)
+{
+	size_t	len;
+	char	*line;
+
+	if (!static_var || !end_line)
+		return (NULL);
+	len = (end_line - static_var) + 1;
+	line = (char *)malloc((len + 1) * sizeof(char));
+	if (!line)
+		return (NULL);
+	ft_strlcpy(line, static_var, len + 1);
+	return (line);
+}
+
+char	*ft_process_read_content(char **static_var, char *buff, char *end_line)
+{
+	char	*line;
+
+	line = ft_get_line(*static_var, end_line);
+	*static_var = ft_get_remaining(static_var, buff, end_line);
+	if (!line)
+		return (ft_clean(static_var));
+	free(buff);
+	return (line);
+}
+
+char *ft_handle_end_of_read(char **static_var, char *buff, ssize_t rb)
+{
+	char *end_line;
+	char *line;
+
+	free(buff);
+	if (!static_var || !*static_var)
+		return (ft_clean(static_var));
+	end_line = ft_strchr(*static_var, '\n');
+	if (end_line)
+		return (ft_process_read_content(static_var, NULL, end_line));
+	if (rb == 0 && *static_var && **static_var)
+	{
+		line = ft_strdup(*static_var);
+		ft_clean(static_var);
+		return (line);
+	}
+	return (ft_clean(static_var));
+}
+
+char	*get_next_line(int fd)
+{
+	static char	*static_var;
+	ssize_t		rb;
+	char		*buff;
+	char		*end_line;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	buff = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!buff)
+		return (NULL);
+	while ((rb = read(fd, buff, BUFFER_SIZE)) > 0)
+	{
+		buff[rb] = '\0';
+		static_var = ft_append_buff(&static_var, buff, rb);
+		if (!static_var)
+		{
+			free(buff);
+			return (NULL);
+		}
+		end_line = ft_strchr(static_var, '\n');
+		if (end_line)
+		{
+			free(buff);
+			return (ft_get_line(&static_var, end_line));
+		}
+	}
+	return (ft_handle_end_of_read(&static_var, buff, rb));
+}
