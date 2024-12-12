@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:39:38 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/12 17:00:02 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/12 17:20:34 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ char	*ft_append_buff(char **static_var, char *buff, ssize_t rb)
 	return (new_static_var);
 }
 
-
 char	*ft_get_remaining(char **static_var, char *end_line)
 {
 	char	*new_static_var;
@@ -47,7 +46,6 @@ char	*ft_get_remaining(char **static_var, char *end_line)
 	ft_clean(static_var);
 	return (new_static_var);
 }
-
 
 char	*ft_get_line(char **static_var, char *end_line)
 {
