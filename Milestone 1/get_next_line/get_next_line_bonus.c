@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MyLogic.c                                          :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:39:38 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/12 17:20:34 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/12 18:31:57 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,12 @@ char	*ft_append_buff(char **static_var, char *buff, ssize_t rb)
 	return (new_static_var);
 }
 
-char	*ft_get_remaining(char **static_var, char *end_line)
-{
-	char	*new_static_var;
-	size_t	remaining_len;
-
-	remaining_len = ft_strlen(end_line + 1);
-	new_static_var = (char *)malloc((remaining_len + 1) * sizeof(char));
-	if (!new_static_var)
-		return (ft_clean(static_var));
-	ft_strlcpy(new_static_var, end_line + 1, remaining_len + 1);
-	ft_clean(static_var);
-	return (new_static_var);
-}
-
 char	*ft_get_line(char **static_var, char *end_line)
 {
-	size_t	len;
 	char	*line;
+	size_t	len;
+	char	*new_static_var;
+	size_t	remaining_len;
 
 	if (!static_var || !*static_var || !end_line)
 		return (NULL);
@@ -59,7 +47,13 @@ char	*ft_get_line(char **static_var, char *end_line)
 	if (!line)
 		return (ft_clean(static_var));
 	ft_strlcpy(line, *static_var, len + 1);
-	*static_var = ft_get_remaining(static_var, end_line);
+	remaining_len = ft_strlen(end_line + 1);
+	new_static_var = (char *)malloc((remaining_len + 1) * sizeof(char));
+	if (!new_static_var)
+		return (ft_clean(static_var));
+	ft_strlcpy(new_static_var, end_line + 1, remaining_len + 1);
+	ft_clean(static_var);
+	*static_var = new_static_var;
 	return (line);
 }
 
