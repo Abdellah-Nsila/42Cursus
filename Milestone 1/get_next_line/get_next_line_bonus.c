@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:39:38 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/12 18:39:12 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/13 14:59:50 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,12 @@ char	*ft_handle_end_of_read(char **static_var, char *buff, ssize_t rb)
 
 char	*get_next_line(int fd)
 {
-	// TODO You are working in arr of fd, so take arr[fd] and work with it (you must free also)
 	static char	*static_var[MAX_FD];
 	ssize_t		rb;
 	char		*buff;
 	char		*end_line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (BUFFER_SIZE <= 0 || (fd > 0 && fd < MAX_FD))
 		return (NULL);
 	buff = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buff)
