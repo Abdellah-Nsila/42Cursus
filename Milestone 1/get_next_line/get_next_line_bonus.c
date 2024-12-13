@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:39:38 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/13 15:14:53 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/13 15:37:24 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,12 @@ char	*ft_handle_end_of_read(char **static_var, char *buff, ssize_t rb)
 	size_t	len;
 
 	free(buff);
-	if (!static_var || !*static_var)
+	if (rb < 0 || !static_var || !*static_var)
 		return (ft_clean(static_var));
 	end_line = ft_strchr(*static_var, '\n');
 	if (end_line)
 		return (ft_get_line(static_var, end_line));
-	if (rb == 0 && *static_var && **static_var)
+	if (**static_var)
 	{
 		len = ft_strlen(*static_var) + 1;
 		line = (char *) malloc(len * sizeof(char));
