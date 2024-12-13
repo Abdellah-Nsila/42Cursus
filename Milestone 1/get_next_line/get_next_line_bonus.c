@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:39:38 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/13 14:59:50 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/13 15:14:53 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ char	*ft_get_line(char **static_var, char *end_line)
 	char	*new_static_var;
 	size_t	remaining_len;
 
-	if (!static_var || !*static_var || !end_line)
-		return (NULL);
 	len = (end_line - *static_var) + 1;
 	line = (char *)malloc((len + 1) * sizeof(char));
 	if (!line)
@@ -89,7 +87,7 @@ char	*get_next_line(int fd)
 	char		*buff;
 	char		*end_line;
 
-	if (BUFFER_SIZE <= 0 || (fd > 0 && fd < MAX_FD))
+	if (fd < 0 || fd >= MAX_FD || BUFFER_SIZE <= 0)
 		return (NULL);
 	buff = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buff)
