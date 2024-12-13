@@ -5,7 +5,8 @@ int main(int ac, char **av)
     // read from all files that are passed as arguments
     //int fd;
     char *line; 
-    int i = 1;
+    int fd1;
+    int fd2;
     
     // if (ac == 1)
     // {
@@ -34,25 +35,34 @@ int main(int ac, char **av)
       }
     }*/
     // other check for check from file1.txt and file2.txt
-    int fd1 = open(av[1], O_RDONLY);
-    // read one line from file1.txt
+    fd1 = open(av[1], O_RDONLY);
+    fd2 = open(av[2], O_RDONLY);
+    
     line = get_next_line(fd1);
     printf("%s", line);
     free(line);
-    i++;
-    int fd2 = open(av[2], O_RDONLY);
+
     line = get_next_line(fd2);
     printf("%s", line);
     free(line);
-    // reade other lines from av[i] av[i + 1]
-    i--;
+
+    line = get_next_line(fd1);
+    printf("%s", line);
+    free(line);
+
+    line = get_next_line(fd2);
+    printf("%s", line);
+    free(line);
+
+    // Continue read fd1
     while ((line = get_next_line(fd1)))
     {
       printf("%s", line);
       free(line);
     }
     close(fd1);
-    i++;
+
+    // Continue read fd2
     while ((line = get_next_line(fd2)))
     {
       printf("%s", line);
