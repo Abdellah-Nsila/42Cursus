@@ -1,0 +1,10 @@
+Arguments:
+-----fd: File descriptor from which to read.
+-----buf: Pointer to a buffer where the read data will be stored.
+-----count: Number of bytes to attempt to read.
+-----GG
+Arguments:
+-----fd: File descriptor from which to read.
+-----buf: Pointer to a buffer where the read data will be stored.
+-----count: Number of bytes to attempt to read.
+-----GG
