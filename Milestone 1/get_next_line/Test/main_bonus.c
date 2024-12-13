@@ -8,15 +8,15 @@ int main(int ac, char **av)
     char *line; 
     int i = 1;
     
-    if (ac == 1)
-    {
-      while ((line = get_next_line(0)))
-      {
-          printf("%s\n", line);
-          free(line);
-      }
-      printf("Done from stdin\n");
-    }
+    // if (ac == 1)
+    // {
+    //   while ((line = get_next_line(0)))
+    //   {
+    //       printf("%s\n", line);
+    //       free(line);
+    //   }
+    //   printf("Done from stdin\n");
+    // }
     /*else
     {
       while (av[i])
