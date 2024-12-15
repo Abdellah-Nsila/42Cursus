@@ -13,11 +13,18 @@ void	ft_swap(int *a, int *b)
 int	ft_insertion_sort(int *arr, int arr_size)
 {
 	size_t	i;
+	size_t	j;
+	int		temp;
 
 	i = 0;
 	while (i < arr_size)
 	{
 		printf("%d\n", arr[i]);
+		while (i < arr_size)
+		{
+			printf("%d\n", arr[i]);
+			i++;
+		}
 		i++;
 	}
 }
