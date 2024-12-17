@@ -21,14 +21,24 @@ int	ft_insertion_sort(int *arr, int arr_size)
 	while (i < arr_size)
 	{
 		j = i - 1;
-		min = i;
-		// printf("%d\n", j);
-		while (min < arr[j] && j >= 0)
+		min = arr[i];
+		printf("i: %d\n", i);
+		while (j >= 0)
 		{
-		// printf("%d\n", j);
-			ft_swap(&arr[i], &arr[j]);
+			printf("%d\n", arr[j]);
+			if (arr[j] > min)
+			{
+				arr[j + 1] = arr[j + 1];
+			}
+			else
+			{
+				arr[j + 1] = min;
+				break;
+			}
+			// ft_swap(&min, &arr[j]);
 			j--;
 		}
+		printf("*******************\n");
 		i++;
 	}
 }
