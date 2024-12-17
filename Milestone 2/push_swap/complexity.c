@@ -15,20 +15,18 @@ int	ft_insertion_sort(int *arr, int arr_size)
 	
 	size_t	i;
 	size_t	j;
-	int		temp;
+	int		min;
 
 	i = 1;
 	while (i < arr_size)
 	{
-		j = i;
-		printf("%d\n", j);
-		while (j >= 0)
+		j = i - 1;
+		min = i;
+		// printf("%d\n", j);
+		while (min < arr[j] && j >= 0)
 		{
-			if (arr[i] < arr[j])
-			{
-				ft_swap(&arr[i], &arr[j]);
-				break;
-			}
+		// printf("%d\n", j);
+			ft_swap(&arr[i], &arr[j]);
 			j--;
 		}
 		i++;
