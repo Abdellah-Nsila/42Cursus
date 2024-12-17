@@ -1,5 +1,7 @@
-
 #include <stdio.h>
+#include <unistd.h>  // For usleep function
+
+#define DELAY 500000  // Delay in microseconds (0.07 seconds)
 
 void	ft_swap(int *a, int *b)
 {
@@ -11,6 +13,10 @@ void	ft_swap(int *a, int *b)
 }
 
 // ft_swap(&min, &arr[j]);
+
+void clear_terminal() {
+    printf("\033[H\033[J");  // ANSI escape code to clear the screen
+}
 
 void	ft_print_arr(int *arr, int arr_size)
 {
@@ -79,6 +85,7 @@ int	ft_insertion_sort(int *arr, int arr_size)
 	i = 1;
 	while (i < arr_size)
 	{
+		clear_terminal();
 		j = i - 1;
 		min = arr[i];
 		while ((j >= 0) && (arr[j] > min))
@@ -89,6 +96,7 @@ int	ft_insertion_sort(int *arr, int arr_size)
 		arr[j + 1] = min;
 		i++;
 		ft_print_graph_arr(arr, arr_size);
+		usleep(DELAY);
 	}
 }
 
@@ -96,34 +104,13 @@ int	ft_insertion_sort(int *arr, int arr_size)
 int main()
 {
 	// int arr[] = {13, 2, 1, 3, 0, 10,5, 4, 9, 12, 11, 8, 7, 6};
-	// int arr[] = {3,3,3,13,13,13,3,3,13,13,13,3,3,3};
-	int arr[] = {
-		{0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0},
-		{0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0},
-		{0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0},
-		{0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0},
-		{1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0},
-		{1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0},
-		{1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0},
-		{1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1},
-		{1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1},
-		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-		{0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1},
-		{0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1},
-		{0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1},
-		{0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1},
-		{0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1},
-		{0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0},
-		{0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0},
-		{0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0},
-		{0,0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0},
-
-	};
+	int arr[] = {2,2,2,6,6,8,8,13,13,8,8,6,6,2,2,2,2,2};
 	int arr_size = sizeof(arr) / sizeof(int);
 
 	printf("||---------------------------- ft_insertion_sort ----------------------------||\n\n");
 	// ft_swap(&arr[0], &arr[1]);
-	ft_insertion_sort(arr, arr_size);
+	// ft_insertion_sort(arr, arr_size);
+	ft_print_graph_arr(arr, arr_size);
 	ft_print_arr(arr, arr_size);
 	printf("\n||---------------------------------------------------------------------------||\n");
 }
