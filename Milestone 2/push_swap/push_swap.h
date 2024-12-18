@@ -9,7 +9,7 @@
 
 // commands for push  swap rotate
 // handle inputs
-// 
+// handle double linked list
 
 
 #endif
