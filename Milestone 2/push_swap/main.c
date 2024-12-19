@@ -1,5 +1,4 @@
 #include "push_swap.h"
-// #include "./Libft/libft.h"
 
 //! Test ( Push, Pop ) in 2 Stack a, b
 int	main()
