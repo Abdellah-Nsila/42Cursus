@@ -15,6 +15,7 @@ typedef struct s_node
 	struct s_node   *prev;
 	struct s_node   *next;
 }	t_node ;
+
 void	ft_print_node(t_node *node);
 void	ft_print_lst(t_node *lst);
 t_node	*ft_lst_last(t_node *lst);
