@@ -68,20 +68,22 @@ void	ft_lst_add_front(t_node **lst, t_node *new)
 
 t_node	*ft_lst_pop(t_node **lst)
 {
-	t_node	*removed_node;
+	t_node	*popped_node;
 	t_node	*last;
 
-	removed_node = *lst;
+	popped_node = *lst;
 	if ((*lst)->next == *lst)
 	{
 		*lst = NULL;
-		return (removed_node);
+		return (popped_node);
 	}
 	last = ft_lst_last(*lst);
-	last->next = (*lst)->next;
-	(*lst)->next->prev = last;
-	*lst = (*lst)->next;
-	return (removed_node);
+	(*lst) = (*lst)->next;
+	last->next = *lst;
+	(*lst)->prev = last;
+	popped_node->next = popped_node;
+	popped_node->prev = popped_node;
+	return (popped_node);
 }
 
 
@@ -144,9 +146,12 @@ int	main()
 	t_node	*node2;
 	t_node	*node3;
 	t_node	*node4;
+	t_node	*popped_node;
 
 	a = NULL;
 	b = NULL;
+
+	// Create nodes and add them to stack a
 	node1 = ft_lst_new(10);
 	node2 = ft_lst_new(20);
 	node3 = ft_lst_new(30);
@@ -163,13 +168,26 @@ int	main()
 	printf("\n\n^^^^^^^^^^^^^^^^^^^^^^^ Stack b ^^^^^^^^^^^^^^^^^^^^^^^\n");
 	ft_print_lst(b);
 
+	// Pop from stack a
+	popped_node = ft_lst_pop(&a);
+	if (popped_node)
+	{
+		printf("\n\nPopped Node:\n");
+		ft_print_node(popped_node);
+
+		// Add the popped node to stack b
+		ft_lst_add_front(&b, popped_node);
+	}
 
 	printf("\n\n\n======================= After =======================\n");
 	printf("\n^^^^^^^^^^^^^^^^^^^^^^^ Stack a ^^^^^^^^^^^^^^^^^^^^^^^\n");
 	ft_print_lst(a);
 	printf("\n\n^^^^^^^^^^^^^^^^^^^^^^^ Stack b ^^^^^^^^^^^^^^^^^^^^^^^\n");
 	ft_print_lst(b);
+
+	return (0);
 }
+
 
 //! Test ( Rotate list, Reverse Rotate list )
 // int	main()
@@ -219,7 +237,6 @@ int	main()
 // 	ft_print_lst(head);
 
 // 	ft_real_swap_node(&head);
-// 	free(ft_lst_pop(&head));
 // 	printf("\n\n======================= After Swap =======================\n");
 // 	ft_print_lst(head);
 // }
