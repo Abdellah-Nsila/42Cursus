@@ -109,7 +109,7 @@ void	ft_swap_node_content(t_node **lst)
 	(*lst)->next->n = temp;
 }
 
-void	ft_real_swap_node(t_node **lst)
+void	ft_swap_real_node(t_node **lst)
 {
 	t_node	*first;
 	t_node	*second;
