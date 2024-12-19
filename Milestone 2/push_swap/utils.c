@@ -29,8 +29,6 @@ t_node	*ft_lst_new(int n)
 void	ft_lst_add_front(t_node **lst, t_node *new)
 {
 	t_node	*last;
-	void	*prev;
-	void	*next;
 
 	if (!lst || !new)
 		return;
@@ -46,6 +44,41 @@ void	ft_lst_add_front(t_node **lst, t_node *new)
 	*lst = new;
 }
 
+// temp = a
+// a = b
+// b = temp
+void	ft_swap_node(t_node **lst)
+{
+	int	temp;
+
+	temp = (*lst)->n;
+	(*lst)->n = (*lst)->next->n;
+	(*lst)->next->n = temp;
+}
+
+void	ft_real_swap_node(t_node **lst)
+{
+	t_node	*p1;
+	t_node	*n1;
+	t_node	*p2;
+	t_node	*n2;
+	t_node	*last;
+
+	last = ft_lst_last(*lst);
+	p1 = (*lst)->prev;
+	n1 = (*lst)->next;
+	p2 = ((*lst)->next)->prev;
+	n2 = ((*lst)->next)->next;
+
+	(*lst)->prev = n1;
+	(*lst)->next = n2;
+
+	((*lst)->next)->prev = p1;
+	((*lst)->next)->next = p2;
+
+	last->next = n1;
+
+}
 void	ft_print_node(t_node *node)
 {
 	printf("---------------------- Node Members ----------------------\n");
@@ -80,6 +113,11 @@ int	main()
 	ft_lst_add_front(&head, node1);
 	ft_lst_add_front(&head, node2);
 	ft_lst_add_front(&head, node3);
+	printf("\n===================== Before Swap =====================\n");
+	ft_print_lst(head);
 
+
+	ft_swap_node(&head);
+	printf("\n\n===================== After Swap =====================\n");
 	ft_print_lst(head);
 }
