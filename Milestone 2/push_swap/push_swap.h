@@ -24,7 +24,7 @@ t_node	*ft_lst_pop(t_node **lst);
 void	ft_lst_rotate(t_node **lst);
 void	ft_lst_reverse_rotate(t_node **lst);
 void	ft_swap_node_content(t_node **lst);
-void	ft_real_swap_node(t_node **lst);
+void	ft_swap_real_node(t_node **lst);
 
 
 
