@@ -7,9 +7,9 @@
 # include <stdlib.h>
 # include <string.h>
 
-// commands for push  swap rotate
-// handle inputs
 // handle double linked list
+// commands for push - swap - rotate
+// handle inputs
 
 
-#endif
+#endif 
