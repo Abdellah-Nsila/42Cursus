@@ -15,6 +15,17 @@ typedef struct s_node
 	struct s_node   *prev;
 	struct s_node   *next;
 }	t_node ;
+void	ft_print_node(t_node *node);
+void	ft_print_lst(t_node *lst);
+t_node	*ft_lst_last(t_node *lst);
+t_node	*ft_lst_new(int n);
+void	ft_lst_add_front(t_node **lst, t_node *new);
+t_node	*ft_lst_pop(t_node **lst);
+void	ft_lst_rotate(t_node **lst);
+void	ft_lst_reverse_rotate(t_node **lst);
+void	ft_swap_node_content(t_node **lst);
+void	ft_real_swap_node(t_node **lst);
+
 
 
 // commands for push - swap - rotate
