@@ -14,33 +14,33 @@ int	main()
 	a = NULL;
 	b = NULL;
 
-	node1 = ft_lst_new(10);
-	node2 = ft_lst_new(20);
-	node3 = ft_lst_new(30);
-	node4 = ft_lst_new(40);
+	node1 = ft_stack_new(10);
+	node2 = ft_stack_new(20);
+	node3 = ft_stack_new(30);
+	node4 = ft_stack_new(40);
 
-	ft_lst_add_front(&a, node1);
-	ft_lst_add_front(&a, node2);
-	ft_lst_add_front(&a, node3);
-	ft_lst_add_front(&a, node4);
+	ft_stack_add_front(&a, node1);
+	ft_stack_add_front(&a, node2);
+	ft_stack_add_front(&a, node3);
+	ft_stack_add_front(&a, node4);
 
 	printf("\n======================= Before =======================\n");
 	printf("\n^^^^^^^^^^^^^^^^^^^^^^^ Stack a ^^^^^^^^^^^^^^^^^^^^^^^\n");
-	ft_print_lst(a);
+	ft_print_stack(a);
 	printf("\n\n^^^^^^^^^^^^^^^^^^^^^^^ Stack b ^^^^^^^^^^^^^^^^^^^^^^^\n");
-	ft_print_lst(b);
+	ft_print_stack(b);
 
 	// Pop from stack a, and Push to b
-	ft_lst_add_front(&b, ft_lst_pop(&a));
-	ft_lst_add_front(&b, ft_lst_pop(&a));
-	ft_lst_add_front(&b, ft_lst_pop(&a));
-	ft_lst_add_front(&b, ft_lst_pop(&a));
+	ft_stack_add_front(&b, ft_stack_pop(&a));
+	ft_stack_add_front(&b, ft_stack_pop(&a));
+	ft_stack_add_front(&b, ft_stack_pop(&a));
+	ft_stack_add_front(&b, ft_stack_pop(&a));
 
 	printf("\n\n\n======================= After =======================\n");
 	printf("\n^^^^^^^^^^^^^^^^^^^^^^^ Stack a ^^^^^^^^^^^^^^^^^^^^^^^\n");
-	ft_print_lst(a);
+	ft_print_stack(a);
 	printf("\n\n^^^^^^^^^^^^^^^^^^^^^^^ Stack b ^^^^^^^^^^^^^^^^^^^^^^^\n");
-	ft_print_lst(b);
+	ft_print_stack(b);
 
 
 	return (0);
@@ -57,22 +57,22 @@ int	main()
 // 	t_node	*node4;
 
 // 	head = NULL;
-// 	node1 = ft_lst_new(10);
-// 	node2 = ft_lst_new(20);
-// 	node3 = ft_lst_new(30);
-// 	node4 = ft_lst_new(40);
+// 	node1 = ft_stack_new(10);
+// 	node2 = ft_stack_new(20);
+// 	node3 = ft_stack_new(30);
+// 	node4 = ft_stack_new(40);
 
-// 	ft_lst_add_front(&head, node1);
-// 	ft_lst_add_front(&head, node2);
-// 	ft_lst_add_front(&head, node3);
-// 	ft_lst_add_front(&head, node4);
+// 	ft_stack_add_front(&head, node1);
+// 	ft_stack_add_front(&head, node2);
+// 	ft_stack_add_front(&head, node3);
+// 	ft_stack_add_front(&head, node4);
 // 	printf("\n======================= Before Rotate =======================\n");
-// 	ft_print_lst(head);
+// 	ft_print_stack(head);
 
-// 	ft_lst_rotate(&head);
-// 	ft_lst_reverse_rotate(&head);
+// 	ft_stack_rotate(&head);
+// 	ft_stack_reverse_rotate(&head);
 // 	printf("\n\n======================= After Rotate =======================\n");
-// 	ft_print_lst(head);
+// 	ft_print_stack(head);
 // }
 
 //! Test ( Create new node, Push new node in front, Swap 2 first nodes )
@@ -84,17 +84,17 @@ int	main()
 // 	t_node	*node3;
 
 // 	head = NULL;
-// 	node1 = ft_lst_new(10);
-// 	node2 = ft_lst_new(20);
-// 	node3 = ft_lst_new(30);
+// 	node1 = ft_stack_new(10);
+// 	node2 = ft_stack_new(20);
+// 	node3 = ft_stack_new(30);
 
-// 	ft_lst_add_front(&head, node1);
-// 	ft_lst_add_front(&head, node2);
-// 	ft_lst_add_front(&head, node3);
+// 	ft_stack_add_front(&head, node1);
+// 	ft_stack_add_front(&head, node2);
+// 	ft_stack_add_front(&head, node3);
 // 	printf("\n======================= Before Swap =======================\n");
-// 	ft_print_lst(head);
+// 	ft_print_stack(head);
 
 // 	ft_real_swap_node(&head);
 // 	printf("\n\n======================= After Swap =======================\n");
-// 	ft_print_lst(head);
+// 	ft_print_stack(head);
 // }
