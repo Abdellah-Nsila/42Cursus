@@ -11,10 +11,10 @@
 
 typedef struct s_node 
 {
-    int n;
-    struct s_node   *prev;
-    struct s_node   *next;
-} t_node ;
+	int n;
+	struct s_node   *prev;
+	struct s_node   *next;
+}	t_node ;
 
 
 // commands for push - swap - rotate
