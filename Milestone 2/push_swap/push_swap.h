@@ -8,8 +8,16 @@
 # include <string.h>
 
 // handle double linked list
+
+typedef struct s_node 
+{
+    int n;
+    struct s_node   *prev;
+    struct s_node   *next;
+} t_node ;
+
+
 // commands for push - swap - rotate
 // handle inputs
-
 
 #endif 
