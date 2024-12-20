@@ -60,6 +60,3 @@ t_node	*pop(t_node **stack)
 	popped_node->prev = popped_node;
 	return (popped_node);
 }
-
-
-

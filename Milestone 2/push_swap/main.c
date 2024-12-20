@@ -51,7 +51,7 @@ int main()
 {
 	t_node	*head;
 
-	head = create_stack();
+	head = genarate_stack();
 	display_stacks(head, NULL, "After", "Create");
 }
 
@@ -61,7 +61,7 @@ int main()
 // 	t_node	*a;
 // 	t_node	*b;
 
-// 	a = create_stack();
+// 	a = genarate_stack();
 // 	b = NULL;
 // 	display_stacks(a, b, "Before", "Put");
 
@@ -80,7 +80,7 @@ int main()
 // {
 // 	t_node	*a;
 
-// 	a = create_stack();
+// 	a = genarate_stack();
 // 	display_stacks(a, NULL, "Before", "Rotate");
 
 // 	ra_rb_rra_rrb(&a, 'r');
@@ -95,7 +95,7 @@ int main()
 // {
 // 	t_node	*a;
 
-// 	a = create_stack();
+// 	a = genarate_stack();
 // 	display_stacks(a, NULL, "Before", "Swap");
 
 // 	sa_sb(&a);
