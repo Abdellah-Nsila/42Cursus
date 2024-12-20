@@ -11,9 +11,9 @@ void	ss(t_node **a, t_node **b)
 	ft_swap_real_node(b);
 }
 
-void	push(t_node **stack, t_node *new)
+void	push(t_node **from_stack, t_node **to_stack)
 {
-	ft_stack_push(stack, new);
+	ft_stack_push(to_stack, ft_stack_pop(from_stack));
 }
 
 void	rotate(t_node **stack)
