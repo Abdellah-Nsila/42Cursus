@@ -1,5 +1,32 @@
 #include "push_swap.h"
 
+void	print_node(t_node *node)
+{
+	printf("|                     Node Members                     |\n");
+	printf("| n:    %d                                             |\n", node->n);
+	printf("| prev: %p                                 |\n", node->prev);
+	printf("| next: %p                                 |\n", node->next);
+	printf("|______________________________________________________|\n");
+
+}
+
+void	print_stack(t_node *stack)
+{
+	t_node	*current;
+
+	if (!stack)
+	{
+		printf("|                   List is empty !                    |\n");
+		printf("|______________________________________________________|\n");
+		return ;
+	}
+	current = stack;
+	do {
+		 print_node(current);
+		current = current->next;
+	} while (current != stack);
+}
+
 void	display_stacks(t_node *a, t_node *b, char *state, char *action)
 {
 	printf("\n======================== %s %s ========================\n", state, action);
@@ -9,7 +36,7 @@ void	display_stacks(t_node *a, t_node *b, char *state, char *action)
 	print_stack(b);
 }
 
-t_node	*create_stack()
+t_node	*genarate_stack()
 {
 	t_node	*head;
 
@@ -19,7 +46,7 @@ t_node	*create_stack()
 	return (head);
 }
 
-// //! Test ( Create, Display )
+// //! Test ( Genarate, Display )
 int main()
 {
 	t_node	*head;
