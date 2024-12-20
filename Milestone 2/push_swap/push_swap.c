@@ -11,11 +11,15 @@ int	ft_isnumber(char *str)
 	return (1);
 }
 
-int	ft_check_duplicated(int ac, char **av)
+int	ft_check_numbers(int ac, char **av)
 {
 	int	i;
 	int	j;
 
+	i = 0;
+	while (++i < ac)
+		if (!ft_isnumber(av[i]))
+			return (0);
 	i = 1;
 	while (i < ac)
 	{
@@ -38,10 +42,7 @@ int	ft_validate_arg(int ac, char **av)
 	i = 0;
 	if (ac > 2)
 	{
-		while (++i < ac)
-			if (!ft_isnumber(av[i]))
-				return (0);
-		if (ft_check_duplicated(ac, av) == 0)
+		if (ft_check_numbers(ac, av) == 0)
 			return (0);
 	}
 }
@@ -59,7 +60,6 @@ int	main(int ac, char **av)
 	//		INT MIN - INT MAX included 
 
 	printf("isValide: %d\n", ft_validate_arg(ac, av));
-	// printf("isValide: %d\n", ft_check_duplicated(ac, av));
 	
 	// printf("n: %d\n", ft_atoi(av[1]));
 }
