@@ -19,10 +19,10 @@ int	main()
 	node3 = ft_stack_new(30);
 	node4 = ft_stack_new(40);
 
-	ft_stack_add_front(&a, node1);
-	ft_stack_add_front(&a, node2);
-	ft_stack_add_front(&a, node3);
-	ft_stack_add_front(&a, node4);
+	ft_stack_push(&a, node1);
+	ft_stack_push(&a, node2);
+	ft_stack_push(&a, node3);
+	ft_stack_push(&a, node4);
 
 	printf("\n======================== Before ========================\n");
 	printf("\n^^^^^^^^^^^^^^^^^^^^^^^ Stack a ^^^^^^^^^^^^^^^^^^^^^^^^\n");
@@ -31,17 +31,16 @@ int	main()
 	ft_print_stack(b);
 
 	// Pop from stack a, and Push to b
-	ft_stack_add_front(&b, ft_stack_pop(&a));
-	ft_stack_add_front(&b, ft_stack_pop(&a));
-	ft_stack_add_front(&b, ft_stack_pop(&a));
-	ft_stack_add_front(&b, ft_stack_pop(&a));
+	ft_stack_push(&b, ft_stack_pop(&a));
+	ft_stack_push(&b, ft_stack_pop(&a));
+	ft_stack_push(&b, ft_stack_pop(&a));
+	ft_stack_push(&b, ft_stack_pop(&a));
 
 	printf("\n\n\n========================= After =========================\n");
 	printf("\n^^^^^^^^^^^^^^^^^^^^^^^ Stack a ^^^^^^^^^^^^^^^^^^^^^^^^\n");
 	ft_print_stack(a);
 	printf("\n\n^^^^^^^^^^^^^^^^^^^^^^^ Stack b ^^^^^^^^^^^^^^^^^^^^^^^^\n");
 	ft_print_stack(b);
-
 
 	return (0);
 }
@@ -62,10 +61,10 @@ int	main()
 // 	node3 = ft_stack_new(30);
 // 	node4 = ft_stack_new(40);
 
-// 	ft_stack_add_front(&head, node1);
-// 	ft_stack_add_front(&head, node2);
-// 	ft_stack_add_front(&head, node3);
-// 	ft_stack_add_front(&head, node4);
+// 	ft_stack_push(&head, node1);
+// 	ft_stack_push(&head, node2);
+// 	ft_stack_push(&head, node3);
+// 	ft_stack_push(&head, node4);
 // 	printf("\n======================= Before Rotate =======================\n");
 // 	ft_print_stack(head);
 
@@ -88,9 +87,9 @@ int	main()
 // 	node2 = ft_stack_new(20);
 // 	node3 = ft_stack_new(30);
 
-// 	ft_stack_add_front(&head, node1);
-// 	ft_stack_add_front(&head, node2);
-// 	ft_stack_add_front(&head, node3);
+// 	ft_stack_push(&head, node1);
+// 	ft_stack_push(&head, node2);
+// 	ft_stack_push(&head, node3);
 // 	printf("\n======================= Before Swap =======================\n");
 // 	ft_print_stack(head);
 

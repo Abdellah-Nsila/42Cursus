@@ -22,7 +22,7 @@ void	ft_print_node(t_node *node);
 void	ft_print_stack(t_node *stack);
 t_node	*ft_stack_last(t_node *stack);
 t_node	*ft_stack_new(int n);
-void	ft_stack_add_front(t_node **stack, t_node *new);
+void	ft_stack_push(t_node **stack, t_node *new);
 t_node	*ft_stack_pop(t_node **stack);
 void	ft_stack_rotate(t_node **stack);
 void	ft_stack_reverse_rotate(t_node **stack);

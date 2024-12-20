@@ -52,7 +52,7 @@ t_node	*ft_stack_new(int n)
 	return (node);
 }
 
-void	ft_stack_add_front(t_node **stack, t_node *new)
+void	ft_stack_push(t_node **stack, t_node *new)
 {
 	t_node	*last;
 

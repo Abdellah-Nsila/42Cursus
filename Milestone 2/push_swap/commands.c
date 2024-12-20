@@ -13,7 +13,7 @@ void	ss(t_node **a, t_node **b)
 
 void	push(t_node **stack, t_node *new)
 {
-	ft_stack_add_front(stack, new);
+	ft_stack_push(stack, new);
 }
 
 void	rotate(t_node **stack)
