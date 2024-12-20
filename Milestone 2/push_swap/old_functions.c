@@ -13,6 +13,18 @@ void	reverse_rotate(t_node **stack)
 	*stack = last_node;
 }
 
+void	rr(t_node **a, t_node **b)
+{
+	rotate(a);
+	rotate(b);
+}
+
+void	rrr(t_node **a, t_node **b)
+{
+	reverse_rotate(a);
+	reverse_rotate(b);
+}
+
 void	ft_swap_node_content(t_node **stack)
 {
 	int	temp;

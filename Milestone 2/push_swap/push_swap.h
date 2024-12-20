@@ -10,6 +10,7 @@
 
 
 // handle double linked list
+// commands for push - swap - rotate
 
 typedef struct s_node
 {
@@ -20,19 +21,17 @@ typedef struct s_node
 
 void	print_node(t_node *node);
 void	print_stack(t_node *stack);
-t_node	*last(t_node *stack);
 t_node	*new(int n);
+t_node	*last(t_node *stack);
 void	push(t_node **stack, t_node *new);
 t_node	*pop(t_node **stack);
-void	rotate(t_node **stack);
-void	reverse_rotate(t_node **stack);
-void	swap(t_node **stack);
-void	put(t_node **from_stack, t_node **to_stack);
-// void	swap_node_content(t_node **stack);
 
+void	sa_sb(t_node **stack);
+void	ss(t_node **a, t_node **b);
+void	pa_pb(t_node **from_stack, t_node **to_stack);
+void	ra_rb_rra_rrb(t_node **stack, char type);
+void	rr_rrr(t_node **a, t_node **b, char type);
 
-
-// commands for push - swap - rotate
 // handle inputs
 
 #endif 

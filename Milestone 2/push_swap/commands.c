@@ -1,24 +1,53 @@
 #include "push_swap.h"
 
-void	ss(t_node **a, t_node **b)
+void	sa_sb(t_node **stack)
 {
-	swap(a);
-	swap(b);
+	t_node	*first;
+	t_node	*second;
+
+	if (!stack || !*stack || !(*stack)->next)
+		return ;
+	first = *stack;
+	second = first->next;
+	if (second->next == first)
+	{
+		first->next = second;
+		first->prev = second;
+		second->next = first;
+		second->prev = first;
+		*stack = second;
+		return;
+	}
+	first->next = second->next;
+	first->prev = second;
+	second->next->prev = first;
+	second->next = first;
+	second->prev = last(*stack);
+	second->prev->next = second;
+	*stack = second;
 }
 
-void	put(t_node **from_stack, t_node **to_stack)
+void	ss(t_node **a, t_node **b)
+{
+	sa_sb(a);
+	sa_sb(b);
+}
+
+void	pa_pb(t_node **from_stack, t_node **to_stack)
 {
 	push(to_stack, pop(from_stack));
 }
 
-void	rr(t_node **a, t_node **b)
+void	ra_rb_rra_rrb(t_node **stack, char type)
 {
-	rotate(a);
-	rotate(b);
+	if (type == 'r')
+		*stack = (*stack)->next;
+	else if (type == 'R')
+		*stack = last(*stack);
 }
 
-void	rrr(t_node **a, t_node **b)
+void	rr_rrr(t_node **a, t_node **b, char type)
 {
-	reverse_rotate(a);
-	reverse_rotate(b);
+	ra_rb_rra_rrb(a, type);
+	ra_rb_rra_rrb(b, type);
 }
