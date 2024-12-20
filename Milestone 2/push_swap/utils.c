@@ -2,10 +2,12 @@
 
 void	ft_print_node(t_node *node)
 {
-	printf("                       Node Members                       \n");
-	printf("n:    %d\n", node->n);
-	printf("prev: %p\n", node->prev);
-	printf("next: %p\n", node->next);
+	printf("|                     Node Members                     |\n");
+	printf("| n:    %d                                             |\n", node->n);
+	printf("| prev: %p                                 |\n", node->prev);
+	printf("| next: %p                                 |\n", node->next);
+	printf("|______________________________________________________|\n");
+
 }
 
 void	ft_print_stack(t_node *stack)
@@ -14,7 +16,8 @@ void	ft_print_stack(t_node *stack)
 
 	if (!stack)
 	{
-		printf("List is empty !\n");
+		printf("|                   List is empty !                    |\n");
+		printf("|______________________________________________________|\n");
 		return ;
 	}
 	current = stack;

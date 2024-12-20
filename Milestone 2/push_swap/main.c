@@ -24,10 +24,10 @@ int	main()
 	ft_stack_add_front(&a, node3);
 	ft_stack_add_front(&a, node4);
 
-	printf("\n======================= Before =======================\n");
-	printf("\n^^^^^^^^^^^^^^^^^^^^^^^ Stack a ^^^^^^^^^^^^^^^^^^^^^^^\n");
+	printf("\n======================== Before ========================\n");
+	printf("\n^^^^^^^^^^^^^^^^^^^^^^^ Stack a ^^^^^^^^^^^^^^^^^^^^^^^^\n");
 	ft_print_stack(a);
-	printf("\n\n^^^^^^^^^^^^^^^^^^^^^^^ Stack b ^^^^^^^^^^^^^^^^^^^^^^^\n");
+	printf("\n\n^^^^^^^^^^^^^^^^^^^^^^^ Stack b ^^^^^^^^^^^^^^^^^^^^^^^^\n");
 	ft_print_stack(b);
 
 	// Pop from stack a, and Push to b
@@ -36,10 +36,10 @@ int	main()
 	ft_stack_add_front(&b, ft_stack_pop(&a));
 	ft_stack_add_front(&b, ft_stack_pop(&a));
 
-	printf("\n\n\n======================= After =======================\n");
-	printf("\n^^^^^^^^^^^^^^^^^^^^^^^ Stack a ^^^^^^^^^^^^^^^^^^^^^^^\n");
+	printf("\n\n\n========================= After =========================\n");
+	printf("\n^^^^^^^^^^^^^^^^^^^^^^^ Stack a ^^^^^^^^^^^^^^^^^^^^^^^^\n");
 	ft_print_stack(a);
-	printf("\n\n^^^^^^^^^^^^^^^^^^^^^^^ Stack b ^^^^^^^^^^^^^^^^^^^^^^^\n");
+	printf("\n\n^^^^^^^^^^^^^^^^^^^^^^^ Stack b ^^^^^^^^^^^^^^^^^^^^^^^^\n");
 	ft_print_stack(b);
 
 
