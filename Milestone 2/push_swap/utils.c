@@ -88,7 +88,6 @@ t_node	*pop(t_node **stack)
 	return (popped_node);
 }
 
-
 void	rotate(t_node **stack)
 {
 	*stack = (*stack)->next;
@@ -132,7 +131,6 @@ void	swap(t_node **stack)
 // void	ft_swap_node_content(t_node **stack)
 // {
 // 	int	temp;
-
 // 	temp = (*stack)->n;
 // 	(*stack)->n = (*stack)->next->n;
 // 	(*stack)->next->n = temp;
