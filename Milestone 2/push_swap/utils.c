@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	ft_print_node(t_node *node)
+void	print_node(t_node *node)
 {
 	printf("|                     Node Members                     |\n");
 	printf("| n:    %d                                             |\n", node->n);
@@ -10,7 +10,7 @@ void	ft_print_node(t_node *node)
 
 }
 
-void	ft_print_stack(t_node *stack)
+void	print_stack(t_node *stack)
 {
 	t_node	*current;
 
@@ -22,12 +22,12 @@ void	ft_print_stack(t_node *stack)
 	}
 	current = stack;
 	do {
-		 ft_print_node(current);
+		 print_node(current);
 		current = current->next;
 	} while (current != stack);
 }
 
-t_node	*ft_stack_last(t_node *stack)
+t_node	*last(t_node *stack)
 {
 	t_node	*current;
 
@@ -39,7 +39,7 @@ t_node	*ft_stack_last(t_node *stack)
 	return (current);
 }
 
-t_node	*ft_stack_new(int n)
+t_node	*new(int n)
 {
 	t_node	*node;
 
@@ -52,26 +52,26 @@ t_node	*ft_stack_new(int n)
 	return (node);
 }
 
-void	ft_stack_push(t_node **stack, t_node *new)
+void	push(t_node **stack, t_node *new)
 {
-	t_node	*last;
+	t_node	*last_node;
 
 	if (!(*stack)) {
 		*stack = new;
 		return;
 	}
-	last = ft_stack_last(*stack);
+	last_node = last(*stack);
 	new->next = *stack;
-	new->prev = last;
+	new->prev = last_node;
 	(*stack)->prev = new;
-	last->next = new;
+	last_node->next = new;
 	*stack = new;
 }
 
-t_node	*ft_stack_pop(t_node **stack)
+t_node	*pop(t_node **stack)
 {
 	t_node	*popped_node;
-	t_node	*last;
+	t_node	*last_node;
 
 	popped_node = *stack;
 	if ((*stack)->next == *stack)
@@ -79,39 +79,30 @@ t_node	*ft_stack_pop(t_node **stack)
 		*stack = NULL;
 		return (popped_node);
 	}
-	last = ft_stack_last(*stack);
+	last_node = last(*stack);
 	(*stack) = (*stack)->next;
-	last->next = *stack;
-	(*stack)->prev = last;
+	last_node->next = *stack;
+	(*stack)->prev = last_node;
 	popped_node->next = popped_node;
 	popped_node->prev = popped_node;
 	return (popped_node);
 }
 
 
-void	ft_stack_rotate(t_node **stack)
+void	rotate(t_node **stack)
 {
 	*stack = (*stack)->next;
 }
 
-void	ft_stack_reverse_rotate(t_node **stack)
+void	reverse_rotate(t_node **stack)
 {
-	t_node	*last;
+	t_node	*last_node;
 
-	last = ft_stack_last(*stack);
-	*stack = last;
+	last_node = last(*stack);
+	*stack = last_node;
 }
 
-void	ft_swap_node_content(t_node **stack)
-{
-	int	temp;
-
-	temp = (*stack)->n;
-	(*stack)->n = (*stack)->next->n;
-	(*stack)->next->n = temp;
-}
-
-void	ft_swap_real_node(t_node **stack)
+void	swap(t_node **stack)
 {
 	t_node	*first;
 	t_node	*second;
@@ -133,9 +124,16 @@ void	ft_swap_real_node(t_node **stack)
 	first->prev = second;
 	second->next->prev = first;
 	second->next = first;
-	second->prev = ft_stack_last(*stack);
+	second->prev = last(*stack);
 	second->prev->next = second;
 	*stack = second;
 }
 
+// void	ft_swap_node_content(t_node **stack)
+// {
+// 	int	temp;
 
+// 	temp = (*stack)->n;
+// 	(*stack)->n = (*stack)->next->n;
+// 	(*stack)->next->n = temp;
+// }

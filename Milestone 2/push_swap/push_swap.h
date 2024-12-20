@@ -18,16 +18,17 @@ typedef struct s_node
 	struct s_node   *next;
 }	t_node ;
 
-void	ft_print_node(t_node *node);
-void	ft_print_stack(t_node *stack);
-t_node	*ft_stack_last(t_node *stack);
-t_node	*ft_stack_new(int n);
-void	push(t_node **from_stack, t_node **to_stack);
-t_node	*ft_stack_pop(t_node **stack);
-void	ft_stack_rotate(t_node **stack);
-void	ft_stack_reverse_rotate(t_node **stack);
-void	ft_swap_node_content(t_node **stack);
-void	ft_swap_real_node(t_node **stack);
+void	print_node(t_node *node);
+void	print_stack(t_node *stack);
+t_node	*last(t_node *stack);
+t_node	*new(int n);
+void	push(t_node **stack, t_node *new);
+t_node	*pop(t_node **stack);
+void	rotate(t_node **stack);
+void	reverse_rotate(t_node **stack);
+void	swap(t_node **stack);
+void	put(t_node **from_stack, t_node **to_stack);
+// void	swap_node_content(t_node **stack);
 
 
 
