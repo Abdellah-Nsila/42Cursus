@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:29:38 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/13 15:39:48 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/20 11:34:40 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 # define GET_NEXT_LINE_H
 
 # include <unistd.h>
-# include <stdio.h>
 # include <fcntl.h>
 # include <stdlib.h>
-# include <string.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10
