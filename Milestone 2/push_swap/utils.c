@@ -88,17 +88,12 @@ t_node	*pop(t_node **stack)
 	return (popped_node);
 }
 
-void	rotate(t_node **stack)
+void	rotate(t_node **stack, char type)
 {
-	*stack = (*stack)->next;
-}
-
-void	reverse_rotate(t_node **stack)
-{
-	t_node	*last_node;
-
-	last_node = last(*stack);
-	*stack = last_node;
+	if (type == 'r')
+		*stack = (*stack)->next;
+	else if (type == 'R')
+		*stack = last(*stack);
 }
 
 void	swap(t_node **stack)
@@ -128,10 +123,4 @@ void	swap(t_node **stack)
 	*stack = second;
 }
 
-// void	ft_swap_node_content(t_node **stack)
-// {
-// 	int	temp;
-// 	temp = (*stack)->n;
-// 	(*stack)->n = (*stack)->next->n;
-// 	(*stack)->next->n = temp;
-// }
+
