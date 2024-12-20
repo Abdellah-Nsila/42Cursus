@@ -8,7 +8,6 @@
 # include <string.h>
 #include "./Libft/libft.h"
 
-
 // Basic Struct for stack
 typedef struct s_node
 {
