@@ -6,26 +6,26 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 22:45:47 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/20 11:26:49 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/20 11:38:27 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new_node)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*last;
 
-	if (!lst || !new_node)
+	if (!lst || !new)
 		return ;
 	if (*lst == NULL)
 	{
-		*lst = new_node;
+		*lst = new;
 		return ;
 	}
 	last = ft_lstlast(*lst);
 	if (last)
-		last->next = new_node;
+		last->next = new;
 }
 
 // #include <stdio.h>

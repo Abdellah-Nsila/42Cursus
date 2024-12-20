@@ -2,5 +2,5 @@
 
 int main(int ac, char **av)
 {
-    printf("")
+    printf("n: %d\n", ft_atoi(av[1]));
 }
