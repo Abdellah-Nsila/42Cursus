@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 08:55:11 by abnsila           #+#    #+#             */
-/*   Updated: 2024/11/09 23:11:22 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/21 15:14:00 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static char	**ft_freearray(char **arr, size_t count)
 	return (NULL);
 }
 
-static int	ft_wordscount(const char *s, char c)
+// I remove static because i want to work with this function extern of file
+int	ft_wordscount(const char *s, char c)
 {
 	size_t	i;
 	size_t	count;

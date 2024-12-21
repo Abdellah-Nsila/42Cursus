@@ -38,13 +38,25 @@ int	ft_check_numbers(int ac, char **av)
 int	ft_validate_arg(int ac, char **av)
 {
 	int	i;
+	char	**arr;
 
 	i = 0;
 	if (ac > 2)
 	{
-		if (ft_check_numbers(ac, av) == 0)
-			return (0);
-		return (1);
+		// if (ft_check_numbers(ac, av) == 0)
+		// 	return (0);
+		return (ft_check_numbers(ac, av));
+	}
+	else if (ac == 2)
+	{
+		arr = ft_split(av[1], ' ');
+		return (ft_check_numbers(ac, arr));
+		// while (arr[i])
+		// {
+		// 	printf("%s ", arr[i]);
+		// 	i++;
+		// }
+		// printf("\n");
 	}
 	else
 		return (0);
