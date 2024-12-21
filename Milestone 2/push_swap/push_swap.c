@@ -44,7 +44,10 @@ int	ft_validate_arg(int ac, char **av)
 	{
 		if (ft_check_numbers(ac, av) == 0)
 			return (0);
+		return (1);
 	}
+	else
+		return (0);
 }
 
 int	main(int ac, char **av)
