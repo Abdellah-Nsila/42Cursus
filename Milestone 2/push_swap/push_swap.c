@@ -49,8 +49,9 @@ int	ft_validate_arg(int ac, char **av)
 	}
 	else if (ac == 2)
 	{
+		
 		arr = ft_split(av[1], ' ');
-		return (ft_check_numbers(ac, arr));
+		return (ft_check_numbers(ft_wordscount(av[1], ' '), arr));
 		// while (arr[i])
 		// {
 		// 	printf("%s ", arr[i]);
