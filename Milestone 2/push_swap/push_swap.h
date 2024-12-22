@@ -39,7 +39,7 @@ void	ra_rb_rra_rrb(t_stack **stack, char type);
 void	rr_rrr(t_stack **a, t_stack **b, char type);
 
 //Todo Functions to handle inputs
-int		ft_check_numbers(char **arr, int size);
-t_stack	*ft_validate_arg(int ac, char **av);
+int		ft_validate_arg(char **arr, int size);
+t_stack	*ft_init_stack(int ac, char **av);
 
 #endif 
