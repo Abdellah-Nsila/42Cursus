@@ -6,6 +6,10 @@
 # include <stdlib.h>
 #include "./Libft/libft.h"
 
+# define bool int
+# define TRUE 1
+# define FALSE 0
+
 // Basic Struct for stack
 typedef struct s_node
 {

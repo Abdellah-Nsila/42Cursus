@@ -40,6 +40,8 @@ void	pa_pb(t_node **from_stack, t_node **to_stack)
 
 void	ra_rb_rra_rrb(t_node **stack, char type)
 {
+	if ((*stack)->next == *stack)
+		return ;
 	if (type == 'r')
 		*stack = (*stack)->next;
 	else if (type == 'R')
