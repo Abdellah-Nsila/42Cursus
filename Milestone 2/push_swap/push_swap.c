@@ -2,10 +2,11 @@
 
 int	main(int ac, char **av)
 {
-	t_stack	*head;
+	t_stack	*a;
 
-	head = ft_init_stack(ac, av);
-	display_stacks(head, NULL, "After", "Create");
-	// printf("isValide: %d\n", ft_validate_arg(ac, av));e
+	a = ft_init_stack(ac, av);
+	if (!a)
+		return (printf("Error\n"), 0);
+	display_stacks(a, NULL, "After", "Create");
 	
 }

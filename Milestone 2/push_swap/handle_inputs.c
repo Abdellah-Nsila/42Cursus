@@ -56,7 +56,6 @@ t_stack	*ft_init_stack(int ac, char **av)
 	}
 	else if (ac == 2)
 	{
-		printf("2 arg Detected\n");
 		arr = ft_split(av[1], ' ');
 		size = ft_wordscount(av[1], ' ');
 		if (arr == NULL || size == 0)
