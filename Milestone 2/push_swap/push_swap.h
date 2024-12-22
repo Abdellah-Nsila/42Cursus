@@ -30,6 +30,7 @@ t_stack	*new(int n);
 t_stack	*last(t_stack *stack);
 void	push(t_stack **stack, t_stack *new);
 t_stack	*pop(t_stack **stack);
+int		stack_size(t_stack *stack);
 
 // Push_Swap Cammands
 void	sa_sb(t_stack **stack);
@@ -43,8 +44,8 @@ int		ft_validate_arg(char **arr, int size);
 t_stack	*ft_init_stack(int ac, char **av);
 
 //Todo Helper functions to track sorting (push, rotate, ...) in correct position 
-int find_max(t_stack *stack);
-int find_min(t_stack *stack);
-int find_position(t_stack *b, int num);
+int ft_find_max(t_stack *stack);
+int ft_find_min(t_stack *stack);
+int ft_find_position(t_stack *b, int n);
 
 #endif 

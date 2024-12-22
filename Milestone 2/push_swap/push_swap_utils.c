@@ -60,3 +60,20 @@ t_stack	*pop(t_stack **stack)
 	popped_stack->prev = popped_stack;
 	return (popped_stack);
 }
+
+int	stack_size(t_stack *stack)
+{
+	t_stack *current;
+	int     size;
+
+	current = stack;
+	size = 0;
+	while (current)
+	{
+		size++;
+		current = current->next;
+		if (current == stack)
+			break;
+	}
+	return (size);
+}
