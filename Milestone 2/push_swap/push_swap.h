@@ -39,6 +39,6 @@ void	rr_rrr(t_stack **a, t_stack **b, char type);
 
 //Todo Functions to handle inputs
 int		ft_check_numbers(char **arr, int size);
-int		ft_validate_arg(int ac, char **av);
+t_stack	*ft_validate_arg(int ac, char **av);
 
 #endif 
