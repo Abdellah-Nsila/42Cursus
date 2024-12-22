@@ -56,8 +56,9 @@ int	ft_check_numbers(char **arr, int size)
  **/
 int	ft_validate_arg(int ac, char **av)
 {
-	int	i;
+	int		i;
 	char	**arr;
+	int		size;
 
 	i = 0;
 	if (ac > 2)
@@ -65,7 +66,10 @@ int	ft_validate_arg(int ac, char **av)
 	else if (ac == 2)
 	{
 		arr = ft_split(av[1], ' ');
-		return (ft_check_numbers(arr, ft_wordscount(av[1], ' ')));
+		size = ft_wordscount(av[1], ' ');
+		if (arr == NULL || size == 0)
+			return (0);
+		return (ft_check_numbers(arr, size));
 	}
 	else
 		return (0);
