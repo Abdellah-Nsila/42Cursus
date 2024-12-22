@@ -3,7 +3,7 @@
 void	print_node(t_stack *node)
 {
 	printf("|                     Node Members                     |\n");
-	printf("| n:    %d                                             |\n", node->n);
+	printf("| n:    %d                                              |\n", node->n);
 	printf("| prev: %p                                 |\n", node->prev);
 	printf("| next: %p                                 |\n", node->next);
 	printf("|______________________________________________________|\n");
@@ -59,7 +59,7 @@ t_stack	*generate_stack_test()
 	t_stack	*head;
 
 	head = NULL;
-	for (int i = 10; i < 50; i+=10)
+	for (int i = 1; i < 10; i++)
 		push(&head, new(i));
 	return (head);
 }
