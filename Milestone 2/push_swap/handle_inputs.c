@@ -50,7 +50,7 @@ t_stack	*ft_validate_arg(int ac, char **av)
 	i = 0;
 	if (ac > 2)
 		if (ft_check_numbers(av+1, ac - 1))
-			return (genarate_stack(av+1, ac - 1));
+			return (generate_stack(av+1, ac - 1));
 	else if (ac == 2)
 	{
 		arr = ft_split(av[1], ' ');
@@ -58,7 +58,7 @@ t_stack	*ft_validate_arg(int ac, char **av)
 		if (arr == NULL || size == 0)
 			return (NULL);
 		if (ft_check_numbers(arr, size))
-			return (genarate_stack(arr, size));
+			return (generate_stack(arr, size));
 	}
 	return (NULL);
 }

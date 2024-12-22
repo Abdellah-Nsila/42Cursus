@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	print_stack(t_stack *node)
+void	print_node(t_stack *node)
 {
 	printf("|                     Node Members                     |\n");
 	printf("| n:    %d                                             |\n", node->n);
@@ -22,7 +22,7 @@ void	print_stack(t_stack *stack)
 	}
 	current = stack;
 	do {
-		 print_stack(current);
+		 print_node(current);
 		current = current->next;
 	} while (current != stack);
 }
@@ -36,7 +36,7 @@ void	display_stacks(t_stack *a, t_stack *b, char *state, char *action)
 	print_stack(b);
 }
 
-t_stack	*generate_stack_test()
+t_stack	*genarate_stack_test()
 {
 	t_stack	*head;
 
@@ -54,25 +54,24 @@ t_stack	*generate_stack(char **arr, int size)
 
 	i= 0;
 	head = NULL;
-	while (i < size)
+	while (size--)
 	{
-		new_node = new(ft_atoi(arr[i]));
+		new_node = new(ft_atoi(arr[size]));
 		if (!new_node)
 			return (NULL);
 		push(&head, new_node);
-		i++;
 	}
 	return (head);
 }
 
 // //! Test ( Genarate, Display )
-int main()
-{
-	t_stack	*head;
+// int main()
+// {
+// 	t_stack	*head;
 
-	head = genarate_stack();
-	display_stacks(head, NULL, "After", "Create");
-}
+// 	head = genarate_stack_test();
+// 	display_stacks(head, NULL, "After", "Create");
+// }
 
 // //! Test ( Push, Pop ) in 2 Stack a, b
 // int	main()
@@ -80,7 +79,7 @@ int main()
 // 	t_stack	*a;
 // 	t_stack	*b;
 
-// 	a = genarate_stack();
+// 	a = genarate_stack_test();
 // 	b = NULL;
 // 	display_stacks(a, b, "Before", "Put");
 
@@ -99,7 +98,7 @@ int main()
 // {
 // 	t_stack	*a;
 
-// 	a = genarate_stack();
+// 	a = genarate_stack_test();
 // 	display_stacks(a, NULL, "Before", "Rotate");
 
 // 	ra_rb_rra_rrb(&a, 'r');
@@ -114,7 +113,7 @@ int main()
 // {
 // 	t_stack	*a;
 
-// 	a = genarate_stack();
+// 	a = genarate_stack_test();
 // 	display_stacks(a, NULL, "Before", "Swap");
 
 // 	sa_sb(&a);
