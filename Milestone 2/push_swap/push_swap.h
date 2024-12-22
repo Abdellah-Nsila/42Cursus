@@ -38,8 +38,14 @@ void	pa_pb(t_stack **from_stack, t_stack **to_stack);
 void	ra_rb_rra_rrb(t_stack **stack, char type);
 void	rr_rrr(t_stack **a, t_stack **b, char type);
 
-//Todo Functions to handle inputs
+// Functions to handle inputs
 int		ft_validate_arg(char **arr, int size);
 t_stack	*ft_init_stack(int ac, char **av);
+
+//Todo Helper functions to track sorting (push, rotate, ...) in correct position 
+int find_max(t_stack *stack);
+int find_min(t_stack *stack);
+int find_position(t_stack *b, int num);
+
 
 #endif 
