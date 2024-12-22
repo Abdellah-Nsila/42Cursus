@@ -1,8 +1,8 @@
 #include "push_swap.h"
 
-t_node	*last(t_node *stack)
+t_stack	*last(t_stack *stack)
 {
-	t_node	*current;
+	t_stack	*current;
 
 	if (!stack)
 		return (NULL);
@@ -12,11 +12,11 @@ t_node	*last(t_node *stack)
 	return (current);
 }
 
-t_node	*new(int n)
+t_stack	*new(int n)
 {
-	t_node	*node;
+	t_stack	*node;
 
-	node = (t_node*) malloc(sizeof(t_node));
+	node = (t_stack*) malloc(sizeof(t_stack));
 	if (!node)
 		return (NULL);
 	node->n = n;
@@ -25,38 +25,38 @@ t_node	*new(int n)
 	return (node);
 }
 
-void	push(t_node **stack, t_node *new)
+void	push(t_stack **stack, t_stack *new)
 {
-	t_node	*last_node;
+	t_stack	*last_stack;
 
 	if (!(*stack)) {
 		*stack = new;
 		return;
 	}
-	last_node = last(*stack);
+	last_stack = last(*stack);
 	new->next = *stack;
-	new->prev = last_node;
+	new->prev = last_stack;
 	(*stack)->prev = new;
-	last_node->next = new;
+	last_stack->next = new;
 	*stack = new;
 }
 
-t_node	*pop(t_node **stack)
+t_stack	*pop(t_stack **stack)
 {
-	t_node	*popped_node;
-	t_node	*last_node;
+	t_stack	*popped_stack;
+	t_stack	*last_stack;
 
-	popped_node = *stack;
+	popped_stack = *stack;
 	if ((*stack)->next == *stack)
 	{
 		*stack = NULL;
-		return (popped_node);
+		return (popped_stack);
 	}
-	last_node = last(*stack);
+	last_stack = last(*stack);
 	(*stack) = (*stack)->next;
-	last_node->next = *stack;
-	(*stack)->prev = last_node;
-	popped_node->next = popped_node;
-	popped_node->prev = popped_node;
-	return (popped_node);
+	last_stack->next = *stack;
+	(*stack)->prev = last_stack;
+	popped_stack->next = popped_stack;
+	popped_stack->prev = popped_stack;
+	return (popped_stack);
 }

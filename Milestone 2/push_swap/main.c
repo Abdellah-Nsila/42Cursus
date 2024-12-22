@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	print_node(t_node *node)
+void	print_stack(t_stack *node)
 {
 	printf("|                     Node Members                     |\n");
 	printf("| n:    %d                                             |\n", node->n);
@@ -10,9 +10,9 @@ void	print_node(t_node *node)
 
 }
 
-void	print_stack(t_node *stack)
+void	print_stack(t_stack *stack)
 {
-	t_node	*current;
+	t_stack	*current;
 
 	if (!stack)
 	{
@@ -22,12 +22,12 @@ void	print_stack(t_node *stack)
 	}
 	current = stack;
 	do {
-		 print_node(current);
+		 print_stack(current);
 		current = current->next;
 	} while (current != stack);
 }
 
-void	display_stacks(t_node *a, t_node *b, char *state, char *action)
+void	display_stacks(t_stack *a, t_stack *b, char *state, char *action)
 {
 	printf("\n======================== %s %s ========================\n", state, action);
 	printf("\n^^^^^^^^^^^^^^^^^^^^^^^ Stack a ^^^^^^^^^^^^^^^^^^^^^^^^\n");
@@ -36,9 +36,9 @@ void	display_stacks(t_node *a, t_node *b, char *state, char *action)
 	print_stack(b);
 }
 
-t_node	*genarate_stack()
+t_stack	*generate_stack_v1()
 {
-	t_node	*head;
+	t_stack	*head;
 
 	head = NULL;
 	for (int i = 10; i < 50; i+=10)
@@ -49,7 +49,7 @@ t_node	*genarate_stack()
 // //! Test ( Genarate, Display )
 int main()
 {
-	t_node	*head;
+	t_stack	*head;
 
 	head = genarate_stack();
 	display_stacks(head, NULL, "After", "Create");
@@ -58,8 +58,8 @@ int main()
 // //! Test ( Push, Pop ) in 2 Stack a, b
 // int	main()
 // {
-// 	t_node	*a;
-// 	t_node	*b;
+// 	t_stack	*a;
+// 	t_stack	*b;
 
 // 	a = genarate_stack();
 // 	b = NULL;
@@ -78,7 +78,7 @@ int main()
 // //! Test ( Rotate list, Reverse Rotate list )
 // int	main()
 // {
-// 	t_node	*a;
+// 	t_stack	*a;
 
 // 	a = genarate_stack();
 // 	display_stacks(a, NULL, "Before", "Rotate");
@@ -93,7 +93,7 @@ int main()
 // //! Test ( Create new node, Push new node in front, Swap 2 first nodes )
 // int	main()
 // {
-// 	t_node	*a;
+// 	t_stack	*a;
 
 // 	a = genarate_stack();
 // 	display_stacks(a, NULL, "Before", "Swap");

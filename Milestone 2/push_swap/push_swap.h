@@ -11,31 +11,31 @@
 # define FALSE 0
 
 // Basic Struct for stack
-typedef struct s_node
+typedef struct s_stack
 {
 	int n;
-	struct s_node   *prev;
-	struct s_node   *next;
-}	t_node ;
+	struct s_stack   *prev;
+	struct s_stack   *next;
+}	t_stack ;
 
 // Some functions for debugging
-void	print_node(t_node *node);
-void	print_stack(t_node *stack);
-void	display_stacks(t_node *a, t_node *b, char *state, char *action);
-t_node	*genarate_stack();
+void	print_stack(t_stack *node);
+void	print_stack(t_stack *stack);
+void	display_stacks(t_stack *a, t_stack *b, char *state, char *action);
+t_stack	*generate_stack(char **arr, int size);
 
 // Utils functions for double linked list
-t_node	*new(int n);
-t_node	*last(t_node *stack);
-void	push(t_node **stack, t_node *new);
-t_node	*pop(t_node **stack);
+t_stack	*new(int n);
+t_stack	*last(t_stack *stack);
+void	push(t_stack **stack, t_stack *new);
+t_stack	*pop(t_stack **stack);
 
 // Push_Swap Cammands
-void	sa_sb(t_node **stack);
-void	ss(t_node **a, t_node **b);
-void	pa_pb(t_node **from_stack, t_node **to_stack);
-void	ra_rb_rra_rrb(t_node **stack, char type);
-void	rr_rrr(t_node **a, t_node **b, char type);
+void	sa_sb(t_stack **stack);
+void	ss(t_stack **a, t_stack **b);
+void	pa_pb(t_stack **from_stack, t_stack **to_stack);
+void	ra_rb_rra_rrb(t_stack **stack, char type);
+void	rr_rrr(t_stack **a, t_stack **b, char type);
 
 //Todo Functions to handle inputs
 int		ft_check_numbers(char **arr, int size);

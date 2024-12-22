@@ -1,9 +1,9 @@
 #include "push_swap.h"
 
-void	sa_sb(t_node **stack)
+void	sa_sb(t_stack **stack)
 {
-	t_node	*first;
-	t_node	*second;
+	t_stack	*first;
+	t_stack	*second;
 
 	if (!stack || !*stack || !(*stack)->next)
 		return ;
@@ -27,18 +27,18 @@ void	sa_sb(t_node **stack)
 	*stack = second;
 }
 
-void	ss(t_node **a, t_node **b)
+void	ss(t_stack **a, t_stack **b)
 {
 	sa_sb(a);
 	sa_sb(b);
 }
 
-void	pa_pb(t_node **from_stack, t_node **to_stack)
+void	pa_pb(t_stack **from_stack, t_stack **to_stack)
 {
 	push(to_stack, pop(from_stack));
 }
 
-void	ra_rb_rra_rrb(t_node **stack, char type)
+void	ra_rb_rra_rrb(t_stack **stack, char type)
 {
 	if ((*stack)->next == *stack)
 		return ;
@@ -48,7 +48,7 @@ void	ra_rb_rra_rrb(t_node **stack, char type)
 		*stack = last(*stack);
 }
 
-void	rr_rrr(t_node **a, t_node **b, char type)
+void	rr_rrr(t_stack **a, t_stack **b, char type)
 {
 	ra_rb_rra_rrb(a, type);
 	ra_rb_rra_rrb(b, type);
