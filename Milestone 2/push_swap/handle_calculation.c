@@ -12,5 +12,5 @@ int find_min(t_stack *stack)
 
 int find_position(t_stack *b, int num)
 {
-    
+
 }
