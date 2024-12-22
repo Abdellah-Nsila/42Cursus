@@ -13,6 +13,13 @@ int	ft_isnumber(char *str)
 	return (1);
 }
 
+/* ft_check_numbers
+ * Check the type of element in array 
+ * Must containe only numbers, Non duplicated, INT MIN - INT MAX included .
+ * @param arr: array of strings (numbers before converted to numbers)
+ * @param size: size of the array (number of elements)
+ * @return: A bool flag (TRUE - FALSE)
+ **/
 int	ft_check_numbers(char **arr, int size)
 {
 	int	i;
@@ -26,6 +33,7 @@ int	ft_check_numbers(char **arr, int size)
 	// 	i++;
 	// }
 	// printf("\n");
+	//
 	while (i < size)
 	{
 		if (!ft_isnumber(arr[i]))
