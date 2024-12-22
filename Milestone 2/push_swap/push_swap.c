@@ -35,5 +35,6 @@ int	main(int ac, char **av)
 	pa_pb(&b, &a);
 	pa_pb(&b, &a);
 	pa_pb(&b, &a);
+
 	display_stacks(a, b, "After", "Create");
 }
