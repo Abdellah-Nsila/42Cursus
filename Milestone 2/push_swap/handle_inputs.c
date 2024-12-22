@@ -1,13 +1,13 @@
 #include "push_swap.h"
 
-/* ft_check_numbers
+/* ft_validate_arg
  * Check the type of element in array 
  * Must containe only numbers, Non duplicated, INT MIN - INT MAX included .
  * @param arr: Array of strings (numbers before converted to numbers)
  * @param size: Size of the array (number of elements)
  * @return: A bool flag (TRUE - FALSE)
  **/
-int	ft_check_numbers(char **arr, int size)
+int	ft_validate_arg(char **arr, int size)
 {
 	int	i;
 	int	j;
@@ -34,14 +34,15 @@ int	ft_check_numbers(char **arr, int size)
 	return (1);
 }
 
-/* ft_validate_arg
- * Validate arguments, two cases
- * Multiple arguments, One string argument must be splited.
+/* ft_init_stack
+ * Validate arguments, two cases:
+ * Multiple arguments, One string argument must be splited,
+ * Also Generate stack a
  * @param ac: Number of arguments
  * @param av: List of arguments
- * @return: A bool flag (TRUE - FALSE)
+ * @return: stack a
  **/
-t_stack	*ft_validate_arg(int ac, char **av)
+t_stack	*ft_init_stack(int ac, char **av)
 {
 	int		i;
 	char	**arr;
@@ -49,36 +50,19 @@ t_stack	*ft_validate_arg(int ac, char **av)
 
 	i = 0;
 	if (ac > 2)
-		if (ft_check_numbers(av+1, ac - 1))
+	{
+		if (ft_validate_arg(av+1, ac - 1))
 			return (generate_stack(av+1, ac - 1));
+	}
 	else if (ac == 2)
 	{
+		printf("2 arg Detected\n");
 		arr = ft_split(av[1], ' ');
 		size = ft_wordscount(av[1], ' ');
 		if (arr == NULL || size == 0)
 			return (NULL);
-		if (ft_check_numbers(arr, size))
+		if (ft_validate_arg(arr, size))
 			return (generate_stack(arr, size));
 	}
 	return (NULL);
 }
-// int	ft_validate_arg(int ac, char **av)
-// {
-// 	int		i;
-// 	char	**arr;
-// 	int		size;
-
-// 	i = 0;
-// 	if (ac > 2)
-// 		return (ft_check_numbers(av+1, ac - 1));
-// 	else if (ac == 2)
-// 	{
-// 		arr = ft_split(av[1], ' ');
-// 		size = ft_wordscount(av[1], ' ');
-// 		if (arr == NULL || size == 0)
-// 			return (0);
-// 		return (ft_check_numbers(arr, size));
-// 	}
-// 	else
-// 		return (0);
-// }
