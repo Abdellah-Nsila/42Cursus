@@ -36,5 +36,7 @@ void	ra_rb_rra_rrb(t_node **stack, char type);
 void	rr_rrr(t_node **a, t_node **b, char type);
 
 //Todo Functions to handle inputs
+int		ft_check_numbers(char **arr, int size);
+int		ft_validate_arg(int ac, char **av);
 
 #endif 
