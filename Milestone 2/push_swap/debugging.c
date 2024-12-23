@@ -4,8 +4,8 @@ void	print_node(t_stack *node)
 {
 	printf("|                     Node Members                     |\n");
 	printf("| n:    %d                                              |\n", node->n);
-	printf("| prev: %p                                 |\n", node->prev);
-	printf("| next: %p                                 |\n", node->next);
+	// printf("| prev: %p                                 |\n", node->prev);
+	// printf("| next: %p                                 |\n", node->next);
 	printf("|______________________________________________________|\n");
 
 }
