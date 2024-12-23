@@ -54,12 +54,39 @@ int	ft_calculate_b_rotate(t_stack *stack, int n)
 	return (ft_calculate_rotate(stack, index));
 }
 
-int	ft_calculate_command(t_stack *a, int index, t_stack *b, int n)
-{
-	int	a_rotate;
-	int	b_rotate;
 
-	a_rotate = ft_calculate_rotate(a, index);
-	b_rotate = ft_calculate_b_rotate(b, n);
-	return (ABS(a_rotate)  + ABS(b_rotate));
+t_command	ft_calculate_command(t_stack *a, int index, t_stack *b, int n)
+{
+    t_command command;
+
+    command.a_rotate = ft_calculate_rotate(a, index);
+    command.b_rotate = ft_calculate_b_rotate(b, n);
+
+    if (command.a_rotate * command.b_rotate > 0)
+    {
+		if (command.a_rotate > command.b_rotate)
+			command.cost = ABS(command.a_rotate);
+		else
+			command.cost = ABS(command.b_rotate);
+    }
+    else
+        command.cost = ABS(command.a_rotate) + ABS(command.b_rotate);
+    return command;
 }
+
+
+// int	ft_calculate_command(t_stack *a, int index, t_stack *b, int n)
+// {
+// 	int	a_rotate;
+// 	int	b_rotate;
+
+// 	a_rotate = ft_calculate_rotate(a, index);
+// 	b_rotate = ft_calculate_b_rotate(b, n);
+// 	if (a_rotate * b_rotate > 0)
+// 	{
+// 		if (a_rotate > b_rotate)
+// 			return (a_rotate);
+// 		return (b_rotate);
+// 	}
+// 	return (ABS(a_rotate) + ABS(b_rotate));
+// }

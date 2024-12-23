@@ -25,6 +25,13 @@ enum command
 	RRR,
 };
 
+typedef struct s_command
+{
+	int a_rotate;
+	int b_rotate;
+	int cost;
+} t_command;
+
 // Basic Struct for stack
 typedef struct s_stack
 {
@@ -60,10 +67,10 @@ int		ft_validate_arg(char **arr, int size);
 t_stack	*ft_init_stack(int ac, char **av);
 
 //Todo Calculation functions
-int		ft_calculate_rotate(t_stack *stack, int index);
-int		ft_calculate_top_max(t_stack *stack, int max);
-int		ft_calculate_b_rotate(t_stack *stack, int n);
-int		ft_calculate_command(t_stack *a, int index, t_stack *b, int n);
+int			ft_calculate_rotate(t_stack *stack, int index);
+int			ft_calculate_top_max(t_stack *stack, int max);
+int			ft_calculate_b_rotate(t_stack *stack, int n);
+t_command	ft_calculate_command(t_stack *a, int index, t_stack *b, int n);
 
 
 //Todo Helper functions to track sorting (push, rotate, ...) in correct position 

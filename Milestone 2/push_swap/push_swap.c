@@ -71,16 +71,19 @@ void rotate_to_index(t_stack **stack, int index, int target)
 
 void	print_chipsets(t_stack *a, t_stack *b)
 {
-	t_stack	*current;
-	int		index;
-	int		n;
+	t_stack		*current;
+	int			index;
+	int			n;
+	t_command	chipset;
 
 	current = a;
 	index = 0;
 	while (current)
 	{
 		n = current->n;
-		printf("Cost of %d at index %d:    %d operation\n", n, index, ft_calculate_command(a, index, b, n));
+		chipset = ft_calculate_command(a, index, b, n);
+		printf("\nCost of %d at index %d:\n    %d operation,   %d a_rotation,   %d b_rotation\n"
+			, n, index, chipset.cost, chipset.a_rotate, chipset.b_rotate);
 		current = current->next;
 		index++;
 		if (current == a)
