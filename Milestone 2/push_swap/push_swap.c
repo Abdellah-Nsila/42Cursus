@@ -69,6 +69,25 @@ void rotate_to_index(t_stack **stack, int index, int target)
 			ft_execute_command(stack, NULL, 6 + target);
 }
 
+void	print_chipsets(t_stack *a, t_stack *b)
+{
+	t_stack	*current;
+	int		index;
+	int		n;
+
+	current = a;
+	index = 0;
+	while (current)
+	{
+		n = current->n;
+		printf("Cost of %d at index %d:    %d operation\n", n, index, ft_calculate_command(a, index, b, n));
+		current = current->next;
+		index++;
+		if (current == a)
+			break;
+	}
+}
+
 int	main(int ac, char **av)
 {
 	t_stack	*a;
@@ -80,12 +99,14 @@ int	main(int ac, char **av)
 		return (printf("Error\n"), 0);
 
 	//TODO Working in finding the perfect position 
-	display_stacks(a, b, "Before", "Command");
-	// ft_execute_command(&b, &a, PA);
-	// ft_execute_command(&b, &a, PA);
+	// display_stacks(a, b, "Before", "Command");
+	ft_execute_command(&b, &a, PA);
+	ft_execute_command(&b, &a, PA);
 	// rotate_to_index(&a, 2, 0);
 	// ft_execute_command(&a, NULL, SA);
 	// ft_execute_command(&b, NULL, SB);
-	// display_stacks(a, b, "After", "Command");
-	printf("Cost: %d\n", ft_calculate_b_rotate(a, -900));
+	display_stacks(a, b, "After", "Command");
+
+	//TODO I try to get the chipset of each number
+	print_chipsets(a, b);
 }

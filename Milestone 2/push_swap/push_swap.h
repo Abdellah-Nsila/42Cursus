@@ -9,6 +9,7 @@
 # define bool int
 # define TRUE 1
 # define FALSE 0
+# define ABS(nbr) ((nbr) * ((nbr >= 0) * 2 - 1))
 
 enum command
 {
@@ -62,6 +63,8 @@ t_stack	*ft_init_stack(int ac, char **av);
 int		ft_calculate_rotate(t_stack *stack, int index);
 int		ft_calculate_top_max(t_stack *stack, int max);
 int		ft_calculate_b_rotate(t_stack *stack, int n);
+int		ft_calculate_command(t_stack *a, int index, t_stack *b, int n);
+
 
 //Todo Helper functions to track sorting (push, rotate, ...) in correct position 
 int		ft_find_max(t_stack *stack);
