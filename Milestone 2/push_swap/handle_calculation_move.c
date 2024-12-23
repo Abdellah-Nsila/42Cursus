@@ -12,14 +12,12 @@ int	ft_calculate_rotate(t_stack *stack, int index)
 	return (index - size);
 }
 
-int	ft_calculate_top_max(t_stack *stack)
+int	ft_calculate_top_max(t_stack *stack, int max)
 {
 	t_stack	*current;
-	int		max;
 	int		index;
 
 	current = stack;
-	max = ft_find_max(stack);
 	index = 0;
 	while (current)
 	{
@@ -35,11 +33,15 @@ int	ft_calculate_b_rotate(t_stack *stack, int n)
 {
 	t_stack	*current;
 	int		index;
+	int		min;
+	int		max;
 
 	current = stack;
 	index = 0;
-	if (n < ft_find_min(stack) || n > ft_find_max(stack))
-		return (ft_calculate_top_max(stack));
+	min = ft_find_min(stack);
+	max = ft_find_max(stack);
+	if (n < min || n > max)
+		return (ft_calculate_top_max(stack, max));
 	while (current)
 	{
 		printf("prev: %d,  current: %d\n", current->prev->n, current->n);
@@ -50,4 +52,13 @@ int	ft_calculate_b_rotate(t_stack *stack, int n)
 		index++;
 	}
 	return (ft_calculate_rotate(stack, index));
+}
+
+int	ft_calculate_command(t_stack *stack, int n, int index)
+{
+	int	a_rotate;
+	int	b_rotate;
+
+	a_rotate = ft_calculate_rotate(stack, index);
+	a_rotate = ft_calculate_b_rotate(stack, index);
 }

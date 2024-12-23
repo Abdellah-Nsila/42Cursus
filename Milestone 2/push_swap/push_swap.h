@@ -59,7 +59,8 @@ int		ft_validate_arg(char **arr, int size);
 t_stack	*ft_init_stack(int ac, char **av);
 
 //Todo Calculation functions
-int		ft_calculate_a_rotate(t_stack *stack, int index);
+int		ft_calculate_rotate(t_stack *stack, int index);
+int		ft_calculate_top_max(t_stack *stack, int max);
 int		ft_calculate_b_rotate(t_stack *stack, int n);
 
 //Todo Helper functions to track sorting (push, rotate, ...) in correct position 
