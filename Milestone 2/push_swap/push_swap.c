@@ -87,5 +87,5 @@ int	main(int ac, char **av)
 	// ft_execute_command(&a, NULL, SA);
 	// ft_execute_command(&b, NULL, SB);
 	// display_stacks(a, b, "After", "Command");
-	printf("Cost: %d\n", ft_calculate_a_rotate(a, 4));
+	printf("Cost: %d\n", ft_calculate_b_rotate(a, 9));
 }

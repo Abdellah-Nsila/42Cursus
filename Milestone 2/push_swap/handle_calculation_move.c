@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int	ft_calculate_a_rotate(t_stack *stack, int index)
+int	ft_calculate_rotate(t_stack *stack, int index)
 {
 	int size;
 	int half;
@@ -12,25 +12,42 @@ int	ft_calculate_a_rotate(t_stack *stack, int index)
 	return (index - size);
 }
 
+int	ft_calculate_top_max(t_stack *stack)
+{
+	t_stack	*current;
+	int		max;
+	int		index;
+
+	current = stack;
+	max = ft_find_max(stack);
+	index = 0;
+	while (current)
+	{
+		if (current->n == max)
+			break;
+		current = current->next;
+		index++;
+	}
+	return (ft_calculate_rotate(stack, index));
+}
+
 int	ft_calculate_b_rotate(t_stack *stack, int n)
 {
-	int 	size;
-	int 	half;
 	t_stack	*current;
 	int		index;
 
 	current = stack;
-	size = stack_size(stack);
-	half = size / 2;
+	index = 0;
+	if (n < ft_find_min(stack) || n > ft_find_max(stack))
+		return (ft_calculate_top_max(stack));
 	while (current)
 	{
+		printf("prev: %d,  current: %d\n", current->prev->n, current->n);
+		printf("Cond: %d, index: %d\n", current->prev->n > n && current->n < n, index);
 		if (current->prev->n > n && current->n < n)
 			break;
 		current = current->next;
 		index++;
 	}
-	if (index <= half)
-		return (index);
-	else
-		return (index - size);
+	return (ft_calculate_rotate(stack, index));
 }
