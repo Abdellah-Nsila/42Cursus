@@ -38,17 +38,19 @@ void	pa_pb(t_stack **from_stack, t_stack **to_stack)
 	push(to_stack, pop(from_stack));
 }
 
-void	ra_rb_rra_rrb(t_stack **stack, char type)
+//TODO Destermine wich command is executed
+void	ra_rb_rra_rrb(t_stack **stack, int type)
 {
+
 	if ((*stack)->next == *stack)
 		return ;
-	if (type == 'r')
+	if (type == RA || type == RB)
 		*stack = (*stack)->next;
-	else if (type == 'R')
+	else if (type == RRA || type == RRB)
 		*stack = last(*stack);
 }
 
-void	rr_rrr(t_stack **a, t_stack **b, char type)
+void	rr_rrr(t_stack **a, t_stack **b, int type)
 {
 	ra_rb_rra_rrb(a, type);
 	ra_rb_rra_rrb(b, type);

@@ -57,7 +57,12 @@ int ft_find_position(t_stack *b, int num)
     } while (current != b); // Loop through the circular stack
 
     // If not found, it means num is either the smallest or the largest
-    return (num < find_min(b)) ? 0 : index; // Place at the beginning or the end
+    // Place at the beginning or the end
+	if (num < ft_find_min(b) || num > ft_find_max(b))
+		return (0);
+	else
+		return (index);
+
 }
 
 

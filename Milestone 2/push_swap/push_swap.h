@@ -10,10 +10,25 @@
 # define TRUE 1
 # define FALSE 0
 
+enum command
+{
+	SA,
+	SB,
+	PA,
+	PB,
+	RA,
+	RB,
+	RRA,
+	RRB,
+	RR,
+	RRR,
+};
+
 // Basic Struct for stack
 typedef struct s_stack
 {
-	int n;
+	int		n;
+	// int		cheapest;
 	struct s_stack   *prev;
 	struct s_stack   *next;
 }	t_stack ;
@@ -36,8 +51,8 @@ int		stack_size(t_stack *stack);
 void	sa_sb(t_stack **stack);
 void	ss(t_stack **a, t_stack **b);
 void	pa_pb(t_stack **from_stack, t_stack **to_stack);
-void	ra_rb_rra_rrb(t_stack **stack, char type);
-void	rr_rrr(t_stack **a, t_stack **b, char type);
+void	ra_rb_rra_rrb(t_stack **stack, int type);
+void	rr_rrr(t_stack **a, t_stack **b, int type);
 
 // Functions to handle inputs
 int		ft_validate_arg(char **arr, int size);
