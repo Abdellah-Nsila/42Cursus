@@ -50,7 +50,7 @@ int		stack_size(t_stack *stack);
 // Push_Swap Cammands
 void	sa_sb(t_stack **stack);
 void	ss(t_stack **a, t_stack **b);
-void	pa_pb(t_stack **from_stack, t_stack **to_stack);
+void	pa_pb(t_stack **to_stack, t_stack **from_stack);
 void	ra_rb_rra_rrb(t_stack **stack, int type);
 void	rr_rrr(t_stack **a, t_stack **b, int type);
 
@@ -58,9 +58,13 @@ void	rr_rrr(t_stack **a, t_stack **b, int type);
 int		ft_validate_arg(char **arr, int size);
 t_stack	*ft_init_stack(int ac, char **av);
 
+//Todo Calculation functions
+int		ft_calculate_a_rotate(t_stack *stack, int index);
+int		ft_calculate_b_rotate(t_stack *stack, int n);
+
 //Todo Helper functions to track sorting (push, rotate, ...) in correct position 
-int ft_find_max(t_stack *stack);
-int ft_find_min(t_stack *stack);
-int ft_find_position(t_stack *b, int n);
+int		ft_find_max(t_stack *stack);
+int		ft_find_min(t_stack *stack);
+int		ft_find_position(t_stack *b, int n);
 
 #endif 

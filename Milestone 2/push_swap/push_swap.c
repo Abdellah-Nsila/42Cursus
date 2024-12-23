@@ -20,7 +20,6 @@
 void	ft_execute_command(t_stack **primary, t_stack **secondary, int type)
 {
 	const char *commands[10];
-	// int	type;
 
 	commands[SA] = "sa";
 	commands[SB] = "sb";
@@ -33,11 +32,14 @@ void	ft_execute_command(t_stack **primary, t_stack **secondary, int type)
 	commands[RR] = "rr";
 	commands[RRR] = "rrr";
 
-	// type = command_type + target_stack;
 	if (type == SA || type == SB)
 		sa_sb(primary);
-	if (type == RA || type == RB || type == RRA || type == RRB)
+	else if (type == PA || type == PB)
+		pa_pb(primary, secondary);
+	else if (type == RA || type == RB || type == RRA || type == RRB)
 		ra_rb_rra_rrb(primary, type);
+	else if (type == RR || type == RRR)
+		rr_rrr(primary, secondary, type);
 	printf("%s\n", commands[type]);
 }
 
@@ -77,13 +79,13 @@ int	main(int ac, char **av)
 	if (!a)
 		return (printf("Error\n"), 0);
 
-	pa_pb(&a, &b);
-	pa_pb(&a, &b);
-	// rotate_to_index(&a, 3);
-	display_stacks(a, b, "After", "Create");
 	//TODO Working in finding the perfect position 
-	rotate_to_index(&a, 2, 0);
-	ft_execute_command(&a, NULL, SA);
-	ft_execute_command(&b, NULL, SB);
-	display_stacks(a, b, "After", "Create");
+	display_stacks(a, b, "Before", "Command");
+	// ft_execute_command(&b, &a, PA);
+	// ft_execute_command(&b, &a, PA);
+	// rotate_to_index(&a, 2, 0);
+	// ft_execute_command(&a, NULL, SA);
+	// ft_execute_command(&b, NULL, SB);
+	// display_stacks(a, b, "After", "Command");
+	printf("Cost: %d\n", ft_calculate_a_rotate(a, 4));
 }

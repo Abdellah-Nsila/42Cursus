@@ -33,7 +33,7 @@ void	ss(t_stack **a, t_stack **b)
 	sa_sb(b);
 }
 
-void	pa_pb(t_stack **from_stack, t_stack **to_stack)
+void	pa_pb(t_stack **to_stack, t_stack **from_stack)
 {
 	push(to_stack, pop(from_stack));
 }
