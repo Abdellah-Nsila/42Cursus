@@ -86,10 +86,10 @@ t_command	ft_calculate_command(t_stack *a, int index, t_stack *b, int n);
 t_command	ft_get_perfect_chipset(t_stack *a, t_stack *b);
 
 
-//Todo Helper functions to track sorting (push, rotate, ...) in correct position 
+//Todo Helper functions to track sorting (push, rotate, ...) in correct position
+int			ft_find_index(t_stack *stack, int max);
 int			ft_find_max(t_stack *stack);
 int			ft_find_min(t_stack *stack);
 int			ft_find_position(t_stack *b, int n);
-
 
 #endif 

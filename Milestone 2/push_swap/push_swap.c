@@ -39,32 +39,8 @@ void	ft_execute_command(t_stack **primary, t_stack **secondary, int type)
 	else if (type == RA || type == RB || type == RRA || type == RRB)
 		ra_rb_rra_rrb(primary, type);
 	else if (type == RR || type == RRR)
-		rr_rrr(primary, secondary, type);
+		rr_rrr(primary, secondary, type - RA);
 	printf("%s\n", commands[type]);
-}
-
-/* rotate_to_index
- * Rotate a specifique node to the top of the stack based on his index position.
- * Check the fast command (rx, rrx) based on node position (before or after the half).
- * @param stack: Target stack
- * @param index: Index of target node
- * @param target: Flag to the target stack `{0: stack a, 1: stack b}`
- **/
-void rotate_to_index(t_stack **stack, int index, int target)
-{
-	int i;
-	int size;
-	int half;
-
-	i = 0;
-	size = stack_size(*stack);
-	half = size / 2;
-	if (index <= half)
-		while (i++ < index)
-			ft_execute_command(stack, NULL, RA + target);
-	else
-		while (i++ < (size - index))
-			ft_execute_command(stack, NULL, RRA + target);
 }
 
 void rotate_stack(t_stack **stack, int x_rotate, int target_stack)
@@ -73,7 +49,7 @@ void rotate_stack(t_stack **stack, int x_rotate, int target_stack)
 	if (x_rotate > 0)
 		while (x_rotate-- > 0)
 			ft_execute_command(stack, NULL, RA + target_stack);
-		// Command RRX
+	// Command RRX
 	else if (x_rotate < 0)
 	{
 		x_rotate = ABS(x_rotate);
@@ -82,29 +58,31 @@ void rotate_stack(t_stack **stack, int x_rotate, int target_stack)
 	}
 }
 
-
 void	ft_move_number(t_stack **a, t_stack **b, t_command command)
 {
-	// If the both rotate in same direction
-	if (command.a_rotate - command.b_rotate == 0)
+	int	type;
+
+	// Execute Same direction command using RR || RRR
+	if (command.a_rotate * command.b_rotate > 0)
 	{
-		// Command RR
 		if (command.a_rotate > 0)
-			ft_execute_command(a, b, RR);
-		// Command RRR
-		if (command.a_rotate < 0)
-			ft_execute_command(a, b, RRR);
+			type =  RR;
+		else
+			type =  RRR;
+		while (command.a_rotate && command.b_rotate)
+		{
+			ft_execute_command(a, b, type);
+			// Adjust command.x_rotate: decrement for positive, increment for negative
+			command.a_rotate -= 1 * ((command.a_rotate >= 0) * 2 - 1);  // command.a_rotate -= (1 || -1)
+			command.b_rotate -= 1 * ((command.b_rotate >= 0) * 2 - 1);  // command.b_rotate -= (1 || -1)
+		}
 	}
-	// If the rotate in opposite direction
-	else
-	{
-		// Command RA || RRA
-		if (command.a_rotate != 0)
-			rotate_stack(a, command.a_rotate, STACK_A);
-		// Command RB || RRB
-		if (command.b_rotate != 0)
-			rotate_stack(b, command.b_rotate, STACK_B);
-	}
+	// Rest Command RA || RRA
+	if (command.a_rotate != 0)
+		rotate_stack(a, command.a_rotate, STACK_A);
+	// Rest Command RB || RRB
+	if (command.b_rotate != 0)
+		rotate_stack(b, command.b_rotate, STACK_B);
 	ft_execute_command(b, a, PB);
 }
 
@@ -123,7 +101,7 @@ t_command	ft_get_perfect_chipset(t_stack *a, t_stack *b)
 	{
 		n = current->n;
 		chipset = ft_calculate_command(a, index, b, n);
-		print_chipset(chipset);
+		// print_chipset(chipset);
 		if (chipset.cost < perfect_chipset.cost)
 			perfect_chipset = chipset;
 		current = current->next;
@@ -131,7 +109,7 @@ t_command	ft_get_perfect_chipset(t_stack *a, t_stack *b)
 		if (current == a || perfect_chipset.cost == 0)
 			break;
 	}
-	print_chipset(perfect_chipset);
+	// print_chipset(perfect_chipset);
 	return (perfect_chipset);
 }
 
@@ -145,19 +123,21 @@ int	main(int ac, char **av)
 	a = ft_init_stack(ac, av);
 	if (!a)
 		return (printf("Error\n"), 0);
-	ft_execute_command(&b, &a, PB);
-	ft_execute_command(&b, &a, PB);
+
 	//TODO Working in finding the perfect position (100 %)
 	display_stacks(a, b, "Before", "Command");
+
+	ft_execute_command(&b, &a, PB);
+	ft_execute_command(&b, &a, PB);
 
 	//TODO I try to get the chipset of each number and return the perfect chipset (100 %)
 	while (stack_size(a) > 3)
 	{
 		perfect_chipset = ft_get_perfect_chipset(a, b);
 		ft_move_number(&a, &b, perfect_chipset);
-		display_stacks(a, b, "After", "Command");
 	}
+	display_stacks(a, b, "After", "Command");
 
-	//TODO I need to sort last three element in stack a (0 %)
-
+	//TODO I need to sort last three element in stack a (10 %)
+	// ft_sort_three(&a);
 }
