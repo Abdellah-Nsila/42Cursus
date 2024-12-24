@@ -143,7 +143,7 @@ int	main(int ac, char **av)
 		return (printf("Error\n"), 0);
 
 	//TODO Working in finding the perfect position (100 %)
-	display_stacks(a, b, "Before", "Command");
+	// display_stacks(a, b, "Before", "Command");
 
 	ft_execute_command(&b, &a, PB);
 	ft_execute_command(&b, &a, PB);
@@ -161,6 +161,6 @@ int	main(int ac, char **av)
 
 	//TODO Pushing back to STACK_A (100 %)
 	ft_push_back(&a, &b);
-	display_stacks(a, b, "After", "Command");
+	// display_stacks(a, b, "After", "Command");
 
 }
