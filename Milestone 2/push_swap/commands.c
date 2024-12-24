@@ -52,6 +52,10 @@ void	ra_rb_rra_rrb(t_stack **stack, int type)
 
 void	rr_rrr(t_stack **a, t_stack **b, int type)
 {
+	if (type == RR)
+		type = RA;
+	else if (type == RRR)
+		type = RRA;
 	ra_rb_rra_rrb(a, type);
 	ra_rb_rra_rrb(b, type);
 }
