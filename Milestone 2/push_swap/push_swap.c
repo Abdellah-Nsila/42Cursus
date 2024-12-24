@@ -15,25 +15,6 @@
 	//* pa_pb(&b, &a);
 	//* pa_pb(&b, &a);
 
-void	ft_sort_three(t_stack **a)
-{
-	int flag;
-
-	flag = 1;
-	while ((*a)->n > (*a)->next->n || (*a)->next->n > (*a)->next->next->n)
-	{
-		if ((*a)->n > (*a)->next->n)
-		{
-			flag = 0;
-			sa_sb(a);
-		}
-		if ((*a)->next->n > (*a)->next->next->n)
-		{
-			flag = 0;
-			ra_rb_rra_rrb(a, RRA);
-		}
-	}
-}
 
 // void	ft_execute_command(t_stack **primary, t_stack **secondary, int command_type, int target_stack)
 void	ft_execute_command(t_stack **primary, t_stack **secondary, int type)
@@ -60,6 +41,27 @@ void	ft_execute_command(t_stack **primary, t_stack **secondary, int type)
 	else if (type == RR || type == RRR)
 		rr_rrr(primary, secondary, type);
 	printf("%s\n", commands[type]);
+}
+
+void	ft_sort_three(t_stack **a)
+{
+	int flag;
+
+	flag = 1;
+	while ((*a)->n > (*a)->next->n || (*a)->next->n > (*a)->next->next->n)
+	{
+		if ((*a)->n > (*a)->next->n)
+		{
+			flag = 0;
+			ft_execute_command(a, NULL, SA);
+		}
+		if ((*a)->next->n > (*a)->next->next->n)
+		{
+			flag = 0;
+			ft_execute_command(a, NULL, RRA);
+		}
+	}
+	
 }
 
 void rotate_stack(t_stack **stack, int x_rotate, int target_stack)
@@ -105,6 +107,41 @@ void	ft_move_number(t_stack **a, t_stack **b, t_command command)
 	ft_execute_command(b, a, PB);
 }
 
+void	ft_push_back(t_stack **a, t_stack **b)
+{
+	t_stack	*current;
+	int		max;
+
+	current = *a;
+	max = ft_find_max(*a);
+
+	// ft_execute_command(a, NULL, RRA);
+	// ft_execute_command(a, b, PA);
+	// ft_execute_command(a, b, PA);
+	// ft_execute_command(a, b, PA);
+	// ft_execute_command(a, b, PA);
+
+	// ft_execute_command(a, NULL, RRA);
+	// ft_execute_command(a, NULL, RRA);
+	// ft_execute_command(a, b, PA);
+	// ft_execute_command(a, b, PA);
+
+	ft_execute_command(a, NULL, RRA);
+	display_stacks(*a, *b, "After", "Command");
+
+	// TODO Why the prev is not prev and current is not current XD ???
+	while (stack_size(*b))
+	{
+		display_stacks(*a, *b, "After", "Command");
+		printf("current: %d,   n: %d\n", current->n, (*b)->n); 
+		while ((current->prev->n > (*b)->n && current->prev->n != max))
+		{
+			ft_execute_command(a, NULL, RRA);
+		}
+		ft_execute_command(a, b, PA);
+	}
+}
+
 t_command	ft_get_perfect_chipset(t_stack *a, t_stack *b)
 {
 	t_stack		*current;
@@ -120,7 +157,7 @@ t_command	ft_get_perfect_chipset(t_stack *a, t_stack *b)
 	{
 		n = current->n;
 		chipset = ft_calculate_command(a, index, b, n);
-		print_chipset(chipset);
+		// print_chipset(chipset);
 		if (chipset.cost < perfect_chipset.cost)
 			perfect_chipset = chipset;
 		current = current->next;
@@ -128,7 +165,7 @@ t_command	ft_get_perfect_chipset(t_stack *a, t_stack *b)
 		if (current == a || perfect_chipset.cost == 0)
 			break;
 	}
-	print_chipset(perfect_chipset);
+	// print_chipset(perfect_chipset);
 	return (perfect_chipset);
 }
 
@@ -154,9 +191,14 @@ int	main(int ac, char **av)
 	{
 		perfect_chipset = ft_get_perfect_chipset(a, b);
 		ft_move_number(&a, &b, perfect_chipset);
-		display_stacks(a, b, "After", "Command");
+		// display_stacks(a, b, "After", "Command");
 	}
 
 	//TODO I need to sort last three element in stack a (100 %)
 	ft_sort_three(&a);
+
+	//TODO Pushing back to STACK_A (0 %)
+	ft_push_back(&a, &b);
+	display_stacks(a, b, "After", "Command");
+
 }
