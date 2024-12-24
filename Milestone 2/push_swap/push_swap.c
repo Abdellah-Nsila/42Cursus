@@ -43,8 +43,6 @@ void	ft_execute_command(t_stack **primary, t_stack **secondary, int type)
 	printf("%s\n", commands[type]);
 }
 
-
-
 /* rotate_to_index
  * Rotate a specifique node to the top of the stack based on his index position.
  * Check the fast command (rx, rrx) based on node position (before or after the half).
@@ -63,32 +61,77 @@ void rotate_to_index(t_stack **stack, int index, int target)
 	half = size / 2;
 	if (index <= half)
 		while (i++ < index)
-			ft_execute_command(stack, NULL, 4 + target);
+			ft_execute_command(stack, NULL, RA + target);
 	else
 		while (i++ < (size - index))
-			ft_execute_command(stack, NULL, 6 + target);
+			ft_execute_command(stack, NULL, RRA + target);
 }
 
-void	print_chipsets(t_stack *a, t_stack *b)
+void rotate_stack(t_stack **stack, int x_rotate, int target_stack)
+{
+	// Command RX
+	if (x_rotate > 0)
+		while (x_rotate-- > 0)
+			ft_execute_command(stack, NULL, RA + target_stack);
+		// Command RRX
+	if (x_rotate < 0)
+		while (x_rotate-- > 0)
+			ft_execute_command(stack, NULL, RRA + target_stack);
+}
+
+
+void	ft_move_number(t_stack **a, t_stack **b, t_command command)
+{
+	// If the both rotate in same direction
+	if (command.a_rotate - command.b_rotate == 0)
+	{
+		// Command RR
+		if (command.a_rotate > 0)
+			ft_execute_command(a, b, RR);
+		// Command RRR
+		if (command.a_rotate < 0)
+			ft_execute_command(a, b, RRR);
+	}
+	// If the rotate in opposite direction
+	else
+	{
+		// Command RA - RRA
+		if (command.a_rotate != 0)
+			rotate_stack(a, command.a_rotate, STACK_A);
+		// Command RB - RRB
+		if (command.b_rotate != 0)
+			rotate_stack(b, command.b_rotate, STACK_B);
+	}
+}
+
+
+void	print_chipsets(t_stack **a, t_stack **b)
 {
 	t_stack		*current;
 	int			index;
 	int			n;
 	t_command	chipset;
+	t_command	perfect_chipset ;
 
-	current = a;
+	current = *a;
 	index = 0;
+	perfect_chipset.cost = INT_MAX;
 	while (current)
 	{
 		n = current->n;
-		chipset = ft_calculate_command(a, index, b, n);
+		chipset = ft_calculate_command(*a, index, *b, n);
 		printf("\nCost of %d at index %d:\n    %d operation,   %d a_rotation,   %d b_rotation\n"
-			, n, index, chipset.cost, chipset.a_rotate, chipset.b_rotate);
+			, chipset.n, chipset.index, chipset.cost, chipset.a_rotate, chipset.b_rotate);
+		if (chipset.cost < perfect_chipset.cost)
+			perfect_chipset = chipset;
 		current = current->next;
 		index++;
-		if (current == a)
+		if (current == *a)
 			break;
 	}
+	printf("\nPerfect Cost of %d at index %d:\n    %d operation,   %d a_rotation,   %d b_rotation\n"
+			, perfect_chipset.n, perfect_chipset.index, perfect_chipset.cost, perfect_chipset.a_rotate, perfect_chipset.b_rotate);
+	ft_move_number(a, b, perfect_chipset);
 }
 
 int	main(int ac, char **av)
@@ -108,8 +151,10 @@ int	main(int ac, char **av)
 	// rotate_to_index(&a, 2, 0);
 	// ft_execute_command(&a, NULL, SA);
 	// ft_execute_command(&b, NULL, SB);
-	display_stacks(a, b, "After", "Command");
+	display_stacks(a, b, "Before", "Command");
 
 	//TODO I try to get the chipset of each number
-	print_chipsets(a, b);
+	print_chipsets(&a, &b);
+	display_stacks(a, b, "After", "Command");
+
 }

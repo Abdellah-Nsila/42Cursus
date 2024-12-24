@@ -6,10 +6,18 @@
 # include <stdlib.h>
 #include "./Libft/libft.h"
 
-# define bool int
-# define TRUE 1
-# define FALSE 0
+// # define bool int
+// # define TRUE 1
+// # define FALSE 0
+# define INT_MAX 2147483647
+# define INT_MIN -2147483648
 # define ABS(nbr) ((nbr) * ((nbr >= 0) * 2 - 1))
+
+enum stack
+{
+	STACK_A,
+	STACK_B,
+};
 
 enum command
 {
@@ -27,6 +35,8 @@ enum command
 
 typedef struct s_command
 {
+	int n;
+	int	index;
 	int a_rotate;
 	int b_rotate;
 	int cost;
