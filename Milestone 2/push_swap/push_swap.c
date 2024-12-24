@@ -95,17 +95,17 @@ void	ft_move_number(t_stack **a, t_stack **b, t_command command)
 	// If the rotate in opposite direction
 	else
 	{
-		// Command RA - RRA
+		// Command RA || RRA
 		if (command.a_rotate != 0)
 			rotate_stack(a, command.a_rotate, STACK_A);
-		// Command RB - RRB
+		// Command RB || RRB
 		if (command.b_rotate != 0)
 			rotate_stack(b, command.b_rotate, STACK_B);
 	}
+	ft_execute_command(b, a, PB);
 }
 
-
-void	print_chipsets(t_stack **a, t_stack **b)
+t_command	ft_get_perfect_chipset(t_stack *a, t_stack *b)
 {
 	t_stack		*current;
 	int			index;
@@ -113,31 +113,30 @@ void	print_chipsets(t_stack **a, t_stack **b)
 	t_command	chipset;
 	t_command	perfect_chipset ;
 
-	current = *a;
+	current = a;
 	index = 0;
 	perfect_chipset.cost = INT_MAX;
 	while (current)
 	{
 		n = current->n;
-		chipset = ft_calculate_command(*a, index, *b, n);
-		printf("\nCost of %d at index %d:\n    %d operation,   %d a_rotation,   %d b_rotation\n"
-			, chipset.n, chipset.index, chipset.cost, chipset.a_rotate, chipset.b_rotate);
+		chipset = ft_calculate_command(a, index, b, n);
+		print_chipset(chipset);
 		if (chipset.cost < perfect_chipset.cost)
 			perfect_chipset = chipset;
 		current = current->next;
 		index++;
-		if (current == *a)
+		if (current == a)
 			break;
 	}
-	printf("\nPerfect Cost of %d at index %d:\n    %d operation,   %d a_rotation,   %d b_rotation\n"
-			, perfect_chipset.n, perfect_chipset.index, perfect_chipset.cost, perfect_chipset.a_rotate, perfect_chipset.b_rotate);
-	ft_move_number(a, b, perfect_chipset);
+	print_chipset(perfect_chipset);
+	return (perfect_chipset);
 }
 
 int	main(int ac, char **av)
 {
-	t_stack	*a;
-	t_stack	*b;
+	t_stack		*a;
+	t_stack		*b;
+	t_command	perfect_chipset;
 
 	b = NULL;
 	a = ft_init_stack(ac, av);
@@ -153,8 +152,12 @@ int	main(int ac, char **av)
 	// ft_execute_command(&b, NULL, SB);
 	display_stacks(a, b, "Before", "Command");
 
-	//TODO I try to get the chipset of each number
-	print_chipsets(&a, &b);
-	display_stacks(a, b, "After", "Command");
+	//TODO I try to get the chipset of each number and return the perfect chipset
+	while (stack_size(a) > 3)
+	{
+		perfect_chipset = ft_get_perfect_chipset(a, b);
+		ft_move_number(&a, &b, perfect_chipset);
+		display_stacks(a, b, "After", "Command");
+	}
 
 }

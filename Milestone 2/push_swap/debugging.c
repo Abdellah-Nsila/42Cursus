@@ -63,3 +63,9 @@ t_stack	*generate_stack_test()
 		push(&head, new(i));
 	return (head);
 }
+
+void	print_chipset(t_command chipset)
+{
+	printf("\nCost of %d at index %d:\n    %d operation,   %d a_rotation,   %d b_rotation\n"
+	, chipset.n, chipset.index, chipset.cost, chipset.a_rotate, chipset.b_rotate);
+}
