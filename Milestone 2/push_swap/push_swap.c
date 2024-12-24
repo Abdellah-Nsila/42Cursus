@@ -74,9 +74,12 @@ void rotate_stack(t_stack **stack, int x_rotate, int target_stack)
 		while (x_rotate-- > 0)
 			ft_execute_command(stack, NULL, RA + target_stack);
 		// Command RRX
-	if (x_rotate < 0)
+	else if (x_rotate < 0)
+	{
+		x_rotate = ABS(x_rotate);
 		while (x_rotate-- > 0)
 			ft_execute_command(stack, NULL, RRA + target_stack);
+	}
 }
 
 
@@ -111,7 +114,7 @@ t_command	ft_get_perfect_chipset(t_stack *a, t_stack *b)
 	int			index;
 	int			n;
 	t_command	chipset;
-	t_command	perfect_chipset ;
+	t_command	perfect_chipset;
 
 	current = a;
 	index = 0;
@@ -125,7 +128,7 @@ t_command	ft_get_perfect_chipset(t_stack *a, t_stack *b)
 			perfect_chipset = chipset;
 		current = current->next;
 		index++;
-		if (current == a)
+		if (current == a || perfect_chipset.cost == 0)
 			break;
 	}
 	print_chipset(perfect_chipset);
@@ -142,22 +145,19 @@ int	main(int ac, char **av)
 	a = ft_init_stack(ac, av);
 	if (!a)
 		return (printf("Error\n"), 0);
-
-	//TODO Working in finding the perfect position 
-	// display_stacks(a, b, "Before", "Command");
-	ft_execute_command(&b, &a, PA);
-	ft_execute_command(&b, &a, PA);
-	// rotate_to_index(&a, 2, 0);
-	// ft_execute_command(&a, NULL, SA);
-	// ft_execute_command(&b, NULL, SB);
+	ft_execute_command(&b, &a, PB);
+	ft_execute_command(&b, &a, PB);
+	//TODO Working in finding the perfect position (100 %)
 	display_stacks(a, b, "Before", "Command");
 
-	//TODO I try to get the chipset of each number and return the perfect chipset
+	//TODO I try to get the chipset of each number and return the perfect chipset (100 %)
 	while (stack_size(a) > 3)
 	{
 		perfect_chipset = ft_get_perfect_chipset(a, b);
 		ft_move_number(&a, &b, perfect_chipset);
 		display_stacks(a, b, "After", "Command");
 	}
+
+	//TODO I need to sort last three element in stack a (0 %)
 
 }
