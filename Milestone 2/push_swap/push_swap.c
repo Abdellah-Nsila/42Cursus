@@ -15,6 +15,25 @@
 	//* pa_pb(&b, &a);
 	//* pa_pb(&b, &a);
 
+void	ft_sort_three(t_stack **a)
+{
+	int flag;
+
+	flag = 1;
+	while ((*a)->n > (*a)->next->n || (*a)->next->n > (*a)->next->next->n)
+	{
+		if ((*a)->n > (*a)->next->n)
+		{
+			flag = 0;
+			sa_sb(a);
+		}
+		if ((*a)->next->n > (*a)->next->next->n)
+		{
+			flag = 0;
+			ra_rb_rra_rrb(a, RRA);
+		}
+	}
+}
 
 // void	ft_execute_command(t_stack **primary, t_stack **secondary, int command_type, int target_stack)
 void	ft_execute_command(t_stack **primary, t_stack **secondary, int type)
@@ -138,6 +157,6 @@ int	main(int ac, char **av)
 		display_stacks(a, b, "After", "Command");
 	}
 
-	//TODO I need to sort last three element in stack a (10 %)
-	// ft_sort_three(&a);
+	//TODO I need to sort last three element in stack a (100 %)
+	ft_sort_three(&a);
 }
