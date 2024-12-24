@@ -1,22 +1,5 @@
 #include "push_swap.h"
 
-// Example:
-
-//? 2 1 3 6 5 8  => pb pb rrb pb sa pa pa pa => 1 2 3 5 6 8 : 8 instructions 💪
-	//* pa_pb(&a, &b);
-	//* pa_pb(&a, &b);
-
-	//* ra_rb_rra_rrb(&b, 'R');
-	//* pa_pb(&a, &b);
-
-	//* sa_sb(&a);
-
-	//* pa_pb(&b, &a);
-	//* pa_pb(&b, &a);
-	//* pa_pb(&b, &a);
-
-
-// void	ft_execute_command(t_stack **primary, t_stack **secondary, int command_type, int target_stack)
 void	ft_execute_command(t_stack **primary, t_stack **secondary, int type)
 {
 	const char *commands[10];
@@ -109,35 +92,14 @@ void	ft_move_number(t_stack **a, t_stack **b, t_command command)
 
 void	ft_push_back(t_stack **a, t_stack **b)
 {
-	t_stack	*current;
 	int		max;
 
-	current = *a;
 	max = ft_find_max(*a);
-
-	// ft_execute_command(a, NULL, RRA);
-	// ft_execute_command(a, b, PA);
-	// ft_execute_command(a, b, PA);
-	// ft_execute_command(a, b, PA);
-	// ft_execute_command(a, b, PA);
-
-	// ft_execute_command(a, NULL, RRA);
-	// ft_execute_command(a, NULL, RRA);
-	// ft_execute_command(a, b, PA);
-	// ft_execute_command(a, b, PA);
-
 	ft_execute_command(a, NULL, RRA);
-	display_stacks(*a, *b, "After", "Command");
-
-	// TODO Why the prev is not prev and current is not current XD ???
 	while (stack_size(*b))
 	{
-		display_stacks(*a, *b, "After", "Command");
-		printf("current: %d,   n: %d\n", current->n, (*b)->n); 
-		while ((current->prev->n > (*b)->n && current->prev->n != max))
-		{
+		while (((*a)->prev->n > (*b)->n && (*a)->prev->n != max))
 			ft_execute_command(a, NULL, RRA);
-		}
 		ft_execute_command(a, b, PA);
 	}
 }
@@ -197,7 +159,7 @@ int	main(int ac, char **av)
 	//TODO I need to sort last three element in stack a (100 %)
 	ft_sort_three(&a);
 
-	//TODO Pushing back to STACK_A (0 %)
+	//TODO Pushing back to STACK_A (100 %)
 	ft_push_back(&a, &b);
 	display_stacks(a, b, "After", "Command");
 
