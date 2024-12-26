@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 /* ft_validate_arg
  * Check the type of element in array 
@@ -44,11 +44,9 @@ int	ft_validate_arg(char **arr, int size)
  **/
 t_stack	*ft_init_stack(int ac, char **av)
 {
-	int		i;
 	char	**arr;
 	int		size;
 
-	i = 0;
 	if (ac > 2)
 	{
 		if (ft_validate_arg(av+1, ac - 1))

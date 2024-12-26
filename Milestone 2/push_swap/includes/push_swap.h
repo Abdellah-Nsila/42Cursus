@@ -4,7 +4,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
-#include "./Libft/libft.h"
+#include "../Libft/libft.h"
 
 // # define bool int
 // # define TRUE 1
@@ -90,6 +90,19 @@ t_command	ft_get_perfect_chipset(t_stack *a, t_stack *b);
 int			ft_find_index(t_stack *stack, int max);
 int			ft_find_max(t_stack *stack);
 int			ft_find_min(t_stack *stack);
-int			ft_find_position(t_stack *b, int n);
+
+// Execution functions
+void		ft_execute_command(t_stack **primary, t_stack **secondary, int type, int flag);
+void		ft_run_perfect_rotation(t_stack **stack, int x_rotate, int target_stack);
+void		ft_run_perfect_command(t_stack **a, t_stack **b, t_command command);
+
+// Sorting Functions
+int			ft_check_is_sorted(t_stack *stack);
+void		ft_sort_three(t_stack **a);
+void		ft_push_back(t_stack **a, t_stack **b);
+void		ft_primary_sort(t_stack **a, t_stack **b);
+
+
+
 
 #endif 

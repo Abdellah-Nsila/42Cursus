@@ -1,5 +1,21 @@
 #include "push_swap.h"
 
+t_stack	*generate_stack(char **arr, int size)
+{
+	t_stack	*head;
+	t_stack	*new_node;
+
+	head = NULL;
+	while (size--)
+	{
+		new_node = new(ft_atoi(arr[size]));
+		if (!new_node)
+			return (NULL);
+		push(&head, new_node);
+	}
+	return (head);
+}
+
 void	ft_execute_command(t_stack **primary, t_stack **secondary, int type)
 {
 	const char *commands[10];
@@ -92,16 +108,22 @@ void	ft_move_number(t_stack **a, t_stack **b, t_command command)
 
 void	ft_push_back(t_stack **a, t_stack **b)
 {
-	int		max;
-
-	max = ft_find_max(*a);
-	ft_execute_command(a, NULL, RRA);
 	while (stack_size(*b))
 	{
-		while (((*a)->prev->n > (*b)->n && (*a)->prev->n != max))
-			ft_execute_command(a, NULL, RRA);
+		if ((*b)->n < ft_find_min(*a) || (*b)->n > ft_find_max(*a))
+		{
+			int min_index = ft_find_index(*a, ft_find_min(*a));
+			rotate_stack(a, ft_calculate_rotate(*a, min_index), STACK_A);
+		}
+		else
+		{
+			while ((*a)->prev->n > (*b)->n)
+				ft_execute_command(a, NULL, RRA);
+		}
 		ft_execute_command(a, b, PA);
 	}
+	int min_index = ft_find_index(*a, ft_find_min(*a));
+	rotate_stack(a, ft_calculate_rotate(*a, min_index), STACK_A);
 }
 
 t_command	ft_get_perfect_chipset(t_stack *a, t_stack *b)

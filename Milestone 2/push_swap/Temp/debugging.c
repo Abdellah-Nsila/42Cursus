@@ -36,23 +36,20 @@ void	display_stacks(t_stack *a, t_stack *b, char *state, char *action)
 	print_stack(b);
 }
 
-t_stack	*generate_stack(char **arr, int size)
-{
-	int		i;
-	t_stack	*head;
-	t_stack	*new_node;
-
-	i= 0;
-	head = NULL;
-	while (size--)
-	{
-		new_node = new(ft_atoi(arr[size]));
-		if (!new_node)
-			return (NULL);
-		push(&head, new_node);
-	}
-	return (head);
-}
+// t_stack	*generate_stack(char **arr, int size)
+// {
+// 	t_stack	*head;
+// 	t_stack	*new_node;
+// 	head = NULL;
+// 	while (size--)
+// 	{
+// 		new_node = new(ft_atoi(arr[size]));
+// 		if (!new_node)
+// 			return (NULL);
+// 		push(&head, new_node);
+// 	}
+// 	return (head);
+// }
 
 t_stack	*generate_stack_test()
 {

@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	sa_sb(t_stack **stack)
 {
@@ -38,7 +38,6 @@ void	pa_pb(t_stack **to_stack, t_stack **from_stack)
 	push(to_stack, pop(from_stack));
 }
 
-//TODO Destermine wich command is executed
 void	ra_rb_rra_rrb(t_stack **stack, int type)
 {
 

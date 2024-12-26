@@ -1,56 +1,38 @@
-# Compiler and flags
-CC = gcc
+NAME = push_swap
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
-LIBFT = Libft/libft.a
+SRC_DIR = src
+INCLUDES = -Iincludes -ILibft
+LIBFT_DIR = ./Libft
+LIBFT = $(LIBFT_DIR)/libft.a
 
-# Source files
-SRCS = commands.c \
-       handle_inputs.c \
-       handle_calculation_move.c \
-       get_position.c \
-       push_swap_utils.c \
-       push_swap.c \
+SRCS = ./src/commands.c \
+       ./src/handle_inputs.c \
+       ./src/handle_calculation_move.c \
+       ./src/get_position.c \
+       ./src/push_swap_utils.c \
+	   ./src/handle_perfect_chipset.c \
+	   ./src/sort.c \
+       ./src/push_swap.c \
 
-# Object files
 OBJS = $(SRCS:.c=.o)
 
-# Executable name
-NAME = push_swap
+all: $(LIBFT) $(NAME)
 
-# Include header files
-INCLUDES = -I.
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(INCLUDES) -o $(NAME)
 
-# Debug flag (for development)
-DEBUG_FLAGS = -g
-
-# Default rule
-all: $(NAME)
-
-# Linking the executable
-$(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
-
-# Rule to build object files
-%.o: %.c
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-
-# Rule to include the libft library
 $(LIBFT):
-	make -C Libft
+	make -C $(LIBFT_DIR)
 
-# Clean object files
 clean:
+	make clean -C $(LIBFT_DIR)
 	rm -f $(OBJS)
-	make clean -C Libft
 
-# Clean everything including the executable
 fclean: clean
+	make fclean -C $(LIBFT_DIR)
 	rm -f $(NAME)
-	make fclean -C Libft
 
-# Rebuild the project
 re: fclean all
 
-# Debug mode for development
-debug: CFLAGS += $(DEBUG_FLAGS)
-debug: re
+.PHONY: all clean fclean re

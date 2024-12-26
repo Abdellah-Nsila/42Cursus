@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 int	ft_calculate_rotate(t_stack *stack, int index)
 {
