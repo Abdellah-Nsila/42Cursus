@@ -1,0 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/13 15:29:38 by abnsila           #+#    #+#             */
+/*   Updated: 2024/12/20 11:34:40 by abnsila          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+
+# include <unistd.h>
+# include <fcntl.h>
+# include <stdlib.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
+
+char	*get_next_line(int fd);
+
+size_t	ft_strlen(char	*s);
+char	*ft_strchr(const char *str, int c);
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
+char	*ft_clean(char **static_var);
+
+char	*ft_append_buff(char **static_var, char *buff, ssize_t rb);
+char	*ft_get_remaining(char **static_var, char *end_line);
+char	*ft_get_line(char **static_var, char *end_line);
+char	*ft_handle_end_of_read(char **static_var, char *buff, ssize_t rb);
+
+#endif
