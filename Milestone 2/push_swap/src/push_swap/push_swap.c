@@ -1,4 +1,4 @@
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 t_stack	*generate_stack(char **arr, int size)
 {

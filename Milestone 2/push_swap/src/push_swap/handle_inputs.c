@@ -1,4 +1,4 @@
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 /* ft_validate_arg
  * Check the type of element in array 

@@ -6,14 +6,14 @@ INCLUDES = -Iincludes -ILibft
 LIBFT_DIR = ./Libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SRCS = ./src/handle_commands.c \
-       ./src/handle_inputs.c \
-       ./src/handle_calculations_move.c \
-       ./src/handle_positions.c \
-	   ./src/handle_perfect_chipset.c \
-	   ./src/handle_sort.c \
-       ./src/push_swap_utils.c \
-       ./src/push_swap.c \
+SRCS = ./src/push_swap/handle_commands.c \
+       ./src/push_swap/handle_inputs.c \
+       ./src/push_swap/handle_calculations_move.c \
+       ./src/push_swap/handle_positions.c \
+	   ./src/push_swap/handle_perfect_chipset.c \
+	   ./src/push_swap/handle_sort.c \
+       ./src/push_swap/push_swap_utils.c \
+       ./src/push_swap/push_swap.c \
 
 OBJS = $(SRCS:.c=.o)
 

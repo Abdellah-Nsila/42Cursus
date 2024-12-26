@@ -1,4 +1,4 @@
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 void	ft_execute_command(t_stack **primary, t_stack **secondary, int type, int flag)
 {

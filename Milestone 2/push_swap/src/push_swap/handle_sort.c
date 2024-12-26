@@ -1,4 +1,4 @@
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 int	ft_check_is_sorted(t_stack *stack){
 	t_stack	*current;
