@@ -20,12 +20,21 @@ int	main(int ac, char **av)
 {
 	t_stack		*a;
 	t_stack		*b;
+	int			size_a;
 
 	b = NULL;
 	a = ft_init_stack(ac, av);
 	if (!a)
-		return (printf("Error\n"), 0);
+		return (ft_printf("Error\n"), 0);
 	if (ft_check_is_sorted(a))
 		return (1);
-	ft_primary_sort(&a, &b);
+	size_a = stack_size(a);
+	if (size_a == 2)
+		ft_sort_two(&a);
+	else if (size_a == 3)
+		ft_sort_three(&a);
+	else if (size_a == 4)
+		ft_sort_four(&a, &b);
+	else
+		ft_primary_sort(&a, &b);
 }

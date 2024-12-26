@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:29:38 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/20 11:34:40 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/26 17:48:26 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@
 
 char	*get_next_line(int fd);
 
-size_t	ft_strlen(char	*s);
-char	*ft_strchr(const char *str, int c);
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
-char	*ft_clean(char **static_var);
+size_t	_ft_strlen(char	*s);
+char	*_ft_strchr(const char *str, int c);
+size_t	_ft_strlcpy(char *dst, const char *src, size_t dstsize);
+size_t	_ft_strlcat(char *dst, const char *src, size_t dstsize);
+char	*_ft_clean(char **static_var);
 
 char	*ft_append_buff(char **static_var, char *buff, ssize_t rb);
 char	*ft_get_remaining(char **static_var, char *end_line);

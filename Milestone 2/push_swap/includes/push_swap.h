@@ -4,7 +4,9 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
-#include "../Libft/libft.h"
+#include "../Libft/includes/libft.h"
+#include "../Libft/includes/ft_printf.h"
+#include "../Libft/includes/get_next_line.h"
 
 // # define bool int
 // # define TRUE 1
@@ -97,12 +99,11 @@ void		ft_run_perfect_rotation(t_stack **stack, int x_rotate, int target_stack);
 void		ft_run_perfect_command(t_stack **a, t_stack **b, t_command command);
 
 // Sorting Functions
-int			ft_check_is_sorted(t_stack *stack);
+void		ft_sort_two(t_stack **a);
 void		ft_sort_three(t_stack **a);
+void		ft_sort_four(t_stack **a, t_stack **b);
+int			ft_check_is_sorted(t_stack *stack);
 void		ft_push_back(t_stack **a, t_stack **b);
 void		ft_primary_sort(t_stack **a, t_stack **b);
-
-
-
 
 #endif 
