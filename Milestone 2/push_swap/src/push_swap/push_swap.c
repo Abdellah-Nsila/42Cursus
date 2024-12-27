@@ -25,7 +25,7 @@ int	main(int ac, char **av)
 	b = NULL;
 	a = ft_init_stack(ac, av);
 	if (!a)
-		return (ft_printf("Error\n"), 0);
+		return (ft_putstr_fd("Error\n", 2), 0);
 	if (ft_check_is_sorted(a))
 		return (ft_clear(&a), 1);
 	size_a = stack_size(a);

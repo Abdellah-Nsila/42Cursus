@@ -40,12 +40,7 @@ t_stack	*ft_handle_string(int ac, char **av)
 
 	arr = ft_split(av[1], ' ');
 	size = ft_wordscount(av[1], ' ');
-	if (size == 0)
-	{
-		ft_clear_arr(arr);
-		exit(0);
-	}
-	if (arr == NULL)
+	if (arr == NULL || size == 0)
 		return (ft_clear_arr(arr), NULL);
 	if (ft_validate_arg(arr, size))
 	{
@@ -101,8 +96,6 @@ int	ft_validate_arg(char **arr, int size)
  **/
 t_stack	*ft_init_stack(int ac, char **av)
 {
-	if ((ac - 1) == 0)
-			exit(0);
 	if (ac > 2 && ft_validate_arg(av+1, ac - 1))
 		return (generate_stack(av+1, ac - 1));
 	else if (ac == 2)
