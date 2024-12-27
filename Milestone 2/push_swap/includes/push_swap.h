@@ -9,6 +9,7 @@
 #include "../Libft/includes/get_next_line.h"
 
 # include "push_swap_utils.h"
+# include "inputs.h"
 # include "commands.h"
 # include "calculations.h"
 # include "execution.h"
@@ -44,8 +45,6 @@ enum command
 	RRR,
 };
 
-t_stack		*ft_handle_string(int ac, char **av);
-int			ft_validate_arg(char **arr, int size);
 t_stack		*ft_init_stack(int ac, char **av);
 
 #endif 
