@@ -1,28 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isnumber.c                                      :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/22 11:41:57 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/27 17:30:51 by abnsila          ###   ########.fr       */
+/*   Created: 2024/12/27 17:36:25 by abnsila           #+#    #+#             */
+/*   Updated: 2024/12/27 17:38:37 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isnumber(char *str)
+long	ft_atol(const char *str)
 {
-	if (*str == '+' || *str == '-')
+	long result = 0;
+	int sign = 1;
+	long digit;
+
+	while (*str == ' ' || (*str >= '\t' && *str <= '\r'))
 		str++;
-	if (!*str)
-		return (0);
-	while (*str)
-	{
-		if (!ft_isdigit(*str))
-			return (0);
+	if (*str == '-' || *str == '+') {
+		if (*str == '-')
+			sign = -1;
 		str++;
 	}
-	return (1);
+	while (*str >= '0' && *str <= '9') {
+		digit = *str - '0';
+		if (result > (LONG_MAX - digit) / 10) {
+			if (sign == 1)
+				return (LONG_MAX);
+			else
+				return (LONG_MIN);
+		}
+		result = result * 10 + digit;
+		str++;
+	}
+	return (result * sign);
 }

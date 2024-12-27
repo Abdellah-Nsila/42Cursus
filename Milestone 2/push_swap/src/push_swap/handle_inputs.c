@@ -59,32 +59,62 @@ t_stack	*ft_handle_string(int ac, char **av)
  * @param size: Size of the array (number of elements)
  * @return: A bool flag (TRUE - FALSE)
  **/
-int	ft_validate_arg(char **arr, int size)
-{
-	int	i;
-	int	j;
+// int	ft_validate_arg(char **arr, int size)
+// {
+// 	int	i;
+// 	int	j;
 
-	i = 0;
-	while (i < size)
-	{
-		if (!ft_isnumber(arr[i]))
-			return (0);
-		i++;
-	}
-	i = 0;
-	while (i < size)
-	{
-		j = i + 1;
-		while (j < size)
-		{
-			if (ft_atoi(arr[i]) == ft_atoi(arr[j]))
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	return (1);
+// 	i = 0;
+// 	while (i < size)
+// 	{
+// 		if (!ft_isnumber(arr[i]))
+// 			return (0);
+// 		i++;
+// 	}
+// 	i = 0;
+// 	while (i < size)
+// 	{
+// 		j = i + 1;
+// 		while (j < size)
+// 		{
+// 			if (ft_atoi(arr[i]) == ft_atoi(arr[j]))
+// 				return (0);
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// 	return (1);
+// }
+
+int ft_validate_arg(char **arr, int size)
+{
+    int i, j;
+    long num;
+
+    if (size <= 0)
+        return (1);
+    i = 0;
+    while (i < size) {
+        if (!ft_isnumber(arr[i]))
+            return (0);
+        num = ft_atol(arr[i]);
+        if (num < INT_MIN || num > INT_MAX)
+            return (0);
+        i++;
+    }
+    i = 0;
+    while (i < size) {
+        j = i + 1;
+        while (j < size) {
+            if (ft_atol(arr[i]) == ft_atol(arr[j]))
+                return (0);
+            j++;
+        }
+        i++;
+    }
+    return (1);
 }
+
 
 /* ft_init_stack
  * Validate arguments, two cases:
