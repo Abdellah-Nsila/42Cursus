@@ -2,11 +2,11 @@
 
 void	print_node(t_stack *node)
 {
-	printf("|                     Node Members                     |\n");
-	printf("| n:    %d                                              |\n", node->n);
-	// printf("| prev: %p                                 |\n", node->prev);
-	// printf("| next: %p                                 |\n", node->next);
-	printf("|______________________________________________________|\n");
+	ft_printf("|                     Node Members                     |\n");
+	ft_printf("| n:    %d                                              |\n", node->n);
+	// ft_printf("| prev: %p                                 |\n", node->prev);
+	// ft_printf("| next: %p                                 |\n", node->next);
+	ft_printf("|______________________________________________________|\n");
 
 }
 
@@ -16,8 +16,8 @@ void	print_stack(t_stack *stack)
 
 	if (!stack)
 	{
-		printf("|                   List is empty !                    |\n");
-		printf("|______________________________________________________|\n");
+		ft_printf("|                   List is empty !                    |\n");
+		ft_printf("|______________________________________________________|\n");
 		return ;
 	}
 	current = stack;
@@ -29,10 +29,10 @@ void	print_stack(t_stack *stack)
 
 void	display_stacks(t_stack *a, t_stack *b, char *state, char *action)
 {
-	printf("\n======================== %s %s ========================\n", state, action);
-	printf("\n^^^^^^^^^^^^^^^^^^^^^^^ Stack a ^^^^^^^^^^^^^^^^^^^^^^^^\n");
+	ft_printf("\n======================== %s %s ========================\n", state, action);
+	ft_printf("\n^^^^^^^^^^^^^^^^^^^^^^^ Stack a ^^^^^^^^^^^^^^^^^^^^^^^^\n");
 	print_stack(a);
-	printf("\n\n^^^^^^^^^^^^^^^^^^^^^^^ Stack b ^^^^^^^^^^^^^^^^^^^^^^^^\n");
+	ft_printf("\n\n^^^^^^^^^^^^^^^^^^^^^^^ Stack b ^^^^^^^^^^^^^^^^^^^^^^^^\n");
 	print_stack(b);
 }
 
@@ -61,8 +61,8 @@ t_stack	*generate_stack_test()
 	return (head);
 }
 
-void	print_chipset(t_command chipset)
+void	print_chipset(t_chipset chipset)
 {
-	printf("\nCost of %d at index %d:\n    %d operation,   %d a_rotation,   %d b_rotation\n"
+	ft_printf("\nCost of %d at index %d:\n    %d operation,   %d a_rotation,   %d b_rotation\n"
 	, chipset.n, chipset.index, chipset.cost, chipset.a_rotate, chipset.b_rotate);
 }

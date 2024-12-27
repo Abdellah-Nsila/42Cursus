@@ -1,44 +1,40 @@
 #include "../../includes/push_swap.h"
 
 // Just for debeugging
-void	print_node(t_stack *node)
-{
-	printf("|                     Node Members                     |\n");
-	printf("| n:    %d                                              |\n", node->n);
-	// printf("| prev: %p                                 |\n", node->prev);
-	// printf("| next: %p                                 |\n", node->next);
-	printf("|______________________________________________________|\n");
 
-}
+// void	print_node(t_stack *node)
+// {
+// 	ft_printf("|                     Node Members                     |\n");
+// 	ft_printf("| n:    %d                                              |\n", node->n);
+// 	// ft_printf("| prev: %p                                 |\n", node->prev);
+// 	// ft_printf("| next: %p                                 |\n", node->next);
+// 	ft_printf("|______________________________________________________|\n");
+// }
 
-void	print_stack(t_stack *stack)
-{
-	t_stack	*current;
+// void	print_stack(t_stack *stack)
+// {
+// 	t_stack	*current;
+// 	if (!stack)
+// 	{
+// 		ft_printf("|                   List is empty !                    |\n");
+// 		ft_printf("|______________________________________________________|\n");
+// 		return ;
+// 	}
+// 	current = stack;
+// 	do {
+// 		 print_node(current);
+// 		current = current->next;
+// 	} while (current != stack);
+// }
 
-	if (!stack)
-	{
-		printf("|                   List is empty !                    |\n");
-		printf("|______________________________________________________|\n");
-		return ;
-	}
-	current = stack;
-	do {
-		 print_node(current);
-		current = current->next;
-	} while (current != stack);
-}
-
-void	display_stacks(t_stack *a, t_stack *b, char *state, char *action)
-{
-	printf("\n======================== %s %s ========================\n", state, action);
-	printf("\n^^^^^^^^^^^^^^^^^^^^^^^ Stack a ^^^^^^^^^^^^^^^^^^^^^^^^\n");
-	print_stack(a);
-	printf("\n\n^^^^^^^^^^^^^^^^^^^^^^^ Stack b ^^^^^^^^^^^^^^^^^^^^^^^^\n");
-	print_stack(b);
-}
-
-
-
+// void	display_stacks(t_stack *a, t_stack *b, char *state, char *action)
+// {
+// 	ft_printf("\n======================== %s %s ========================\n", state, action);
+// 	ft_printf("\n^^^^^^^^^^^^^^^^^^^^^^^ Stack a ^^^^^^^^^^^^^^^^^^^^^^^^\n");
+// 	print_stack(a);
+// 	ft_printf("\n\n^^^^^^^^^^^^^^^^^^^^^^^ Stack b ^^^^^^^^^^^^^^^^^^^^^^^^\n");
+// 	print_stack(b);
+// }
 
 
 int	ft_check_is_sorted(t_stack *stack){
@@ -81,7 +77,7 @@ void	ft_push_back(t_stack **a, t_stack **b)
 
 void	ft_primary_sort(t_stack **a, t_stack **b)
 {
-	t_command	perfect_chipset;
+	t_chipset	perfect_chipset;
 
 	ft_execute_command(b, a, PB, 1);
 	ft_execute_command(b, a, PB, 1);

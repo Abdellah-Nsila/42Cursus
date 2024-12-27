@@ -27,7 +27,7 @@ int	main(int ac, char **av)
 	if (!a)
 		return (ft_printf("Error\n"), 0);
 	if (ft_check_is_sorted(a))
-		return (1);
+		return (ft_clear(&a), 1);
 	size_a = stack_size(a);
 	if (size_a == 2)
 		ft_sort_two(&a);
@@ -37,4 +37,6 @@ int	main(int ac, char **av)
 		ft_sort_four(&a, &b);
 	else
 		ft_primary_sort(&a, &b);
+	ft_clear(&a);
+	ft_clear(&b);
 }

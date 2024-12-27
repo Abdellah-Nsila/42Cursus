@@ -24,7 +24,7 @@ void	ft_execute_command(t_stack **primary, t_stack **secondary, int type, int fl
 	else if (type == RR || type == RRR)
 		rr_rrr(primary, secondary, type);
 	if (flag)
-		printf("%s\n", commands[type]);
+		ft_printf("%s\n", commands[type]);
 }
 
 void	ft_run_perfect_rotation(t_stack **stack, int x_rotate, int target_stack)
@@ -42,7 +42,7 @@ void	ft_run_perfect_rotation(t_stack **stack, int x_rotate, int target_stack)
 	}
 }
 
-void	ft_run_perfect_command(t_stack **a, t_stack **b, t_command command)
+void	ft_run_perfect_command(t_stack **a, t_stack **b, t_chipset command)
 {
 	int	type;
 
@@ -70,13 +70,13 @@ void	ft_run_perfect_command(t_stack **a, t_stack **b, t_command command)
 	ft_execute_command(b, a, PB, 1);
 }
 
-t_command	ft_get_perfect_chipset(t_stack *a, t_stack *b)
+t_chipset	ft_get_perfect_chipset(t_stack *a, t_stack *b)
 {
 	t_stack		*current;
 	int			index;
 	int			n;
-	t_command	chipset;
-	t_command	perfect_chipset;
+	t_chipset	chipset;
+	t_chipset	perfect_chipset;
 
 	current = a;
 	index = 0;

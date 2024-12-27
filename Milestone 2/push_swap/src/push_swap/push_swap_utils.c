@@ -20,7 +20,6 @@ t_stack	*new(int n)
 	if (!node)
 		return (NULL);
 	node->n = n;
-	// node->cheapest = INT_MAX;
 	node->prev = node;
 	node->next = node;
 	return (node);
