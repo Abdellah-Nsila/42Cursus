@@ -4,7 +4,6 @@
 # include "push_swap_utils.h"
 # include "calculations.h"
 
-// Some functions for debugging
 void		print_node(t_stack *node);
 void		print_stack(t_stack *stack);
 void		display_stacks(t_stack *a, t_stack *b, char *state, char *action);

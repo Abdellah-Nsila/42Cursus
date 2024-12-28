@@ -56,3 +56,32 @@ void rotate_to_index(t_stack **stack, int index, int target)
 		while (i++ < (size - index))
 			ft_execute_command(stack, NULL, RRA + target);
 }
+
+int	ft_calculate_top_max(t_stack *stack, int max)
+{
+	int	index;
+
+	index = ft_find_index(stack, max);
+	return (ft_calculate_best_rotate(stack, index));
+}
+
+void	ft_push_back(t_stack **a, t_stack **b)
+{
+	while (stack_size(*b))
+	{
+		if ((*b)->n < ft_find_min(*a) || (*b)->n > ft_find_max(*a))
+		{
+			int min_index = ft_find_index(*a, ft_find_min(*a));
+			ft_run_perfect_rotation(a, ft_calculate_rotate(*a, min_index), STACK_A);
+		}
+		else
+		{
+			while ((*a)->prev->n > (*b)->n)
+				ft_execute_command(a, NULL, RRA, 1);
+		}
+		ft_execute_command(a, b, PA, 1);
+	}
+	int min_index = ft_find_index(*a, ft_find_min(*a));
+	ft_run_perfect_rotation(a, ft_calculate_rotate(*a, min_index), STACK_A);
+}
+

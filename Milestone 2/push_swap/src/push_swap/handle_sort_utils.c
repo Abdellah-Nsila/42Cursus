@@ -8,7 +8,6 @@ void	ft_sort_two(t_stack **a)
 
 void	ft_sort_three(t_stack **a)
 {
-	// 3 1 2 case
 	if ((*a)->n > (*a)->next->n && (*a)->next->n < (*a)->next->next->n
 		&& (*a)->n > (*a)->next->next->n)
 		ft_execute_command(a, NULL, RA, 1);

@@ -12,14 +12,13 @@ typedef struct s_chipset
 	int cost;
 } t_chipset;
 
-//Helper functions to track sorting (push, rotate, ...) in correct position
 int			ft_find_index(t_stack *stack, int max);
 int			ft_find_max(t_stack *stack);
 int			ft_find_min(t_stack *stack);
+int			ft_find_pos(t_stack *stack, int n, int f, int i);
 
-//Calculation functions
 int			ft_calculate_rotate(t_stack *stack, int index);
-int			ft_calculate_top_max(t_stack *stack, int max);
+int			ft_calculate_a_rotate(t_stack *stack, int n);
 int			ft_calculate_b_rotate(t_stack *stack, int n);
 t_chipset	ft_calculate_command(t_stack *a, int index, t_stack *b, int n);
 t_chipset	ft_get_perfect_chipset(t_stack *a, t_stack *b);

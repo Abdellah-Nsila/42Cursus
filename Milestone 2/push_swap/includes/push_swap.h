@@ -45,6 +45,6 @@ enum command
 	RRR,
 };
 
-t_stack		*ft_init_stack(int ac, char **av);
+t_stack	*ft_init_stack(int ac, char **av);
 
 #endif 

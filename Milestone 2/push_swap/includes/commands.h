@@ -3,7 +3,6 @@
 
 # include "push_swap_utils.h"
 
-// Push_Swap Cammands
 void		sa_sb(t_stack **stack);
 void		ss(t_stack **a, t_stack **b);
 void		pa_pb(t_stack **to_stack, t_stack **from_stack);

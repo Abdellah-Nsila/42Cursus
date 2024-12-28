@@ -29,11 +29,9 @@ void	ft_execute_command(t_stack **primary, t_stack **secondary, int type, int fl
 
 void	ft_run_perfect_rotation(t_stack **stack, int x_rotate, int target_stack)
 {
-	// Command RX
 	if (x_rotate > 0)
 		while (x_rotate-- > 0)
 			ft_execute_command(stack, NULL, RA + target_stack, 1);
-	// Command RRX
 	else if (x_rotate < 0)
 	{
 		x_rotate = ABS(x_rotate);
@@ -46,7 +44,6 @@ void	ft_run_perfect_command(t_stack **a, t_stack **b, t_chipset command)
 {
 	int	type;
 
-	// Execute Same direction command using RR || RRR
 	if (command.a_rotate * command.b_rotate > 0)
 	{
 		if (command.a_rotate > 0)
@@ -56,15 +53,12 @@ void	ft_run_perfect_command(t_stack **a, t_stack **b, t_chipset command)
 		while (command.a_rotate && command.b_rotate)
 		{
 			ft_execute_command(a, b, type, 1);
-			// Adjust command.x_rotate: decrement for positive, increment for negative
-			command.a_rotate -= 1 * ((command.a_rotate >= 0) * 2 - 1);  // command.a_rotate -= (1 || -1)
-			command.b_rotate -= 1 * ((command.b_rotate >= 0) * 2 - 1);  // command.b_rotate -= (1 || -1)
+			command.a_rotate -= 1 * ((command.a_rotate >= 0) * 2 - 1);
+			command.b_rotate -= 1 * ((command.b_rotate >= 0) * 2 - 1);
 		}
 	}
-	// Rest Command RA || RRA
 	if (command.a_rotate != 0)
 		ft_run_perfect_rotation(a, command.a_rotate, STACK_A);
-	// Rest Command RB || RRB
 	if (command.b_rotate != 0)
 		ft_run_perfect_rotation(b, command.b_rotate, STACK_B);
 	ft_execute_command(b, a, PB, 1);

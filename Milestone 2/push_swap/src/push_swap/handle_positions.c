@@ -1,5 +1,33 @@
 #include "../../includes/push_swap.h"
 
+int	ft_find_pos(t_stack *stack, int n, int f, int i)
+{
+	int	a;
+	int	b;
+	int	edge;
+	t_stack	*current;
+
+	current = stack;
+	edge = 0;
+	while (current->next != stack && ++i)
+	{
+		a = current->n;
+		b = current->next->n;
+		if (a > b)
+		{
+			edge = i;
+			current = current->next;
+			continue ;
+		}
+		if (n > a && n < b)
+			return (i);
+		current = current->next;
+	}
+	if ((b < f && n > b && n < f) || (f < b && n < b && n > f))
+		return (0);
+	return (edge);
+}
+
 int	ft_find_index(t_stack *stack, int max)
 {
 	t_stack	*current;
