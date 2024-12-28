@@ -84,4 +84,52 @@ void	ft_push_back(t_stack **a, t_stack **b)
 	int min_index = ft_find_index(*a, ft_find_min(*a));
 	ft_run_perfect_rotation(a, ft_calculate_rotate(*a, min_index), STACK_A);
 }
+// void	ft_clear_arr(char **arr)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (arr[i])
+// 	{
+// 		free(arr[i]);
+// 		i++;
+// 	}
+// 	free(arr);
+// 	arr = NULL;
+// }
+
+// t_stack	*ft_handle_string(int ac, char **av)
+// {
+// 	t_stack	*stack;
+// 	char	**arr;
+// 	int		size;
+
+// 	arr = ft_split(av[1], ' ');
+// 	size = ft_wordscount(av[1], ' ');
+// 	if (arr == NULL || size == 0)
+// 		return (ft_clear_arr(arr), NULL);
+// 	if (ft_validate_arg(arr, size))
+// 	{
+// 		stack = generate_stack(arr, size);
+// 		ft_clear_arr(arr);
+// 		return (stack);
+// 	}
+// 	ft_clear_arr(arr);
+// 	return (NULL);
+// }
+
+// t_stack	*ft_init_stack(int ac, char **av)
+// {
+// 	if (ac > 2 && ft_validate_arg(av+1, ac - 1))
+// 		return (generate_stack(av+1, ac - 1));
+// 	else if (ac == 2)
+// 		return (ft_handle_string(ac, av));
+// 	return (NULL);
+// }
+
+
+
+
+
+
 
