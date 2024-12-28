@@ -15,6 +15,7 @@ SRCS = ./src/push_swap/handle_commands.c \
 	   ./src/push_swap/handle_sort_utils.c \
        ./src/push_swap/push_swap_utils.c \
        ./src/push_swap/push_swap.c \
+	   ./src/push_swap/handle_push_back.c \
 
 OBJS = $(SRCS:.c=.o)
 
