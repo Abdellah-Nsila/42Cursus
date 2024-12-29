@@ -3,7 +3,7 @@
 
 # include "push_swap_utils.h"
 
-t_stack		*ft_handle_string(int ac, char **av);
+t_stack		*ft_handle_string(char **av);
 int			ft_validate_arg(char **arr, int size);
 
 #endif 

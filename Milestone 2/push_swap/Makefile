@@ -1,4 +1,5 @@
-NAME = push_swap
+M_NAME = push_swap
+B_NAME = checker
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 SRC_DIR = src
@@ -6,38 +7,44 @@ INCLUDES = -I./includes -I./Libft/includes
 LIBFT_DIR = ./Libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SRCS = ./src/push_swap/handle_commands.c \
-       ./src/push_swap/handle_inputs.c \
-       ./src/push_swap/handle_calculations_move.c \
-       ./src/push_swap/handle_positions.c \
-	   ./src/push_swap/handle_perfect_chipset.c \
-	   ./src/push_swap/handle_sort.c \
-	   ./src/push_swap/handle_sort_utils.c \
-       ./src/push_swap/push_swap_utils.c \
-       ./src/push_swap/push_swap.c \
-	   ./src/push_swap/handle_push_back.c \
+UTILS = ./utils/handle_commands.c ./utils/handle_inputs.c \
+		./utils/handle_utils.c  ./utils/push_swap_utils.c \
 
+SRCS =	./src/push_swap/push_swap.c \
+		./src/push_swap/handle_sort_utils.c ./src/push_swap/handle_push_back.c \
+		./src/push_swap/handle_positions.c ./src/push_swap/handle_sort.c \
+		./src/push_swap/handle_perfect_chipset.c ./src/push_swap/handle_calculations_move.c \
+
+BSRCS = ./src/checker/checker.c
+
+OUTILS = $(UTILS:.c=.o)
 OBJS = $(SRCS:.c=.o)
+BOBJS = $(BSRCS:.c=.o)
 
-all: $(LIBFT) $(NAME)
+all: $(LIBFT) $(M_NAME)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(INCLUDES) -o $(NAME)
+$(M_NAME): $(OUTILS) $(OBJS)
+	$(CC) $(CFLAGS) $(OUTILS) $(OBJS) $(LIBFT) $(INCLUDES) -o $(M_NAME)
+
+bonus: $(LIBFT) $(B_NAME)
+
+$(B_NAME): $(OUTILS) $(BOBJS)
+	$(CC) $(CFLAGS) $(OUTILS) $(BOBJS) $(LIBFT) $(INCLUDES) -o $(B_NAME)
 
 %.o: %.c
-	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)
 
 clean:
 	make clean -C $(LIBFT_DIR)
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(OUTILS) $(BOBJS)
 
 fclean: clean
 	make fclean -C $(LIBFT_DIR)
-	rm -f $(NAME)
+	rm -f $(M_NAME) $(B_NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

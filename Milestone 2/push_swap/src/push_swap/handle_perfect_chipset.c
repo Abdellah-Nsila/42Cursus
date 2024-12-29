@@ -1,42 +1,15 @@
 #include "../../includes/push_swap.h"
 
-void	ft_execute_command(t_stack **primary, t_stack **secondary, int type, int flag)
-{
-	const char *commands[10];
-
-	commands[SA] = "sa";
-	commands[SB] = "sb";
-	commands[PA] = "pa";
-	commands[PB] = "pb";
-	commands[RA] = "ra";
-	commands[RB] = "rb";
-	commands[RRA] = "rra";
-	commands[RRB] = "rrb";
-	commands[RR] = "rr";
-	commands[RRR] = "rrr";
-
-	if (type == SA || type == SB)
-		sa_sb(primary);
-	else if (type == PA || type == PB)
-		pa_pb(primary, secondary);
-	else if (type == RA || type == RB || type == RRA || type == RRB)
-		ra_rb_rra_rrb(primary, type);
-	else if (type == RR || type == RRR)
-		rr_rrr(primary, secondary, type);
-	if (flag)
-		ft_printf("%s\n", commands[type]);
-}
-
-void	ft_run_perfect_rotation(t_stack **stack, int x_rotate, int target_stack)
+void	ft_run_perfect_rotation(t_stack **a, t_stack **b, int x_rotate, int target_stack)
 {
 	if (x_rotate > 0)
 		while (x_rotate-- > 0)
-			ft_execute_command(stack, NULL, RA + target_stack, 1);
+			ft_execute_command(a, b, RA + target_stack, 1);
 	else if (x_rotate < 0)
 	{
 		x_rotate = ABS(x_rotate);
 		while (x_rotate-- > 0)
-			ft_execute_command(stack, NULL, RRA + target_stack, 1);
+			ft_execute_command(a, b, RRA + target_stack, 1);
 	}
 }
 
@@ -58,10 +31,10 @@ void	ft_run_perfect_command(t_stack **a, t_stack **b, t_chipset command)
 		}
 	}
 	if (command.a_rotate != 0)
-		ft_run_perfect_rotation(a, command.a_rotate, STACK_A);
+		ft_run_perfect_rotation(a, b, command.a_rotate, STACK_A);
 	if (command.b_rotate != 0)
-		ft_run_perfect_rotation(b, command.b_rotate, STACK_B);
-	ft_execute_command(b, a, PB, 1);
+		ft_run_perfect_rotation(a, b, command.b_rotate, STACK_B);
+	ft_execute_command(a, b, PB, 1);
 }
 
 t_chipset	ft_get_perfect_chipset(t_stack *a, t_stack *b)

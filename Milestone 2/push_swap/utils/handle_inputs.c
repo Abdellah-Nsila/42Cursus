@@ -63,7 +63,7 @@ int ft_validate_arg(char **arr, int size)
 	return (1);
 }
 
-t_stack	*ft_handle_string(int ac, char **av)
+t_stack	*ft_handle_string(char **av)
 {
 	t_stack	*stack;
 	char	**arr;
@@ -89,6 +89,6 @@ t_stack	*ft_init_stack(int ac, char **av)
 		return (NULL);
 	}
 	else if (ac == 2)
-		return (ft_handle_string(ac, av));
+		return (ft_handle_string(av));
 	return (NULL);
 }

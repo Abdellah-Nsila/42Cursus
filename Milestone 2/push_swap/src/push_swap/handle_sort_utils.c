@@ -27,7 +27,7 @@ void	ft_sort_three(t_stack **a)
 
 void	ft_sort_four(t_stack **a, t_stack **b)
 {
-	ft_execute_command(b, a, PB, 1);
+	ft_execute_command(a, b, PB, 1);
 	ft_sort_three(a);
 	ft_push_back(a, b);
 }
