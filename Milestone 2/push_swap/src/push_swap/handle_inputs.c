@@ -2,21 +2,21 @@
 
 void	ft_clear(t_stack **stack)
 {
-    t_stack	*current;
-    t_stack	*temp;
+	t_stack	*current;
+	t_stack	*temp;
 
-    if (!stack || !*stack)
-        return;
-    current = *stack;
-    while (current)
-    {
-        temp = current->next;
-        free(current);
-        if (temp == *stack)
-            break;
-        current = temp;
-    }
-    *stack = NULL;
+	if (!stack || !*stack)
+		return;
+	current = *stack;
+	while (current)
+	{
+		temp = current->next;
+		free(current);
+		if (temp == *stack)
+			break;
+		current = temp;
+	}
+	*stack = NULL;
 }
 
 void	ft_clear_arr(char **arr)
@@ -36,31 +36,31 @@ void	ft_clear_arr(char **arr)
 
 int ft_validate_arg(char **arr, int size)
 {
-    int i, j;
-    long num;
+	int i, j;
+	long num;
 
-    if (size <= 0)
-        return (1);
-    i = 0;
-    while (i < size) {
-        if (!ft_isnumber(arr[i]))
-            return (0);
-        num = ft_atol(arr[i]);
-        if (num < INT_MIN || num > INT_MAX)
-            return (0);
-        i++;
-    }
-    i = 0;
-    while (i < size) {
-        j = i + 1;
-        while (j < size) {
-            if (ft_atol(arr[i]) == ft_atol(arr[j]))
-                return (0);
-            j++;
-        }
-        i++;
-    }
-    return (1);
+	if (size <= 0)
+		return (1);
+	i = 0;
+	while (i < size) {
+		if (!ft_isnumber(arr[i]))
+			return (0);
+		num = ft_atol(arr[i]);
+		if (num < INT_MIN || num > INT_MAX)
+			return (0);
+		i++;
+	}
+	i = 0;
+	while (i < size) {
+		j = i + 1;
+		while (j < size) {
+			if (ft_atol(arr[i]) == ft_atol(arr[j]))
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }
 
 t_stack	*ft_handle_string(int ac, char **av)

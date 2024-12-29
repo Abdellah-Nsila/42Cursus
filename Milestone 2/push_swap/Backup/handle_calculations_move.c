@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../../includes/push_swap.h"
 
 int	ft_calculate_rotate(t_stack *stack, int index)
 {
@@ -35,8 +35,6 @@ int	ft_calculate_b_rotate(t_stack *stack, int n)
 		return (ft_calculate_top_max(stack, max));
 	while (current)
 	{
-		// printf("prev: %d,  current: %d\n", current->prev->n, current->n);
-		// printf("Cond: %d, index: %d\n", current->prev->n > n && current->n < n, index);
 		if (current->prev->n > n && current->n < n)
 			break;
 		current = current->next;
@@ -45,9 +43,9 @@ int	ft_calculate_b_rotate(t_stack *stack, int n)
 	return (ft_calculate_rotate(stack, index));
 }
 
-t_command	ft_calculate_command(t_stack *a, int index, t_stack *b, int n)
+t_chipset	ft_calculate_command(t_stack *a, int index, t_stack *b, int n)
 {
-	t_command command;
+	t_chipset command;
 
 	command.n = n;
 	command.index = index;
