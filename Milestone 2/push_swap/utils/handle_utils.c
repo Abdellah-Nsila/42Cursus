@@ -6,27 +6,11 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 18:48:02 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/29 19:14:27 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/29 21:09:42 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-t_stack	*generate_stack(char **arr, int size)
-{
-	t_stack	*head;
-	t_stack	*new_node;
-
-	head = NULL;
-	while (size--)
-	{
-		new_node = new(ft_atoi(arr[size]));
-		if (!new_node)
-			return (NULL);
-		push(&head, new_node);
-	}
-	return (head);
-}
 
 int	ft_check_is_sorted(t_stack *stack)
 {
@@ -36,7 +20,7 @@ int	ft_check_is_sorted(t_stack *stack)
 	while (current)
 	{
 		if (current->next == stack)
-			break;
+			break ;
 		if (current->n > current->next->n)
 			return (0);
 		current = current->next;
@@ -66,11 +50,10 @@ void	ft_execute_dual_stack(t_command *cmd)
 		ft_printf("%s\n", cmd->command);
 }
 
-//TODO i nedd to fix norminette
-void	ft_execute_command(t_stack **a, t_stack **b, int type, int flag)
+t_command	ft_init_commands(t_stack **a, t_stack **b, int type, int flag)
 {
-	t_command cmd;
-	const char *commands[10];
+	t_command	cmd;
+	const char	*commands[10];
 
 	commands[SA] = "sa";
 	commands[SB] = "sb";
@@ -87,11 +70,24 @@ void	ft_execute_command(t_stack **a, t_stack **b, int type, int flag)
 	cmd.type = type;
 	cmd.flag = flag;
 	cmd.command = commands[type];
-	if (type == SA || type == SB || type == RA || type == RB || type == RRA || type == RRB)
+	return (cmd);
+}
+
+void	ft_execute_command(t_stack **a, t_stack **b, int type, int flag)
+{
+	t_command	cmd;
+
+	cmd = ft_init_commands(a, b, type, flag);
+	if (type == SA || type == SB || type == RA || type == RB
+		|| type == RRA || type == RRB)
 	{
-		ft_execute_single_stack((type == SA || type == RA || type == RRA) ? a : b,
-								type, flag, commands[type]);
+		if (type == SA || type == RA || type == RRA)
+			ft_execute_single_stack(a, type, flag, cmd.command);
+		else
+			ft_execute_single_stack(b, type, flag, cmd.command);
 	}
 	else
+	{
 		ft_execute_dual_stack(&cmd);
+	}
 }

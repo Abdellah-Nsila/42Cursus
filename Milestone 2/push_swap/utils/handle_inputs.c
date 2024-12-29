@@ -6,11 +6,27 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 18:39:38 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/29 18:46:01 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/29 21:09:27 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
+
+t_stack	*generate_stack(char **arr, int size)
+{
+	t_stack	*head;
+	t_stack	*new_node;
+
+	head = NULL;
+	while (size--)
+	{
+		new_node = new(ft_atoi(arr[size]));
+		if (!new_node)
+			return (NULL);
+		push(&head, new_node);
+	}
+	return (head);
+}
 
 void	ft_clear(t_stack **stack)
 {
