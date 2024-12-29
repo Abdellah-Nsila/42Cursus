@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/29 21:22:50 by abnsila           #+#    #+#             */
+/*   Updated: 2024/12/29 21:26:01 by abnsila          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
 # include <unistd.h>
 # include <stdlib.h>
 
-#include "../Libft/includes/libft.h"
-#include "../Libft/includes/ft_printf.h"
-#include "../Libft/includes/get_next_line.h"
+# include "../Libft/includes/libft.h"
+# include "../Libft/includes/ft_printf.h"
+# include "../Libft/includes/get_next_line.h"
 
 # include "push_swap_utils.h"
 # include "inputs.h"

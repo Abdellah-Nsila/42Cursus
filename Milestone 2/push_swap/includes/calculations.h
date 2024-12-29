@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   calculations.h                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/29 21:21:28 by abnsila           #+#    #+#             */
+/*   Updated: 2024/12/29 21:22:02 by abnsila          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CALCULATIONS_H
 # define CALCULATIONS_H
 
@@ -5,12 +17,12 @@
 
 typedef struct s_chipset
 {
-	int n;
+	int	n;
 	int	index;
-	int a_rotate;
-	int b_rotate;
-	int cost;
-} t_chipset;
+	int	a_rotate;
+	int	b_rotate;
+	int	cost;
+}	t_chipset;
 
 int			ft_find_index(t_stack *stack, int max);
 int			ft_find_max(t_stack *stack);
