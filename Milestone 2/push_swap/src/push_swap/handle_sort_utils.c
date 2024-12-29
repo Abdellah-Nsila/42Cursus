@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_sort_utils.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/29 18:08:28 by abnsila           #+#    #+#             */
+/*   Updated: 2024/12/29 18:08:49 by abnsila          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/push_swap.h"
 
 void	ft_sort_two(t_stack **a)
@@ -18,7 +30,7 @@ void	ft_sort_three(t_stack **a)
 			if ((*a)->n > (*a)->next->n)
 				ft_execute_command(a, NULL, SA, 1);
 			if ((*a)->n < (*a)->next->n && (*a)->next->n < (*a)->next->next->n)
-				break;
+				break ;
 			if ((*a)->next->n > (*a)->next->next->n)
 				ft_execute_command(a, NULL, RRA, 1);
 		}

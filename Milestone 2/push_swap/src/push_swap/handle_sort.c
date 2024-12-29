@@ -1,11 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_sort.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/29 18:07:40 by abnsila           #+#    #+#             */
+/*   Updated: 2024/12/29 18:07:54 by abnsila          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/push_swap.h"
 
 void	ft_golden_nums(t_stack **a, t_stack **b)
 {
 	while (!ft_check_is_sorted(*a) && stack_size(*a) > 3)
-	{
 		ft_execute_command(a, b, PB, 1);
-	}
 }
 
 void	ft_primary_sort(t_stack **a, t_stack **b)
@@ -14,7 +24,6 @@ void	ft_primary_sort(t_stack **a, t_stack **b)
 
 	ft_execute_command(a, b, PB, 1);
 	ft_execute_command(a, b, PB, 1);
-
 	while (stack_size(*a) > 25)
 	{
 		perfect_chipset = ft_get_perfect_chipset(*a, *b);

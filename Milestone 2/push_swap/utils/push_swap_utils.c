@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/29 19:15:17 by abnsila           #+#    #+#             */
+/*   Updated: 2024/12/29 19:16:47 by abnsila          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/push_swap.h"
 
 t_stack	*last(t_stack *stack)
@@ -16,7 +28,7 @@ t_stack	*new(int n)
 {
 	t_stack	*node;
 
-	node = (t_stack*) malloc(sizeof(t_stack));
+	node = (t_stack *) malloc (sizeof(t_stack));
 	if (!node)
 		return (NULL);
 	node->n = n;
@@ -29,9 +41,10 @@ void	push(t_stack **stack, t_stack *new)
 {
 	t_stack	*last_stack;
 
-	if (!(*stack)) {
+	if (!(*stack))
+	{
 		*stack = new;
-		return;
+		return ;
 	}
 	last_stack = last(*stack);
 	new->next = *stack;
@@ -63,8 +76,8 @@ t_stack	*pop(t_stack **stack)
 
 int	stack_size(t_stack *stack)
 {
-	t_stack *current;
-	int     size;
+	t_stack	*current;
+	int		size;
 
 	current = stack;
 	size = 0;
@@ -73,7 +86,7 @@ int	stack_size(t_stack *stack)
 		size++;
 		current = current->next;
 		if (current == stack)
-			break;
+			break ;
 	}
 	return (size);
 }

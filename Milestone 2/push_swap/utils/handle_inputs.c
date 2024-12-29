@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_inputs.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/29 18:39:38 by abnsila           #+#    #+#             */
+/*   Updated: 2024/12/29 18:46:01 by abnsila          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/push_swap.h"
 
 void	ft_clear(t_stack **stack)
@@ -6,14 +18,14 @@ void	ft_clear(t_stack **stack)
 	t_stack	*temp;
 
 	if (!stack || !*stack)
-		return;
+		return ;
 	current = *stack;
 	while (current)
 	{
 		temp = current->next;
 		free(current);
 		if (temp == *stack)
-			break;
+			break ;
 		current = temp;
 	}
 	*stack = NULL;
@@ -24,7 +36,7 @@ void	ft_clear_arr(char **arr)
 	int	i;
 
 	if (!arr)
-		return;
+		return ;
 	i = 0;
 	while (arr[i])
 	{
@@ -32,35 +44,6 @@ void	ft_clear_arr(char **arr)
 		i++;
 	}
 	free(arr);
-}
-
-int ft_validate_arg(char **arr, int size)
-{
-	int i, j;
-	long num;
-
-	if (size <= 0)
-		return (1);
-	i = 0;
-	while (i < size) {
-		if (!ft_isnumber(arr[i]))
-			return (0);
-		num = ft_atol(arr[i]);
-		if (num < INT_MIN || num > INT_MAX)
-			return (0);
-		i++;
-	}
-	i = 0;
-	while (i < size) {
-		j = i + 1;
-		while (j < size) {
-			if (ft_atol(arr[i]) == ft_atol(arr[j]))
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	return (1);
 }
 
 t_stack	*ft_handle_string(char **av)

@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/29 18:05:31 by abnsila           #+#    #+#             */
+/*   Updated: 2024/12/29 18:06:57 by abnsila          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/checker.h"
 
 int	ft_get_command(char *command)
 {
-	int i;
-	const char *commands[10];
+	int			i;
+	const char	*commands[10];
 
 	commands[SA] = "sa\n";
 	commands[SB] = "sb\n";
@@ -15,12 +27,11 @@ int	ft_get_command(char *command)
 	commands[RRB] = "rrb\n";
 	commands[RR] = "rr\n";
 	commands[RRR] = "rrr\n";
-
 	i = 0;
 	while (i < 10)
 	{
 		if (ft_strncmp(command, commands[i], ft_strlen(command)) == 0)
-			return i;
+			return (i);
 		i++;
 	}
 	return (-1);
@@ -51,8 +62,8 @@ void	ft_read_instructions(t_stack **a, t_stack **b)
 
 int	main(int ac, char **av)
 {
-	t_stack *a;
-	t_stack *b;
+	t_stack	*a;
+	t_stack	*b;
 
 	if (ac == 1)
 		return (0);
@@ -60,9 +71,7 @@ int	main(int ac, char **av)
 	if (!a)
 		exit(1);
 	b = NULL;
-
 	ft_read_instructions(&a, &b);
-
 	if (ft_check_is_sorted(a) && b == NULL)
 		ft_printf("OK\n");
 	else

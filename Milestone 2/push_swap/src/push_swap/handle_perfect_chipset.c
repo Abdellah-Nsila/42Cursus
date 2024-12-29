@@ -1,15 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_perfect_chipset.c                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/29 18:12:12 by abnsila           #+#    #+#             */
+/*   Updated: 2024/12/29 18:36:05 by abnsila          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/push_swap.h"
 
-void	ft_run_perfect_rotation(t_stack **a, t_stack **b, int x_rotate, int target_stack)
+void	ft_run_perfect_rotation(t_stack **a, t_stack **b, int x_rot, int stack)
 {
-	if (x_rotate > 0)
-		while (x_rotate-- > 0)
-			ft_execute_command(a, b, RA + target_stack, 1);
-	else if (x_rotate < 0)
+	if (x_rot > 0)
+		while (x_rot-- > 0)
+			ft_execute_command(a, b, RA + stack, 1);
+	else if (x_rot < 0)
 	{
-		x_rotate = ABS(x_rotate);
-		while (x_rotate-- > 0)
-			ft_execute_command(a, b, RRA + target_stack, 1);
+		x_rot = ABS(x_rot);
+		while (x_rot-- > 0)
+			ft_execute_command(a, b, RRA + stack, 1);
 	}
 }
 
@@ -20,9 +32,9 @@ void	ft_run_perfect_command(t_stack **a, t_stack **b, t_chipset command)
 	if (command.a_rotate * command.b_rotate > 0)
 	{
 		if (command.a_rotate > 0)
-			type =  RR;
+			type = RR;
 		else
-			type =  RRR;
+			type = RRR;
 		while (command.a_rotate && command.b_rotate)
 		{
 			ft_execute_command(a, b, type, 1);
@@ -57,7 +69,7 @@ t_chipset	ft_get_perfect_chipset(t_stack *a, t_stack *b)
 		current = current->next;
 		index++;
 		if (current == a || perfect_chipset.cost == 0)
-			break;
+			break ;
 	}
 	return (perfect_chipset);
 }

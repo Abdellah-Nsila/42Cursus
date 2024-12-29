@@ -9,6 +9,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 UTILS = ./utils/handle_commands.c ./utils/handle_inputs.c \
 		./utils/handle_utils.c  ./utils/push_swap_utils.c \
+		./utils/handle_utils_inputs.c
 
 SRCS =	./src/push_swap/push_swap.c \
 		./src/push_swap/handle_sort_utils.c ./src/push_swap/handle_push_back.c \

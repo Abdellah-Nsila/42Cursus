@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_commands.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/29 18:38:30 by abnsila           #+#    #+#             */
+/*   Updated: 2024/12/29 18:39:17 by abnsila          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/push_swap.h"
 
 void	sa_sb(t_stack **stack)
@@ -16,7 +28,7 @@ void	sa_sb(t_stack **stack)
 		second->next = first;
 		second->prev = first;
 		*stack = second;
-		return;
+		return ;
 	}
 	first->next = second->next;
 	first->prev = second;
@@ -40,7 +52,6 @@ void	pa_pb(t_stack **to_stack, t_stack **from_stack)
 
 void	ra_rb_rra_rrb(t_stack **stack, int type)
 {
-
 	if ((*stack)->next == *stack)
 		return ;
 	if (type == RA || type == RB)

@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_positions.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/29 18:10:43 by abnsila           #+#    #+#             */
+/*   Updated: 2024/12/29 18:11:55 by abnsila          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/push_swap.h"
 
 int	ft_find_pos(t_stack *stack, int n, int f, int i)
 {
-	int	a;
-	int	b;
-	int	edge;
+	int		a;
+	int		b;
+	int		edge;
 	t_stack	*current;
 
 	current = stack;
@@ -38,7 +50,7 @@ int	ft_find_index(t_stack *stack, int max)
 	while (current)
 	{
 		if (current->n == max)
-			break;
+			break ;
 		current = current->next;
 		index++;
 	}
@@ -47,7 +59,7 @@ int	ft_find_index(t_stack *stack, int max)
 
 int	ft_find_max(t_stack *stack)
 {
-	t_stack *current;
+	t_stack	*current;
 	int		max;
 
 	current = stack;
@@ -58,15 +70,15 @@ int	ft_find_max(t_stack *stack)
 			max = current->n;
 		current = current->next;
 		if (current == stack)
-			break;
+			break ;
 	}
 	return (max);
 }
 
 int	ft_find_min(t_stack *stack)
 {
-	t_stack *current;
-	int     min;
+	t_stack	*current;
+	int		min;
 
 	current = stack;
 	min = current->n;
@@ -76,7 +88,7 @@ int	ft_find_min(t_stack *stack)
 			min = current->n;
 		current = current->next;
 		if (current == stack)
-			break;
+			break ;
 	}
 	return (min);
 }
