@@ -6,11 +6,16 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 18:36:33 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/29 18:37:45 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/30 08:57:15 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
+
+int	ft_abs(int nbr)
+{
+	return ((nbr) * ((nbr >= 0) * 2 - 1));
+}
 
 int	ft_calculate_rotate(t_stack *stack, int index)
 {
@@ -65,12 +70,12 @@ t_chipset	ft_calculate_command(t_stack *a, int index, t_stack *b, int n)
 	command.b_rotate = ft_calculate_b_rotate(b, n);
 	if (command.a_rotate * command.b_rotate > 0)
 	{
-		if (ABS(command.a_rotate) > ABS(command.b_rotate))
-			command.cost = ABS(command.a_rotate);
+		if (ft_abs(command.a_rotate) > ft_abs(command.b_rotate))
+			command.cost = ft_abs(command.a_rotate);
 		else
-			command.cost = ABS(command.b_rotate);
+			command.cost = ft_abs(command.b_rotate);
 	}
 	else
-		command.cost = ABS(command.a_rotate) + ABS(command.b_rotate);
+		command.cost = ft_abs(command.a_rotate) + ft_abs(command.b_rotate);
 	return (command);
 }

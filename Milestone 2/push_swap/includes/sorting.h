@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 21:22:53 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/29 21:22:54 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/30 09:06:44 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "push_swap_utils.h"
 
-// Sorting Functions
 void	ft_sort_two(t_stack **a);
 void	ft_sort_three(t_stack **a);
 void	ft_sort_four(t_stack **a, t_stack **b);

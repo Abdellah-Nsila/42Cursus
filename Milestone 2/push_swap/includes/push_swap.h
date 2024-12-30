@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 21:22:50 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/29 21:26:01 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/30 09:02:11 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,13 @@
 #  define INT_MIN -2147483648
 # endif
 
-# define ABS(nbr) ((nbr) * ((nbr >= 0) * 2 - 1))
-
-enum stack
+enum e_stack
 {
 	STACK_A,
 	STACK_B,
 };
 
-enum command
+enum e_command
 {
 	SA,
 	SB,

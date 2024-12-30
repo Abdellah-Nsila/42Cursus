@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 21:22:47 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/29 21:22:48 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/30 09:09:03 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 typedef struct s_stack
 {
-	int		n;
+	int				n;
 	struct s_stack	*prev;
 	struct s_stack	*next;
-}	t_stack ;
+}	t_stack;
 
 t_stack		*new(int n);
 t_stack		*last(t_stack *stack);

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 21:21:28 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/29 21:22:02 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/30 09:02:38 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int			ft_find_max(t_stack *stack);
 int			ft_find_min(t_stack *stack);
 int			ft_find_pos(t_stack *stack, int n, int f, int i);
 
+int			ft_abs(int nbr);
 int			ft_calculate_rotate(t_stack *stack, int index);
 int			ft_calculate_a_rotate(t_stack *stack, int n);
 int			ft_calculate_b_rotate(t_stack *stack, int n);
