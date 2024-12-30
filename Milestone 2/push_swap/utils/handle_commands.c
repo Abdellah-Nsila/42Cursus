@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 18:38:30 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/29 18:39:17 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/30 20:02:31 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,15 @@ void	ss(t_stack **a, t_stack **b)
 
 void	pa_pb(t_stack **to_stack, t_stack **from_stack)
 {
+	if (!from_stack || !*from_stack || !(*from_stack)->next)
+		return ;
 	push(to_stack, pop(from_stack));
 }
 
 void	ra_rb_rra_rrb(t_stack **stack, int type)
 {
+	if (!stack || !*stack || stack_size(*stack) < 2)
+		return ;
 	if ((*stack)->next == *stack)
 		return ;
 	if (type == RA || type == RB)
