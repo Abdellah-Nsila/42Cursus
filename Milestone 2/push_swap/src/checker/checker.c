@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 18:05:31 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/30 10:34:02 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/30 11:12:41 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	main(int ac, char **av)
 	if (ft_check_is_sorted(a) && b == NULL)
 		ft_printf("OK\n");
 	else
-		ft_printf("KO\n", 1);
+		ft_printf("KO\n");
 	ft_clear(&a);
 	ft_clear(&b);
 	exit(0);
