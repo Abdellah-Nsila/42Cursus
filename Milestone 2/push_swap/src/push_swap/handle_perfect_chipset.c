@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 18:12:12 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/29 18:36:05 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/30 09:18:37 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_run_perfect_rotation(t_stack **a, t_stack **b, int x_rot, int stack)
 			ft_execute_command(a, b, RA + stack, 1);
 	else if (x_rot < 0)
 	{
-		x_rot = ABS(x_rot);
+		x_rot = ft_abs(x_rot);
 		while (x_rot-- > 0)
 			ft_execute_command(a, b, RRA + stack, 1);
 	}
