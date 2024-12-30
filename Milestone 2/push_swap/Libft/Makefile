@@ -25,7 +25,7 @@ LIBC = ar rcs
 CC = cc
 INCLUDES = ./includes
 RM = rm -f
-CFLAGS = -Wall -Wextra -Werror -g -I${INCLUDES}
+CFLAGS = -Wall -Wextra -Werror -I${INCLUDES}
 
 all: $(NAME)
 
