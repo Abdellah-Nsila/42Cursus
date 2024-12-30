@@ -6,11 +6,13 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:39:38 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/26 17:49:10 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/30 10:28:56 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "libft.h"
+#include "ft_printf.h"
 
 char	*ft_append_buff(char **static_var, char *buff, ssize_t rb)
 {
@@ -45,13 +47,18 @@ char	*ft_get_line(char **static_var, char *end_line)
 	if (!line)
 		return (_ft_clean(static_var));
 	_ft_strlcpy(line, *static_var, len + 1);
-	remaining_len = _ft_strlen(end_line + 1);
-	new_static_var = (char *)malloc((remaining_len + 1) * sizeof(char));
-	if (!new_static_var)
-		return (_ft_clean(static_var));
-	_ft_strlcpy(new_static_var, end_line + 1, remaining_len + 1);
-	_ft_clean(static_var);
-	*static_var = new_static_var;
+	if (*(end_line + 1))
+	{
+		remaining_len = _ft_strlen(end_line + 1);
+		new_static_var = (char *)malloc((remaining_len + 1) * sizeof(char));
+		if (!new_static_var)
+			return (_ft_clean(static_var));
+		_ft_strlcpy(new_static_var, end_line + 1, remaining_len + 1);
+		_ft_clean(static_var);
+		*static_var = new_static_var;
+	}
+	else
+		_ft_clean(static_var);
 	return (line);
 }
 

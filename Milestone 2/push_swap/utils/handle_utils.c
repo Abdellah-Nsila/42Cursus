@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 18:48:02 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/29 21:09:42 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/30 10:33:48 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,15 @@ void	ft_execute_command(t_stack **a, t_stack **b, int type, int flag)
 		else
 			ft_execute_single_stack(b, type, flag, cmd.command);
 	}
-	else
+	else if (type == PA || type == PB || type == RR || type == RRR)
 	{
 		ft_execute_dual_stack(&cmd);
+	}
+	else
+	{
+		ft_putstr_fd("Error\n", 2);
+		ft_clear(a);
+		ft_clear(b);
+		exit(0);
 	}
 }

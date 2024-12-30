@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 18:05:31 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/29 18:06:57 by abnsila          ###   ########.fr       */
+/*   Updated: 2024/12/30 10:34:02 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ int	main(int ac, char **av)
 		return (0);
 	a = ft_init_stack(ac, av);
 	if (!a)
+	{
+		ft_putstr_fd("Error\n", 2);
 		exit(1);
+	}
 	b = NULL;
 	ft_read_instructions(&a, &b);
 	if (ft_check_is_sorted(a) && b == NULL)
