@@ -18,6 +18,7 @@ NAME = libft.a
 LIBC = ar rcs
 CC = cc
 RM = rm -f
+INCLUDES = ./includes
 CFLAGS = -Wall -Wextra -Werror
 
 all : $(NAME)
