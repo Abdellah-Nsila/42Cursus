@@ -6,46 +6,100 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:03 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/05 14:53:24 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/05 15:45:44 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-//! Pipe()
+int	ft_n_sum(int *arr, int start, int size)
+{
+	int	i;
+	int	s;
+
+	i = 0;
+	s = 0;
+	while (i < size)
+	{
+		s += arr[start + i];
+		i++;
+	}
+	return (s);
+}
+
+//! Practical use case for Fork() and Pipe()
 int	main(int ac, char **av)
 {
+	int	arr[] = {1, 2, 3, 8, 9, 7, 5, 6};
 	int	fd[2];
 	int	id;
-	int	x;
-	int	y;
+	int	size;
+	int	half;
 
+	size = sizeof(arr) / sizeof(int);
+	half = size - (size / 2);
 	if (pipe(fd) == -1)
 		return (printf("Error in opening pipe\n"), 1);
-	id  = fork();
+	id = fork();
 	if (id == -1)
 		return (printf("Error in forking process\n"), 1);
-	if (id != 0)
-		wait(NULL);
+	wait(NULL);
 	if (id == 0)
 	{
 		close(fd[0]);
-		printf("\nEnter a number: ");
-		scanf("%d", &x);
-		if (write(fd[1], &x, sizeof(int)) == -1)
+		int sum1;
+		sum1 = ft_n_sum(arr, 0, half);
+		if (write(fd[1], &sum1, sizeof(int)) == -1)
 			return (printf("Error in writing to pipe\n"), 1);
 		close(fd[1]);
 	}
 	else
 	{
 		close(fd[1]);
-		if (read(fd[0], &y, sizeof(int)) == -1)
+		int sum2;
+		if (read(fd[0], &sum2, sizeof(int)) == -1)
 			return (printf("Error in reading from pipe\n"), 1);
-		printf("\nYour number is: %d\n", y);
+		sum2 += ft_n_sum(arr, half, size / 2);
 		close(fd[0]);
+		printf("\nThe sum of arr: %d\n", sum2);
 	}
 	return (0);
 }
+
+// //! Pipe()
+// int	main(int ac, char **av)
+// {
+// 	int	fd[2];
+// 	int	id;
+// 	int	x;
+// 	int	y;
+
+// 	if (pipe(fd) == -1)
+// 		return (printf("Error in opening pipe\n"), 1);
+// 	id  = fork();
+// 	if (id == -1)
+// 		return (printf("Error in forking process\n"), 1);
+// 	if (id != 0)
+// 		wait(NULL);
+// 	if (id == 0)
+// 	{
+// 		close(fd[0]);
+// 		printf("\nEnter a number: ");
+// 		scanf("%d", &x);
+// 		if (write(fd[1], &x, sizeof(int)) == -1)
+// 			return (printf("Error in writing to pipe\n"), 1);
+// 		close(fd[1]);
+// 	}
+// 	else
+// 	{
+// 		close(fd[1]);
+// 		if (read(fd[0], &y, sizeof(int)) == -1)
+// 			return (printf("Error in reading from pipe\n"), 1);
+// 		printf("\nYour number is: %d\n", y);
+// 		close(fd[0]);
+// 	}
+// 	return (0);
+// }
 
 //! Multiple Fork()
 // int	main(int ac, char **av)
