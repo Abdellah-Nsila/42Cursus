@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 11:39:38 by abnsila           #+#    #+#             */
-/*   Updated: 2024/12/13 17:13:50 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/05 11:47:51 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,20 @@ char	*ft_get_line(char **static_var, char *end_line)
 	len = (end_line - *static_var) + 1;
 	line = (char *)malloc((len + 1) * sizeof(char));
 	if (!line)
-		return (ft_clean(static_var));
-	ft_strlcpy(line, *static_var, len + 1);
-	remaining_len = ft_strlen(end_line + 1);
-	new_static_var = (char *)malloc((remaining_len + 1) * sizeof(char));
-	if (!new_static_var)
-		return (ft_clean(static_var));
-	ft_strlcpy(new_static_var, end_line + 1, remaining_len + 1);
-	ft_clean(static_var);
-	*static_var = new_static_var;
+		return (_ft_clean(static_var));
+	_ft_strlcpy(line, *static_var, len + 1);
+	if (*(end_line + 1))
+	{
+		remaining_len = _ft_strlen(end_line + 1);
+		new_static_var = (char *)malloc((remaining_len + 1) * sizeof(char));
+		if (!new_static_var)
+			return (_ft_clean(static_var));
+		_ft_strlcpy(new_static_var, end_line + 1, remaining_len + 1);
+		_ft_clean(static_var);
+		*static_var = new_static_var;
+	}
+	else
+		_ft_clean(static_var);
 	return (line);
 }
 
