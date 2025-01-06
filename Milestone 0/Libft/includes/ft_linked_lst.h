@@ -3,22 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_linked_lst.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: znajdaou <znajdaou@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/31 10:59:07 by znajdaou          #+#    #+#             */
-/*   Updated: 2024/12/31 13:20:13 by znajdaou         ###   ########.fr       */
+/*   Created: 2025/01/06 21:12:17 by abnsila           #+#    #+#             */
+/*   Updated: 2025/01/06 21:16:48 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef FT_LINKED_LST_H
 # define FT_LINKED_LST_H
 
-// structure
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}					t_list;
+# include "structs.h"
 
 // struct list functions
 t_list				*ft_lstnew(void *content);
