@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/05 16:26:00 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/06 11:58:17 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@
 
 void	ft_printnums(int n);
 int		power(int n, int power);
+int     ft_n_sum(int *arr, int start, int size);
 
 #endif 

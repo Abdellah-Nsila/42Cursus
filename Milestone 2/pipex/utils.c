@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:05 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/05 11:45:06 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/06 11:58:08 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,19 @@ int	power(int n, int power)
 	while (power--)
 		res *= n;
 	return (res);
+}
+
+int	ft_n_sum(int *arr, int start, int size)
+{
+	int	i;
+	int	s;
+
+	i = 0;
+	s = 0;
+	while (i < size)
+	{
+		s += arr[start + i];
+		i++;
+	}
+	return (s);
 }

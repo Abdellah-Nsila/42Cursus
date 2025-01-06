@@ -6,84 +6,77 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:03 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/05 16:34:13 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/06 11:58:05 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-int	ft_n_sum(int *arr, int start, int size)
-{
-	int	i;
-	int	s;
 
-	i = 0;
-	s = 0;
-	while (i < size)
-	{
-		s += arr[start + i];
-		i++;
-	}
-	return (s);
-}
 
 
 
 
 //! Practical use case for Fork() and Pipe() (Home Work)
-int	main(int ac, char **av)
-{
-	int	arr[] = {1, 2, 3, 8, 9, 7, 5, 6};
-	int	fd[2];
-	int	id1;
-	int	id2;
-	int	size;
-	int	half;
+// int	main(int ac, char **av)
+// {
+// 	//TODO fix 4 size (use modulo, just an calc logic issue the main goal of pipe is done XD)
+// 	int	arr[] = {1, 2, 3, 4};
+// 	int	fd[2];
+// 	int	id1;
+// 	int	id2;
+// 	int	size;
+// 	int	ramaining;
+// 	int	half;
 
-	size = sizeof(arr) / sizeof(int);
-	half = size - (size / 2);
-	if (pipe(fd) == -1)
-		return (printf("Error in opening pipe\n"), 1);
-	id1 = fork();
-	wait(NULL);
-	id2 = fork();
-	wait(NULL);
-	if (id1 == 0)
-	{
-		if (id2 == 0)
-			printf("child 1 of child 1 of main process\n");
-		else
-			printf("child 1 of main process\n");
-	}
-	else
-	{
-		if (id2 == 0)
-			printf("child 2 of main process\n");
-		else
-			printf("main process\n");
-	}
+// 	size = sizeof(arr) / sizeof(int);
+// 	ramaining = size - (size / 3);
+// 	half = ramaining / 2;
+// 	if (size == 1)
+// 		return (printf("\nThe sum of arr: %d\n", arr[0]), 0);
+// 	if (pipe(fd) == -1)
+// 		return (printf("Error in opening pipe\n"), 1);
+// 	id1 = fork();
+// 	wait(NULL);
+// 	if (id1 != 0)
+// 		id2 = fork();
+// 	wait(NULL);
 	
-	// if (id == 0)
-	// {
-	// 	close(fd[0]);
-	// 	int sum1;
-	// 	sum1 = ft_n_sum(arr, 0, half);
-	// 	if (write(fd[1], &sum1, sizeof(int)) == -1)
-	// 		return (printf("Error in writing to pipe\n"), 1);
-	// 	close(fd[1]);
-	// }
-	// else
-	// {
-	// 	close(fd[1]);
-	// 	int sum2;
-	// 	if (read(fd[0], &sum2, sizeof(int)) == -1)
-	// 		return (printf("Error in reading from pipe\n"), 1);
-	// 	sum2 += ft_n_sum(arr, half, size / 2);
-	// 	close(fd[0]);
-	// 	printf("\nThe sum of arr: %d\n", sum2);
-	// }
-	return (0);
-}
+// 	if (id1 == 0)
+// 	{
+// 		close(fd[0]);
+// 		int sum1;
+// 		sum1 = 0;
+// 		sum1 = ft_n_sum(arr, 0, half);
+// 		if (write(fd[1], &sum1, sizeof(int)) == -1)
+// 			return (printf("Error in writing to pipe\n"), 1);
+// 		close(fd[1]);
+// 	}
+// 	else if (id2 == 0)
+// 	{
+// 		int sum2;
+// 		sum2 = 0;
+// 		if (read(fd[0], &sum2, sizeof(int)) == -1)
+// 			return (printf("Error in reading from pipe\n"), 1);
+// 		sum2 += ft_n_sum(arr, half, half);
+// 		if (write(fd[1], &sum2, sizeof(int)) == -1)
+// 			return (printf("Error in writing to pipe\n"), 1);
+// 		close(fd[0]);
+// 		close(fd[1]);
+// 	}
+// 	else
+// 	{	
+// 		close(fd[1]);
+// 		int sum3;
+// 		sum3 = 0;
+// 		if (read(fd[0], &sum3, sizeof(int)) == -1)
+// 			return (printf("Error in reading from pipe\n"), 1);
+// 		sum3 += ft_n_sum(arr, half*2, size - ramaining);
+// 		close(fd[0]);
+// 		printf("\nThe sum of arr: %d\n", sum3);
+// 	}
+// 	return (0);
+// }
 
 //! Practical use case for Fork() and Pipe()
 // int	main(int ac, char **av)
