@@ -16,21 +16,21 @@ int	main(int ac, char **av)
 	fd = open("fifoData", O_RDONLY);
 	if (fd == -1)
 		printf("Error in opening file");
+	if (read(fd, arr, sizeof(arr)) == -1)
+		printf("Error in reading file");
 	i = 0;
-	while ((rb = read(fd, &arr[i], sizeof(int))))
+	while (i <  sizeof(arr) / 4)
 	{
-		if (rb == -1)
-			printf("Error in reading file");
-        sum += arr[i];
+		sum += arr[i];
 		i++;
 	}
 	close(fd);
 
-	// Write Sum Numbers to Fifo
-    fd = open("fifoData", O_WRONLY);
+	// Write Sum Numbers into Fifo
+	fd = open("fifoData", O_WRONLY);
 	if (fd == -1)
 		printf("Error in opening file");
-    if (write(fd, &sum, sizeof(arr[i])) == -1)
+	if (write(fd, &sum, sizeof(arr[i])) == -1)
 			printf("Error in writing file");
 	close(fd);
 	return (0);

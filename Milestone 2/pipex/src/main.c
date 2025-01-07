@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:03 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/07 17:16:42 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/07 17:27:47 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ int	main(int ac, char **av)
 	fd = open("fifoData", O_WRONLY);
 	if (fd == -1)
 		printf("Error in opening file");
+	if (write(fd, arr, sizeof(arr)) == -1)
+		printf("Error in writing file");
 	i = 0;
-	while (i < 5)
+	while (i <  sizeof(arr) / 4)
 	{
-		if (write(fd, &arr[i], sizeof(arr[i])) == -1)
-			printf("Error in writing file");
-        printf("Num: %d\n", arr[i]);
+		printf("Num: %d\n", arr[i]);
 		i++;
 	}
 	close(fd);
@@ -49,12 +49,8 @@ int	main(int ac, char **av)
 	fd = open("fifoData", O_RDONLY);
 	if (fd == -1)
 		printf("Error in opening file");
-	while ((rb = read(fd, &sum, sizeof(int))))
-	{
-		if (rb == -1)
-			printf("Error in reading file");
-		i++;
-	}
+	if (read(fd, &sum, sizeof(int)) == -1)
+		printf("Error in reading file");
     printf("Sum: %d\n", sum);
 	close(fd);
 	return (0);
