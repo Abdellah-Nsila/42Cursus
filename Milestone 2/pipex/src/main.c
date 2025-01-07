@@ -6,15 +6,37 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:03 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/06 13:14:03 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/07 15:27:24 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
+int	main(int ac, char **av)
+{
+	int	fd;
+	int	i;
 
-
-
+	if (!ac && !av)
+		return (1);
+	if (mkfifo("myfifo1", 0777) == -1)
+	{
+		if (errno != EEXIST)
+		{
+			ft_printf("Coild not create fifo file\n");
+			return (1);
+		}
+	}
+	fd = open("myfifo1", O_WRONLY);
+	i = 0;
+	while (i < 100)
+	{
+		write(fd, "Hello\n", 7);
+		i++;
+	}
+	close(fd);
+	return (0);
+}
 
 
 //! Practical use case for Fork() and Pipe() (Home Work)

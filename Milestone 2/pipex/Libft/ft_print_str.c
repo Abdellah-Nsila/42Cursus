@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ft_print_str.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/05 11:45:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/06 11:58:17 by abnsila          ###   ########.fr       */
+/*   Created: 2024/12/05 17:54:58 by abnsila           #+#    #+#             */
+/*   Updated: 2024/12/07 15:23:26 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "ft_printf.h"
 
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-# include <fcntl.h>
-#include <sys/wait.h>
+int	ft_print_str(char *s)
+{
+	size_t	i;
 
-void	ft_printnums(int n);
-int		power(int n, int power);
-int     ft_n_sum(int *arr, int start, int size);
-
-#endif 
+	if (!s)
+		return (ft_print_str("(null)"));
+	i = 0;
+	while (s[i])
+	{
+		ft_print_char(s[i]);
+		i++;
+	}
+	return (i);
+}
