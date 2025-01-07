@@ -6,55 +6,89 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:03 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/07 17:27:47 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/07 17:48:33 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/utils.h"
 
-//! Fifo => mkfifi()
-int	main(int ac, char **av)
+
+int 	main(int ac, char **av)
 {
-	int		fd;
-	int		arr[5] = {5, 9, 17, 20, 3};
-	int		i;
-	int		rb;
-	int		sum;
-
-	if (!ac && !av)
-		return (1);
-	if (mkfifo("fifoData", 0777) == -1)
+	int	fd[2];
+	int	id;
+	int num;
+	
+	num = 5;
+	if (pipe(fd) == -1)
+		printf("Error in create pipe\n");
+	if (write(fd[1], &num, sizeof(int)) == -1)
+		printf("Error in writing to pipe\n");
+	id = fork();
+	wait(NULL);
+	if (id == 0)
 	{
-		if (errno != EEXIST)
-		{
-			printf("Could not create fifo file\n");
-			return (1);
-		}
+		int	x;
+		if (read(fd[0], &x, sizeof(int)) == -1)
+			printf("Error in reading from pipe\n");
+		x *= 4;
+		if (write(fd[1], &x, sizeof(int)) == -1)
+		printf("Error in writing to pipe\n");
 	}
-	// Write Numbers to Fifo
-	fd = open("fifoData", O_WRONLY);
-	if (fd == -1)
-		printf("Error in opening file");
-	if (write(fd, arr, sizeof(arr)) == -1)
-		printf("Error in writing file");
-	i = 0;
-	while (i <  sizeof(arr) / 4)
+	else
 	{
-		printf("Num: %d\n", arr[i]);
-		i++;
+		if (read(fd[0], &num, sizeof(int)) == -1)
+			printf("Error in reading from pipe\n");
+		printf("The num: %d\n", num);
 	}
-	close(fd);
-
-	// Read Sum Numbers from Fifo
-	fd = open("fifoData", O_RDONLY);
-	if (fd == -1)
-		printf("Error in opening file");
-	if (read(fd, &sum, sizeof(int)) == -1)
-		printf("Error in reading file");
-    printf("Sum: %d\n", sum);
-	close(fd);
+	close(fd[0]);
+	close(fd[1]);
 	return (0);
 }
+
+//! Fifo => mkfifi()
+// int	main(int ac, char **av)
+// {
+// 	int		fd;
+// 	int		arr[5] = {5, 9, 17, 20, 3};
+// 	int		i;
+// 	int		rb;
+// 	int		sum;
+
+// 	if (!ac && !av)
+// 		return (1);
+// 	if (mkfifo("fifoData", 0777) == -1)
+// 	{
+// 		if (errno != EEXIST)
+// 		{
+// 			printf("Could not create fifo file\n");
+// 			return (1);
+// 		}
+// 	}
+// 	// Write Numbers to Fifo
+// 	fd = open("fifoData", O_WRONLY);
+// 	if (fd == -1)
+// 		printf("Error in opening file");
+// 	if (write(fd, arr, sizeof(arr)) == -1)
+// 		printf("Error in writing file");
+// 	i = 0;
+// 	while (i <  sizeof(arr) / 4)
+// 	{
+// 		printf("Num: %d\n", arr[i]);
+// 		i++;
+// 	}
+// 	close(fd);
+
+// 	// Read Sum Numbers from Fifo
+// 	fd = open("fifoData", O_RDONLY);
+// 	if (fd == -1)
+// 		printf("Error in opening file");
+// 	if (read(fd, &sum, sizeof(int)) == -1)
+// 		printf("Error in reading file");
+//     printf("Sum: %d\n", sum);
+// 	close(fd);
+// 	return (0);
+// }
 
 //! Fifo => mkfifi()
 // int	main(int ac, char **av)

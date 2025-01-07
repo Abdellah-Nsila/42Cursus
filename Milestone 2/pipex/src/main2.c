@@ -1,5 +1,6 @@
 #include "../includes/utils.h"
 
+//? Command to build two executable programme
 // gcc src/main.c src/utils.c includes/utils.h -o m1 && gcc src/main2.c src/utils.c includes/utils.h -o m2
 
 int	main(int ac, char **av)
