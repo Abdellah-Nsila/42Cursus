@@ -6,37 +6,89 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:03 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/07 15:27:24 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/07 17:16:42 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "../includes/utils.h"
 
+//! Fifo => mkfifi()
 int	main(int ac, char **av)
 {
-	int	fd;
-	int	i;
+	int		fd;
+	int		arr[5] = {5, 9, 17, 20, 3};
+	int		i;
+	int		rb;
+	int		sum;
 
 	if (!ac && !av)
 		return (1);
-	if (mkfifo("myfifo1", 0777) == -1)
+	if (mkfifo("fifoData", 0777) == -1)
 	{
 		if (errno != EEXIST)
 		{
-			ft_printf("Coild not create fifo file\n");
+			printf("Could not create fifo file\n");
 			return (1);
 		}
 	}
-	fd = open("myfifo1", O_WRONLY);
+	// Write Numbers to Fifo
+	fd = open("fifoData", O_WRONLY);
+	if (fd == -1)
+		printf("Error in opening file");
 	i = 0;
-	while (i < 100)
+	while (i < 5)
 	{
-		write(fd, "Hello\n", 7);
+		if (write(fd, &arr[i], sizeof(arr[i])) == -1)
+			printf("Error in writing file");
+        printf("Num: %d\n", arr[i]);
 		i++;
 	}
 	close(fd);
+
+	// Read Sum Numbers from Fifo
+	fd = open("fifoData", O_RDONLY);
+	if (fd == -1)
+		printf("Error in opening file");
+	while ((rb = read(fd, &sum, sizeof(int))))
+	{
+		if (rb == -1)
+			printf("Error in reading file");
+		i++;
+	}
+    printf("Sum: %d\n", sum);
+	close(fd);
 	return (0);
 }
+
+//! Fifo => mkfifi()
+// int	main(int ac, char **av)
+// {
+// 	int		fd;
+// 	int		i;
+
+// 	if (!ac && !av)
+// 		return (1);
+// 	if (mkfifo("myfifo1", 0777) == -1)
+// 	{
+// 		if (errno != EEXIST)
+// 		{
+// 			printf("Could not create fifo file\n");
+// 			return (1);
+// 		}
+// 	}
+// 	fd = open("myfifo1", O_RDWR);
+// 	if (fd == -1)
+// 		printf("Error in opening file");
+// 	i = 0;
+// 	while (i < 100)
+// 	{
+// 		if (write(fd, "Hello\n", 7) == -1)
+// 			printf("Error in writing file");
+// 		i++;
+// 	}
+// 	close(fd);
+// 	return (0);
+// }
 
 
 //! Practical use case for Fork() and Pipe() (Home Work)

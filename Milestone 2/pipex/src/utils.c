@@ -6,11 +6,11 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:05 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/06 11:58:08 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/07 15:54:07 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "../includes/utils.h"
 
 void	ft_printnums(int n)
 {
