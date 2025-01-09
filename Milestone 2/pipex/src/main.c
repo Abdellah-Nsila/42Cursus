@@ -6,45 +6,92 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:03 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/07 17:48:33 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/09 09:41:44 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/utils.h"
 
 
-int 	main(int ac, char **av)
-{
-	int	fd[2];
-	int	id;
-	int num;
+// ! Two way communication between processes (using pipes) in C
+//? Methode [1]
+// int 	main(int ac, char **av)
+// {
+// 	int	fd1[2];
+// 	int	fd2[2];
+// 	int	id;	
+
+// 	if (pipe(fd1) == -1)
+// 			printf("Error in create pipe fd1\n");
+// 	if (pipe(fd2) == -1)
+// 			printf("Error in create pipe fd2\n");
+// 	id = fork();
+// 	if (id == 0)
+// 	{
+// 		close(fd2[1]);
+// 		close(fd1[0]);
+// 		int	x;
+// 		if (read(fd2[0], &x, sizeof(int)) == -1)
+// 			printf("Error in reading from pipe\n");
+// 		x *= 4;
+// 		if (write(fd1[1], &x, sizeof(int)) == -1)
+// 		printf("Error in writing to pipe\n");
+// 		close(fd2[0]);
+// 		close(fd1[1]);
+// 	}
+// 	else
+// 	{
+// 		close(fd1[1]);
+// 		close(fd2[0]);
+// 		int num = 5;
+// 		if (write(fd2[1], &num, sizeof(int)) == -1)
+// 			printf("Error in writing to pipe\n");
+
+// 		if (read(fd1[0], &num, sizeof(int)) == -1)
+// 			printf("Error in reading from pipe\n");
+// 		printf("The num: %d\n", num);
+// 		close(fd1[0]);
+// 		close(fd2[1]);
+// 		wailt(NULL);
+// 	}
+// 	close(fd1[0]);
+// 	close(fd2[1]);
+// 	return (0);
+// }
+
+//? Methode [2]
+// int 	main(int ac, char **av)
+// {
+// 	int	fd[2];
+// 	int	id;
+// 	int num;
 	
-	num = 5;
-	if (pipe(fd) == -1)
-		printf("Error in create pipe\n");
-	if (write(fd[1], &num, sizeof(int)) == -1)
-		printf("Error in writing to pipe\n");
-	id = fork();
-	wait(NULL);
-	if (id == 0)
-	{
-		int	x;
-		if (read(fd[0], &x, sizeof(int)) == -1)
-			printf("Error in reading from pipe\n");
-		x *= 4;
-		if (write(fd[1], &x, sizeof(int)) == -1)
-		printf("Error in writing to pipe\n");
-	}
-	else
-	{
-		if (read(fd[0], &num, sizeof(int)) == -1)
-			printf("Error in reading from pipe\n");
-		printf("The num: %d\n", num);
-	}
-	close(fd[0]);
-	close(fd[1]);
-	return (0);
-}
+// 	num = 5;
+// 	if (pipe(fd) == -1)
+// 		printf("Error in create pipe\n");
+// 	if (write(fd[1], &num, sizeof(int)) == -1)
+// 		printf("Error in writing to pipe\n");
+// 	id = fork();
+// 	wait(NULL);
+// 	if (id == 0)
+// 	{
+// 		int	x;
+// 		if (read(fd[0], &x, sizeof(int)) == -1)
+// 			printf("Error in reading from pipe\n");
+// 		x *= 4;
+// 		if (write(fd[1], &x, sizeof(int)) == -1)
+// 		printf("Error in writing to pipe\n");
+// 	}
+// 	else
+// 	{
+// 		if (read(fd[0], &num, sizeof(int)) == -1)
+// 			printf("Error in reading from pipe\n");
+// 		printf("The num: %d\n", num);
+// 	}
+// 	close(fd[0]);
+// 	close(fd[1]);
+// 	return (0);
+// }
 
 //! Fifo => mkfifi()
 // int	main(int ac, char **av)
