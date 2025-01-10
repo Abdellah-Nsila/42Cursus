@@ -6,12 +6,28 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:03 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/09 09:41:44 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/10 12:19:04 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/utils.h"
 
+// int 	main(int argc, char **argv, char **envp)
+int 	main(void)
+{
+	char	cmd[] = "/usr/bin/ls";
+	char	*arg_vec[] = {"ls", "-l", "/home", NULL};
+	char	*env_vec[] = {NULL};
+
+	printf("======== Start execution execve(): %s ========\n", cmd);
+	if (execve(cmd, arg_vec, env_vec) == -1)
+	{
+		perror("Error in execve()\n");
+	}
+	printf("================================================\n");
+	printf("Error detected\n");
+	return (0);
+}
 
 // ! Two way communication between processes (using pipes) in C
 //? Methode [1]
