@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:03 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/10 17:20:49 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/10 17:51:04 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,33 +15,47 @@
 
 int 	main(void)
 {
-	int id = fork();
-	if (id == -1)
+	int pid = fork();
+	if (pid == -1)
+	{	
 		perror("Error in forking\n");
+		return (1);
+	}
 
-	if (id == 0)
+	if (pid == 0)
 	{
 		char	cmd[] = "/usr/bin/ping";
-		char	*arg_vec[] = {"ping","-c", "10", "google.com", NULL};
+		char	*arg_vec[] = {"ping","-c", "3", "google.com", NULL};
 		char	*env_vec[] = {NULL};
 
 		int	fd = open("pingResult.txt", O_WRONLY | O_CREAT, 0777);
 		if (fd == -1)
+		{	
 			printf("Error on opening file\n");
+			return (1);
+		}
 		printf("The fd of pingResult.txt %d\n", fd);
 		int	fd2 = dup2(fd, STDOUT_FILENO);
 
-		printf("======== Start execution execve(): %s ========\n", cmd);
+		printf("========= Start execution execve(): %s =========\n", cmd);
 		if (execve(cmd, arg_vec, env_vec) == -1)
 		{
 			perror("Error in execve()\n");
+			return (2);
 		}
-		printf("================================================\n");
-		printf("Error detected\n");
 	}
 	else
 	{
-		wait(NULL);
+		int	wstatus;
+		wait(&wstatus);
+		if (WIFEXITED(wstatus))
+		{
+			int	statusCode = WEXITSTATUS(wstatus);
+			if (statusCode == 0)
+				printf("Success, exit(%d)\n", statusCode);
+			else
+				printf("Failure, exit(%d)\n", statusCode);
+		}
 		printf("Child Process executed Go to Main Process\n");
 	}
 	return (0);
