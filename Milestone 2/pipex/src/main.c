@@ -6,37 +6,72 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:03 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/10 16:28:46 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/10 17:20:49 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/utils.h"
 
 
-int	main()
+int 	main(void)
 {
-	char	cmd[] = "/usr/bin/ping";
-	char	*arg_vec[] = {"ping","-c", "1", "google.com", NULL};
-	char	*env_vec[] = {NULL};
+	int id = fork();
+	if (id == -1)
+		perror("Error in forking\n");
 
-	int	fd = open("pingResult.txt", O_WRONLY | O_CREAT, 0777);
-	if (fd == -1)
-		printf("Error on opening file\n");
-	printf("The fd of pingResult.txt %d\n", fd);
-	int	fd2 = dup2(fd, STDOUT_FILENO);
-	// printf("The duplicated fd of pingResult.txt %d\n", fd2);
-
-	printf("======== Start execution execve(): %s ========\n", cmd);
-	if (execve(cmd, arg_vec, env_vec) == -1)
+	if (id == 0)
 	{
-		perror("Error in execve()\n");
+		char	cmd[] = "/usr/bin/ping";
+		char	*arg_vec[] = {"ping","-c", "10", "google.com", NULL};
+		char	*env_vec[] = {NULL};
+
+		int	fd = open("pingResult.txt", O_WRONLY | O_CREAT, 0777);
+		if (fd == -1)
+			printf("Error on opening file\n");
+		printf("The fd of pingResult.txt %d\n", fd);
+		int	fd2 = dup2(fd, STDOUT_FILENO);
+
+		printf("======== Start execution execve(): %s ========\n", cmd);
+		if (execve(cmd, arg_vec, env_vec) == -1)
+		{
+			perror("Error in execve()\n");
+		}
+		printf("================================================\n");
+		printf("Error detected\n");
 	}
-	printf("================================================\n");
-	printf("Error detected\n");
+	else
+	{
+		wait(NULL);
+		printf("Child Process executed Go to Main Process\n");
+	}
 	return (0);
 }
 
-//! EXECVE()
+//! EXECVE() + DUP2()
+// int	main()
+// {
+// 	char	cmd[] = "/usr/bin/ping";
+// 	char	*arg_vec[] = {"ping","-c", "1", "google.com", NULL};
+// 	char	*env_vec[] = {NULL};
+
+// 	int	fd = open("pingResult.txt", O_WRONLY | O_CREAT, 0777);
+// 	if (fd == -1)
+// 		printf("Error on opening file\n");
+// 	printf("The fd of pingResult.txt %d\n", fd);
+// 	int	fd2 = dup2(fd, STDOUT_FILENO);
+// 	// printf("The duplicated fd of pingResult.txt %d\n", fd2);
+
+// 	printf("======== Start execution execve(): %s ========\n", cmd);
+// 	if (execve(cmd, arg_vec, env_vec) == -1)
+// 	{
+// 		perror("Error in execve()\n");
+// 	}
+// 	printf("================================================\n");
+// 	printf("Error detected\n");
+// 	return (0);
+// }
+
+//! EXECVE(), execute onother executable (Ex: C programme)
 // int 	main(void)
 // {
 // 	char	cmd[] = "./arg.out";
@@ -53,6 +88,7 @@ int	main()
 // 	return (0);
 // }
 
+//! EXECVE(), execute a Shell command
 // int 	main(void)
 // {
 // 	char	cmd[] = "/usr/bin/ls";
