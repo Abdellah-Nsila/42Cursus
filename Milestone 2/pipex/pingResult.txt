@@ -1,0 +1,21 @@
+======== Start execution execve(): /usr/bin/ping ========
+PING google.com (142.250.201.78) 56(84) bytes of data.
+64 bytes from mad07s25-in-f14.1e100.net (142.250.201.78): icmp_seq=1 ttl=113 time=27.6 ms
+64 bytes from mad07s25-in-f14.1e100.net (142.250.201.78): icmp_seq=2 ttl=113 time=62.9 ms
+64 bytes from mad07s25-in-f14.1e100.net (142.250.201.78): icmp_seq=3 ttl=113 time=25.4 ms
+64 bytes from mad07s25-in-f14.1e100.net (142.250.201.78): icmp_seq=4 ttl=113 time=27.9 ms
+64 bytes from mad07s25-in-f14.1e100.net (142.250.201.78): icmp_seq=5 ttl=113 time=25.7 ms
+64 bytes from mad07s25-in-f14.1e100.net (142.250.201.78): icmp_seq=6 ttl=113 time=26.0 ms
+64 bytes from mad07s25-in-f14.1e100.net (142.250.201.78): icmp_seq=7 ttl=113 time=26.1 ms
+64 bytes from mad07s25-in-f14.1e100.net (142.250.201.78): icmp_seq=8 ttl=113 time=25.4 ms
+64 bytes from mad07s25-in-f14.1e100.net (142.250.201.78): icmp_seq=9 ttl=113 time=25.5 ms
+64 bytes from mad07s25-in-f14.1e100.net (142.250.201.78): icmp_seq=10 ttl=113 time=25.5 ms
+64 bytes from mad07s25-in-f14.1e100.net (142.250.201.78): icmp_seq=11 ttl=113 time=25.4 ms
+64 bytes from mad07s25-in-f14.1e100.net (142.250.201.78): icmp_seq=12 ttl=113 time=26.5 ms
+64 bytes from mad07s25-in-f14.1e100.net (142.250.201.78): icmp_seq=13 ttl=113 time=37.4 ms
+64 bytes from mad07s25-in-f14.1e100.net (142.250.201.78): icmp_seq=14 ttl=113 time=25.4 ms
+64 bytes from mad07s25-in-f14.1e100.net (142.250.201.78): icmp_seq=15 ttl=113 time=25.4 ms
+
+--- google.com ping statistics ---
+15 packets transmitted, 15 received, 0% packet loss, time 14022ms
+rtt min/avg/max/mdev = 25.409/29.208/62.866/9.466 ms
