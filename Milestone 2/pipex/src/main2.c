@@ -1,14 +1,47 @@
 #include "../includes/utils.h"
 
-
-int	main(int argc, char **argv)
+int	main(int ac, char **av)
 {
-	for (int i = 0; i < argc; i++)
+	int		fd;
+	int		arr[5];
+	int		i;
+	int		rb;
+	int		sum;
+
+	if (!ac && !av)
+		return (1);
+	// Read Numbers from Fifo
+	fd = open("fifoData", O_RDONLY);
+	if (fd == -1)
+		printf("Error in opening file");
+	if (read(fd, arr, sizeof(arr)) == -1)
+		printf("Error in reading file");
+	i = 0;
+	while (i <  sizeof(arr) / 4)
 	{
-		printf("argv[%d]: %s\n",i,  argv[i]);
+		sum += arr[i];
+		i++;
 	}
+	close(fd);
+
+	// Write Sum Numbers into Fifo
+	fd = open("fifoData", O_WRONLY);
+	if (fd == -1)
+		printf("Error in opening file");
+	if (write(fd, &sum, sizeof(arr[i])) == -1)
+			printf("Error in writing file");
+	close(fd);
 	return (0);
 }
+
+// int	main(int argc, char **argv)
+// {
+// 	for (int i = 0; i < argc; i++)
+// 	{
+// 		printf("argv[%d]: %s\n",i,  argv[i]);
+// 	}
+// 	return (0);
+// }
 
 
 //? Command to build two executable programme
