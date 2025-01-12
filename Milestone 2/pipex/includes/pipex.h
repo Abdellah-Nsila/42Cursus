@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/12 18:15:59 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/12 18:56:04 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,24 @@
 
 #include "../Libft/includes/libft.h"
 
+
+typedef struct	s_pipex
+{
+	int		infile_fd;
+	int		oufile_fd;
+	t_bool	here_doc;
+	t_bool	is_invalid_infile;
+	char	*infile;
+	char	*oufile;
+	char	**cmd_paths;
+	char	***cmd_args;
+	char	**cmd_envs;
+	int		cmd_count;
+}	t_pipex;
+
 void	ft_close_fds(int (*fd)[2], int i);
 void	ft_printnums(int n);
 int		power(int n, int power);
-int     ft_n_sum(int *arr, int start, int size);
+int		ft_n_sum(int *arr, int start, int size);
 
 #endif 
