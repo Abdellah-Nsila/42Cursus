@@ -6,18 +6,139 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:03 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/12 13:21:52 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/12 16:31:16 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/utils.h"
 
-//! Test Simulate pipe "|" operation
 int 	main(int ac, char **av)
 {
+	int	ch_proc = 3;
+	int	i = 0;
+	int	fd[ch_proc][2];
+	while (i < ch_proc)
+	{
+		if (pipe(fd[i]) < 0)
+			printf("Error in opening pipe fd[%d][2]\n", i);
+		i++;
+	}
+
+	int pid1 = fork();
+	if (pid1 == -1)
+		printf("Error in forking\n");
+	if (pid1 == 0)
+	{
+		char	cmd[] = "/usr/bin/ping";
+		char	*arg_vec[] = {"ping","-c", "3", "google.com", NULL};
+		char	*env_vec[] = {NULL};
+		dup2(fd[0][1], STDOUT_FILENO);
+		ft_close_fds(fd, ch_proc);
+		if (execve(cmd, arg_vec, env_vec) == -1)
+			return (2);
+		
+	}
+
+	int pid2 = fork();
+	if (pid2 == -1)
+		printf("Error in forking\n");
+
+	if (pid2 == 0)
+	{
+		char	cmd[] = "/usr/bin/grep";
+		char	*arg_vec[] = {"grep", "rtt", NULL};
+		char	*env_vec[] = {NULL};
+		dup2(fd[0][0], STDIN_FILENO);
+		dup2(fd[1][1], STDOUT_FILENO);
+		ft_close_fds(fd, ch_proc);
+		if (execve(cmd, arg_vec, env_vec) == -1)
+		{
+			perror("Error in execve()\n");
+			return (2);
+		}
+	}
+
+	int pid3 = fork();
+	if (pid3 == -1)
+		printf("Error in forking\n");
+
+	if (pid3 == 0)
+	{
+		char	cmd[] = "/usr/bin/wc";
+		char	*arg_vec[] = {"wc", "-c", NULL};
+		char	*env_vec[] = {NULL};
+		dup2(fd[1][0], STDIN_FILENO);
+		ft_close_fds(fd, ch_proc);
+		if (execve(cmd, arg_vec, env_vec) == -1)
+		{
+			perror("Error in execve()\n");
+			return (2);
+		}
+	}
+
+	ft_close_fds(fd, ch_proc);
+	waitpid(pid1, NULL, 0);
+	waitpid(pid2, NULL, 0);
+	printf("Success\n");
 	return (0);
 }
 
+
+// Let's create  two child process, the depthest child execute the first command, 
+// get the ouput of the commnd using execve(), store the output in the pipe
+// come back to the parrent process, to execute the second command using the pipe output as 
+// inputs file, and store the final output to the pipe
+//! Test Simulate pipe "|" operation
+// int 	main(int ac, char **av)
+// {
+// 	int	fd[2];
+// 	if (pipe(fd) == -1)
+// 		printf("Error in creating pipe\n");
+// 	int pid1 = fork();
+// 	if (pid1 == -1)
+// 		printf("Error in forking\n");
+
+// 	if (pid1 == 0)
+// 	{
+// 		char	cmd[] = "/usr/bin/ping";
+// 		char	*arg_vec[] = {"ping","-c", "3", "google.com", NULL};
+// 		char	*env_vec[] = {NULL};
+// 		dup2(fd[1], STDOUT_FILENO);
+// 		close(fd[0]);
+// 		close(fd[1]);
+// 		if (execve(cmd, arg_vec, env_vec) == -1)
+// 			return (2);
+		
+// 	}
+
+// 	int pid2 = fork();
+// 	if (pid2 == -1)
+// 		printf("Error in forking\n");
+
+// 	if (pid2 == 0)
+// 	{
+// 		char	cmd[] = "/usr/bin/grep";
+// 		char	*arg_vec[] = {"grep", "rtt", NULL};
+// 		char	*env_vec[] = {NULL};
+// 		dup2(fd[0], STDIN_FILENO);
+// 		close(fd[0]);
+// 		close(fd[1]);
+// 		if (execve(cmd, arg_vec, env_vec) == -1)
+// 		{
+// 			perror("Error in execve()\n");
+// 			return (2);
+// 		}
+// 	}
+
+// 	close(fd[0]);
+// 	close(fd[1]);
+// 	waitpid(pid1, NULL, 0);
+// 	waitpid(pid2, NULL, 0);
+// 	printf("Success\n");
+// 	return (0);
+// }
+
+//! EXECVE() + DUP2() + FORK()
 // int 	main(void)
 // {
 // 	int pid = fork();
