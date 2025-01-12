@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:03 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/12 13:14:41 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/12 13:21:52 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,40 +15,6 @@
 //! Test Simulate pipe "|" operation
 int 	main(int ac, char **av)
 {
-	int	fd1[2];
-	int	id;
-	int arr_size = 5;
-
-	if (pipe(fd1) == -1)
-			printf("Error in create pipe fd1\n");
-	id = fork();
-	if (id == 0)
-	{
-		close(fd1[0]);
-		int	arr[] = {5,4,1,9,1};
-		if (write(fd1[1], &arr, sizeof(arr)) == -1)
-			printf("Error in writing to pipe\n");
-		close(fd1[1]);
-	}
-	else
-	{
-		close(fd1[1]);
-		int arr[arr_size];
-		int i = 0;
-		int sum = 0;
-		if (read(fd1[0], &arr, sizeof(arr)) == -1)
-			printf("Error in reading from pipe\n");
-		while (i < arr_size)
-		{
-			sum += arr[i];
-			i++;
-		}
-		close(fd1[0]);
-		printf("Sum: %d\n",sum);
-		wait(NULL);
-	}
-	close(fd1[0]);
-	close(fd1[1]);
 	return (0);
 }
 
