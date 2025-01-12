@@ -6,12 +6,14 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:03 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/12 16:31:16 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/12 18:14:02 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/utils.h"
 
+
+//! Simulate Multiple pipe "|" operation
 int 	main(int ac, char **av)
 {
 	int	ch_proc = 3;
@@ -85,7 +87,7 @@ int 	main(int ac, char **av)
 
 
 // Let's create  two child process, the depthest child execute the first command, 
-// get the ouput of the commnd using execve(), store the output in the pipe
+// get the ouput of the commnd using execve(), store the output in the pipe (dup2() is using to redirect file descriptor "STDOUT_FILENO, STDIN_FILENO")
 // come back to the parrent process, to execute the second command using the pipe output as 
 // inputs file, and store the final output to the pipe
 //! Test Simulate pipe "|" operation
