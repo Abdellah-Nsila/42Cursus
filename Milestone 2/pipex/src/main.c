@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:03 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/11 17:11:58 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/12 13:14:41 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,76 +16,39 @@
 int 	main(int ac, char **av)
 {
 	int	fd1[2];
-	int	fd2[2];
-	int	id;	
+	int	id;
+	int arr_size = 5;
 
 	if (pipe(fd1) == -1)
 			printf("Error in create pipe fd1\n");
-	if (pipe(fd2) == -1)
-			printf("Error in create pipe fd2\n");
 	id = fork();
 	if (id == 0)
 	{
-		close(fd2[1]);
 		close(fd1[0]);
-		int	x;
-		if (read(fd2[0], &x, sizeof(int)) == -1)
-			printf("Error in reading from pipe\n");
-		x *= 4;
-		if (write(fd1[1], &x, sizeof(int)) == -1)
-		printf("Error in writing to pipe\n");
-		close(fd2[0]);
+		int	arr[] = {5,4,1,9,1};
+		if (write(fd1[1], &arr, sizeof(arr)) == -1)
+			printf("Error in writing to pipe\n");
 		close(fd1[1]);
 	}
 	else
 	{
 		close(fd1[1]);
-		close(fd2[0]);
-
-
-		char	cmd[] = "/usr/bin/cat";
-		char	*arg_vec[] = {"cat", "infile", NULL};
-		char	*env_vec[] = {NULL};
-
-
-		// int	fd = open("outfile", O_WRONLY | O_CREAT, 0777);
-		// if (fd == -1)
-		// {	
-		// 	printf("Error on opening file\n");
-		// 	return (1);
-		// }
-		printf("The fd of pingResult.txt %d\n", fd2[1]);
-		dup2(fd2[1], STDOUT_FILENO);
-
-		printf("========= Start execution execve(): %s =========\n", cmd);
-		if (execve(cmd, arg_vec, env_vec) == -1)
+		int arr[arr_size];
+		int i = 0;
+		int sum = 0;
+		if (read(fd1[0], &arr, sizeof(arr)) == -1)
+			printf("Error in reading from pipe\n");
+		while (i < arr_size)
 		{
-			perror("Error in execve()\n");
-			return (2);
+			sum += arr[i];
+			i++;
 		}
-
-
-		if (write(fd2[1], &num, sizeof(int)) == -1)
-			printf("Error in writing to pipe\n");
-
-		if (read(fd1[0], &num, sizeof(int)) == -1)
-			printf("Error in reading from pipe\n");
-
-
-		
-		int num = 5;
-		if (write(fd2[1], &num, sizeof(int)) == -1)
-			printf("Error in writing to pipe\n");
-
-		if (read(fd1[0], &num, sizeof(int)) == -1)
-			printf("Error in reading from pipe\n");
-		printf("The num: %d\n", num);
 		close(fd1[0]);
-		close(fd2[1]);
-		wailt(NULL);
+		printf("Sum: %d\n",sum);
+		wait(NULL);
 	}
 	close(fd1[0]);
-	close(fd2[1]);
+	close(fd1[1]);
 	return (0);
 }
 
