@@ -1,4 +1,4 @@
-#include "../includes/utils.h"
+#include "./utils.h"
 
 int	main(int ac, char **av)
 {

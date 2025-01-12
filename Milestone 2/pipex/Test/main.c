@@ -6,11 +6,11 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:03 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/12 18:14:02 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/12 18:16:08 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/utils.h"
+#include "./utils.h"
 
 
 //! Simulate Multiple pipe "|" operation
