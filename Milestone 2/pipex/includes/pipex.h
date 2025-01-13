@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/13 16:26:50 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/13 17:44:13 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,15 @@
 
 # include "../Libft/includes/libft.h"
 
-
+// Begin && End indexs range of Commands inside the argv array
 typedef struct	s_range
 {
 	int	start;
 	int	end;
 }	t_range;
 
+
+// Pipex struct
 typedef struct	s_pipex
 {
 	int		infile_fd;
@@ -47,34 +49,32 @@ typedef struct	s_pipex
 	int		cmd_count;
 }	t_pipex;
 
-void	ft_close_fds(int (*fd)[2], int i);
-void	ft_printnums(int n);
-int		power(int n, int power);
-int		ft_n_sum(int *arr, int start, int size);
+// Clean up functions
+void	ft_clean_pipex(t_pipex *pipex);
+void	ft_free_count_array(char **arr, size_t count);
+void	ft_freearray(char **arr);
+void	ft_free_2d_array(t_pipex *pipex);
+void	ft_free_2d_count_array(t_pipex *pipex, int count);
 
-
-// Clean functions
-char	**ft_free_count_array(char **arr, size_t count);
-char	**ft_freearray(char **arr);
 
 // Parse files
-int		ft_check_access(char *file, int permission);
-int 	ft_parse_infile(t_pipex *pipex, char *infile);
-int		ft_parse_outfile(t_pipex *pipex, char *outfile, int here_doc);
+t_bool		ft_check_access(char *file, int permission);
+t_bool		ft_parse_infile(t_pipex *pipex, char *infile);
+t_bool		ft_parse_outfile(t_pipex *pipex, char *outfile, int here_doc);
 
 // Parse Path
-char	*ft_parse_default_path(char *command);
-char	*ft_parse_path(char	**all_path, char *command);
-char	*ft_get_path(char *command, char **envp);
+char		*ft_parse_default_path(char *command);
+char		*ft_parse_path(char	**all_path, char *command);
+char		*ft_get_path(char *command, char **envp);
 
 // Parse Arguments
-void	ft_init_pipex(t_pipex *pipex, char **envp);
-int		ft_parse_cmd_paths(t_pipex *pipex, char **argv, t_range range, char **envp);
+void		ft_init_pipex(t_pipex *pipex, char **envp);
+char		**ft_get_cmd_arg(char **argv, int index);
+t_bool		ft_parse_cmd_args(t_pipex *pipex, char **argv, t_range range);
+t_bool		ft_parse_cmd_paths(t_pipex *pipex, char **argv, t_range range, char **envp);
 
 
 // Debugging
 void	ft_display_pipex(const t_pipex *pipex);
-
-
 
 #endif 
