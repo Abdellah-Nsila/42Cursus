@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:41:17 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/13 16:25:56 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/13 18:52:21 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_parse_default_path(char *command)
 	correct_path = ft_strjoin("/usr/bin/", command);
 	if (correct_path && ft_check_access(correct_path, X_OK))
 		return (correct_path);
+	free(correct_path);
+	correct_path = NULL;
 	return (NULL);
 }
 
@@ -42,6 +44,7 @@ char	*ft_parse_path(char	**all_path, char *command)
 		free(correct_path);
 		i++;
 	}
+	//TODO This additional solution provided by me but i think i need to print an error
 	correct_path = ft_parse_default_path(command);
 	ft_freearray(all_path);
 	return (correct_path);

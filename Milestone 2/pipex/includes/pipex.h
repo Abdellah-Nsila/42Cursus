@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/13 17:44:13 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/13 18:34:45 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct	s_pipex
 
 // Clean up functions
 void	ft_clean_pipex(t_pipex *pipex);
-void	ft_free_count_array(char **arr, size_t count);
+void	ft_free_count_array(char **arr, int count);
 void	ft_freearray(char **arr);
 void	ft_free_2d_array(t_pipex *pipex);
 void	ft_free_2d_count_array(t_pipex *pipex, int count);
@@ -71,7 +71,7 @@ char		*ft_get_path(char *command, char **envp);
 void		ft_init_pipex(t_pipex *pipex, char **envp);
 char		**ft_get_cmd_arg(char **argv, int index);
 t_bool		ft_parse_cmd_args(t_pipex *pipex, char **argv, t_range range);
-t_bool		ft_parse_cmd_paths(t_pipex *pipex, char **argv, t_range range, char **envp);
+t_bool		ft_parse_cmd_paths(t_pipex *pipex, t_range range, char **envp);
 
 
 // Debugging
