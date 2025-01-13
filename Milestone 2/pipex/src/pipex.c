@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 18:17:01 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/13 18:54:41 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/13 20:22:51 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,19 @@
 // $> ./pipex infile "ls -l" "wc -l" outfile
 // $> ./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2
 // 1: infile , n: command,  n + 1: outfile
+
+void	ft_init_arr(t_pipex *pipex, char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (i <= pipex->cmd_count)
+	{	
+		// pipex->cmd_args[j] = NULL;
+		arr[i] = NULL;
+		i++;
+	}
+}
 
 t_bool	ft_check_parse_format(int argc, char **argv)
 {
@@ -54,8 +67,10 @@ t_bool	ft_parse_cmd_args(t_pipex *pipex, char **argv, t_range range)
 	if (!pipex->cmd_args)
 		return (false);
 	//! Initialize to NULL to avoid uninitialized memory access.
-	for (int j = 0; j <= pipex->cmd_count; j++)
-		pipex->cmd_args[j] = NULL;
+	//TODO create a custome init arr functio
+	// ft_init_arr(pipex, pipex->cmd_args);
+	// for (int j = 0; j <= pipex->cmd_count; j++)
+	// 	pipex->cmd_args[j] = NULL;
 	while (range.start < range.end)
 	{
 		cmd_args = ft_get_cmd_arg(argv, range.start);
