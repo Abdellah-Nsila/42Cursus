@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 18:17:01 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/13 16:25:46 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/13 16:37:20 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,45 @@
 // $> ./pipex infile "ls -l" "wc -l" outfile
 // $> ./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2
 // 1: infile , n: command,  n + 1: outfile
+
+char	**ft_parse_cmd_args(char **argv, int index)
+{
+	int		args_count;
+	char	**cmd_args;
+
+	args_count = ft_wordscount(argv[index], ' ');
+	cmd_args = ft_split(argv[index], ' ');
+	if (!cmd_args)
+		return (NULL);
+	return (cmd_args);
+	
+}
+
+int	ft_parse_cmd(t_pipex *pipex, char **argv, t_range range, char **envp)
+{
+	int 	i;
+	char	**cmd_args;
+
+	i = 0;
+	pipex->cmd_count = range.end - range.start;
+	pipex->cmd_args = (char **) malloc(sizeof(char *) * (pipex->cmd_count + 1));
+	if (!pipex->cmd_paths)
+		return (0);
+	while (range.start < range.end)
+	{
+		cmd_args = ft_parse_cmd_args(argv, i);
+		if (!cmd_args)
+		{
+			//TODO Pls check this free
+			ft_free_count_array(pipex->cmd_paths, range.start);
+			return (0);
+		}
+		pipex->cmd_args[i++] = cmd_args;
+		range.start++;
+	}
+	pipex->cmd_args[i] = NULL;
+	return (1);
+}
 
 int	ft_parse_cmd_paths(t_pipex *pipex, char **argv, t_range range, char **envp)
 {
