@@ -6,38 +6,17 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 18:17:01 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/13 16:21:43 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/13 16:25:46 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-// void	ft_init_pipex(t_pipex *pipex, int argc, char **argv, char **envp)
-// {
-// 	pipex->infile_fd = 0;
-// 	pipex->oufile_fd = 0;
-// 	pipex->here_doc = 0;
-// 	pipex->limiter = "";
-// 	pipex->is_invalid_infile = 0;
-// 	pipex->cmd_envs = envp;
-// 	pipex->infile = NULL;
-// 	pipex->oufile = NULL;
-// 	pipex->cmd_paths = NULL;
-// 	pipex->cmd_args = NULL;
-// 	pipex->cmd_count = 0;
-// }
-
 // $> ./pipex infile "ls -l" "wc -l" outfile
 // $> ./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2
 // 1: infile , n: command,  n + 1: outfile
 
-
-
-
-
-
-
-int ft_parse_cmd_paths(t_pipex *pipex, char **argv, t_range range, char **envp)
+int	ft_parse_cmd_paths(t_pipex *pipex, char **argv, t_range range, char **envp)
 {
 	int 	i;
 	char	*path;

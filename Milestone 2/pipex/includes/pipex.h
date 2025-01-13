@@ -6,24 +6,24 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/13 16:22:10 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/13 16:26:50 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
 # include <fcntl.h>
 
-#include <sys/wait.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <errno.h>
+# include <sys/wait.h>
+# include <sys/stat.h>
+# include <sys/types.h>
+# include <errno.h>
 
-#include "../Libft/includes/libft.h"
+# include "../Libft/includes/libft.h"
 
 
 typedef struct	s_range

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:41:17 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/13 15:42:20 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/13 16:25:56 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*ft_parse_path(char	**all_path, char *command)
 	return (correct_path);
 }
 
-char *ft_get_path(char *command, char **envp)
+char    *ft_get_path(char *command, char **envp)
 {
 	int		i;
 	char	**all_path;

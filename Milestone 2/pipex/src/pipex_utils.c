@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:43:12 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/13 16:22:00 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/13 16:26:32 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,3 @@ char	**ft_freearray(char **arr)
 	free(arr);
 	return (NULL);
 }
-

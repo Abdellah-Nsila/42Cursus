@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:41:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/13 16:12:29 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/13 16:26:20 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_check_access(char *file, int permission) //  permission: R_OK  W_OK  X_OK
 	return (1);
 }
 
-int ft_parse_infile(t_pipex *pipex, char *infile)
+int	ft_parse_infile(t_pipex *pipex, char *infile)
 {
 	int fd;
 
