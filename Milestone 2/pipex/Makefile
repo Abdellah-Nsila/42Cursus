@@ -7,7 +7,7 @@ INCLUDES = -I./includes -I./Libft/includes
 LIBFT_DIR = ./Libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SRCS =	./src/main.c ./src/utils.c
+SRCS =	./src/pipex.c
 
 # BSRCS = ./src/
 
