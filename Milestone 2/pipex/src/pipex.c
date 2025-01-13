@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 18:17:01 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/13 13:44:50 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/13 15:48:50 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,156 +30,99 @@
 // $> ./pipex infile "ls -l" "wc -l" outfile
 // $> ./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2
 // 1: infile , n: command,  n + 1: outfile
-int	ft_check_access(char *file, int permission) //  permission: R_OK  W_OK  X_OK
+
+
+
+
+
+
+
+int ft_parse_commands(t_pipex *pipex, char **argv, int start, int end, char **envp)
 {
-	if (access(file, permission) == -1)
+	int i = 0;
+	char	*path;
+
+	pipex->cmd_count = end - start;
+	pipex->cmd_paths = malloc(sizeof(char *) * (pipex->cmd_count + 1));
+	if (!pipex->cmd_paths)
 		return (0);
+	while (start < end)
+	{
+		path = ft_get_path(argv[start], envp);
+		if (ft_check_access(path, X_OK))
+		{
+			pipex->cmd_paths[i++] = path;
+			printf("Command: %s X_OK\n", argv[start]);
+		}
+		else
+		{
+			free(path);
+			perror("Error: Command");
+			return (0);
+		}
+		start++;
+	}
+	pipex->cmd_paths[i] = NULL;
 	return (1);
 }
 
-char	**ft_freearray(char **arr)
-{
-	int	i;
 
-	i = 0; 
-	while (arr[i])
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
-	return (NULL);
-}
-
-void	ft_check_input_file(char *file)
-{
-	if (access(file, R_OK) == -1)
-	{
-		perror("Error: Input file");
-		exit(EXIT_FAILURE);
-	}
-}
-
-void	ft_check_output_file(char *file)
-{
-	int fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (fd == -1)
-	{
-		perror("Error: Output file");
-		exit(EXIT_FAILURE);
-	}
-	close(fd);
-}
-
-
-char	*ft_parse_default_path(char *command)
-{
-	char	*correct_path;
-
-	correct_path = ft_strjoin("/usr/bin/", command);
-	if (correct_path && ft_check_access(correct_path, X_OK))
-		return (correct_path);
-	return (NULL);
-}
-
-char	*ft_parse_path(char	**all_path, char *command)
-{
-	int		i;
-	char	*temp;
-	char	*correct_path;
-
-	i = 0;
-	while (all_path[i])
-	{
-		temp = ft_strjoin("/", command);
-		correct_path = ft_strjoin(all_path[i], temp);
-		free(temp);
-		if (correct_path && ft_check_access(correct_path, X_OK))
-		{
-			ft_freearray(all_path);
-			return (correct_path);
-		}
-		free(correct_path);
-		i++;
-	}
-	correct_path = ft_parse_default_path(command);
-	ft_freearray(all_path);
-	return (correct_path);
-}
-
-char *ft_get_path(char *command, char **envp)
-{
-	int		i;
-	char	**all_path;
-	char	*correct_path;
-
-	i = 0;
-	while (envp[i])
-	{
-		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
-			break ;
-		i++;
-	}
-	all_path = ft_split(envp[i], ':');
-	if (!all_path)
-	{
-		correct_path = ft_parse_default_path(command);
-		return (correct_path);
-	}
-	return (ft_parse_path(all_path, command));
-}
-
-
-
-int	ft_check_args(t_pipex **pipex, int argc, char **argv, char	**envp)
+int	ft_check_args(t_pipex *pipex, int argc, char **argv, char	**envp)
 {
 	int	i;
 
 	if (!pipex)
 		return (0);
 	i = 1;
-	// Todo manage parsing and paralelle argument flow, and split necacary command,
-	// Todo and store those proriete in the pipex struct after checking all unit 
-	// Todo of globall command (parametres), ... any idea ? XD 
-	while (i < argc)
+	if (i == 1 &&
+		ft_strncmp("here_doc", argv[i], ft_strlen("here_doc")) == 0 &&
+		argv[i])
 	{
-		if (i == 1 && ft_strncmp("here_doc", argv[i], ft_strlen("here_doc")) == 0)
-		{
-			printf("Here_doc: %s\n", argv[i]);
-			i++;
-			if (argv[i])
-			printf("Limiter: %s\n", argv[i]);
-		}
-		else if (i == 1 && ft_check_access(argv[i], R_OK))
-		{
-			printf("Infile: %s R_OK\n", argv[i]);
-		}
-		else if (i + 1 == argc && ft_check_access(argv[i], W_OK))
-		{
-			printf("Outfile: %s W_OK\n", argv[i]);
-		}
-		else if (ft_check_access(ft_get_path(argv[i], envp), X_OK))
-		{
-			printf("Command: %s X_OK\n", argv[i]);
-		}
 		i++;
+		printf("Here_doc: %s\n", argv[i]);
+		printf("Limiter: %s\n", argv[i]);
+		pipex->here_doc = 1;
+		pipex->limiter = ft_strdup(argv[i]);
+		return (ft_parse_commands(pipex, argv, 3, argc - 1, envp) &&
+		ft_parse_outfile(pipex, argv[argc - 1], 1));
 	}
-	return (1);
+	else
+	{
+		pipex->infile = ft_strdup(argv[i]);
+		return (ft_parse_commands(pipex, argv, 2, argc - 1, envp) &&
+			ft_parse_infile(pipex, argv[1]) &&
+			ft_parse_outfile(pipex, argv[argc - 1], 1));
+	}
+	// else if (i == 1 && ft_check_access(argv[i], R_OK))
+	// {
+	// 	printf("Infile: %s R_OK\n", argv[i]);
+	// }
+	// else if (i + 1 == argc && ft_check_access(argv[i], W_OK))
+	// {
+	// 	printf("Outfile: %s W_OK\n", argv[i]);
+	// }
+	// else if (ft_check_access(ft_get_path(argv[i], envp), X_OK))
+	// {
+	// 	printf("Command: %s X_OK\n", argv[i]);
+	// }
 }
 
 
 int	main(int argc, char **argv, char **envp)
 {
-	char	*correct_path;
-	// int i = 0;
+	int i = 0;
 	if (!argc && argv && envp)
 		return (1);
 	t_pipex	*pipex = malloc(sizeof(t_pipex));
 	// ft_init_pipex(pipex, argc, argv, envp);
-	ft_check_args(&pipex, argc, argv, envp);
-	correct_path = ft_get_path("cat", envp);
-	printf("correct_path: %s\n", correct_path);
-	free(correct_path);
+	if (ft_check_args(pipex, argc, argv, envp))
+	{
+		while (pipex->cmd_paths[i])
+		{
+			printf("cmd_paths[%d]: %s\n",i, pipex->cmd_paths[i]);
+			i++;
+		}
+	}
 	free(pipex);
 
 	//TODO Need Parsing && Execution process && Clean up ... (0%)
