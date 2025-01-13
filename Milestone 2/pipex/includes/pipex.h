@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/12 18:56:04 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/13 13:39:14 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct	s_pipex
 	int		infile_fd;
 	int		oufile_fd;
 	t_bool	here_doc;
+	char	*limiter;
 	t_bool	is_invalid_infile;
 	char	*infile;
 	char	*oufile;
