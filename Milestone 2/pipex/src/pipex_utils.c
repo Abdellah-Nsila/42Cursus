@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:43:12 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/13 18:41:35 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/13 18:58:51 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_init_pipex(t_pipex *pipex, char **envp)
 	pipex->infile_fd = -1;
 	pipex->outfile_fd = -1;      
 	pipex->here_doc = 0;
-	pipex->is_invalid_infile = 0;
+	pipex->is_invalid_infile = false;
 
 	pipex->limiter = NULL;
 	pipex->infile = NULL;

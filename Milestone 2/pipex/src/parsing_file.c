@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:41:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/13 18:56:47 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/13 18:58:31 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ t_bool	ft_parse_infile(t_pipex *pipex, char *infile)
 		pipex->infile_fd = fd;
 	}
 	else
+	{
+		pipex->is_invalid_infile = true;	
 		return (false);
+	}
 	return (true);
 }
 
