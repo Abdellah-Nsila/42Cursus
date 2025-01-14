@@ -8,7 +8,8 @@ LIBFT_DIR = ./Libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 SRCS =	./src/pipex.c ./src/parsing_file.c ./src/parsing_path.c \
-		./src/pipex_utils.c ./src/debug.c \
+		./src/pipex_utils.c ./src/parsing_commands.c ./src/debug.c \
+		./src/pipex_cleanup.c \
 
 # BSRCS = ./src/
 

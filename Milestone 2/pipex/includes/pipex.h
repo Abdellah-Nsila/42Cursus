@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/13 18:34:45 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/14 11:42:40 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct	s_range
 	int	end;
 }	t_range;
 
-
 // Pipex struct
 typedef struct	s_pipex
 {
@@ -47,15 +46,12 @@ typedef struct	s_pipex
 	char	***cmd_args;
 	char	**cmd_envs;
 	int		cmd_count;
+	char	*error;
 }	t_pipex;
 
-// Clean up functions
-void	ft_clean_pipex(t_pipex *pipex);
-void	ft_free_count_array(char **arr, int count);
-void	ft_freearray(char **arr);
-void	ft_free_2d_array(t_pipex *pipex);
-void	ft_free_2d_count_array(t_pipex *pipex, int count);
-
+// Pipex Utils
+void		ft_init_pipex(t_pipex *pipex, char **envp);
+void		ft_reset_pipex(t_pipex *pipex);
 
 // Parse files
 t_bool		ft_check_access(char *file, int permission);
@@ -66,15 +62,23 @@ t_bool		ft_parse_outfile(t_pipex *pipex, char *outfile, int here_doc);
 char		*ft_parse_default_path(char *command);
 char		*ft_parse_path(char	**all_path, char *command);
 char		*ft_get_path(char *command, char **envp);
+t_bool		ft_parse_cmd_paths(t_pipex *pipex, t_range range, char **argv, char **envp);
 
 // Parse Arguments
-void		ft_init_pipex(t_pipex *pipex, char **envp);
+t_bool		ft_init_cmd_struct_arr(t_pipex *pipex);
+t_bool		ft_check_parse_format(int argc, char **argv);
+t_bool		ft_check_args(t_pipex *pipex, int argc, char **argv, char **envp);
 char		**ft_get_cmd_arg(char **argv, int index);
 t_bool		ft_parse_cmd_args(t_pipex *pipex, char **argv, t_range range);
-t_bool		ft_parse_cmd_paths(t_pipex *pipex, t_range range, char **envp);
 
+// Clean up functions
+void		ft_free_array(char **arr);
+void		ft_free_count_array(char **arr, int count);
+void		ft_free_2d_array(t_pipex *pipex);
+void		ft_free_2d_count_array(t_pipex *pipex, int count);
+void		ft_clean_pipex(t_pipex *pipex);
 
 // Debugging
-void	ft_display_pipex(const t_pipex *pipex);
+void		ft_display_pipex(const t_pipex *pipex);
 
 #endif 

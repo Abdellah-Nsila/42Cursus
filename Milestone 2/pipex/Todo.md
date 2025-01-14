@@ -5,3 +5,7 @@
 
 ## Guide For pipex
  - Read this guide from GitBook [pipex](https://42-cursus.gitbook.io/guide/rank-02/pipex)
+
+
+ ## One tips that im using to reduce memory errors (douple free, leaks, ...)
+ When you allocate memory for an array, you must get the elements number that you want to store into it, and iterate throught the array and initialize eack block by NULL

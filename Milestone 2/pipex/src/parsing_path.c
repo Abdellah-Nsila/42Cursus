@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:41:17 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/13 18:52:21 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/14 12:08:47 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,21 @@ char	*ft_parse_path(char	**all_path, char *command)
 		free(temp);
 		if (correct_path && ft_check_access(correct_path, X_OK))
 		{
-			ft_freearray(all_path);
+			ft_free_array(all_path);
 			return (correct_path);
 		}
 		free(correct_path);
+		correct_path = NULL;
 		i++;
 	}
-	//TODO This additional solution provided by me but i think i need to print an error
-	correct_path = ft_parse_default_path(command);
-	ft_freearray(all_path);
-	return (correct_path);
+	ft_free_array(all_path);
+	return (command);
 }
 
 char    *ft_get_path(char *command, char **envp)
 {
 	int		i;
 	char	**all_path;
-	char	*correct_path;
 
 	i = 0;
 	while (envp[i])
@@ -65,10 +63,38 @@ char    *ft_get_path(char *command, char **envp)
 	}
 	all_path = ft_split(envp[i], ':');
 	if (!all_path)
-	{
-		correct_path = ft_parse_default_path(command);
-		return (correct_path);
-	}
+		return (command);
 	return (ft_parse_path(all_path, command));
 }
 
+t_bool	ft_parse_cmd_paths(t_pipex *pipex, t_range range, char **argv, char **envp)
+{
+	int  	i;
+	char 	*path;
+	t_bool	is_valid_args;
+
+	if (ft_parse_cmd_args(pipex, argv, range) == false)
+		return (false);
+	i = 0;
+	is_valid_args = true;
+	while (range.start < range.end)
+	{
+		path = ft_get_path(pipex->cmd_args[i][0], envp);
+		if (!path || !ft_check_access(path, X_OK))
+		{
+			dup2(STDERR_FILENO, STDOUT_FILENO);
+			// ft_printf("command not found: %s\n", pipex->cmd_args[i][0]);
+			ft_putstr_fd("%s: command not found\n", 2);
+			ft_putstr_fd("%s: command not found\n", 2);
+			path = NULL;
+			is_valid_args = false;
+			i++;
+			range.start++;
+			continue;
+		}
+		pipex->cmd_paths[i++] = path;
+		range.start++;
+	}
+	pipex->cmd_paths[i] = NULL;
+	return (is_valid_args);
+}
