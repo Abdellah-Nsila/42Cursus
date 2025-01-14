@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/14 11:42:40 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/14 18:32:01 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ typedef struct	s_pipex
 	char	***cmd_args;
 	char	**cmd_envs;
 	int		cmd_count;
-	char	*error;
 }	t_pipex;
 
 // Pipex Utils
@@ -62,7 +61,7 @@ t_bool		ft_parse_outfile(t_pipex *pipex, char *outfile, int here_doc);
 char		*ft_parse_default_path(char *command);
 char		*ft_parse_path(char	**all_path, char *command);
 char		*ft_get_path(char *command, char **envp);
-t_bool		ft_parse_cmd_paths(t_pipex *pipex, t_range range, char **argv, char **envp);
+t_bool		ft_parse_cmd_paths(t_pipex *pipex, t_range range, char **envp);
 
 // Parse Arguments
 t_bool		ft_init_cmd_struct_arr(t_pipex *pipex);

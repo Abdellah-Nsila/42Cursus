@@ -6,32 +6,34 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:59:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/14 11:42:22 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/14 18:47:28 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-t_bool	ft_init_cmd_struct_arr(t_pipex *pipex)
-{
-	int	i;
+// t_bool	ft_init_cmd_struct_arr(t_pipex *pipex)
+// {
+// 	int	i;
 
-	if (!pipex)
-		return (false);
-	i = 0;
-	pipex->cmd_args = (char ***) malloc(sizeof(char **) * (pipex->cmd_count + 1));
-	if (!pipex->cmd_args)
-		return (false);
-	while (i <= pipex->cmd_count)
-		pipex->cmd_args[i++] = NULL;
-	i = 0;
-	pipex->cmd_paths = (char **) malloc(sizeof(char *) * (pipex->cmd_count + 1));
-	if (!pipex->cmd_paths)
-		return (false);
-	while (i <= pipex->cmd_count)
-		pipex->cmd_paths[i++] = NULL;
-	return (true);
-}
+// 	if (!pipex)
+// 		return (false);
+// 	i = 0;
+// 	pipex->cmd_args = (char ***) malloc(sizeof(char **) * (pipex->cmd_count + 1));
+// 	if (pipex->cmd_args)
+// 	{
+// 		while (i <= pipex->cmd_count)
+// 			pipex->cmd_args[i++] = NULL;
+// 	}
+// 	i = 0;
+// 	pipex->cmd_paths = (char **) malloc(sizeof(char *) * (pipex->cmd_count + 1));
+// 	if (pipex->cmd_paths)
+// 	{	
+// 		while (i <= pipex->cmd_count)
+// 			pipex->cmd_paths[i++] = NULL;
+// 	}
+// 	return (true);
+// }
 
 t_bool	ft_check_parse_format(int argc, char **argv)
 {
@@ -67,8 +69,16 @@ t_bool	ft_parse_cmd_args(t_pipex *pipex, char **argv, t_range range)
 
 	i = 0;
 	pipex->cmd_count = range.end - range.start;
-	if (ft_init_cmd_struct_arr(pipex) == false)
-		return (false);
+	// if (ft_init_cmd_struct_arr(pipex) == false)
+	// 	return (false);
+	pipex->cmd_args = (char ***) malloc(sizeof(char **) * (pipex->cmd_count + 1));
+	if (pipex->cmd_args)
+	{
+		while (i <= pipex->cmd_count)
+			pipex->cmd_args[i++] = NULL;
+	}
+	printf("count: %d\n", pipex->cmd_count);
+	i = 0;
 	while (range.start < range.end)
 	{
 		cmd_args = ft_get_cmd_arg(argv, range.start);
@@ -95,16 +105,16 @@ t_bool	ft_check_args(t_pipex *pipex, int argc, char **argv, char **envp)
 		pipex->here_doc = 1;
 		pipex->limiter = ft_strdup(argv[2]);
 		return (
-			// ft_parse_cmd_args(pipex, argv, range) &&
-			ft_parse_cmd_paths(pipex, range, argv, envp) &&
+			ft_parse_cmd_args(pipex, argv, range) &&
+			ft_parse_cmd_paths(pipex, range, envp) &&
 			ft_parse_outfile(pipex, argv[argc - 1], 1));
 	}
 	else
 	{
 		range.start = 2;
 		return (
-			// ft_parse_cmd_args(pipex, argv, range) &&
-			ft_parse_cmd_paths(pipex, range, argv, envp) &&
+			ft_parse_cmd_args(pipex, argv, range) &&
+			ft_parse_cmd_paths(pipex, range, envp) &&
 			ft_parse_infile(pipex, argv[1]) &&
 			ft_parse_outfile(pipex, argv[argc - 1], 1));
 	}

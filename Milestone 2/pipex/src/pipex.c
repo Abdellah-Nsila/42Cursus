@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 18:17:01 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/14 11:54:23 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/14 18:24:43 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(int argc, char **argv, char **envp)
 	ft_init_pipex(pipex, envp);
 	if (ft_check_args(pipex, argc, argv, envp) == false)
 	{
+		printf("Error\n");
 		ft_display_pipex(pipex);
 		ft_clean_pipex(pipex);
 		return (1);
@@ -34,7 +35,6 @@ int	main(int argc, char **argv, char **envp)
 	// Display the struct (for testing)
 	printf("Success\n");
 	ft_display_pipex(pipex);
-	// Clean up all allocated memory
 	ft_clean_pipex(pipex);
 
 	//TODO Need Parsing && Execution process && Clean up ... (0%)

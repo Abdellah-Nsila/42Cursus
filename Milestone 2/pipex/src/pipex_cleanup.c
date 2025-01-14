@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:03:02 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/14 11:04:17 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/14 18:49:22 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	ft_free_count_array(char **arr, int count)
 {
 	int	i;
 
-	i = 0;
 	if (!arr)
 		return;
+	i = 0;
 	while (i < count)
 	{
 		if (arr[i])
@@ -92,6 +92,7 @@ void	ft_free_2d_count_array(t_pipex *pipex, int count)
 			j = 0;
 			while (pipex->cmd_args[i][j])
 			{
+				printf("pipex->cmd_args[%d][%d]: %s\n",i, j, pipex->cmd_args[i][j]);
 				free(pipex->cmd_args[i][j]);
 				pipex->cmd_args[i][j] = NULL;
 				j++;
@@ -105,10 +106,12 @@ void	ft_free_2d_count_array(t_pipex *pipex, int count)
 	pipex->cmd_args = NULL;
 }
 
+
 void	ft_clean_pipex(t_pipex *pipex)
 {
 	if (!pipex)
 		return;
+	
 	if (pipex->limiter)
 	{
 		free(pipex->limiter);
@@ -123,13 +126,17 @@ void	ft_clean_pipex(t_pipex *pipex)
 	{
 		free(pipex->outfile);
 		pipex->outfile = NULL;
-	}	
-	if (pipex->error)
-	{
-		free(pipex->error);
-		pipex->error = NULL;
 	}
-	ft_free_count_array(pipex->cmd_paths, pipex->cmd_count);
-	ft_free_2d_count_array(pipex, pipex->cmd_count);
+	if (pipex->cmd_paths)
+	{
+		ft_free_count_array(pipex->cmd_paths, pipex->cmd_count);
+		pipex->cmd_paths = NULL;
+	}
+	if (pipex->cmd_args)
+	{
+		ft_free_2d_count_array(pipex, pipex->cmd_count);
+		pipex->cmd_args = NULL;
+	}
 	free(pipex);
 }
+
