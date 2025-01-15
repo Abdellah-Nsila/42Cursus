@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 18:17:01 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/15 16:26:01 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/15 15:43:57 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 // 1: infile , n: command,  n + 1: outfile
 
 
+
 int	main(int argc, char **argv, char **envp)
 {
-	if (argc != 5)
+	if (!argc && argv && envp)
 		return (1);
 	t_pipex	*pipex = malloc(sizeof(t_pipex));
 	ft_init_pipex(pipex, envp);
@@ -31,6 +32,7 @@ int	main(int argc, char **argv, char **envp)
 		return (1);
 	}
 
+	// Display the struct (for testing)
 	printf("Success\n");
 	ft_display_pipex(pipex);
 	ft_clean_pipex(pipex);

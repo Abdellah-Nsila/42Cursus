@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:03:02 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/14 18:49:22 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/15 16:20:14 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ void	ft_free_2d_count_array(t_pipex *pipex, int count)
 	pipex->cmd_args = NULL;
 }
 
-
 void	ft_clean_pipex(t_pipex *pipex)
 {
 	if (!pipex)
@@ -139,4 +138,3 @@ void	ft_clean_pipex(t_pipex *pipex)
 	}
 	free(pipex);
 }
-
