@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 18:17:01 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/15 16:26:01 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/15 18:49:39 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 // $> ./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2
 // 1: infile , n: command,  n + 1: outfile
 
-
+// TODO Lest's make mondatory forst
 int	main(int argc, char **argv, char **envp)
 {
 	if (argc != 5)
