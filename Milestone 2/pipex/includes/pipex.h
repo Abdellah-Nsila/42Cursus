@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/14 18:32:01 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/16 10:08:49 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,7 @@ t_bool		ft_parse_cmd_paths(t_pipex *pipex, t_range range, char **envp);
 
 // Parse Arguments
 t_bool		ft_init_cmd_struct_arr(t_pipex *pipex);
-t_bool		ft_check_parse_format(int argc, char **argv);
-t_bool		ft_check_args(t_pipex *pipex, int argc, char **argv, char **envp);
+t_bool		ft_parse_args(t_pipex *pipex, int argc, char **argv, char **envp);
 char		**ft_get_cmd_arg(char **argv, int index);
 t_bool		ft_parse_cmd_args(t_pipex *pipex, char **argv, t_range range);
 

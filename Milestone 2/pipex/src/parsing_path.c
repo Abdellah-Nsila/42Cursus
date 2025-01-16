@@ -61,3 +61,30 @@ char	*ft_get_path(char *command, char **envp)
 	path = ft_parse_path(all_path, command);
 	return (path);
 }
+
+t_bool	ft_parse_cmd_paths(t_pipex *pipex, t_range range, char **envp)
+{
+	int		i;
+	char	*path;
+
+	if (!pipex || !envp)
+		return (false);
+	i = 0;
+	while (range.start < range.end && i < pipex->cmd_count)
+	{
+		if (pipex->cmd_args[i] && pipex->cmd_args[i][0])
+		{
+			path = ft_get_path(pipex->cmd_args[i][0], envp);
+			if (path)
+				pipex->cmd_paths[i] = path;
+			else
+				pipex->cmd_paths[i] = ft_strdup("");
+		}
+		else
+			pipex->cmd_paths[i] = ft_strdup("");
+		i++;
+		range.start++;
+	}
+	pipex->cmd_paths[i] = NULL;
+	return (true);
+}
