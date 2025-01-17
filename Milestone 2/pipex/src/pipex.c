@@ -17,103 +17,127 @@
 // 1: infile , n: command,  n + 1: outfile
 
 
-// Function to close file descriptors in the parent process
+
+
+
 void ft_close_parent_fds(t_pipex *pipex, int fd[2])
 {
-    close(fd[1]);
-    close(pipex->infile_fd);
-    pipex->infile_fd = fd[0];
+    close(fd[1]); // Close write end of the pipe
+    if (pipex->infile_fd != -1) // Close infile_fd if it's open
+        close(pipex->infile_fd);
+    pipex->infile_fd = fd[0]; // Update infile_fd to the read end of the current pipe
 }
 
-// t_bool	ft_check_empty_arg(char ***arg)
-// {
-
-// }
-
-
-void	ft_execute_command(t_pipex *pipex, int cmd_index, int in_fd, int out_fd)
+void ft_execute_command(t_pipex *pipex, int cmd_index, int in_fd, int out_fd)
 {
-	if (dup2(in_fd, STDIN_FILENO) == -1 || dup2(out_fd, STDOUT_FILENO) == -1)
-	{
-		perror("dup2 error");
-		ft_clean_pipex(pipex);
-		exit(EXIT_FAILURE);
-	}
-	// Close unused file descriptors
-	close(in_fd);
-	close(out_fd);
+    (void)in_fd;
+    (void)out_fd;
 
-	// Execute the command
-	if (execve(pipex->cmd_paths[cmd_index], pipex->cmd_args[cmd_index], pipex->cmd_envs) == -1)
-	{
-		perror("execve error");
-		ft_clean_pipex(pipex);
-		exit(EXIT_FAILURE);
-	}
+    if (execve(pipex->cmd_paths[cmd_index], pipex->cmd_args[cmd_index], pipex->cmd_envs) == -1)
+    {
+        perror("execve error");
+        ft_clean_pipex(pipex);
+        exit(EXIT_FAILURE);
+    }
 }
 
-// Function to handle child process logic
-void ft_init_processes(t_pipex *pipex, int cmd_index, int fd[2])
-{
-    if (cmd_index == 0)
-        ft_execute_command(pipex, cmd_index, pipex->infile_fd, fd[1]);
-    else if (cmd_index == pipex->cmd_count - 1)
-        ft_execute_command(pipex, cmd_index, fd[0], pipex->outfile_fd);
-    else
-        ft_execute_command(pipex, cmd_index, fd[0], fd[1]);
-}
-
-// Function to initialize processes and execute commands
 void ft_run_commands(t_pipex *pipex)
 {
-    int fd[2];
+    int fds[pipex->cmd_count - 1][2]; // Array to hold pipe fds
     int i;
     int pid;
 
-    i = 0;
-    while (i < pipex->cmd_count)
+    // Create pipes
+    for (i = 0; i < pipex->cmd_count - 1; i++)
     {
-        if (i < pipex->cmd_count - 1 && pipe(fd) == -1)
+        if (pipe(fds[i]) == -1)
         {
             perror("pipe error");
             ft_clean_pipex(pipex);
             exit(EXIT_FAILURE);
         }
+    }
+
+    // Create processes for each command
+    for (i = 0; i < pipex->cmd_count; i++)
+    {
         pid = fork();
         if (pid == -1)
         {
             perror("fork error");
-            if (i > 0)
-                close(fd[0]);
             ft_clean_pipex(pipex);
             exit(EXIT_FAILURE);
         }
-        if (pid == 0)
-            ft_init_processes(pipex, i, fd);
-        ft_close_parent_fds(pipex, fd);
-        i++;
+
+        if (pid == 0) // Child process
+        {
+            // Redirect input
+            if (i == 0)
+                dup2(pipex->infile_fd, STDIN_FILENO);
+            else
+                dup2(fds[i - 1][0], STDIN_FILENO);
+
+            // Redirect output
+            if (i == pipex->cmd_count - 1)
+                dup2(pipex->outfile_fd, STDOUT_FILENO);
+            else
+                dup2(fds[i][1], STDOUT_FILENO);
+
+            // Close all pipes in the child process
+            for (int j = 0; j < pipex->cmd_count - 1; j++)
+            {
+                close(fds[j][0]);
+                close(fds[j][1]);
+            }
+
+            // Execute command
+            ft_execute_command(pipex, i, 0, 0);
+        }
     }
-    while (wait(NULL) > 0);
+
+    // Close all pipes in the parent process
+    for (i = 0; i < pipex->cmd_count - 1; i++)
+    {
+        close(fds[i][0]);
+        close(fds[i][1]);
+    }
+
+    // Wait for all child processes
+    while (wait(NULL) > 0)
+        ;
 }
 
-
-//TODO FIX This < /dev/stdin cat | cat | grep aa > outfile
+//TODO PLS organize this programme here, separate logic understand and test Mulptiple time
+//TODO ensure error management, support of detecting error, same behavioure as SHELL
+//TODO NO: open fds, leaks, crash (segf), terminal stuck, unxepted output, permission, no path, NULL, empty, gg\/glm0.."'" ..
+//TODO add here_doc execution, clean code and dynamical update maintenace
 int main(int argc, char **argv, char **envp)
 {
     t_pipex *pipex;
 
     if (argc < 5)
-        return (EXIT_FAILURE);
+    {
+        fprintf(stderr, "Usage: ./pipex infile cmd1 cmd2 ... cmdN outfile\n");
+        return EXIT_FAILURE;
+    }
+
     pipex = malloc(sizeof(t_pipex));
     if (!pipex)
-        return (EXIT_FAILURE);
+    {
+        perror("malloc error");
+        return EXIT_FAILURE;
+    }
 
     ft_init_pipex(pipex, envp);
 
-    if (ft_parse_args(pipex, argc, argv, envp) == false)
-        return (ft_clean_pipex(pipex), EXIT_FAILURE);
-    ft_run_commands(pipex);
-    ft_clean_pipex(pipex);
-    return (EXIT_SUCCESS);
-}
+    if (!ft_parse_args(pipex, argc, argv, envp))
+    {
+        ft_clean_pipex(pipex);
+        return EXIT_FAILURE;
+    }
 
+    ft_run_commands(pipex);
+	ft_display_pipex(pipex);
+    ft_clean_pipex(pipex);
+    return EXIT_SUCCESS;
+}

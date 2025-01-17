@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:59:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/16 10:13:41 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/17 12:28:52 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ t_bool	ft_parse_args(t_pipex *pipex, int argc, char **argv, char **envp)
 		return (
 			ft_parse_cmd_args(pipex, argv, range) &&
 			ft_parse_cmd_paths(pipex, range, envp) &&
-			ft_parse_outfile(pipex, argv[argc - 1], 1));
+			ft_parse_outfile(pipex, argv[argc - 1]));
 	}
 	else
 	{
@@ -108,6 +108,6 @@ t_bool	ft_parse_args(t_pipex *pipex, int argc, char **argv, char **envp)
 			ft_parse_cmd_args(pipex, argv, range) &&
 			ft_parse_cmd_paths(pipex, range, envp) &&
 			ft_parse_infile(pipex, argv[1]) &&
-			ft_parse_outfile(pipex, argv[argc - 1], 1));
+			ft_parse_outfile(pipex, argv[argc - 1]));
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/16 10:08:49 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/17 12:29:27 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void		ft_reset_pipex(t_pipex *pipex);
 // Parse files
 t_bool		ft_check_access(char *file, int permission);
 t_bool		ft_parse_infile(t_pipex *pipex, char *infile);
-t_bool		ft_parse_outfile(t_pipex *pipex, char *outfile, int here_doc);
+t_bool		ft_parse_outfile(t_pipex *pipex, char *outfile);
 
 // Parse Path
 char		*ft_parse_default_path(char *command);

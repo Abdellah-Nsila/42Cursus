@@ -6,11 +6,11 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:05 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/12 16:31:22 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/17 11:36:44 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/utils.h"
+#include "./utils.h"
 
 
 void	ft_close_fds(int (*fd)[2], int i)

@@ -6,84 +6,188 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:03 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/13 17:24:43 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/17 12:07:25 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./utils.h"
 
 
-//! Simulate Multiple pipe "|" operation
-int 	main(int ac, char **av)
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/wait.h>
+
+
+//! Dynamic child generation for multiple pipes 
+void	ft_close_2d_fds(int fd[][2], int ch_proc)
 {
-	int	ch_proc = 3;
-	int	i = 0;
-	int	fd[ch_proc][2];
+	int i = 0;
+	while (i < ch_proc)
+	{
+		close(fd[i][0]);
+		close(fd[i][1]);
+		i++;
+	}
+}
+
+void execute_command(int idx, int fd[][2], int ch_proc)
+{
+    char *commands[3][6] = {
+        {"/usr/bin/cat", "cat", NULL},
+        {"/usr/bin/cat", "cat", NULL},
+        {"/usr/bin/grep", "grep", "aa", NULL}
+    };
+
+    char *cmd = commands[idx][0];
+    char **arg_vec = &commands[idx][1];
+    char *env_vec[] = {NULL};
+
+    if (idx == 0) // First process
+    {
+        dup2(fd[idx][1], STDOUT_FILENO); // Write to the first pipe
+    }
+    else if (idx == ch_proc - 1) // Last process
+    {
+        dup2(fd[idx - 1][0], STDIN_FILENO); // Read from the last pipe
+    }
+    else // Middle processes
+    {
+        dup2(fd[idx - 1][0], STDIN_FILENO); // Read from the previous pipe
+        dup2(fd[idx][1], STDOUT_FILENO);   // Write to the next pipe
+    }
+
+    ft_close_fds(fd, ch_proc); // Close all pipe ends in the child process
+
+    if (execve(cmd, arg_vec, env_vec) == -1)
+    {
+        perror("Error in execve()");
+        exit(EXIT_FAILURE);
+    }
+}
+
+
+int main(int ac, char **av)
+{
+	int ch_proc = 2; // Number of child processes
+	int fd[ch_proc][2];
+	int i = 0;
+
+	// Create pipes
 	while (i < ch_proc)
 	{
 		if (pipe(fd[i]) < 0)
-			printf("Error in opening pipe fd[%d][2]\n", i);
+		{
+			perror("Error in opening pipe");
+			return (1);
+		}
 		i++;
 	}
 
-	int pid1 = fork();
-	if (pid1 == -1)
-		printf("Error in forking\n");
-	if (pid1 == 0)
+	// Create child processes
+	i = 0;
+	while (i < ch_proc)
 	{
-		char	cmd[] = "/usr/bin/ping";
-		char	*arg_vec[] = {"ping","-c", "3", "google.com", NULL};
-		char	*env_vec[] = {NULL};
-		dup2(fd[0][1], STDOUT_FILENO);
-		ft_close_fds(fd, ch_proc);
-		if (execve(cmd, arg_vec, env_vec) == -1)
-			return (2);
-		
-	}
-
-	int pid2 = fork();
-	if (pid2 == -1)
-		printf("Error in forking\n");
-
-	if (pid2 == 0)
-	{
-		char	cmd[] = "/usr/bin/grep";
-		char	*arg_vec[] = {"grep", "rtt", NULL};
-		char	*env_vec[] = {NULL};
-		dup2(fd[0][0], STDIN_FILENO);
-		dup2(fd[1][1], STDOUT_FILENO);
-		ft_close_fds(fd, ch_proc);
-		if (execve(cmd, arg_vec, env_vec) == -1)
+		int pid = fork();
+		if (pid == -1)
 		{
-			perror("Error in execve()\n");
-			return (2);
+			perror("Error in forking");
+			return (1);
 		}
-	}
-
-	int pid3 = fork();
-	if (pid3 == -1)
-		printf("Error in forking\n");
-
-	if (pid3 == 0)
-	{
-		char	cmd[] = "/usr/bin/wc";
-		char	*arg_vec[] = {"wc", "-c", NULL};
-		char	*env_vec[] = {NULL};
-		dup2(fd[1][0], STDIN_FILENO);
-		ft_close_fds(fd, ch_proc);
-		if (execve(cmd, arg_vec, env_vec) == -1)
+		if (pid == 0) // Child process
 		{
-			perror("Error in execve()\n");
-			return (2);
+			execute_command(i, fd, ch_proc);
 		}
+		i++;
 	}
+	i = 0;
 
+	// Parent process closes all pipe ends
 	ft_close_fds(fd, ch_proc);
-	waitpid(pid1, NULL, 0);
-	waitpid(pid2, NULL, 0);
-	printf("Success\n");
+
+	// Wait for all child processes
+	while (i < ch_proc)
+	{
+		wait(NULL);
+		i++;
+	}
+	printf("All processes completed successfully\n");
 	return (0);
 }
+
+
+// //! Simulate Multiple pipe "|" operation
+// int 	main(int ac, char **av)
+// {
+// 	int	ch_proc = 3;
+// 	int	i = 0;
+// 	int	fd[ch_proc][2];
+// 	while (i < ch_proc)
+// 	{
+// 		if (pipe(fd[i]) < 0)
+// 			printf("Error in opening pipe fd[%d][2]\n", i);
+// 		i++;
+// 	}
+
+// 	int pid1 = fork();
+// 	if (pid1 == -1)
+// 		printf("Error in forking\n");
+// 	if (pid1 == 0)
+// 	{
+// 		char	cmd[] = "/usr/bin/ping";
+// 		char	*arg_vec[] = {"ping","-c", "3", "google.com", NULL};
+// 		char	*env_vec[] = {NULL};
+// 		dup2(fd[0][1], STDOUT_FILENO);
+// 		ft_close_fds(fd, ch_proc);
+// 		if (execve(cmd, arg_vec, env_vec) == -1)
+// 			return (2);
+		
+// 	}
+
+// 	int pid2 = fork();
+// 	if (pid2 == -1)
+// 		printf("Error in forking\n");
+
+// 	if (pid2 == 0)
+// 	{
+// 		char	cmd[] = "/usr/bin/grep";
+// 		char	*arg_vec[] = {"grep", "rtt", NULL};
+// 		char	*env_vec[] = {NULL};
+// 		dup2(fd[0][0], STDIN_FILENO);
+// 		dup2(fd[1][1], STDOUT_FILENO);
+// 		ft_close_fds(fd, ch_proc);
+// 		if (execve(cmd, arg_vec, env_vec) == -1)
+// 		{
+// 			perror("Error in execve()\n");
+// 			return (2);
+// 		}
+// 	}
+
+// 	int pid3 = fork();
+// 	if (pid3 == -1)
+// 		printf("Error in forking\n");
+
+// 	if (pid3 == 0)
+// 	{
+// 		char	cmd[] = "/usr/bin/wc";
+// 		char	*arg_vec[] = {"wc", "-c", NULL};
+// 		char	*env_vec[] = {NULL};
+// 		dup2(fd[1][0], STDIN_FILENO);
+// 		ft_close_fds(fd, ch_proc);
+// 		if (execve(cmd, arg_vec, env_vec) == -1)
+// 		{
+// 			perror("Error in execve()\n");
+// 			return (2);
+// 		}
+// 	}
+
+// 	ft_close_fds(fd, ch_proc);
+// 	waitpid(pid1, NULL, 0);
+// 	waitpid(pid2, NULL, 0);
+// 	printf("Success\n");
+// 	return (0);
+// }
 
 
 // Let's create  two child process, the depthest child execute the first command, 
