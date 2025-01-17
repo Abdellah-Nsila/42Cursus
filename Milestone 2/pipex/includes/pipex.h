@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/17 12:29:27 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/17 18:55:04 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct	s_pipex
 	char	**cmd_paths;
 	char	***cmd_args;
 	char	**cmd_envs;
+	int		(*pipe_fds)[2];
 	int		cmd_count;
 }	t_pipex;
 

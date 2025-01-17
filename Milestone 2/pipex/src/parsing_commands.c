@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:59:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/17 12:28:52 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/17 18:54:05 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_bool	ft_init_cmd_struct_arr(t_pipex *pipex)
 		while (i <= pipex->cmd_count)
 			pipex->cmd_paths[i++] = NULL;
 	}
+	pipex->pipe_fds = ft_calloc(pipex->cmd_count - 1, sizeof(int[2]));
 	return (true);
 }
 

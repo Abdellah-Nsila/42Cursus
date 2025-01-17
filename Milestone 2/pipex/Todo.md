@@ -9,3 +9,6 @@
 
  ## One tips that im using to reduce memory errors (douple free, leaks, ...)
  When you allocate memory for an array, you must get the elements number that you want to store into it, and iterate throught the array and initialize eack block by NULL
+
+ ### Infinite lock screen
+ - while true; do ft_lock ;done
