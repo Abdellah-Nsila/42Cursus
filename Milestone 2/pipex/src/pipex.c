@@ -100,10 +100,7 @@ void	ft_run_commands(t_pipex *pipex)
 	while (i < pipex->cmd_count - 1)
 	{
 		if (pipe(pipex->pipe_fds[i]) == -1)
-		{
-			free(pipex->pipe_fds);
 			ft_exit_on_error(pipex, "pipe error");
-		}
 		i++;
 	}
 	ft_init_processes(pipex, pipex->pipe_fds);
