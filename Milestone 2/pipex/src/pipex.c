@@ -19,7 +19,11 @@
 void	ft_exit_on_error(t_pipex *pipex, char *error)
 {
 	if (error)
-		perror(error);
+	{
+		//TODO error no STDIN
+		dup2(STDIN_FILENO, STDERR_FILENO);
+		ft_printf(error);
+	}
 	if (pipex)
 		ft_clean_pipex(pipex);
 	exit(EXIT_FAILURE);
