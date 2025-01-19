@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:41:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/17 12:29:15 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/19 12:50:44 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ t_bool	ft_parse_infile(t_pipex *pipex, char *infile)
 	return (true);
 }
 
+// TODO you must chek the permission of each file ( already XD (: )) , and take descision
+// TODO exit, print error, clean ...
 t_bool	ft_parse_outfile(t_pipex *pipex, char *outfile)
 {
 	int flags;

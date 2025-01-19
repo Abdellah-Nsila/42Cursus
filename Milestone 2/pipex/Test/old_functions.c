@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 19:06:44 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/17 12:22:18 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/19 12:37:50 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,15 @@ int	main(int argc, char **argv, char **envp)
 	return (0);
 }
 
-
+void	ft_put_error(t_pipex *pipex, char *error, char *command)
+{
+	write(STDERR_FILENO, pipex->shell, ft_strlen(pipex->shell));
+	if (error)
+		write(STDERR_FILENO, error, ft_strlen(error));
+	if (command)
+		write(STDERR_FILENO, command, ft_strlen(command));
+	write(STDERR_FILENO, "\n", 1);
+}
 
 // // Function to close file descriptors in the parent process
 // void ft_close_parent_fds(t_pipex *pipex, int fd[2])
@@ -248,7 +256,15 @@ int	main(int argc, char **argv, char **envp)
 // 			ft_init_processes(pipex, i, fd);
 // 		// wait(NULL);
 // 		i++;
-// 	}
+// 	}void	ft_put_error(t_pipex *pipex, char *error, char *command)
+{
+	write(STDERR_FILENO, pipex->shell, ft_strlen(pipex->shell));
+	if (error)
+		write(STDERR_FILENO, error, ft_strlen(error));
+	if (command)
+		write(STDERR_FILENO, command, ft_strlen(command));
+	write(STDERR_FILENO, "\n", 1);
+}
 // 	ft_close_parent_fds(pipex, fd);
 // 	while (wait(NULL) > 0);
 // }

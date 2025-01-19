@@ -12,6 +12,29 @@
 
 #include "../includes/pipex.h"
 
+void	ft_get_shell(t_pipex *pipex, char **envp)
+{
+	int		i;
+	char	*shell_path;
+
+	i = 0;
+	while (envp[i])
+	{
+		if (ft_strncmp(envp[i], "SHELL=", 6) == 0)
+		{
+			shell_path = envp[i] + 6;
+			pipex->shell = ft_strdup(ft_strrchr(shell_path, '/') + 1);
+			if (!pipex->shell)
+				break ;
+			return;
+		}
+		i++;
+	}
+	pipex->shell = ft_strdup("sh");
+	if (!pipex->shell)
+		ft_exit_on_error(pipex);
+}
+
 char	*ft_parse_path(char **all_path, char *command)
 {
 	int		i;
@@ -82,6 +105,8 @@ t_bool	ft_parse_cmd_paths(t_pipex *pipex, t_range range, char **envp)
 		}
 		else
 			pipex->cmd_paths[i] = ft_strdup("");
+		if (ft_check_access(pipex->cmd_paths[i], X_OK) == false)
+			ft_command_error(pipex, pipex->cmd_args[i][0]);
 		i++;
 		range.start++;
 	}

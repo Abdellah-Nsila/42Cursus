@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:59:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/17 18:54:05 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/19 11:19:27 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ t_bool	ft_parse_args(t_pipex *pipex, int argc, char **argv, char **envp)
 	if (!pipex)
 		return (false);
 	range.end = argc - 1;
+	ft_get_shell(pipex, envp);
 	if (ft_strncmp("here_doc", argv[1], ft_strlen("here_doc")) == 0)
 	{
 		range.start = 3;
