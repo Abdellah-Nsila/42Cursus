@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:43:12 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/19 12:41:45 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/19 16:30:44 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ void	ft_redirect_pipe_fds(t_pipex *pipex, int (*pipe_fds)[2], int index)
 
 void	ft_execute_command(t_pipex *pipex, int cmd_index)
 {
+	// if (ft_check_access(pipex->outfile, W_OK) == false)
+	// {
+	// 	perror(pipex->shell);
+	// 	ft_exit_on_error(pipex);
+	// }
 	if (execve(pipex->cmd_paths[cmd_index], pipex->cmd_args[cmd_index], pipex->cmd_envs) == -1)
 		ft_exit_on_error(pipex);
 }

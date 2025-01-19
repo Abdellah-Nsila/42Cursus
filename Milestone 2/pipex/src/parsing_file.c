@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:41:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/19 12:50:44 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/19 16:06:23 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,16 @@ t_bool	ft_parse_outfile(t_pipex *pipex, char *outfile)
 		flags = (O_WRONLY | O_CREAT | O_TRUNC);
 	fd = open(outfile, flags);
 	if (fd < 0)
-		return (false);
-	// close(fd);
+	{
+		if (ft_check_access(outfile, W_OK) == false)
+		{
+			perror(pipex->shell);
+			// if (ft_strchr(outfile, '/') || outfile[0] == '\0')
+			// 	ft_put_error(pipex, "%s: no such file or directory: %s", outfile);
+			// else
+			// 	ft_put_error(pipex, "%s: permissin denied: %s", outfile);
+		}
+	}
 	pipex->outfile = ft_strdup(outfile);
 	pipex->outfile_fd = fd;
 	return (true);

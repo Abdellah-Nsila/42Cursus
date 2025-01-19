@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/19 12:48:46 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/19 16:27:56 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ typedef struct	s_pipex
 // Pipex Utils
 void		ft_init_pipex(t_pipex *pipex, char **envp);
 void		ft_reset_pipex(t_pipex *pipex);
-void		ft_reset_str(char *str);
+void		ft_free_pipe_fds(t_pipex *pipex);
+void		ft_reset_ptr(void *ptr);
 
 // Parse files
 t_bool		ft_check_access(char *file, int permission);
