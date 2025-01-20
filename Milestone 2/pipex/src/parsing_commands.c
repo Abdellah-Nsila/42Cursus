@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:59:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/20 21:15:59 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/20 21:20:45 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_bool	ft_init_cmd_struct_arr(t_pipex *pipex)
 			pipex->cmd_paths[i++] = NULL;
 	}
 	// TODO Fix this leaks here and pipe close fd
+	//! This command:  < /dev/stdin cat | cat | grep aa > /bin/od
 	pipex->pipe_fds = ft_calloc(pipex->cmd_count - 1, sizeof(int[2]));
 	return (true);
 }
