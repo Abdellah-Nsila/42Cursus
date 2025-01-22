@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 12:48:18 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/19 12:48:27 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/22 14:36:48 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,14 @@ cmd1 cmd2 cmd3 ... cmdn file2\n", STDERR_FILENO);
 		exit(EXIT_FAILURE);
 	ft_init_pipex(pipex, envp);
 	if (!ft_parse_args(pipex, argc, argv, envp))
+	{
+		ft_free_pipe_fds(pipex);	
 		ft_exit_on_error(pipex);
+	}
 	ft_run_commands(pipex);
-	ft_display_pipex(pipex);
+	// ft_display_pipex(pipex);
+	//TODO when i delete the free its work ??
+	// ft_free_pipe_fds(pipex);
 	ft_clean_pipex(pipex);
 	exit(EXIT_SUCCESS);
 }

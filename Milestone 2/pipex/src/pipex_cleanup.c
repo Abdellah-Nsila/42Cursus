@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:03:02 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/19 16:27:51 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/22 14:34:54 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	ft_clean_pipex(t_pipex *pipex)
 	ft_reset_ptr(pipex->infile);
 	ft_reset_ptr(pipex->outfile);
 	ft_reset_ptr(pipex->shell);
-	ft_reset_ptr(pipex->pipe_fds);
+	// ft_reset_ptr(pipex->pipe_fds);
 	ft_free_count_array(pipex->cmd_paths, pipex->cmd_count);
 	ft_free_2d_count_array(pipex, pipex->cmd_count);
 	ft_reset_pipex(pipex);

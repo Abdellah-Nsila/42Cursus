@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 12:40:47 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/19 16:28:17 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/22 14:33:50 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,31 +50,34 @@ void	ft_reset_pipex(t_pipex *pipex)
 	pipex->cmd_envs = NULL;
 }
 
-void	ft_free_pipe_fds(t_pipex *pipex)
+void ft_free_pipe_fds(t_pipex *pipex)
 {
-	// int	i;
+	int i;
 
-	// if (pipex->pipe_fds)
-	// {
-	// 	i = 0;
-	// 	while (i < pipex->cmd_count - 1)
-	// 	{
-	// 		close(pipex->pipe_fds[i][0]);
-	// 		close(pipex->pipe_fds[i][1]);
-	// 		i++;
-	// 	}
-	// 	free(pipex->pipe_fds);
-	// 	pipex->pipe_fds = NULL;
-	// }
+	if (!pipex->pipe_fds)
+		return;
+
+	i = 0;
+	while (i < pipex->cmd_count)
+	{
+		if (pipex->pipe_fds[i][0] != -1)
+			close(pipex->pipe_fds[i][0]);
+		if (pipex->pipe_fds[i][1] != -1)
+			close(pipex->pipe_fds[i][1]);
+		i++;
+	}
+
+	// Free the allocated memory
 	free(pipex->pipe_fds);
 	pipex->pipe_fds = NULL;
 }
 
+
 void ft_reset_ptr(void *ptr)
 {
-    if (ptr)
-    {
-        free(ptr);
-        ptr = NULL;
-    }
+	if (ptr)
+	{
+		free(ptr);
+		ptr = NULL;
+	}
 }
