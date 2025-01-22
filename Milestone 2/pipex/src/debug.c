@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:16:05 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/13 17:50:38 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/22 14:20:38 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,7 @@ void    ft_display_pipex(const t_pipex *pipex)
 		}
 	}
 	else
-	{
 		printf("  NULL\n");
-	}
 
 	// Display environment variables
 	printf("Environment Variables:\n");

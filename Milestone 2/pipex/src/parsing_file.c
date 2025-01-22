@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:41:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/19 16:06:23 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/22 14:20:52 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_bool	ft_parse_infile(t_pipex *pipex, char *infile)
 		fd = open(infile, O_RDONLY);
 		if (fd < 0)
 			return (false);
-		// close(fd);
 		pipex->infile = ft_strdup(infile);
 		pipex->infile_fd = fd;
 	}
