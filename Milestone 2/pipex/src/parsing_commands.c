@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:59:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/23 16:47:31 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/23 17:49:47 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,22 @@ t_bool	ft_init_cmd_struct_arr(t_pipex *pipex)
 	if (!pipex)
 		return (false);
 	i = 0;
-	pipex->cmd_args = (char ***) malloc(sizeof(char **) * (pipex->cmd_count + 1));
+	pipex->cmd_args = (char ***)
+		malloc(sizeof(char **) * (pipex->cmd_count + 1));
 	if (pipex->cmd_args)
 	{
 		while (i <= pipex->cmd_count)
 			pipex->cmd_args[i++] = NULL;
 	}
 	i = 0;
-	pipex->cmd_paths = (char **) malloc(sizeof(char *) * (pipex->cmd_count + 1));
+	pipex->cmd_paths = (char **)
+		malloc(sizeof(char *) * (pipex->cmd_count + 1));
 	if (pipex->cmd_paths)
-	{	
+	{
 		while (i <= pipex->cmd_count)
 			pipex->cmd_paths[i++] = NULL;
 	}
-	pipex->pipe_fds = ft_calloc(pipex->cmd_count - 1, sizeof(int[2]));
+	pipex->pipe_fds = ft_calloc(pipex->cmd_count - 1, sizeof(int [2]));
 	return (true);
 }
 
@@ -44,7 +46,6 @@ char	**ft_get_cmd_arg(char **argv, int index)
 	if (!cmd_args)
 		return (NULL);
 	return (cmd_args);
-	
 }
 
 t_bool	ft_parse_cmd_args(t_pipex *pipex, char **argv, t_range range)
@@ -68,14 +69,6 @@ t_bool	ft_parse_cmd_args(t_pipex *pipex, char **argv, t_range range)
 	pipex->cmd_args[i] = NULL;
 	return (true);
 }
-// TODO /dev/stdin << E | wc w >> /dev/stdout
-// TODO not same error as shell:
-//zsh: no such file or directory: /dev/cat
-// wc: w: No such file or directory
-
-// zsh: Permission denied: /dev/stdin
-// wc: w: No such file or directory
-// zsh: Exec format error
 
 t_bool	ft_parse_args(t_pipex *pipex, int argc, char **argv, char **envp)
 {
@@ -86,8 +79,8 @@ t_bool	ft_parse_args(t_pipex *pipex, int argc, char **argv, char **envp)
 	range.end = argc - 1;
 	ft_get_shell(pipex, envp);
 	ft_parse_outfile(pipex, argv[argc - 1]);
-	if (ft_strncmp("here_doc", argv[1], ft_strlen("here_doc")) == 0 &&
-		ft_strlen("here_doc") == ft_strlen(argv[1]))
+	if (ft_strncmp("here_doc", argv[1], ft_strlen("here_doc")) == 0
+		&& ft_strlen("here_doc") == ft_strlen(argv[1]))
 	{
 		range.start = 3;
 		pipex->here_doc = 1;
@@ -100,7 +93,7 @@ t_bool	ft_parse_args(t_pipex *pipex, int argc, char **argv, char **envp)
 		ft_parse_infile(pipex, argv[1]);
 	}
 	return (
-		ft_parse_cmd_args(pipex, argv, range) &&
-		ft_parse_cmd_paths(pipex, range, envp)
+		ft_parse_cmd_args(pipex, argv, range)
+		&& ft_parse_cmd_paths(pipex, range, envp)
 	);
 }

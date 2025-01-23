@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:16:05 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/23 15:53:01 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/23 17:39:30 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void    ft_display_pipex(const t_pipex *pipex)
 	printf("Command Count: %d\n", pipex->cmd_count);
 	printf("====================\n");
 }
-
 
 // TODO Some tests
 // valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes ./pipex non_exist_input "cat /dev/random"  wc  /dev/stdout

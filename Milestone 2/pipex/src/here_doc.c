@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:06:56 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/23 16:22:39 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/23 17:51:28 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_generate_tmpfile(t_pipex *pipex)
 
 	temp = ft_itoa(getpid());
 	if (!temp)
-	{	
+	{
 		pipex->infile = ft_strdup("pipex_heredoc");
 		return ;
 	}
@@ -34,10 +34,9 @@ void	ft_fill_here_doc(t_pipex *pipex, int fd)
 	ft_printf("pipex heredoc> ");
 	line = get_next_line(STDIN_FILENO);
 	line_size = ft_strlen(line) - 1;
-	while (line && 
-		!(ft_strncmp(line, pipex->limiter, ft_strlen(pipex->limiter)) == 0 &&
-		line_size == ft_strlen(pipex->limiter))
-		)
+	while (line && !(ft_strncmp(line, pipex->limiter,
+				ft_strlen(pipex->limiter)) == 0
+			&& line_size == ft_strlen(pipex->limiter)))
 	{
 		ft_putstr_fd(line, fd);
 		ft_printf("pipex heredoc> ");

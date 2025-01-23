@@ -6,13 +6,13 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:41:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/23 15:40:02 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/23 17:47:45 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-t_bool	ft_check_access(char *file, int permission) //  permission: R_OK  W_OK  X_OK
+t_bool	ft_check_access(char *file, int permission)
 {
 	if (access(file, permission) == -1)
 		return (false);
@@ -21,26 +21,21 @@ t_bool	ft_check_access(char *file, int permission) //  permission: R_OK  W_OK  X
 
 t_bool	ft_parse_infile(t_pipex *pipex, char *infile)
 {
-	int fd;
-	
+	int	fd;
+
 	fd = open(infile, O_RDONLY);
 	if (fd < 0 || ft_check_access(infile, R_OK) == false)
-	{	
 		ft_put_error(pipex, infile);
-		// ft_exit_on_error(pipex);
-	}
 	if (pipex->infile == NULL)
 		pipex->infile = ft_strdup(infile);
 	pipex->infile_fd = fd;
 	return (true);
 }
 
-// TODO you must chek the permission of each file ( already XD (: )) , and take descision
-// TODO exit, print error, clean ...
 t_bool	ft_parse_outfile(t_pipex *pipex, char *outfile)
 {
-	int flags;
-	int fd;
+	int	flags;
+	int	fd;
 
 	if (pipex->here_doc)
 		flags = (O_WRONLY | O_CREAT | O_APPEND);

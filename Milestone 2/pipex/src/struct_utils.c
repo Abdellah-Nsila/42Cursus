@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 12:40:47 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/23 16:22:14 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/23 17:43:04 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,11 @@
 void	ft_init_pipex(t_pipex *pipex, char **envp)
 {
 	if (!pipex)
-		return;
-
+		return ;
 	pipex->infile_fd = -1;
-	pipex->outfile_fd = -1;      
+	pipex->outfile_fd = -1;
 	pipex->here_doc = 0;
 	pipex->is_invalid_infile = false;
-
 	pipex->limiter = NULL;
 	pipex->infile = NULL;
 	pipex->outfile = NULL;
@@ -41,7 +39,7 @@ void	ft_reset_pipex(t_pipex *pipex)
 		pipex->infile_fd = -1;
 	}
 	if (pipex->outfile_fd >= 0)
-	{	
+	{
 		close(pipex->outfile_fd);
 		pipex->outfile_fd = -1;
 	}
@@ -54,14 +52,14 @@ void	ft_reset_pipex(t_pipex *pipex)
 void	ft_free_pipe_fds(t_pipex *pipex)
 {
 	if (pipex->pipe_fds)
-	{	
+	{
 		ft_close_pipes(pipex, pipex->pipe_fds);
 		free(pipex->pipe_fds);
 		pipex->pipe_fds = NULL;
 	}
 }
 
-void ft_reset_ptr(void *ptr)
+void	ft_reset_ptr(void *ptr)
 {
 	if (ptr)
 	{

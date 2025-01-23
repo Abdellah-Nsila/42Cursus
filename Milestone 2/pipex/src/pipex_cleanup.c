@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:03:02 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/23 13:52:06 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/23 17:45:50 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	ft_free_array(char **arr)
 	int	i;
 
 	if (!arr)
-		return;
-	i = 0; 
+		return ;
+	i = 0;
 	while (arr[i])
 	{
 		free(arr[i]);
@@ -34,7 +34,7 @@ void	ft_free_count_array(char **arr, int count)
 	int	i;
 
 	if (!arr)
-		return;
+		return ;
 	i = 0;
 	while (i < count)
 	{
@@ -55,7 +55,7 @@ void	ft_free_2d_array(t_pipex *pipex)
 	int	j;
 
 	if (!pipex || !pipex->cmd_args)
-		return;
+		return ;
 	i = 0;
 	while (i < pipex->cmd_count)
 	{
@@ -83,7 +83,7 @@ void	ft_free_2d_count_array(t_pipex *pipex, int count)
 	int	j;
 
 	if (!pipex || !pipex->cmd_args)
-		return;
+		return ;
 	i = 0;
 	while (i < count)
 	{
@@ -108,7 +108,7 @@ void	ft_free_2d_count_array(t_pipex *pipex, int count)
 void	ft_clean_pipex(t_pipex *pipex)
 {
 	if (!pipex)
-		return;
+		return ;
 	ft_reset_ptr(pipex->limiter);
 	ft_reset_ptr(pipex->infile);
 	ft_reset_ptr(pipex->outfile);

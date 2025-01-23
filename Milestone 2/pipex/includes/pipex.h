@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/23 13:34:24 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/23 17:53:04 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@
 # include "../Libft/includes/libft.h"
 
 // Begin && End indexs range of Commands inside the argv array
-typedef struct	s_range
+typedef struct s_range
 {
 	int	start;
 	int	end;
 }	t_range;
 
 // Pipex struct
-typedef struct	s_pipex
+typedef struct s_pipex
 {
 	int		infile_fd;
 	int		outfile_fd;
@@ -75,8 +75,8 @@ char		**ft_get_cmd_arg(char **argv, int index);
 t_bool		ft_parse_cmd_args(t_pipex *pipex, char **argv, t_range range);
 
 // Here_doc
-void	ft_fill_here_doc(t_pipex *pipex, int fd);
-void	ft_here_doc(t_pipex *pipex);
+void		ft_fill_here_doc(t_pipex *pipex, int fd);
+void		ft_here_doc(t_pipex *pipex);
 
 // Execution functions
 void		ft_close_pipes(t_pipex *pipex, int (*pipe_fds)[2]);
@@ -93,7 +93,8 @@ void		ft_free_2d_count_array(t_pipex *pipex, int count);
 void		ft_clean_pipex(t_pipex *pipex);
 
 // Errors
-void		ft_format_error(t_pipex *pipex, char *format, char *error, char *arg);
+void		ft_format_error(t_pipex *pipex, char *format,
+					char *error, char *arg);
 void		ft_put_error(t_pipex *pipex, char *arg);
 void		ft_exit_on_error(t_pipex *pipex);
 
