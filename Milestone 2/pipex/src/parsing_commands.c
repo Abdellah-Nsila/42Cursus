@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:59:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/23 17:49:47 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/23 18:38:30 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,12 @@ t_bool	ft_parse_args(t_pipex *pipex, int argc, char **argv, char **envp)
 
 	if (!pipex)
 		return (false);
+	// envp = NULL;
+	// if (!envp)
+	// {
+	// 	ft_putstr_fd("No Path\n", STDERR_FILENO);
+	// 	ft_exit_on_error(pipex);
+	// }
 	range.end = argc - 1;
 	ft_get_shell(pipex, envp);
 	ft_parse_outfile(pipex, argv[argc - 1]);

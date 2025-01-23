@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/23 17:53:04 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/23 19:03:26 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_bool		ft_parse_outfile(t_pipex *pipex, char *outfile);
 void		ft_get_shell(t_pipex *pipex, char **envp);
 char		*ft_parse_default_path(char *command);
 char		*ft_parse_path(char	**all_path, char *command);
-char		*ft_get_path(char *command, char **envp);
+char		*ft_get_path(t_pipex *pipex, char *command, char **envp);
 t_bool		ft_parse_cmd_paths(t_pipex *pipex, t_range range, char **envp);
 
 // Parse Arguments
@@ -96,6 +96,7 @@ void		ft_clean_pipex(t_pipex *pipex);
 void		ft_format_error(t_pipex *pipex, char *format,
 					char *error, char *arg);
 void		ft_put_error(t_pipex *pipex, char *arg);
+void		ft_put_custom_error(t_pipex *pipex, char *arg);
 void		ft_exit_on_error(t_pipex *pipex);
 
 // Debugging

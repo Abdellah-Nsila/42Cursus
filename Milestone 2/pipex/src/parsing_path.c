@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:46:11 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/23 17:46:42 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/23 19:09:59 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,39 @@ char	*ft_parse_path(char **all_path, char *command)
 	return (result);
 }
 
-char	*ft_get_path(char *command, char **envp)
+// TODO You must fix this : export PATH=$PATH:/bin
+//  % ./pipex  /dev/stdin cat ls  /dev/stdout
+// 0x7ffc8dfa37c8
+// zsh: Bad address
+// zsh: Bad address: cat
+// 0x7ffc8dfa37c8
+// zsh: Bad address
+// zsh: Bad address: ls
+// a.out	fifoData  includes  Libft     outfile  PIPEX_TESTER  Test
+// Backup	file	  infile    Makefile  pipex    src	     Todo.md
+
+// === PIPEX STRUCT ===
+// Infile FD: 4
+// Outfile FD: 3
+// Here_doc: Disabled
+// Infile: /dev/stdin
+// Outfile: /dev/stdout
+// Is Invalid Infile: No
+// Command Paths:
+//   [0]: /usr/bin/cat
+//   [1]: /usr/bin/ls
+// Command Arguments:
+//   Command 1 Args:
+//     [0]: cat
+//   Command 2 Args:
+//     [0]: ls
+// Environment Variables:
+//     Env Exist
+// Command Count: 2
+// ====================
+// abnsila@c4r2p5 ~/Desktop/42cursus/Milestone 2/pipex
+
+char	*ft_get_path(t_pipex *pipex, char *command, char **envp)
 {
 	int		i;
 	char	**all_path;
@@ -76,11 +108,20 @@ char	*ft_get_path(char *command, char **envp)
 			break ;
 		i++;
 	}
+	printf("%p\n", envp[i]);
 	if (!envp[i])
+	{
+		ft_put_custom_error(pipex, command);
 		return (ft_strdup(command));
+	}
 	all_path = ft_split(envp[i] + 5, ':');
 	if (!all_path)
+	{
+		ft_put_custom_error(pipex, command);	
 		return (ft_strdup(command));
+	}
+	if (ft_check_access(pipex->cmd_paths[i], X_OK) == false)
+			ft_put_error(pipex, command);
 	path = ft_parse_path(all_path, command);
 	return (path);
 }
@@ -97,16 +138,11 @@ t_bool	ft_parse_cmd_paths(t_pipex *pipex, t_range range, char **envp)
 	{
 		if (pipex->cmd_args[i] && pipex->cmd_args[i][0])
 		{
-			path = ft_get_path(pipex->cmd_args[i][0], envp);
-			if (path)
-				pipex->cmd_paths[i] = path;
-			else
-				pipex->cmd_paths[i] = ft_strdup("");
+			path = ft_get_path(pipex, pipex->cmd_args[i][0], envp);
+			pipex->cmd_paths[i] = path;
 		}
-		else
-			pipex->cmd_paths[i] = ft_strdup("");
-		if (ft_check_access(pipex->cmd_paths[i], X_OK) == false)
-			ft_put_error(pipex, pipex->cmd_args[i][0]);
+		// if (ft_check_access(pipex->cmd_paths[i], X_OK) == false)
+		// 	ft_put_error(pipex, pipex->cmd_args[i][0]);
 		i++;
 		range.start++;
 	}
