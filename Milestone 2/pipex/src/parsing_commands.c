@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:59:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/20 21:20:45 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/23 11:09:46 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ t_bool	ft_init_cmd_struct_arr(t_pipex *pipex)
 		while (i <= pipex->cmd_count)
 			pipex->cmd_paths[i++] = NULL;
 	}
-	// TODO Fix this leaks here and pipe close fd
-	//! This command:  < /dev/stdin cat | cat | grep aa > /bin/od
 	pipex->pipe_fds = ft_calloc(pipex->cmd_count - 1, sizeof(int[2]));
 	return (true);
 }
@@ -95,23 +93,23 @@ t_bool	ft_parse_args(t_pipex *pipex, int argc, char **argv, char **envp)
 		return (false);
 	range.end = argc - 1;
 	ft_get_shell(pipex, envp);
+	ft_parse_infile(pipex, argv[1]);
+	ft_parse_outfile(pipex, argv[argc - 1]);
 	if (ft_strncmp("here_doc", argv[1], ft_strlen("here_doc")) == 0)
 	{
 		range.start = 3;
 		pipex->here_doc = 1;
 		pipex->limiter = ft_strdup(argv[2]);
+		
 		return (
 			ft_parse_cmd_args(pipex, argv, range) &&
-			ft_parse_cmd_paths(pipex, range, envp) &&
-			ft_parse_outfile(pipex, argv[argc - 1]));
+			ft_parse_cmd_paths(pipex, range, envp));
 	}
 	else
 	{
 		range.start = 2;
 		return (
 			ft_parse_cmd_args(pipex, argv, range) &&
-			ft_parse_cmd_paths(pipex, range, envp) &&
-			ft_parse_infile(pipex, argv[1]) &&
-			ft_parse_outfile(pipex, argv[argc - 1]));
+			ft_parse_cmd_paths(pipex, range, envp));
 	}
 }

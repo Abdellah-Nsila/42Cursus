@@ -6,47 +6,36 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:43:12 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/20 21:20:00 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/23 10:44:38 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-void	ft_close_pipes(t_pipex *pipex, int (*pipe_fds)[2])
+void ft_redirect_pipe_fds(t_pipex *pipex, int (*pipe_fds)[2], int index)
 {
-	int	i;
-
-	i = 0;
-	while (i < pipex->cmd_count - 1)
-	{
-		close(pipe_fds[i][0]);
-		close(pipe_fds[i][1]);
-		i++;
-	}
-	free(pipe_fds);
+    if (index == 0 &&
+		dup2(pipex->infile_fd, STDIN_FILENO) == -1)
+        ft_exit_on_error(pipex);
+    else if (index > 0 &&
+		dup2(pipe_fds[index - 1][0], STDIN_FILENO) == -1)
+        ft_exit_on_error(pipex);
+    if (index == pipex->cmd_count - 1 &&
+		dup2(pipex->outfile_fd, STDOUT_FILENO) == -1)
+        ft_exit_on_error(pipex);
+    else if (index < pipex->cmd_count - 1 &&
+		dup2(pipe_fds[index][1], STDOUT_FILENO) == -1)
+        ft_exit_on_error(pipex);
 }
 
-void	ft_redirect_pipe_fds(t_pipex *pipex, int (*pipe_fds)[2], int index)
-{
-	if (index == 0)
-		dup2(pipex->infile_fd, STDIN_FILENO);
-	else
-		dup2(pipe_fds[index - 1][0], STDIN_FILENO);
-	if (index == pipex->cmd_count - 1)
-		dup2(pipex->outfile_fd, STDOUT_FILENO);
-	else
-		dup2(pipe_fds[index][1], STDOUT_FILENO);
-}
 
 void	ft_execute_command(t_pipex *pipex, int cmd_index)
 {
-	// if (ft_check_access(pipex->outfile, W_OK) == false)
-	// {
-	// 	perror(pipex->shell);
-	// 	ft_exit_on_error(pipex);
-	// }
 	if (execve(pipex->cmd_paths[cmd_index], pipex->cmd_args[cmd_index], pipex->cmd_envs) == -1)
+	{
+		perror(pipex->shell);
 		ft_exit_on_error(pipex);
+	}
 }
 
 void	ft_init_processes(t_pipex *pipex, int (*pipe_fds)[2])

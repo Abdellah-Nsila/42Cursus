@@ -106,7 +106,7 @@ t_bool	ft_parse_cmd_paths(t_pipex *pipex, t_range range, char **envp)
 		else
 			pipex->cmd_paths[i] = ft_strdup("");
 		if (ft_check_access(pipex->cmd_paths[i], X_OK) == false)
-			ft_command_error(pipex, pipex->cmd_args[i][0]);
+			ft_put_error(pipex, pipex->cmd_args[i][0]);
 		i++;
 		range.start++;
 	}

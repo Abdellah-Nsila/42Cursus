@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/19 16:27:56 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/23 11:01:08 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ void		ft_free_2d_count_array(t_pipex *pipex, int count);
 void		ft_clean_pipex(t_pipex *pipex);
 
 // Errors
-void	ft_put_error(t_pipex *pipex, char *error, char *command);
-void	ft_exit_on_error(t_pipex *pipex);
-void	ft_command_error(t_pipex *pipex, char *command);
+void		ft_format_error(t_pipex *pipex, char *format, char *error, char *arg);
+void		ft_put_error(t_pipex *pipex, char *arg);
+void		ft_exit_on_error(t_pipex *pipex);
 
 // Debugging
 void		ft_display_pipex(const t_pipex *pipex);
