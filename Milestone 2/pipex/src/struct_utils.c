@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 12:40:47 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/23 10:39:58 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/23 16:22:14 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ft_init_pipex(t_pipex *pipex, char **envp)
 	pipex->cmd_paths = NULL;
 	pipex->cmd_args = NULL;
 	pipex->cmd_envs = envp;
+	pipex->pipe_fds = NULL;
 	pipex->shell = NULL;
 	pipex->cmd_count = 0;
 }
@@ -50,24 +51,14 @@ void	ft_reset_pipex(t_pipex *pipex)
 	pipex->cmd_envs = NULL;
 }
 
-void	ft_close_pipes(t_pipex *pipex, int (*pipe_fds)[2])
-{
-	int	i;
-
-	i = 0;
-	while (i < pipex->cmd_count - 1)
-	{
-		close(pipe_fds[i][0]);
-		close(pipe_fds[i][1]);
-		i++;
-	}
-}
-
 void	ft_free_pipe_fds(t_pipex *pipex)
 {
-	ft_close_pipes(pipex, pipex->pipe_fds);
-	free(pipex->pipe_fds);
-	pipex->pipe_fds = NULL;
+	if (pipex->pipe_fds)
+	{	
+		ft_close_pipes(pipex, pipex->pipe_fds);
+		free(pipex->pipe_fds);
+		pipex->pipe_fds = NULL;
+	}
 }
 
 void ft_reset_ptr(void *ptr)

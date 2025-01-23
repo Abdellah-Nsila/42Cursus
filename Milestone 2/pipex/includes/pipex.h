@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/23 11:01:08 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/23 13:34:24 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,10 @@ t_bool		ft_init_cmd_struct_arr(t_pipex *pipex);
 t_bool		ft_parse_args(t_pipex *pipex, int argc, char **argv, char **envp);
 char		**ft_get_cmd_arg(char **argv, int index);
 t_bool		ft_parse_cmd_args(t_pipex *pipex, char **argv, t_range range);
+
+// Here_doc
+void	ft_fill_here_doc(t_pipex *pipex, int fd);
+void	ft_here_doc(t_pipex *pipex);
 
 // Execution functions
 void		ft_close_pipes(t_pipex *pipex, int (*pipe_fds)[2]);

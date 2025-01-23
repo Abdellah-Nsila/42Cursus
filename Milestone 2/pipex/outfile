@@ -1,0 +1,15 @@
+total 76
+-rwxr-xr-x 1 abnsila candidates 16720 Jan 17 12:06 a.out
+drwxr-xr-x 2 abnsila candidates    21 Jan 17 18:31 Backup
+prwxr-xr-x 1 abnsila candidates     0 Jan  7 17:28 fifoData
+-rw-r--r-- 1 abnsila candidates     0 Jan 13 13:41 file
+drwxr-xr-x 2 abnsila candidates    21 Jan 14 17:17 includes
+-rw-r--r-- 1 abnsila candidates   438 Jan 12 18:19 infile
+drwxr-xr-x 3 abnsila candidates  4096 Jan 23 15:38 Libft
+-rw-r--r-- 1 abnsila candidates   948 Jan 23 14:35 Makefile
+-rw-r--r-- 1 abnsila candidates     0 Jan 23 15:41 outfile
+-rwxr-xr-x 1 abnsila candidates 37200 Jan 23 15:40 pipex
+drwxr-xr-x 4 abnsila candidates   112 Jan 23 15:39 PIPEX_TESTER
+drwxr-xr-x 2 abnsila candidates   211 Jan 23 15:40 src
+drwxr-xr-x 2 abnsila candidates   107 Jan 17 18:31 Test
+-rw-r--r-- 1 abnsila candidates   575 Jan 17 15:43 Todo.md

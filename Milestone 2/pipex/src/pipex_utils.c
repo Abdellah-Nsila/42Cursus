@@ -6,13 +6,26 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:43:12 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/23 10:44:38 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/23 16:22:09 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-void ft_redirect_pipe_fds(t_pipex *pipex, int (*pipe_fds)[2], int index)
+void	ft_close_pipes(t_pipex *pipex, int (*pipe_fds)[2])
+{
+	int	i;
+
+	i = 0;
+	while (i < pipex->cmd_count - 1)
+	{
+		close(pipe_fds[i][0]);
+		close(pipe_fds[i][1]);
+		i++;
+	}
+}
+
+void	ft_redirect_pipe_fds(t_pipex *pipex, int (*pipe_fds)[2], int index)
 {
     if (index == 0 &&
 		dup2(pipex->infile_fd, STDIN_FILENO) == -1)
@@ -27,7 +40,6 @@ void ft_redirect_pipe_fds(t_pipex *pipex, int (*pipe_fds)[2], int index)
 		dup2(pipe_fds[index][1], STDOUT_FILENO) == -1)
         ft_exit_on_error(pipex);
 }
-
 
 void	ft_execute_command(t_pipex *pipex, int cmd_index)
 {
@@ -48,7 +60,7 @@ void	ft_init_processes(t_pipex *pipex, int (*pipe_fds)[2])
 	{
 		pid = fork();
 		if (pid == -1)
-			ft_exit_on_error(pipex);
+			return ;
 		if (pid == 0)
 		{
 			ft_redirect_pipe_fds(pipex, pipe_fds, cmd_index);
@@ -65,12 +77,12 @@ void	ft_run_commands(t_pipex *pipex)
 	int	i;
 
 	if (!pipex->pipe_fds)
-		ft_exit_on_error(pipex);
+		return ;
 	i = 0;
 	while (i < pipex->cmd_count - 1)
 	{
 		if (pipe(pipex->pipe_fds[i]) == -1)
-			ft_exit_on_error(pipex);
+			return ;
 		i++;
 	}
 	ft_init_processes(pipex, pipex->pipe_fds);
