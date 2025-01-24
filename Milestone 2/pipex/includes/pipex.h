@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/23 19:03:26 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/24 17:25:15 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ void		ft_clean_pipex(t_pipex *pipex);
 void		ft_format_error(t_pipex *pipex, char *format,
 					char *error, char *arg);
 void		ft_put_error(t_pipex *pipex, char *arg);
-void		ft_put_custom_error(t_pipex *pipex, char *arg);
 void		ft_exit_on_error(t_pipex *pipex);
 
 // Debugging
