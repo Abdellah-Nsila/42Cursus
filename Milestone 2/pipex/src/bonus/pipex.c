@@ -6,16 +6,17 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 12:48:18 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/24 20:09:19 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/24 21:58:28 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+//TODO Mix mondatory && bonus
 #include "../includes/pipex.h"
 
 void	ft_check_parse(int argc, char **argv)
 {
 	if (ft_strncmp("here_doc", argv[1], ft_strlen("here_doc")) == 0
-		&& ft_strlen("here_doc") == ft_strlen(argv[1]) && argc != 6)
+		&& ft_strlen("here_doc") == ft_strlen(argv[1]) && argc < 5)
 	{
 		ft_putstr_fd("Usage: ./pipex here_doc LIMITER cmd cmd1 file\n",
 			STDERR_FILENO);
@@ -43,6 +44,6 @@ int	main(int argc, char **argv, char **envp)
 	if (!ft_parse_args(pipex, argc, argv, envp))
 		ft_exit_on_error(pipex);
 	ft_run_commands(pipex);
-	ft_display_pipex(pipex);
+	// ft_display_pipex(pipex);
 	ft_exit_on_success(pipex);
 }

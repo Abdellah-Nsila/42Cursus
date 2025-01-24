@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:41:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/24 20:14:47 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/24 21:57:10 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_bool	ft_parse_outfile(t_pipex *pipex, char *outfile)
 		flags = (O_WRONLY | O_CREAT | O_APPEND);
 	else
 		flags = (O_WRONLY | O_CREAT | O_TRUNC);
-	fd = open(outfile, flags, 0777);
+	fd = open(outfile, flags, 0644);
 	if (fd < 0 || ft_check_access(outfile, W_OK) == false)
 		ft_format_error(pipex, "%s: %s: %s", strerror(errno), outfile);
 	pipex->outfile = ft_strdup(outfile);
