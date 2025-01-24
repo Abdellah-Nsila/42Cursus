@@ -6,11 +6,19 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 12:40:47 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/23 17:43:04 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/24 18:11:45 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
+
+void	ft_exit_on_success(t_pipex *pipex)
+{
+	if (pipex->here_doc)
+		unlink(pipex->infile);
+	ft_clean_pipex(pipex);
+	exit(EXIT_SUCCESS);
+}
 
 void	ft_init_pipex(t_pipex *pipex, char **envp)
 {

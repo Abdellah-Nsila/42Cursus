@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/24 17:25:15 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/24 18:12:05 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_pipex
 }	t_pipex;
 
 // Pipex Utils
+void		ft_exit_on_success(t_pipex *pipex);
 void		ft_init_pipex(t_pipex *pipex, char **envp);
 void		ft_reset_pipex(t_pipex *pipex);
 void		ft_free_pipe_fds(t_pipex *pipex);
@@ -69,6 +70,7 @@ char		*ft_get_path(t_pipex *pipex, char *command, char **envp);
 t_bool		ft_parse_cmd_paths(t_pipex *pipex, t_range range, char **envp);
 
 // Parse Arguments
+void		ft_check_parse(int argc, char **argv);
 t_bool		ft_init_cmd_struct_arr(t_pipex *pipex);
 t_bool		ft_parse_args(t_pipex *pipex, int argc, char **argv, char **envp);
 char		**ft_get_cmd_arg(char **argv, int index);
