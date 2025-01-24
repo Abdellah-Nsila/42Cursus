@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/24 18:12:05 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/24 18:31:04 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ char		**ft_get_cmd_arg(char **argv, int index);
 t_bool		ft_parse_cmd_args(t_pipex *pipex, char **argv, t_range range);
 
 // Here_doc
+void		ft_generate_tmpfile(t_pipex *pipex);
 void		ft_fill_here_doc(t_pipex *pipex, int fd);
 void		ft_here_doc(t_pipex *pipex);
 

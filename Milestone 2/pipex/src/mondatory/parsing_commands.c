@@ -6,30 +6,11 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:59:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/24 18:10:48 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/24 18:34:46 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
-
-void	ft_check_parse(int argc, char **argv)
-{
-	if (ft_strncmp("here_doc", argv[1], ft_strlen("here_doc")) == 0
-		&& ft_strlen("here_doc") == ft_strlen(argv[1]) && argc != 6)
-	{
-		ft_putstr_fd("Usage: ./pipex here_doc LIMITER cmd cmd1 file\n",
-			STDERR_FILENO);
-		exit(EXIT_FAILURE);
-	}
-	else if (argc < 5)
-	{
-		ft_putstr_fd("Usage [1]: ./pipex file1\
-cmd1 cmd2 cmd3 ... cmdn file2\n", STDERR_FILENO);
-		ft_putstr_fd("Usage [2]: ./pipex here_doc LIMITER cmd cmd1 file\n",
-			STDERR_FILENO);
-		exit(EXIT_FAILURE);
-	}
-}
 
 t_bool	ft_init_cmd_struct_arr(t_pipex *pipex)
 {
@@ -97,20 +78,9 @@ t_bool	ft_parse_args(t_pipex *pipex, int argc, char **argv, char **envp)
 		return (false);
 	range.end = argc - 1;
 	ft_get_shell(pipex, envp);
+	range.start = 2;
+	ft_parse_infile(pipex, argv[1]);
 	ft_parse_outfile(pipex, argv[argc - 1]);
-	if (ft_strncmp("here_doc", argv[1], ft_strlen("here_doc")) == 0
-		&& ft_strlen("here_doc") == ft_strlen(argv[1]))
-	{
-		range.start = 3;
-		pipex->here_doc = 1;
-		pipex->limiter = ft_strdup(argv[2]);
-		ft_here_doc(pipex);
-	}
-	else
-	{
-		range.start = 2;
-		ft_parse_infile(pipex, argv[1]);
-	}
 	return (
 		ft_parse_cmd_args(pipex, argv, range)
 		&& ft_parse_cmd_paths(pipex, range, envp)
