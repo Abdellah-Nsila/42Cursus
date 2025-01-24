@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:46:11 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/24 17:32:54 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/24 20:12:12 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,10 @@ t_bool	ft_parse_cmd_paths(t_pipex *pipex, t_range range, char **envp)
 	{
 		if (pipex->cmd_args[i] && pipex->cmd_args[i][0])
 		{
-			pipex->cmd_paths[i] = ft_get_path(pipex,
+			if (ft_strchr(pipex->cmd_args[i][0], '/'))
+				pipex->cmd_paths[i] = ft_strdup(pipex->cmd_args[i][0]);
+			else
+				pipex->cmd_paths[i] = ft_get_path(pipex,
 					pipex->cmd_args[i][0], envp);
 		}
 		else
