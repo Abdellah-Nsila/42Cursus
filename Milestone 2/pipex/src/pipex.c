@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 12:48:18 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/23 18:43:45 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/24 16:11:05 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,6 @@ int	main(int argc, char **argv, char **envp)
 	if (!ft_parse_args(pipex, argc, argv, envp))
 		ft_exit_on_error(pipex);
 	ft_run_commands(pipex);
-	ft_display_pipex(pipex);
+	// ft_display_pipex(pipex);
 	ft_exit_on_success(pipex);
 }

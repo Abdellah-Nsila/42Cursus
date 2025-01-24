@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:46:11 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/23 19:09:59 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/24 16:22:05 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,14 +101,12 @@ char	*ft_get_path(t_pipex *pipex, char *command, char **envp)
 	char	**all_path;
 	char	*path;
 
-	i = 0;
-	while (envp[i])
+	i = -1;
+	while (envp[++i])
 	{
 		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
 			break ;
-		i++;
 	}
-	printf("%p\n", envp[i]);
 	if (!envp[i])
 	{
 		ft_put_custom_error(pipex, command);
@@ -120,16 +118,15 @@ char	*ft_get_path(t_pipex *pipex, char *command, char **envp)
 		ft_put_custom_error(pipex, command);	
 		return (ft_strdup(command));
 	}
-	if (ft_check_access(pipex->cmd_paths[i], X_OK) == false)
-			ft_put_error(pipex, command);
 	path = ft_parse_path(all_path, command);
+	if (ft_check_access(path, X_OK) == false)
+			ft_put_custom_error(pipex, command);
 	return (path);
 }
 
 t_bool	ft_parse_cmd_paths(t_pipex *pipex, t_range range, char **envp)
 {
 	int		i;
-	char	*path;
 
 	if (!pipex || !envp)
 		return (false);
@@ -138,11 +135,16 @@ t_bool	ft_parse_cmd_paths(t_pipex *pipex, t_range range, char **envp)
 	{
 		if (pipex->cmd_args[i] && pipex->cmd_args[i][0])
 		{
-			path = ft_get_path(pipex, pipex->cmd_args[i][0], envp);
-			pipex->cmd_paths[i] = path;
+			if (ft_strchr(pipex->cmd_args[i][0], '/'))
+			{
+				if (ft_check_access(pipex->cmd_args[i][0], X_OK) == false)
+					ft_put_error(pipex, pipex->cmd_args[i][0]);
+				pipex->cmd_paths[i] =  ft_strdup(pipex->cmd_args[i][0]);
+			}
+			else
+				pipex->cmd_paths[i] = ft_get_path(pipex,
+										pipex->cmd_args[i][0], envp);
 		}
-		// if (ft_check_access(pipex->cmd_paths[i], X_OK) == false)
-		// 	ft_put_error(pipex, pipex->cmd_args[i][0]);
 		i++;
 		range.start++;
 	}

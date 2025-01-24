@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 10:07:03 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/23 19:02:06 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/24 16:21:34 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ void	ft_exit_on_error(t_pipex *pipex)
 
 void	ft_put_error(t_pipex *pipex, char *arg)
 {
-	perror(pipex->shell);
+	printf("cmd: %s\n", arg);
 	ft_format_error(pipex, "%s: %s: %s", strerror(errno), arg);
 }
