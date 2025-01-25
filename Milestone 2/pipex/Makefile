@@ -1,5 +1,4 @@
-M_NAME = pipex
-B_NAME = pipex_bonus
+NAME = pipex
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 SRC_DIR = src
@@ -7,28 +6,20 @@ INCLUDES = -I./includes -I./Libft/includes
 LIBFT_DIR = ./Libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-UTILS = ./utils/parsing_file.c ./utils/parsing_path.c \
+UTILS = ./utils/parsing_file.c ./utils/parsing_path.c    \
 		./utils/pipex_execution.c ./utils/struct_utils.c \
-		./utils/pipex_cleanup.c ./utils/pipex_error.c \
-		./utils/debug.c \
+		./utils/here_doc.c ./utils/parsing_commands.c    \
+		./utils/pipex_cleanup.c ./utils/pipex_error.c    \
 
-SRCS =	./src/mondatory/pipex.c ./src/mondatory/parsing_commands.c \
-
-BSRCS =	./src/bonus/pipex.c ./src/bonus/parsing_commands.c ./src/bonus/here_doc.c \
+SRCS =	./src/pipex.c
 
 OBUTILS = $(UTILS:.c=.o)
 OBJS = $(SRCS:.c=.o)
-BOBJS = $(BSRCS:.c=.o)
 
-all: $(LIBFT) $(M_NAME)
+all: $(LIBFT) $(NAME)
 
-$(M_NAME): $(OBJS) $(OBUTILS)
-	$(CC) $(CFLAGS) $(OBUTILS) $(OBJS) $(LIBFT) $(INCLUDES) -o $(M_NAME)
-
-bonus: $(LIBFT) $(B_NAME)
-
-$(B_NAME): $(BOBJS) $(OBUTILS)
-	$(CC) $(CFLAGS) $(OBUTILS) $(BOBJS) $(LIBFT) $(INCLUDES) -o $(B_NAME)
+$(NAME): $(OBJS) $(OBUTILS)
+	$(CC) $(CFLAGS) $(OBUTILS) $(OBJS) $(LIBFT) $(INCLUDES) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
@@ -38,11 +29,11 @@ $(LIBFT):
 
 clean:
 	make clean -C $(LIBFT_DIR)
-	rm -f $(OBJS) $(OBUTILS) $(BOBJS)
+	rm -f $(OBJS) $(OBUTILS)
 
 fclean: clean
 	make fclean -C $(LIBFT_DIR)
-	rm -f $(M_NAME) $(B_NAME)
+	rm -f $(NAME)
 
 re: fclean all
 

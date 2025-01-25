@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:43:12 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/25 14:06:06 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/25 15:01:00 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,24 +102,14 @@ int	ft_run_commands(t_pipex *pipex)
 			return (EXIT_FAILURE);
 		i++;
 	}
-
-	// Store the last child's PID during initialization
 	last_pid = ft_init_processes(pipex, pipex->pipe_fds);
 	ft_close_pipes(pipex, pipex->pipe_fds);
-	// Wait for all child processes
 	while ((w = wait(&status)) > 0)
 	{
-		if (w == last_pid) // Only capture the exit code of the last command
-		{
-			if (WIFEXITED(status)) // Check if the process exited normally
+		if (w == last_pid)
+			if (WIFEXITED(status))
 				last_exit_code = WEXITSTATUS(status);
-			// else if (WIFSIGNALED(status)) // Check if terminated by a signal
-			// 	last_exit_code = 128 + WTERMSIG(status);
-		}
 	}
-	// Print the exit code of the last command
-	ft_putnbr_fd(last_exit_code, STDERR_FILENO);
-	ft_putstr_fd("\n", STDERR_FILENO);
 	return (last_exit_code);
 }
 

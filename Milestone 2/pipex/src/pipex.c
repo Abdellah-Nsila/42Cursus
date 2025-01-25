@@ -6,17 +6,28 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 12:48:18 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/24 18:36:24 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/25 15:21:30 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+//TODO Mix mondatory && bonus
 #include "../includes/pipex.h"
 
 void	ft_check_parse(int argc, char **argv)
 {
-	if (argc != 5 && argv)
+	if (ft_strncmp("here_doc", argv[1], ft_strlen("here_doc")) == 0
+		&& ft_strlen("here_doc") == ft_strlen(argv[1]) && argc < 5)
 	{
-		ft_putstr_fd("Usage [1]: ./pipex file1 cmd1 cmd2 file2\n", STDERR_FILENO);
+		ft_putstr_fd("Usage: ./pipex here_doc LIMITER cmd cmd1 file\n",
+			STDERR_FILENO);
+		exit(EXIT_FAILURE);
+	}
+	else if (argc < 5)
+	{
+		ft_putstr_fd("Usage [1]: ./pipex file1\
+cmd1 cmd2 cmd3 ... cmdn file2\n", STDERR_FILENO);
+		ft_putstr_fd("Usage [2]: ./pipex here_doc LIMITER cmd cmd1 file\n",
+			STDERR_FILENO);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -24,6 +35,7 @@ void	ft_check_parse(int argc, char **argv)
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipex	*pipex;
+	int		exit_code;
 
 	ft_check_parse(argc, argv);
 	pipex = malloc(sizeof(t_pipex));
@@ -32,7 +44,6 @@ int	main(int argc, char **argv, char **envp)
 	ft_init_pipex(pipex, envp);
 	if (!ft_parse_args(pipex, argc, argv, envp))
 		ft_exit_on_error(pipex);
-	ft_run_commands(pipex);
-	// ft_display_pipex(pipex);
-	ft_exit_on_success(pipex);
+	exit_code = ft_run_commands(pipex);
+	ft_exit_on_success(pipex, exit_code);
 }
