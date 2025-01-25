@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 12:48:18 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/24 21:58:28 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/25 14:04:12 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ cmd1 cmd2 cmd3 ... cmdn file2\n", STDERR_FILENO);
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipex	*pipex;
+	int		exit_code;
 
 	ft_check_parse(argc, argv);
 	pipex = malloc(sizeof(t_pipex));
@@ -43,7 +44,7 @@ int	main(int argc, char **argv, char **envp)
 	ft_init_pipex(pipex, envp);
 	if (!ft_parse_args(pipex, argc, argv, envp))
 		ft_exit_on_error(pipex);
-	ft_run_commands(pipex);
+	exit_code = ft_run_commands(pipex);
 	// ft_display_pipex(pipex);
-	ft_exit_on_success(pipex);
+	ft_exit_on_success(pipex, exit_code);
 }

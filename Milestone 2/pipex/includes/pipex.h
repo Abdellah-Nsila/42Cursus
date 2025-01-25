@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/24 18:31:04 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/25 14:05:09 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_pipex
 }	t_pipex;
 
 // Pipex Utils
-void		ft_exit_on_success(t_pipex *pipex);
+void		ft_exit_on_success(t_pipex *pipex, int exit_code);
 void		ft_init_pipex(t_pipex *pipex, char **envp);
 void		ft_reset_pipex(t_pipex *pipex);
 void		ft_free_pipe_fds(t_pipex *pipex);
@@ -85,8 +85,8 @@ void		ft_here_doc(t_pipex *pipex);
 void		ft_close_pipes(t_pipex *pipex, int (*pipe_fds)[2]);
 void		ft_redirect_pipe_fds(t_pipex *pipex, int (*pipe_fds)[2], int index);
 void		ft_execute_command(t_pipex *pipex, int cmd_index);
-void		ft_init_processes(t_pipex *pipex, int (*pipe_fds)[2]);
-void		ft_run_commands(t_pipex *pipex);
+int			ft_init_processes(t_pipex *pipex, int (*pipe_fds)[2]);
+int			ft_run_commands(t_pipex *pipex);
 
 // Clean up functions
 void		ft_free_array(char **arr);
