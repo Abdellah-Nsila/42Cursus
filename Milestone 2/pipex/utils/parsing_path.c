@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:46:11 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/24 20:12:12 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/25 16:08:37 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ void	ft_get_shell(t_pipex *pipex, char **envp)
 		i++;
 	}
 	pipex->shell = ft_strdup("sh");
-	if (!pipex->shell)
-		ft_exit_on_error(pipex);
 }
 
 char	*ft_parse_path(char **all_path, char *command)
@@ -88,7 +86,7 @@ t_bool	ft_parse_cmd_paths(t_pipex *pipex, t_range range, char **envp)
 {
 	int		i;
 
-	if (!pipex || !envp)
+	if (!pipex)
 		return (false);
 	i = 0;
 	while (range.start < range.end && i < pipex->cmd_count)
@@ -99,7 +97,7 @@ t_bool	ft_parse_cmd_paths(t_pipex *pipex, t_range range, char **envp)
 				pipex->cmd_paths[i] = ft_strdup(pipex->cmd_args[i][0]);
 			else
 				pipex->cmd_paths[i] = ft_get_path(pipex,
-					pipex->cmd_args[i][0], envp);
+						pipex->cmd_args[i][0], envp);
 		}
 		else
 			pipex->cmd_paths[i] = ft_strdup(" ");

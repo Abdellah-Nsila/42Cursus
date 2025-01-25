@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 10:07:03 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/24 17:25:04 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/25 16:05:20 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	ft_put_error(t_pipex *pipex, char *arg)
 		ft_format_error(pipex, "%s: %s: %s", "command not found", arg);
 }
 
-void	ft_exit_on_error(t_pipex *pipex)
+void	ft_exit_on_error(t_pipex *pipex, int exit_code)
 {
 	if (pipex)
 		ft_clean_pipex(pipex);
-	exit(EXIT_FAILURE);
+	exit(exit_code);
 }

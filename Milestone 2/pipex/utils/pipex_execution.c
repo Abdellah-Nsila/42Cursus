@@ -6,18 +6,11 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:43:12 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/25 15:01:00 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/25 16:32:27 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
-
-void	ft_exit_on_error_code(t_pipex *pipex, int exit_code)
-{
-	if (pipex)
-		ft_clean_pipex(pipex);
-	exit(exit_code);
-}
 
 void	ft_close_pipes(t_pipex *pipex, int (*pipe_fds)[2])
 {
@@ -36,16 +29,16 @@ void	ft_redirect_pipe_fds(t_pipex *pipex, int (*pipe_fds)[2], int index)
 {
 	if (index == 0
 		&& dup2(pipex->infile_fd, STDIN_FILENO) == -1)
-		ft_exit_on_error(pipex);
+		ft_exit_on_error(pipex, EXIT_FAILURE);
 	else if (index > 0
 		&& dup2(pipe_fds[index - 1][0], STDIN_FILENO) == -1)
-		ft_exit_on_error(pipex);
+		ft_exit_on_error(pipex, EXIT_FAILURE);
 	if (index == pipex->cmd_count - 1
 		&& dup2(pipex->outfile_fd, STDOUT_FILENO) == -1)
-		ft_exit_on_error(pipex);
+		ft_exit_on_error(pipex, EXIT_FAILURE);
 	else if (index < pipex->cmd_count - 1
 		&& dup2(pipe_fds[index][1], STDOUT_FILENO) == -1)
-		ft_exit_on_error(pipex);
+		ft_exit_on_error(pipex, EXIT_FAILURE);
 }
 
 void	ft_execute_command(t_pipex *pipex, int cmd_index)
@@ -55,10 +48,10 @@ void	ft_execute_command(t_pipex *pipex, int cmd_index)
 	{
 		ft_put_error(pipex, pipex->cmd_args[cmd_index][0]);
 		if (errno == ENOENT)
-			ft_exit_on_error_code(pipex, 127);
+			ft_exit_on_error(pipex, 127);
 		else if (errno == EACCES)
-			ft_exit_on_error_code(pipex, 126);
-		ft_exit_on_error_code(pipex, EXIT_FAILURE);
+			ft_exit_on_error(pipex, 126);
+		ft_exit_on_error(pipex, EXIT_FAILURE);
 	}
 }
 
@@ -78,7 +71,7 @@ int	ft_init_processes(t_pipex *pipex, int (*pipe_fds)[2])
 			ft_redirect_pipe_fds(pipex, pipe_fds, cmd_index);
 			ft_close_pipes(pipex, pipe_fds);
 			ft_execute_command(pipex, cmd_index);
-			ft_exit_on_error(pipex);
+			ft_exit_on_error(pipex, EXIT_FAILURE);
 		}
 		cmd_index++;
 	}
@@ -91,45 +84,24 @@ int	ft_run_commands(t_pipex *pipex)
 	pid_t	w;
 	int		status;
 	int		last_pid;
-	int		last_exit_code = 0;
+	int		last_exit_code;
 
 	if (!pipex->pipe_fds)
 		return (EXIT_FAILURE);
-	i = 0;
-	while (i < pipex->cmd_count - 1)
-	{
+	i = -1;
+	last_exit_code = 0;
+	while (++i < pipex->cmd_count - 1)
 		if (pipe(pipex->pipe_fds[i]) == -1)
 			return (EXIT_FAILURE);
-		i++;
-	}
 	last_pid = ft_init_processes(pipex, pipex->pipe_fds);
 	ft_close_pipes(pipex, pipex->pipe_fds);
-	while ((w = wait(&status)) > 0)
+	w = wait(&status);
+	while (w > 0)
 	{
 		if (w == last_pid)
 			if (WIFEXITED(status))
 				last_exit_code = WEXITSTATUS(status);
+		w = wait(&status);
 	}
 	return (last_exit_code);
 }
-
-
-
-// void	ft_run_commands(t_pipex *pipex)
-// {
-// 	int	i;
-
-// 	if (!pipex->pipe_fds)
-// 		return ;
-// 	i = 0;
-// 	while (i < pipex->cmd_count - 1)
-// 	{
-// 		if (pipe(pipex->pipe_fds[i]) == -1)
-// 			return ;
-// 		i++;
-// 	}
-// 	ft_init_processes(pipex, pipex->pipe_fds);
-// 	ft_close_pipes(pipex, pipex->pipe_fds);
-// 	while (wait(NULL) > 0)
-// 		;
-// }

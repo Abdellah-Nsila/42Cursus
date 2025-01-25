@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:06:56 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/23 17:51:28 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/25 16:26:24 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_fill_here_doc(t_pipex *pipex, int fd)
 	char	*line;
 	size_t	line_size;
 
-	ft_printf("pipex heredoc> ");
+	ft_printf("heredoc> ");
 	line = get_next_line(STDIN_FILENO);
 	line_size = ft_strlen(line) - 1;
 	while (line && !(ft_strncmp(line, pipex->limiter,
@@ -39,7 +39,7 @@ void	ft_fill_here_doc(t_pipex *pipex, int fd)
 			&& line_size == ft_strlen(pipex->limiter)))
 	{
 		ft_putstr_fd(line, fd);
-		ft_printf("pipex heredoc> ");
+		ft_printf("heredoc> ");
 		free(line);
 		line = get_next_line(STDIN_FILENO);
 		line_size = ft_strlen(line) - 1;
@@ -55,10 +55,7 @@ void	ft_here_doc(t_pipex *pipex)
 	ft_generate_tmpfile(pipex);
 	fd = open(pipex->infile, (O_WRONLY | O_CREAT | O_TRUNC), 0777);
 	if (fd < 0)
-	{
-		ft_put_error(pipex, pipex->infile);
-		ft_exit_on_error(pipex);
-	}
-	ft_fill_here_doc(pipex, fd);
-	ft_parse_infile(pipex, pipex->infile);
+		ft_format_error(pipex, "%s: %s: %s", strerror(errno), pipex->infile);
+	else
+		ft_fill_here_doc(pipex, fd);
 }

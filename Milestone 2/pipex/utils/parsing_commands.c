@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:59:19 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/24 18:16:54 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/25 16:20:14 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ t_bool	ft_parse_args(t_pipex *pipex, int argc, char **argv, char **envp)
 		pipex->here_doc = 1;
 		pipex->limiter = ft_strdup(argv[2]);
 		ft_here_doc(pipex);
+		ft_parse_infile(pipex, pipex->infile);
 	}
 	else
 	{
