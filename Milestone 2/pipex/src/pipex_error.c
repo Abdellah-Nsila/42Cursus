@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 10:07:03 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/25 16:05:20 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/26 17:53:46 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,29 @@
 
 void	ft_format_error(t_pipex *pipex, char *format, char *error, char *arg)
 {
-	dup2(STDERR_FILENO, STDOUT_FILENO);
-	ft_printf(format, pipex->shell, error, arg);
-	ft_printf("\n");
+	char	buffer[1024];
+
+	ft_bzero(buffer, sizeof(buffer));
+	if (!pipex || !format || !error)
+		return ;
+	if (pipex->shell)
+		ft_strlcat(buffer, pipex->shell, sizeof(buffer));
+	ft_strlcat(buffer, ": ", sizeof(buffer));
+	ft_strlcat(buffer, error, sizeof(buffer));
+	if (arg)
+	{
+		ft_strlcat(buffer, ": ", sizeof(buffer));
+		ft_strlcat(buffer, arg, sizeof(buffer));
+	}
+	ft_strlcat(buffer, "\n", sizeof(buffer));
+	write(STDERR_FILENO, buffer, ft_strlen(buffer));
 }
 
 void	ft_put_error(t_pipex *pipex, char *arg)
 {
 	if (!arg)
 		ft_format_error(pipex, "%s: %s: %s", "command not found", " ");
-	else if (ft_strchr(arg, '/'))
+	if (ft_strchr(arg, '/'))
 		ft_format_error(pipex, "%s: %s: %s", strerror(errno), arg);
 	else
 		ft_format_error(pipex, "%s: %s: %s", "command not found", arg);

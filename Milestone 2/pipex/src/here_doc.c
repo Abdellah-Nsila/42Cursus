@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:06:56 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/25 16:26:24 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/26 15:48:08 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_fill_here_doc(t_pipex *pipex, int fd)
 	char	*line;
 	size_t	line_size;
 
-	ft_printf("heredoc> ");
+	ft_printf("here_doc> ");
 	line = get_next_line(STDIN_FILENO);
 	line_size = ft_strlen(line) - 1;
 	while (line && !(ft_strncmp(line, pipex->limiter,
@@ -39,7 +39,7 @@ void	ft_fill_here_doc(t_pipex *pipex, int fd)
 			&& line_size == ft_strlen(pipex->limiter)))
 	{
 		ft_putstr_fd(line, fd);
-		ft_printf("heredoc> ");
+		ft_printf("here_doc> ");
 		free(line);
 		line = get_next_line(STDIN_FILENO);
 		line_size = ft_strlen(line) - 1;

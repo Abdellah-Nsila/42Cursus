@@ -6,20 +6,14 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/26 14:57:21 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/26 17:54:43 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-// # include <unistd.h>
-// # include <stdio.h>
-// # include <stdlib.h>
-// # include <fcntl.h>
-
 # include <sys/wait.h>
-#include <string.h>
 # include <errno.h>
 
 # include "../Libft/includes/libft.h"

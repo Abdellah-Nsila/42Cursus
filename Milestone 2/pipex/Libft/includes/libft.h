@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 10:12:03 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/06 21:18:14 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/26 17:55:08 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
+# include <string.h>
 # include "ft_printf.h"
 # include "get_next_line.h"
 # include "ft_linked_lst.h"
