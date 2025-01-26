@@ -6,12 +6,11 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:43:12 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/26 17:52:53 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/26 18:00:37 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
-#include <stdio.h>
 
 void	ft_close_pipes(t_pipex *pipex, int (*pipe_fds)[2])
 {
