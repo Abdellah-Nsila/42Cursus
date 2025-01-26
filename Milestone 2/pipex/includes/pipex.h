@@ -6,21 +6,20 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/26 12:33:38 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/26 14:57:21 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <fcntl.h>
+// # include <unistd.h>
+// # include <stdio.h>
+// # include <stdlib.h>
+// # include <fcntl.h>
 
 # include <sys/wait.h>
-# include <sys/stat.h>
-# include <sys/types.h>
+#include <string.h>
 # include <errno.h>
 
 # include "../Libft/includes/libft.h"
@@ -39,7 +38,6 @@ typedef struct s_pipex
 	int		outfile_fd;
 	t_bool	here_doc;
 	char	*limiter;
-	t_bool	is_invalid_infile;
 	char	*infile;
 	char	*outfile;
 	char	**cmd_paths;
@@ -60,11 +58,10 @@ void		ft_reset_ptr(void *ptr);
 // Parse files
 t_bool		ft_check_access(char *file, int permission);
 t_bool		ft_parse_infile(t_pipex *pipex, char *infile);
-t_bool		ft_parse_outfile(t_pipex *pipex, char *outfile);
+t_bool		ft_parse_outfile(t_pipex *pipex);
 
 // Parse Path
 void		ft_get_shell(t_pipex *pipex, char **envp);
-char		*ft_parse_default_path(char *command);
 char		*ft_parse_path(char	**all_path, char *command);
 char		*ft_get_path(t_pipex *pipex, char *command, char **envp);
 t_bool		ft_parse_cmd_paths(t_pipex *pipex, t_range range, char **envp);

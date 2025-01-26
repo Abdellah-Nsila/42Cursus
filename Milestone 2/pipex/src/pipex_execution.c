@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:43:12 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/25 16:32:27 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/26 15:09:14 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,12 @@ void	ft_redirect_pipe_fds(t_pipex *pipex, int (*pipe_fds)[2], int index)
 	else if (index > 0
 		&& dup2(pipe_fds[index - 1][0], STDIN_FILENO) == -1)
 		ft_exit_on_error(pipex, EXIT_FAILURE);
-	if (index == pipex->cmd_count - 1
-		&& dup2(pipex->outfile_fd, STDOUT_FILENO) == -1)
-		ft_exit_on_error(pipex, EXIT_FAILURE);
+	if (index == pipex->cmd_count - 1)
+	{
+		ft_parse_outfile(pipex);
+		if (dup2(pipex->outfile_fd, STDOUT_FILENO) == -1)
+			ft_exit_on_error(pipex, EXIT_FAILURE);
+	}
 	else if (index < pipex->cmd_count - 1
 		&& dup2(pipe_fds[index][1], STDOUT_FILENO) == -1)
 		ft_exit_on_error(pipex, EXIT_FAILURE);
