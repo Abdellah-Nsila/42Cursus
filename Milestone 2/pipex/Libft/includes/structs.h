@@ -6,16 +6,13 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 21:14:59 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/06 21:16:28 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/26 12:31:47 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-# include <string.h>
-
-// Struct
 typedef struct s_adr_info
 {
 	void	*adr;
