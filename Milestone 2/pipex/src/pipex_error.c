@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 10:07:03 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/26 17:53:46 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/27 09:58:59 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_put_error(t_pipex *pipex, char *arg)
 {
 	if (!arg)
 		ft_format_error(pipex, "%s: %s: %s", "command not found", " ");
-	if (ft_strchr(arg, '/'))
+	else if (ft_strchr(arg, '/'))
 		ft_format_error(pipex, "%s: %s: %s", strerror(errno), arg);
 	else
 		ft_format_error(pipex, "%s: %s: %s", "command not found", arg);
