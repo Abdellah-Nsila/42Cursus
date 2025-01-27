@@ -6,10 +6,9 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 21:12:17 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/26 12:31:41 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/27 09:47:07 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef FT_LINKED_LST_H
 # define FT_LINKED_LST_H

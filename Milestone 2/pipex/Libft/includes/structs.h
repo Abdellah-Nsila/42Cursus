@@ -6,12 +6,12 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 21:14:59 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/26 12:31:47 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/27 09:49:45 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#ifndef STRUCTS_H
+# define STRUCTS_H
 
 typedef struct s_adr_info
 {

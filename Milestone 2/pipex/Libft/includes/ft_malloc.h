@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 21:12:11 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/26 12:31:34 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/27 09:47:18 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@
 void		*ft_malloc(size_t size, t_list **list, int tag,
 				void (*del)(void *));
 t_bool		ft_free_tag(t_list **lst, int tag);
-t_bool	ft_free_all_tags(t_list **lst);
+t_bool		ft_free_all_tags(t_list **lst);
 
 #endif
