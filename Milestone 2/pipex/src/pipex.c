@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 12:48:18 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/27 11:32:18 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/27 11:33:22 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_check_parse(int argc, char **argv)
 {
 	if (argc == 1)
 	{
-		
 		ft_putstr_fd("Usage [1]: ./pipex file1 \
 cmd1 cmd2 cmd3 ... cmdn file2\n", STDERR_FILENO);
 		ft_putstr_fd("Usage [2]: ./pipex here_doc LIMITER cmd cmd1 file\n",
