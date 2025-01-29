@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:06:56 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/28 18:54:31 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/29 12:40:26 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	ft_generate_tmpfile(t_pipex *pipex)
 	temp = ft_itoa(getpid());
 	if (!temp)
 	{
-		pipex->infile = ft_strdup("pipex_heredoc");
+		pipex->infile = ft_strdup("/tmp/pipex_heredoc");
 		return ;
 	}
-	pipex->infile = ft_strjoin("pipex_heredoc_", temp);
+	pipex->infile = ft_strjoin("/tmp/pipex_heredoc_", temp);
 	free(temp);
 }
 
@@ -44,10 +44,7 @@ void	ft_fill_here_doc(t_pipex *pipex, int fd)
 		if (ft_strncmp(line, pipex->limiter,
 				ft_strlen(pipex->limiter)) == 0
 			&& line_size == ft_strlen(pipex->limiter))
-		{
-			ft_printf("\n");
 			break ;
-		}
 		ft_putstr_fd(line, fd);
 		free(line);
 	}
