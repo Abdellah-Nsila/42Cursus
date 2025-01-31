@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 11:42:51 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/31 19:04:28 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/31 19:24:38 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	ft_draw_fractol(t_fractol *fractol)
 	}
 }
 
+
 int main()
 {
 	t_fractol	fractol;
@@ -61,14 +62,15 @@ int main()
 	fractol.mlx = mlx_init();
 	if (NULL == fractol.mlx)
 		return (EXIT_FAILURE);
-	fractol.width = 800;
-	fractol.height = 600;
+	fractol.width = 900;
+	fractol.height = 700;
 	fractol.win = mlx_new_window(fractol.mlx, fractol.width, fractol.height, "Minilbx");
 	if (NULL == fractol.mlx)
 	{
 		free(fractol.mlx);
 		return (EXIT_FAILURE);
 	}
+	fractol.img.img_ptr = NULL;
 	ft_init_complex_plane(&fractol);
 	fractol.zoom = 1.0;
 	fractol.offset_x = 0.0;
@@ -77,14 +79,15 @@ int main()
 	ft_generate_random_gradient_color(&fractol);
 
 	// Init Img 
-	fractol.img.img_ptr = mlx_new_image(fractol.mlx, fractol.width, fractol.height);
-	fractol.img.img_pixels_ptr = mlx_get_data_addr(fractol.img.img_ptr, &fractol.img.bits_per_pixel, &fractol.img.line_length,
-								&fractol.img.endian);
+	ft_init_image_buffer(&fractol);
+	// fractol.img.img_ptr = mlx_new_image(fractol.mlx, fractol.width, fractol.height);
+	// fractol.img.img_pixels_ptr = mlx_get_data_addr(fractol.img.img_ptr, &fractol.img.bits_per_pixel, &fractol.img.line_length,
+	// 							&fractol.img.endian);
 	
 	ft_draw_fractol(&fractol);
 	
 	mlx_put_image_to_window(fractol.mlx,  fractol.win, fractol.img.img_ptr, 0, 0);
-	// mlx_destroy_image(fractol.mlx, fractol.img.img_ptr);
+	mlx_destroy_image(fractol.mlx, fractol.img.img_ptr);
 
 	// Lisening for mouse events
 	mlx_mouse_hook(fractol.win, ft_mouse_event, &fractol);

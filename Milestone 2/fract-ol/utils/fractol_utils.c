@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 11:54:47 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/31 18:55:50 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/01/31 19:22:41 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,15 @@ void	ft_my_optimized_pixel_put(t_fractol *fractol, t_img *img, int x, int y, int
 		offset = (y * img->line_length) + (x * (img->bits_per_pixel / 8));
 		*(unsigned int *)(img->img_pixels_ptr + offset) = color;
 	}
+}
+
+void	ft_init_image_buffer(t_fractol *fractol)
+{
+	// if (fractol->img.img_ptr)
+	// 	mlx_destroy_image(fractol->mlx, fractol->img.img_ptr);
+	fractol->img.img_ptr = mlx_new_image(fractol->mlx, fractol->width, fractol->height);
+	fractol->img.img_pixels_ptr = mlx_get_data_addr(fractol->img.img_ptr, &fractol->img.bits_per_pixel, &fractol->img.line_length,
+								&fractol->img.endian);
 }
 
 void	ft_clear_image(t_fractol *fractol, int color)
@@ -65,4 +74,12 @@ void	ft_generate_random_gradient_color(t_fractol *fractol)
 	{
 		fractol->palette[i] = rand() % 0xFFFFFF; // Generate a random 24-bit color
 	}
+}
+
+void	ft_clean_mlx(t_fractol *fractol)
+{
+	mlx_destroy_window(fractol->mlx, fractol->win);
+	mlx_destroy_display(fractol->mlx);
+	free(fractol->mlx);
+	exit(EXIT_SUCCESS);
 }
