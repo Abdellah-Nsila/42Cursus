@@ -4,7 +4,7 @@
 
 
 
-void    ft_draw_line(t_mlx_data *mlx_data, t_line *line)
+void    ft_draw_line(t_fractol *frat_fractol, t_line *line)
 {
 	double deltaX = line->endX - line->beginX;
 	double deltaY = line->endY - line->beginY;
@@ -17,7 +17,7 @@ void    ft_draw_line(t_mlx_data *mlx_data, t_line *line)
 	double pixelY = line->beginY;
 	while (pixels)
 	{
-		mlx_pixel_put(mlx_data->mlx, mlx_data->win, pixelX, pixelY, line->color);
+		mlx_pixel_put(frat_fractol->mlx, frat_fractol->win, pixelX, pixelY, line->color);
 		pixelX += deltaX;
 		pixelY += deltaY;
 		--pixels;
@@ -26,26 +26,26 @@ void    ft_draw_line(t_mlx_data *mlx_data, t_line *line)
 
 int main()
 {
-	t_mlx_data	mlx_data;
+	t_fractol	frat_fractol;
 	t_line		line;;
 
-	mlx_data.mlx = mlx_init();
-	if (NULL == mlx_data.mlx)
+	frat_fractol.mlx = mlx_init();
+	if (NULL == frat_fractol.mlx)
 		return (EXIT_FAILURE);
-	mlx_data.width = 800;
-	mlx_data.height = 600;
-	mlx_data.win = mlx_new_window(mlx_data.mlx, mlx_data.width, mlx_data.height, "Minilbx");
-	if (NULL == mlx_data.mlx)
+	frat_fractol.width = 800;
+	frat_fractol.height = 600;
+	frat_fractol.win = mlx_new_window(frat_fractol.mlx, frat_fractol.width, frat_fractol.height, "Minilbx");
+	if (NULL == frat_fractol.mlx)
 	{
-		free(mlx_data.mlx);
+		free(frat_fractol.mlx);
 		return (EXIT_FAILURE);
 	}
 
 	line.beginX = 0;
 	line.beginY = 0;
-	line.endX = mlx_data.width;
-	line.endY = mlx_data.height;
+	line.endX = frat_fractol.width;
+	line.endY = frat_fractol.height;
 	line.color = 0xFFFFFF;
-	ft_draw_line(&mlx_data, &line);
-	mlx_loop(mlx_data.mlx);
+	ft_draw_line(&frat_fractol, &line);
+	mlx_loop(frat_fractol.mlx);
 }

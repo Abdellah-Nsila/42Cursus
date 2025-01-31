@@ -8,6 +8,8 @@
 # include <X11/keysym.h>
 # include <stdio.h>
 
+#define PALETTE_SIZE 13
+
 typedef struct s_img {
 	void	*img_ptr;
 	char	*img_pixels_ptr;
@@ -25,22 +27,51 @@ typedef struct s_line
 	int	color;
 }	t_line;
 
-typedef struct s_mlx_data
+typedef struct s_fractol
 {
 	void	*mlx;
 	void	*win;
 	int		width;
 	int		height;
 	t_img	img;
-	int     precision;
-	int		color1;
-	int		color2;
-}				t_mlx_data;
+	double	zoom;
+	double	offset_x;
+	double	offset_y;
+	int		precision;
+	int		palette[PALETTE_SIZE];
+	double  MinRe;
+    double  MaxRe;
+    double  MinIm;
+    double  MaxIm;
+    double  Re_factor;
+    double  Im_factor;
+}				t_fractol;
 
-void	ft_my_optimized_pixel_put(t_mlx_data *mlx_data, t_img *img, int x, int y, int color);
-void	ft_clear_image(t_mlx_data *mlx_data, int color);
-void	ft_generate_random_gradient_color(t_mlx_data *mlx_data);
-int		ft_get_color(t_mlx_data *mlx_data, int iteration, int max_iterations);
+typedef struct s_complex
+{
+	double real;
+	double imag;
+} t_complex;
+
+// Complex Plan functions
+void		ft_init_complex_plane(t_fractol *fractol);
+t_complex	ft_map_pixel_to_complex(int x, int y, t_fractol *fractol);
+void		ft_zoom_complex_plane(t_fractol *fractol, double zoom_factor, int mouse_x, int mouse_y);
+void		ft_pan_complex_plane(t_fractol *fractol, double offset_x, double offset_y);
+
+// Events hook functions
+int			ft_mouse_event(int button, int x, int y, void *param);
+int			ft_key_hook(int keycode, t_fractol *fractol);
+
+// Fractol utils functions
+void		ft_my_optimized_pixel_put(t_fractol *fractol, t_img *img, int x, int y, int color);
+void		ft_clear_image(t_fractol *fractol, int color);
+void		ft_generate_random_gradient_color(t_fractol *fractol);
+int			ft_get_color(t_fractol *fractol, int iteration, int max_iterations);
+
+// Draw fractol functions
+void		ft_mandelbrot_set(t_fractol *fractol, t_complex c, int x, int y, int max_iter);
+void		ft_draw_fractol(t_fractol *fractol);
 
 
 #endif
