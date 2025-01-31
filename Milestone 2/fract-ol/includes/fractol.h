@@ -31,11 +31,16 @@ typedef struct s_mlx_data
 	void	*win;
 	int		width;
 	int		height;
-    t_img	img;
-    int     precision;
+	t_img	img;
+	int     precision;
+	int		color1;
+	int		color2;
 }				t_mlx_data;
 
-void    ft_my_optimized_pixel_put(t_mlx_data *mlx_data, t_img *img, int x, int y, int color);
-void	ft_clear_image(t_mlx_data *mlx_data);
+void	ft_my_optimized_pixel_put(t_mlx_data *mlx_data, t_img *img, int x, int y, int color);
+void	ft_clear_image(t_mlx_data *mlx_data, int color);
+void	ft_generate_random_gradient_color(t_mlx_data *mlx_data);
+int		ft_get_color(t_mlx_data *mlx_data, int iteration, int max_iterations);
+
 
 #endif
