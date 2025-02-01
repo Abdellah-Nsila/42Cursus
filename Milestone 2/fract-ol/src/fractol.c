@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 11:42:51 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/31 19:24:38 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/01 10:14:05 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ int main()
 	fractol.mlx = mlx_init();
 	if (NULL == fractol.mlx)
 		return (EXIT_FAILURE);
-	fractol.width = 900;
-	fractol.height = 700;
+	fractol.width = 1000;
+	fractol.height = 800;
 	fractol.win = mlx_new_window(fractol.mlx, fractol.width, fractol.height, "Minilbx");
 	if (NULL == fractol.mlx)
 	{
@@ -80,9 +80,6 @@ int main()
 
 	// Init Img 
 	ft_init_image_buffer(&fractol);
-	// fractol.img.img_ptr = mlx_new_image(fractol.mlx, fractol.width, fractol.height);
-	// fractol.img.img_pixels_ptr = mlx_get_data_addr(fractol.img.img_ptr, &fractol.img.bits_per_pixel, &fractol.img.line_length,
-	// 							&fractol.img.endian);
 	
 	ft_draw_fractol(&fractol);
 	
