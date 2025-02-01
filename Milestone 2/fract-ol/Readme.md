@@ -24,7 +24,7 @@
  - `f(0) = 0^2 - 1` => `f(0) = -1` | `f(-1) = -1^2 - 1` => `f(-1) = 0` | `f(0) = 0^2 - 1` => `f(0) = -1` | `f(-1) = -1^2 - 1` => `f(-1) = 0` you can see here the function does not diverge it stay in a loop
  - So know we have two senarios when given parametres to the `f(z) = z^2 + c`, if the function does not diverge is part of `Mandelbrot set`, if not, it'is not Xd 
 
-# Implemantation in math
+# Instruction from math
 
  - `f(z) = z^2 + c` with `z0 = 0`, `c = a + bi` (`c` is a complex number)
  - `f(z1) = c`
@@ -39,9 +39,12 @@
  - `c^2` = `a^2 + abi + abi - b^2`
  - `c^2` = `a^2 + 2abi - b^2`
  - `c^2` = `a^2 - b^2 + 2abi`
- - `c^2` = `(a^2 - b^2) + 2abi` now our expression contaibe two part real part and imaginary part
+ - `c^2` = `(a^2 - b^2) + 2abi` now our expression containe two part real part and imaginary part
  - let's take `c` andto expression
  - `f(z2) = (a^2 - b^2) + 2abi + a + bi`
  - `f(z2) = (a^2 - b^2 + a) + 2abi + bi`
  - real part:     `(a^2 - b^2 + a)`
  - imaginary part: `2abi + bi`
+ 
+ ## Comdition in code
+ - Finally we need just to calculate the real part and imaginary part, and add them, and check if the result diverge to inifity, because we dont have time to wait to infinity we just take a value like `4` to check if its greater or smaller than,if it is smaller we color on black, otherwise we color usig diffrent color to set a depth to diverge
