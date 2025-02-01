@@ -12,3 +12,14 @@
 
  - Basicaly is the 2D plan XD, x-axis and y-axis
  - Which the x-axis represent the real numbers, and the y-axis represent the imaginary numbers
+
+ # Mandelbrot set
+
+ - The `Mandelbrot set` is a two-dimensional set with a relatively simple definition that exhibits great complexity, especially as it is magnified. It is popular for its aesthetic appeal and fractal structures. The set is defined in the complex plane as the complex numbers `c`,
+ - for which the function `f(z) = z^2 + c` does not diverge to infinity when iterated starting at `z = 0` , i.e., for which the sequence `f(0)`, `f(f(0))`, etc., remains bounded in absolute value.
+ - We see that the representation of the `Mandelbrot set` is a recursive function => `f(z) = z^2 + c`, that call hitself starting at `z = 0`, and his utput is the input of the next call for example:
+ - We have `z = 0`, and `c = 0`, let's apply this function recursively `f(z) = z^2 + c`:
+ - `f(0) = 0^2 + 1` => `f(0) = 1` | `f(1) = 1^2 + 1` => `f(1) = 2` | `f(2) = 2^2 + 1` => `f(2) = 5` | `f(5) = 5^2 + 1` => `f(5) = 26` | `f(26) = 26^2 + 1` => `f(26) = 677` you can see the function diverge to infinity
+ - Now We have `z = 0`, and `c = -1`, let's apply this function recursively `f(z) = z^2 + c`:
+ - `f(0) = 0^2 - 1` => `f(0) = -1` | `f(-1) = -1^2 - 1` => `f(-1) = 0` | `f(0) = 0^2 - 1` => `f(0) = -1` | `f(-1) = -1^2 - 1` => `f(-1) = 0` you can see here the function does not diverge it stay in a loop
+ - So know we have two senarios when given parametres to the `f(z) = z^2 + c`, if the function does not diverge is part of `Mandelbrot set`, if not, it'is not Xd 
