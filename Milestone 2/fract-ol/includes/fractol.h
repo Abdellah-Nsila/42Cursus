@@ -45,6 +45,8 @@ typedef struct s_fractol
     double  MaxIm;
     double  Re_factor;
     double  Im_factor;
+	double  julia_c_real;
+	double  julia_c_imag;
 }				t_fractol;
 
 typedef struct s_complex
@@ -71,7 +73,11 @@ void		ft_generate_random_gradient_color(t_fractol *fractol);
 int			ft_get_color(t_fractol *fractol, int iteration, int max_iterations);
 
 // Draw fractol functions
-void		ft_mandelbrot_set(t_fractol *fractol, t_complex c, int x, int y, int max_iter);
+void		ft_mandelbrot_sq_set(t_fractol *fractol, t_complex c, int x, int y, int max_iter);
+void		ft_mandelbrot_cub_set(t_fractol *fractol, t_complex c, int x, int y, int max_iter);
+void		ft_julia_sq_set(t_fractol *fractol, t_complex c, int x, int y, int max_iter);
+void		ft_julia_cub_set(t_fractol *fractol, t_complex c, int x, int y, int max_iter);
+
 void		ft_draw_fractol(t_fractol *fractol);
 
 // Clean Up

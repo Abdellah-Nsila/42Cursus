@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 18:57:09 by abnsila           #+#    #+#             */
-/*   Updated: 2025/01/31 19:18:14 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/01 19:00:26 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,16 @@ int	ft_key_hook(int keycode, t_fractol *fractol)
 		fractol->precision += 5;
 	else if (keycode == XK_w) // Decrease precision
 		fractol->precision -= 5;
+	// For julia set
+	else if (keycode == XK_a)
+		fractol->julia_c_real += 0.01;
+	else if (keycode == XK_s)
+		fractol->julia_c_real -= 0.01;
+	else if (keycode == XK_z)
+		fractol->julia_c_imag += 0.01;
+	else if (keycode == XK_x)
+		fractol->julia_c_imag -= 0.01;
+	printf("julia_c_real: %f    julia_c_imag: %f\n", fractol->julia_c_real, fractol->julia_c_imag);
 
 	// Re-render the fractal
 	ft_draw_fractol(fractol);
