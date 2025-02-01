@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 11:54:47 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/01 10:12:41 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/01 11:01:42 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_get_color(t_fractol *fractol, int iteration, int max_iterations)
 	double t = (double)iteration / max_iterations;
 
 	// Apply smoothing to t
-	t = t; // Optional: Use a square root or other function to adjust the gradient
+	t = log(t + 1); // Optional: Use a square root or other function to adjust the gradient
 
 	// Scale t to the range of the palette
 	double scaled_t = t * (PALETTE_SIZE - 1);

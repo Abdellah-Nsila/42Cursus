@@ -7,7 +7,7 @@ INCLUDES = -I./includes -I./Libft/includes
 LIBFT_DIR = ./Libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SRCS =	$(SRC_DIR)/fractol.c
+SRCS =	$(SRC_DIR)/fractol.c $(SRC_DIR)/zoom.c
 UTILS =	$(UTILS_DIR)/fractol_utils.c $(UTILS_DIR)/complex_plan.c $(UTILS_DIR)/events_hook.c
 
 OBJS = $(SRCS:.c=.o)
