@@ -27,6 +27,14 @@ typedef struct s_line
 	int	color;
 }	t_line;
 
+enum e_sets
+{
+	Mandelbrot_sqrt,
+	Mandelbrot_cube,
+	Julia_sqrt,
+	Julia_cube,
+};
+
 typedef struct s_fractol
 {
 	void	*mlx;
@@ -34,19 +42,20 @@ typedef struct s_fractol
 	int		width;
 	int		height;
 	t_img	img;
+	int		set;
 	double	zoom;
 	double	offset_x;
 	double	offset_y;
 	int		precision;
 	int		palette[PALETTE_SIZE];
-	double  MinRe;
-    double  MaxRe;
-    double  MinIm;
-    double  MaxIm;
-    double  Re_factor;
-    double  Im_factor;
-	double  julia_c_real;
-	double  julia_c_imag;
+	double	MinRe;
+	double	MaxRe;
+	double	MinIm;
+	double	MaxIm;
+	double	Re_factor;
+	double	Im_factor;
+	double	julia_c_real;
+	double	julia_c_imag;
 }				t_fractol;
 
 typedef struct s_complex

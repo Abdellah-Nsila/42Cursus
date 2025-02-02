@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_malloc.h                                        :+:      :+:    :+:   */
+/*   ft_strlcmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 21:12:11 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/02 11:48:42 by abnsila          ###   ########.fr       */
+/*   Created: 2025/02/02 11:44:54 by abnsila           #+#    #+#             */
+/*   Updated: 2025/02/02 12:06:13 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_MALLOC_H
-# define FT_MALLOC_H
+#include "./includes/libft.h"
 
-# include <string.h>
-# include "structs.h"
-# include "t_bool.h"
-
-void		*ft_malloc(size_t size, t_list **list, int tag,
-				void (*del)(void *));
-t_bool		ft_free_tag(t_list **lst, int tag);
-t_bool		ft_free_all_tags(t_list **lst);
-
-#endif
+t_bool	ft_strlcmp(const char *s1, const char *s2, size_t n)
+{
+	if (ft_strncmp(s1, s2, n) == 0
+		&& ft_strlen(s1) == n)
+	{
+		return (true);
+	}
+	return (false);
+}
