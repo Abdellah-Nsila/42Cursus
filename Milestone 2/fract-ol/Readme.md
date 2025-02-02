@@ -47,7 +47,7 @@
     logical_x = min_x + (x / width) × (max_x − min_x)
     logical_y = min_y + (y / height) × (max_y − min_y)
 
- - Explanation:
+#### Explanation:
 
     * `x / width` gives the normalized position of the pixel along the x-axis (ranging from 0 to 1).
 
@@ -109,13 +109,13 @@ Pixel Space (800x600)          Logical Plane (min_x=-2.0, max_x=2.0, min_y=-1.5,
 +-------------------------+    +-------------------------+
 ```
 
-6. Zooming in the Logical Plane
+#### Zooming in the Logical Plane
 
-When you zoom in or out, you adjust the min_x, max_x, min_y, and max_y values to focus on a smaller or larger region of the logical plane. For example:
+    When you zoom in or out, you adjust the min_x, max_x, min_y, and max_y values to focus on a smaller or larger region of the logical plane. For example:
 
-    Zooming in by a factor of 2 would halve the range of min_x, max_x, min_y, and max_y.
+        Zooming in by a factor of 2 would halve the range of min_x, max_x, min_y, and max_y.
 
-    Zooming out by a factor of 2 would double the range.
+        Zooming out by a factor of 2 would double the range.
 
 The ft_zoom_square_plane function adjusts these values based on the mouse position and zoom factor:
 c
