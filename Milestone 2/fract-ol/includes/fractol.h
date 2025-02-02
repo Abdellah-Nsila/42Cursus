@@ -47,6 +47,10 @@ typedef struct s_fractol
 	double	offset_x;
 	double	offset_y;
 	int		precision;
+	double	min_x; // Min X coordinate
+	double	max_x; // Max X coordinate
+	double	min_y; // Min Y coordinate
+	double	max_y; // Max Y coordinate
 	int		palette[PALETTE_SIZE];
 	double	MinRe;
 	double	MaxRe;
@@ -56,6 +60,7 @@ typedef struct s_fractol
 	double	Im_factor;
 	double	julia_c_real;
 	double	julia_c_imag;
+	double	frame;
 }				t_fractol;
 
 typedef struct s_complex

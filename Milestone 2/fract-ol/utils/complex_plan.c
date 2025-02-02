@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 18:55:43 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/01 09:38:51 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/02 14:54:27 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,3 @@ void	ft_pan_complex_plane(t_fractol *fractol, double offset_x, double offset_y)
 	fractol->Re_factor = (fractol->MaxRe - fractol->MinRe) / (fractol->width - 1);
 	fractol->Im_factor = (fractol->MaxIm - fractol->MinIm) / (fractol->height - 1);
 }
-
-

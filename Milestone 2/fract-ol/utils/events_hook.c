@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 18:57:09 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/01 19:00:26 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/02 16:36:48 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_mouse_event(int button, int x, int y, void *param)
 int	ft_key_hook(int keycode, t_fractol *fractol)
 {
 	ft_init_image_buffer(fractol);
-	printf("key: %d\n", keycode);
+	// printf("key: %d\n", keycode);
 	if (keycode == XK_Escape) // ESC
 		ft_clean_mlx(fractol);
 	if (keycode == XK_Left) // Left arrow key (pan left)
@@ -64,7 +64,7 @@ int	ft_key_hook(int keycode, t_fractol *fractol)
 		fractol->julia_c_imag += 0.01;
 	else if (keycode == XK_x)
 		fractol->julia_c_imag -= 0.01;
-	printf("julia_c_real: %f    julia_c_imag: %f\n", fractol->julia_c_real, fractol->julia_c_imag);
+	// printf("julia_c_real: %f    julia_c_imag: %f\n", fractol->julia_c_real, fractol->julia_c_imag);
 
 	// Re-render the fractal
 	ft_draw_fractol(fractol);

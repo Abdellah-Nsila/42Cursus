@@ -8,7 +8,7 @@
  - An imaginary number is a combinision between two part an real part (x-axis) and imaginary part (y-axis); Complex number notation: `x + yi` which `x` is the real cmponent, and `yi` is the imaginary component, in docs you see this format `a + bi` its same btw, and the Complex number describe a point in the 2D plan.
  - Finaly you must know that the complex number is a coordinate of an point in 2D plan wich useful to use in our programme so now we can implement a `Complex plan (2D plan)` in any graphique window and control pixels like a point in a 2D plan with his own complex number (coordinate).
 
-# Complex Plan3
+# Complex Plan
 
  - Basicaly is the 2D plan XD, x-axis and y-axis
  - Which the x-axis represent the real numbers, and the y-axis represent the imaginary numbers
@@ -47,4 +47,7 @@
  - imaginary part: `2abi + bi`
  
  ## Comdition in code
- - Finally we need just to calculate the real part and imaginary part, and add them, and check if the result diverge to inifity, because we dont have time to wait to infinity we just take a value like `4` to check if its greater or smaller than,if it is smaller we color on black, otherwise we color usig diffrent color to set a depth to diverge
+ - Finally we need just to calculate the real part and imaginary part, and add them, and check if the result diverge to inifity, because we dont have time to wait to infinity we just take a value like `4` to check if its greater or smaller than,if it is smaller we color on black, otherwise we color using diffrent color to show depth variant
+
+ # Zoom behavioure
+ - The key is to set a dimension to you plan , create a plan and zoom in/out
