@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 10:47:06 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/02 16:53:23 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/02 17:26:01 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	ft_draw_square(t_fractol *fractol)
 			logical_y = fractol->min_y + y * (fractol->max_y - fractol->min_y) / fractol->height;
 
 			// Draw only inside the square
-			//Todo undestand zoom and arrow (control logical space from map pixel) 
 			if (logical_x >= -150 && logical_x <= 150 && logical_y >= -150 && logical_y <= 150)
 				ft_my_optimized_pixel_put(fractol, &fractol->img, x, y, 0xFF0000);
 		}
