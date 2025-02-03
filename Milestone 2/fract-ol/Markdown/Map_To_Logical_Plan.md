@@ -53,7 +53,7 @@
     logical_y = −1.5+(0600)×(1.5−(−1.5)) = −1.5
     logical_y = −1.5+(6000​)×(1.5−(−1.5)) = −1.5
 
-    So, (0, 0) in pixel space maps to (-2.0, -1.5) in the logical plane.
+    So, (0, 0) in pixel space maps to (-2.0, -1.5)dimensi to you plan in the logical plane.
 
  #### Mapping the Bottom-Right Corner (799, 599):
     logical_x = −2.0+(799800)×(2.0−(−2.0)) ≈ 2.0

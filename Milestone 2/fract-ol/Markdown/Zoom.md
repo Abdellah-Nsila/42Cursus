@@ -1,4 +1,7 @@
-#### Zooming in the Logical Plane
+ # Zoom behavioure
+ - The key is to set a logical plan; This plane can represent any range of values, so tronsforme a maps to a mathematical coordinate system (logical plane) and zoom in/out
+
+## Zooming in the Logical Plane
 
 	When you zoom in or out, you adjust the min_x, max_x, min_y, and max_y values to focus on a smaller or larger region of the logical plane. For example:
 
