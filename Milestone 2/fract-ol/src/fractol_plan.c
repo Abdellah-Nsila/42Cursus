@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 11:13:26 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/03 13:44:38 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/03 19:05:03 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,20 @@
 
 void	ft_init_complex_plan(t_fractol *fractol)
 {
-	fractol->min_re = -2.0;
-	fractol->max_re = 2.0;
-	fractol->min_img = -1.5;
-	fractol->max_img = 1.5;
+	double center_re = -0.5; // Center of the Mandelbrot set (natural center)
+	double center_img = 0.0; // Center in the imaginary axis
+	double range_re = 3.5;   // Initial range in the real axis
 
+	// Adjust the imaginary range to maintain the aspect ratio
+	double range_img = range_re * fractol->height / fractol->width;
+
+	// Set the complex plane boundaries centered around (-0.5, 0.0)
+	fractol->min_re = center_re - (range_re / 2.0);
+	fractol->max_re = center_re + (range_re / 2.0);
+	fractol->min_img = center_img - (range_img / 2.0);
+	fractol->max_img = center_img + (range_img / 2.0);
+
+	// Compute mapping factors
 	fractol->re_factor = (fractol->max_re - fractol->min_re) / (fractol->width - 1);
 	fractol->img_factor = (fractol->max_img - fractol->min_img) / (fractol->height - 1);
 }
@@ -32,7 +41,6 @@ t_complex	ft_map_to_complex(t_fractol *fractol, int x, int y)
 	return (c);
 }
 
-//TODO Pls use buffer image to reset the old zoom edges
 void	ft_zoom_plan(t_fractol *fractol, double zoom_factor, int mouse_x, int mouse_y)
 {
 	t_complex	c;

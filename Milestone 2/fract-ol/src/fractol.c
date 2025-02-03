@@ -6,18 +6,20 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:18:14 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/03 13:32:52 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/03 19:16:44 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	ft_draw_square(t_fractol *fractol)
+
+void	ft_draw_fractal(t_fractol *fractol)
 {
 	int			x;
 	int			y;
 	t_complex	c;
-	
+
+	ft_init_image_buffer(fractol);
 	x = 0;
 	while (x < fractol->width)
 	{
@@ -25,18 +27,18 @@ void	ft_draw_square(t_fractol *fractol)
 		while (y < fractol->height)
 		{
 			c = ft_map_to_complex(fractol, x, y);
-			// printf("re: %f   img: %f\n", c.re, c.img);
-			if (c.re  >= -1.0 && c.re <= 1.0 && c.img >= -0.5 && c.img <= 0.5)
-			{
-				// ft_printf("x: %d   y: %d\n", x, y);
-				mlx_pixel_put(fractol->mlx, fractol->win, x, y, 0xFF0000);
-			}
+			// ft_mandelbrot_sq_set(fractol, c, x, y);
+			// ft_mandelbrot_cub_set(fractol, c, x, y);
+			// ft_julia_sq_set(fractol, c, x, y);
+			ft_julia_cub_set(fractol, c, x, y);
 			y++;
 		}
 		x++;
 	}
+	mlx_put_image_to_window(fractol->mlx, fractol->win, fractol->img.img_ptr, 0, 0);
 }
 
+// TODO add Burninship 
 int	main(void)
 {
 	t_fractol	fractol;
@@ -44,7 +46,8 @@ int	main(void)
 	ft_init_fractol(&fractol);
 	ft_init_complex_plan(&fractol);
 
-	ft_draw_square(&fractol);
+	//TODO Pls use buffer image to reset the old zoom edges
+	ft_draw_fractal(&fractol);
 
 	mlx_mouse_hook(fractol.win, ft_mouse_hook, &fractol);
 	mlx_key_hook(fractol.win, ft_key_hook, &fractol);
