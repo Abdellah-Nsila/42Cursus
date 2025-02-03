@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 10:47:06 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/02 17:26:01 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/03 10:16:49 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,8 @@ int	ft_mouse(int button, int x, int y, void *param)
 	return (EXIT_SUCCESS);
 }
 
-
 int	ft_key(int keycode, t_fractol *fractol)
 {
-	printf("key: %d\n", keycode);
 	if (keycode == XK_Escape)
 	{
 		if (fractol->img.img_ptr)
