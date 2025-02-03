@@ -35,33 +35,43 @@ enum e_sets
 	Julia_cube,
 };
 
+// typedef struct s_fractol
+// {
+// 	void	*mlx;
+// 	void	*win;
+// 	int		width;
+// 	int		height;
+// 	t_img	img;
+// 	int		set;
+// 	double	zoom;
+// 	double	offset_x;
+// 	double	offset_y;
+// 	int		precision;
+// 	double	min_x; // Min X coordinate
+// 	double	max_x; // Max X coordinate
+// 	double	min_y; // Min Y coordinate
+// 	double	max_y; // Max Y coordinate
+// 	int		palette[PALETTE_SIZE];
+// 	double	MinRe;
+// 	double	MaxRe;
+// 	double	MinIm;
+// 	double	MaxIm;
+// 	double	Re_factor;
+// 	double	Im_factor;
+// 	double	julia_c_real;
+// 	double	julia_c_imag;
+// 	double	frame;
+// }				t_fractol;
+
+//Todo----------------- Init this struct from scratch -----------------------
 typedef struct s_fractol
 {
 	void	*mlx;
 	void	*win;
 	int		width;
 	int		height;
-	t_img	img;
-	int		set;
-	double	zoom;
-	double	offset_x;
-	double	offset_y;
-	int		precision;
-	double	min_x; // Min X coordinate
-	double	max_x; // Max X coordinate
-	double	min_y; // Min Y coordinate
-	double	max_y; // Max Y coordinate
-	int		palette[PALETTE_SIZE];
-	double	MinRe;
-	double	MaxRe;
-	double	MinIm;
-	double	MaxIm;
-	double	Re_factor;
-	double	Im_factor;
-	double	julia_c_real;
-	double	julia_c_imag;
-	double	frame;
 }				t_fractol;
+//Todo -----------------------------------------------------------------------
 
 typedef struct s_complex
 {
