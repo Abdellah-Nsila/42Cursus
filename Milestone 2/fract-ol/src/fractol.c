@@ -6,33 +6,34 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:18:14 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/03 10:38:22 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/03 13:32:52 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	ft_clean_fractol(t_fractol *fractol)
+void	ft_draw_square(t_fractol *fractol)
 {
-	if (fractol->win)
-		mlx_destroy_window(fractol->mlx, fractol->win);
-	mlx_destroy_display(fractol->mlx);
-	free(fractol->mlx);
-}
-
-void	ft_init_fractol(t_fractol *fractol)
-{
-	fractol->mlx = mlx_init();
-	if (!fractol->mlx)
-		exit(EXIT_FAILURE);
-	fractol->width = 800;
-	fractol->height = 600;
-	fractol->win = mlx_new_window(fractol->mlx, fractol->width,
-			fractol->height, "Fract-ol");
-	if (!fractol->win)
+	int			x;
+	int			y;
+	t_complex	c;
+	
+	x = 0;
+	while (x < fractol->width)
 	{
-		ft_clean_fractol(fractol);
-		exit(EXIT_FAILURE);
+		y = 0;
+		while (y < fractol->height)
+		{
+			c = ft_map_to_complex(fractol, x, y);
+			// printf("re: %f   img: %f\n", c.re, c.img);
+			if (c.re  >= -1.0 && c.re <= 1.0 && c.img >= -0.5 && c.img <= 0.5)
+			{
+				// ft_printf("x: %d   y: %d\n", x, y);
+				mlx_pixel_put(fractol->mlx, fractol->win, x, y, 0xFF0000);
+			}
+			y++;
+		}
+		x++;
 	}
 }
 
@@ -41,6 +42,12 @@ int	main(void)
 	t_fractol	fractol;
 
 	ft_init_fractol(&fractol);
+	ft_init_complex_plan(&fractol);
+
+	ft_draw_square(&fractol);
+
+	mlx_mouse_hook(fractol.win, ft_mouse_hook, &fractol);
+	mlx_key_hook(fractol.win, ft_key_hook, &fractol);
 	mlx_loop(fractol.mlx);
 
 	ft_clean_fractol(&fractol);

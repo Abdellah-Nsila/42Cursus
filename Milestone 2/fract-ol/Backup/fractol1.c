@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 11:42:51 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/03 10:18:36 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/03 11:26:29 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,8 @@ int ft_update_frame(t_fractol *fractol)
 	fractol->frame += 0.06;
 	if (fractol->frame > 600.0)
 	{
-		fractol->frame = 0;
+		fractol->frame = 0;{
+		
 		ft_draw_fractol(fractol); // Recalculate the fractal
 		mlx_put_image_to_window(fractol->mlx, fractol->win, fractol->img.img_ptr, 0, 0);
 	}
