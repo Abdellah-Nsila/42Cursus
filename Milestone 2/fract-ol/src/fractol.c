@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:18:14 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/04 13:04:22 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/04 13:05:30 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_draw_fractal(t_fractol *fractol)
 	mlx_put_image_to_window(fractol->mlx, fractol->win, fractol->img.img_ptr, 0, 0);
 }
 
-// TODO add Burninship , arrow keys mvt
+// TODO add Other set ... fix norm, coloring ,shadow, 
 int	main(void)
 {
 	t_fractol	fractol;
