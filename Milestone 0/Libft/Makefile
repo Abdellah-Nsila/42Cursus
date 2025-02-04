@@ -29,7 +29,7 @@ CFLAGS = -Wall -Wextra -Werror -I${INCLUDES}
 
 all: $(NAME)
 
-$(NAME): $(OBJS) bonus
+$(NAME): $(OBJS)
 	$(LIBC) $(NAME) $(OBJS)
 
 bonus: $(OBJSB)

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:18:14 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/03 19:20:23 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/04 09:42:27 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	ft_draw_fractal(t_fractol *fractol)
 		while (y < fractol->height)
 		{
 			c = ft_map_to_complex(fractol, x, y);
-			// ft_mandelbrot_sq_set(fractol, c, x, y);
+			ft_mandelbrot_sq_set(fractol, c, x, y);
 			// ft_mandelbrot_cub_set(fractol, c, x, y);
 			// ft_julia_sq_set(fractol, c, x, y);
-			ft_julia_cub_set(fractol, c, x, y);
+			// ft_julia_cub_set(fractol, c, x, y);
 			y++;
 		}
 		x++;

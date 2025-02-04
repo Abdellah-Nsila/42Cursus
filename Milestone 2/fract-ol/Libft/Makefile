@@ -29,11 +29,8 @@ CFLAGS = -Wall -Wextra -Werror -I${INCLUDES}
 
 all: $(NAME)
 
-$(NAME): $(OBJS) bonus
-	$(LIBC) $(NAME) $(OBJS)
-
-bonus: $(OBJSB)
-	$(LIBC) $(NAME) $(OBJSB)
+$(NAME): $(OBJS) $(OBJSB)
+	$(LIBC) $(NAME) $(OBJS) $(OBJSB)
 
 clean:
 	$(RM) $(OBJS) $(OBJSB)
