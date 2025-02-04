@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 11:13:26 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/03 19:05:03 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/04 12:29:40 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	ft_init_complex_plan(t_fractol *fractol)
 {
-	double center_re = -0.5; // Center of the Mandelbrot set (natural center)
+	double center_re = 0.0; // Center of the Mandelbrot set (natural center)
 	double center_img = 0.0; // Center in the imaginary axis
-	double range_re = 3.5;   // Initial range in the real axis
+	double range_re = 4.0;   // Initial range in the real axis
 
 	// Adjust the imaginary range to maintain the aspect ratio
 	double range_img = range_re * fractol->height / fractol->width;
@@ -51,6 +51,17 @@ void	ft_zoom_plan(t_fractol *fractol, double zoom_factor, int mouse_x, int mouse
 	fractol->max_re = c.re + (fractol->max_re - c.re) / zoom_factor;
 	fractol->min_img = c.img + (fractol->min_img - c.img) / zoom_factor;
 	fractol->max_img = c.img + (fractol->max_img - c.img) / zoom_factor;
+
+	fractol->re_factor = (fractol->max_re - fractol->min_re) / (fractol->width - 1);
+	fractol->img_factor = (fractol->max_img - fractol->min_img) / (fractol->height - 1);
+}
+
+void	ft_move_plan(t_fractol *fractol, double offset_x, double offset_y)
+{
+	fractol->min_re += offset_x;
+	fractol->max_re += offset_x;
+	fractol->min_img += offset_y;
+	fractol->max_img += offset_y;
 
 	fractol->re_factor = (fractol->max_re - fractol->min_re) / (fractol->width - 1);
 	fractol->img_factor = (fractol->max_img - fractol->min_img) / (fractol->height - 1);

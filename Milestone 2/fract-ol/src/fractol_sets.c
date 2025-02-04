@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:56:00 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/03 19:04:41 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/04 13:04:15 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,13 @@ void	ft_mandelbrot_sq_set(t_fractol *fractol, t_complex c, int x, int y)
 	double z_re_sq = 0;
 	double z_img_sq = 0;
 
-	while (iter < (int)fractol->precision)
+	while (iter < fractol->precision)
 	{
 		z_img_sq = z.img * z.img;
 		z_re_sq = z.re * z.re;
-
-		if (z_re_sq + z_img_sq > 4.0) // Escape condition
+		if (z_re_sq + z_img_sq > 4.0)
 		{
-			int color = create_psychedelic_color(iter);
+			int color = ft_create_psychedelic_color(fractol, iter);
 			ft_my_optimized_pixel_put(fractol, &fractol->img, x, y, color);
 			return;
 		}
@@ -36,7 +35,6 @@ void	ft_mandelbrot_sq_set(t_fractol *fractol, t_complex c, int x, int y)
 		z.re = z_re_sq - z_img_sq + c.re;
 		iter++;
 	}
-	// If we never escaped, mark as inside the set (black)
 	ft_my_optimized_pixel_put(fractol, &fractol->img, x, y, 0x000000);
 }
 
@@ -51,9 +49,9 @@ void	ft_mandelbrot_cub_set(t_fractol *fractol, t_complex c, int x, int y)
 		double z_re_sq = z.re * z.re;
 		double z_img_sq = z.img * z.img;
 
-		if (z_re_sq + z_img_sq > 4.0) // Escape condition
+		if (z_re_sq + z_img_sq > 4.0)
 		{
-			int color = create_psychedelic_color(iter);
+			int color = ft_create_psychedelic_color(fractol, iter);
 			ft_my_optimized_pixel_put(fractol, &fractol->img, x, y, color);
 			return;
 		}
@@ -61,7 +59,6 @@ void	ft_mandelbrot_cub_set(t_fractol *fractol, t_complex c, int x, int y)
 		z.img = (3 * z_re_sq * z.img) - (z_img_sq * z.img) + c.img;
 		iter++;
 	}
-	// If we never escaped, mark as inside the set (black)
 	ft_my_optimized_pixel_put(fractol, &fractol->img, x, y, 0x000000);
 }
 
@@ -78,7 +75,7 @@ void	ft_julia_sq_set(t_fractol *fractol, t_complex c, int x, int y)
 		// Escape condition: If |z| > 2, it escapes
 		if ((z_re * z_re) + (z_img * z_img) > 4.0)
 		{
-			int color = create_psychedelic_color(iter);
+			int color = ft_create_psychedelic_color(fractol, iter);
 			ft_my_optimized_pixel_put(fractol, &fractol->img, x, y, color);
 			return;
 		}
@@ -90,7 +87,6 @@ void	ft_julia_sq_set(t_fractol *fractol, t_complex c, int x, int y)
 
 		iter++;
 	}
-	// If we never escaped, mark as inside the set (black)
 	ft_my_optimized_pixel_put(fractol, &fractol->img, x, y, 0x000000);
 }
 
@@ -107,7 +103,7 @@ void	ft_julia_cub_set(t_fractol *fractol, t_complex c, int x, int y)
 		// Escape condition: If |z| > 2, it escapes
 		if ((z_re * z_re) + (z_img * z_img) > 4.0)
 		{
-			int color = create_psychedelic_color(iter);
+			int color = ft_create_psychedelic_color(fractol, iter);
 			ft_my_optimized_pixel_put(fractol, &fractol->img, x, y, color);
 			return;
 		}
@@ -120,6 +116,57 @@ void	ft_julia_cub_set(t_fractol *fractol, t_complex c, int x, int y)
 
 		iter++;
 	}
-	// If we never escaped, mark as inside the set (black)
+	ft_my_optimized_pixel_put(fractol, &fractol->img, x, y, 0x000000);
+}
+
+//! Burningship z^2 - c
+void	ft_burningship_sq_set(t_fractol *fractol, t_complex c, int x, int y)
+{
+	t_complex z = {0, 0};
+	int iter = 0;
+	double z_re_sq = 0;
+	double z_img_sq = 0;
+
+	while (iter < fractol->precision)
+	{
+		z_img_sq = z.img * z.img;
+		z_re_sq = z.re * z.re;
+		if (z_re_sq + z_img_sq > 4.0)
+		{
+			int color = ft_create_psychedelic_color(fractol, iter);
+			ft_my_optimized_pixel_put(fractol, &fractol->img, x, y, color);
+			return;
+		}
+
+		z.img = fabs(2 * z.re * z.img) - c.img;
+        z.re = fabs(z_re_sq - z_img_sq - c.re);
+		iter++;
+	}
+	ft_my_optimized_pixel_put(fractol, &fractol->img, x, y, 0x000000);
+}
+
+//! Burningship z^3 - c
+void	ft_burningship_cub_set(t_fractol *fractol, t_complex c, int x, int y)
+{
+	t_complex z = {0, 0};
+	int iter = 0;
+	double z_re_sq = 0;
+	double z_img_sq = 0;
+
+	while (iter < fractol->precision)
+	{
+		z_img_sq = z.img * z.img;
+		z_re_sq = z.re * z.re;
+		if (z_re_sq + z_img_sq > 4.0)
+		{
+			int color = ft_create_psychedelic_color(fractol, iter);
+			ft_my_optimized_pixel_put(fractol, &fractol->img, x, y, color);
+			return;
+		}
+
+		z.re = fabs((z_re_sq * z.re) - (3 * z.re * z_img_sq) - c.re);
+		z.img = fabs(3 * z_re_sq * z.img) - fabs(z_img_sq * z.img) - c.img;
+		iter++;
+	}
 	ft_my_optimized_pixel_put(fractol, &fractol->img, x, y, 0x000000);
 }

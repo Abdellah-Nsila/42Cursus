@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:47:38 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/03 19:08:53 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/04 12:22:41 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_init_fractol(t_fractol *fractol)
 {
+	srand(time(NULL));
 	fractol->mlx = mlx_init();
 	if (!fractol->mlx)
 		exit(EXIT_FAILURE);
@@ -32,10 +33,13 @@ void	ft_init_fractol(t_fractol *fractol)
 		ft_clean_fractol(fractol);
 		exit(EXIT_FAILURE);
 	}
+	fractol->zoom = 1.0;
+	fractol->zoom_active = false;
 	fractol->img.img_ptr = NULL;
-	fractol->precision = 50.0;
-	fractol->fixed_c_re = -0.8;
-	fractol->fixed_c_img = 0.1; 
+	fractol->precision = 50;
+	fractol->fixed_c_re = ((double)rand() / RAND_MAX) * 2.0 - 1.0; // Range: [-1, 1]
+	fractol->fixed_c_img = ((double)rand() / RAND_MAX) * 2.0 - 1.0; // Range: [-1, 1]
+	fractol->color = (double)rand() / RAND_MAX * 2 * M_PI;
 }
 
 void	ft_init_image_buffer(t_fractol *fractol)

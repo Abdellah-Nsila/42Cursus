@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:18:14 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/04 09:42:27 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/04 13:04:22 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@ void	ft_draw_fractal(t_fractol *fractol)
 		while (y < fractol->height)
 		{
 			c = ft_map_to_complex(fractol, x, y);
-			ft_mandelbrot_sq_set(fractol, c, x, y);
+			// ft_mandelbrot_sq_set(fractol, c, x, y);
 			// ft_mandelbrot_cub_set(fractol, c, x, y);
 			// ft_julia_sq_set(fractol, c, x, y);
 			// ft_julia_cub_set(fractol, c, x, y);
+			// ft_burningship_sq_set(fractol, c, x, y);
+			ft_burningship_cub_set(fractol, c, x, y);
 			y++;
 		}
 		x++;
@@ -46,11 +48,12 @@ int	main(void)
 	ft_init_fractol(&fractol);
 	ft_init_complex_plan(&fractol);
 
-	//TODO Pls use buffer image to reset the old zoom edges
 	ft_draw_fractal(&fractol);
 
 	mlx_mouse_hook(fractol.win, ft_mouse_hook, &fractol);
+	mlx_hook(fractol.win, 6, 1L<<6, ft_mouse_move_hook, &fractol);
 	mlx_key_hook(fractol.win, ft_key_hook, &fractol);
+	mlx_loop_hook(fractol.mlx, ft_loop_hook, &fractol);
 	mlx_loop(fractol.mlx);
 
 	ft_clean_fractol(&fractol);
