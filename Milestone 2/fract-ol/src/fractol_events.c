@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:57:35 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/04 12:41:13 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/04 15:23:38 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,10 @@ int	ft_key_hook(int keycode, void *param)
 	}
 	else if (keycode == XK_q)
 		fractol->precision += 2;
+	else if (keycode == XK_b)
+		fractol->scale += 0.01;
+	else if (keycode == XK_v)
+		fractol->scale -= 0.01;
 	else if (keycode == XK_w)
 		fractol->precision -= 2;
 	else if (keycode == XK_Left)

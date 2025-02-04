@@ -13,6 +13,14 @@
 #    define M_PI 3.14159265358979323846
 #endif
 
+enum e_sets
+{
+	Mandelbrot_sqrt,
+	Mandelbrot_cube,
+	Julia_sqrt,
+	Julia_cube,
+};
+
 typedef struct s_img
 {
 	void	*img_ptr;
@@ -37,6 +45,7 @@ typedef struct s_fractol
 	void	*win;
 	int		width;
 	int		height;
+	int		set;
 	double	min_re;
 	double	max_re;
 	double	min_img;
@@ -47,6 +56,7 @@ typedef struct s_fractol
 	int		zoom_target_x;
 	int		zoom_target_y;
 	t_bool	zoom_active;
+	double	scale;
 	t_img	img;
 	int		precision;
 	double	color;
@@ -94,6 +104,7 @@ void		ft_julia_sq_set(t_fractol *fractol, t_complex c, int x, int y);
 void		ft_julia_cub_set(t_fractol *fractol, t_complex c, int x, int y);
 void		ft_burningship_sq_set(t_fractol *fractol, t_complex c, int x, int y);
 void		ft_burningship_cub_set(t_fractol *fractol, t_complex c, int x, int y);
+void		ft_mandelbox_set(t_fractol *fractol, t_complex c, int x, int y);
 
 // Fractol Utils
 int			ft_abs(int nbr);
