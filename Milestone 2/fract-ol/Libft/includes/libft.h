@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 10:12:03 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/05 12:26:58 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/05 17:33:53 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 int		ft_atoi(const char *str);
 long	ft_atol(const char *str);
+double	ft_strtod(const char *nptr, char **endptr);
 
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_strdup(const char *s1);

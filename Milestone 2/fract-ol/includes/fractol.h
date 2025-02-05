@@ -15,10 +15,12 @@
 
 enum e_sets
 {
-	Mandelbrot_sqrt,
+	Mandelbrot_square,
 	Mandelbrot_cube,
-	Julia_sqrt,
+	Julia_square,
 	Julia_cube,
+	Burningship_square,
+	Burningship_cube,
 };
 
 enum e_events
@@ -137,5 +139,6 @@ int			ft_create_psychedelic_color(t_fractol *fractol, int iter);
 
 // Others
 int			ft_loop_hook(t_fractol *fractol);
+double		ft_strtod(const char *nptr, char **endptr);
 
 #endif
