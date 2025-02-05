@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:57:35 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/05 11:57:28 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/05 15:13:18 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ int	ft_key_hook(int keycode, void *param)
 		ft_printf("Programme exit successfuly\n");
 		exit(EXIT_SUCCESS);
 	}
-	else if (keycode == q)
+	else if (keycode == PLUS)
 		fractol->precision += 2;
-	else if (keycode == w)
+	else if (keycode == MINUS)
 		fractol->precision -= 2;
 	else if (keycode == a)
 		fractol->smoth += 0.1;

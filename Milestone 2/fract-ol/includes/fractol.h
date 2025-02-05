@@ -30,6 +30,8 @@ enum e_events
 	RIGHT = 65363,
 	DOWN = 65364,
 	ESCAPE = 65307,
+	PLUS = 65451,
+	MINUS = 65453,
 	a = 97,
 	s = 115,
 	q = 113,
