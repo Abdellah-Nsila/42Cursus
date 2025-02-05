@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 11:13:26 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/04 12:29:40 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/05 11:11:08 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,52 @@ t_complex	ft_map_to_complex(t_fractol *fractol, int x, int y)
 	return (c);
 }
 
-void	ft_zoom_plan(t_fractol *fractol, double zoom_factor, int mouse_x, int mouse_y)
+// void	ft_zoom_plan(t_fractol *fractol, double zoom_factor, int mouse_x, int mouse_y, int type)
+// {
+// 	t_complex	c;
+
+// 	c = ft_map_to_complex(fractol, mouse_x, mouse_y);
+
+// 	fractol->min_re = c.re + (fractol->min_re - c.re) / zoom_factor;
+// 	fractol->max_re = c.re + (fractol->max_re - c.re) / zoom_factor;
+// 	fractol->min_img = c.img + (fractol->min_img - c.img) / zoom_factor;
+// 	fractol->max_img = c.img + (fractol->max_img - c.img) / zoom_factor;
+
+// 	fractol->re_factor = (fractol->max_re - fractol->min_re) / (fractol->width - 1);
+// 	fractol->img_factor = (fractol->max_img - fractol->min_img) / (fractol->height - 1);
+
+// 	if (type == 0)
+// 		return ;
+// 	// if (type == ZOOM_IN && fractol->zoom > 0.3)
+// 	// 	fractol->precision = (int)(fractol->precision + 1);
+// 	// else if (type == ZOOM_OUT && fractol->precision > 2)
+// 	// 	fractol->precision = (int)(fractol->precision - 1);
+// }
+
+void	ft_zoom_plan(t_fractol *fractol, double zoom_factor, int mouse_x, int mouse_y, int type)
 {
-	t_complex	c;
+	t_complex mouse = ft_map_to_complex(fractol, mouse_x, mouse_y);
 
-	c = ft_map_to_complex(fractol, mouse_x, mouse_y);
+	// Compute new ranges
+	double range_re = (fractol->max_re - fractol->min_re) / zoom_factor;
+	double range_img = (fractol->max_img - fractol->min_img) / zoom_factor;
 
-	fractol->min_re = c.re + (fractol->min_re - c.re) / zoom_factor;
-	fractol->max_re = c.re + (fractol->max_re - c.re) / zoom_factor;
-	fractol->min_img = c.img + (fractol->min_img - c.img) / zoom_factor;
-	fractol->max_img = c.img + (fractol->max_img - c.img) / zoom_factor;
+	// Recalculate boundaries around the zoom target
+	fractol->min_re = mouse.re - (mouse.re - fractol->min_re) / zoom_factor;
+	fractol->max_re = fractol->min_re + range_re;
+	fractol->min_img = mouse.img - (mouse.img - fractol->min_img) / zoom_factor;
+	fractol->max_img = fractol->min_img + range_img;
 
+	// Update the mapping factors
 	fractol->re_factor = (fractol->max_re - fractol->min_re) / (fractol->width - 1);
 	fractol->img_factor = (fractol->max_img - fractol->min_img) / (fractol->height - 1);
+
+	if (type == 0)
+		return ;
+	// Adjust precision dynamically
+	// fractol->precision = (int)(fractol->precision * zoom_factor);
 }
+
 
 void	ft_move_plan(t_fractol *fractol, double offset_x, double offset_y)
 {

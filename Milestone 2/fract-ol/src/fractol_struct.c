@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:47:38 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/04 15:41:31 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/05 11:56:27 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ void	ft_init_fractol(t_fractol *fractol)
 		exit(EXIT_FAILURE);
 	}
 	fractol->zoom = 1.0;
-	fractol->scale = 1.0;
-	fractol->zoom_active = false;
+	fractol->trick_mouse = false;
 	fractol->img.img_ptr = NULL;
-	fractol->precision = 80;
+	fractol->precision = 20;
+	fractol->smoth = 0.0;
 	fractol->fixed_c_re = ((double)rand() / RAND_MAX) * 2.0 - 1.0; // Range: [-1, 1]
 	fractol->fixed_c_img = ((double)rand() / RAND_MAX) * 2.0 - 1.0; // Range: [-1, 1]
 	fractol->color = (double)rand() / RAND_MAX * 2 * M_PI;

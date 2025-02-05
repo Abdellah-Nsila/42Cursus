@@ -8,7 +8,8 @@ LIBFT_DIR = ./Libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 SRCS =	$(SRC_DIR)/fractol.c $(SRC_DIR)/fractol_struct.c $(SRC_DIR)/fractol_events.c \
-		$(SRC_DIR)/fractol_plan.c $(SRC_DIR)/fractol_utils.c $(SRC_DIR)/fractol_sets.c
+		$(SRC_DIR)/fractol_plan.c $(SRC_DIR)/fractol_utils.c $(SRC_DIR)/fractol_sets.c \
+		$(SRC_DIR)/fractol_parsing.c
 # $(SRC_DIR)/fractol_equations.c \
 	
 UTILS =	$(UTILS_DIR)/fractol_utils.c $(UTILS_DIR)/complex_plan.c $(UTILS_DIR)/events_hook.c

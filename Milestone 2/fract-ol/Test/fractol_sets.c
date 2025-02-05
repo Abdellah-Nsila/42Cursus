@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:56:00 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/05 10:09:06 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/05 09:34:19 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,5 +143,45 @@ void	ft_burningship_cub_set(t_fractol *fractol, t_complex c, int x, int y)
 		z.img = fabs(3 * z_re_sq * z.img) - fabs(z_img_sq * z.img) - c.img;
 		iter++;
 	}
+	ft_my_optimized_pixel_put(fractol, &fractol->img, x, y, 0x000000);
+}
+
+void ft_box_fold(t_complex *z)
+{
+    if (z->re > 1.0)
+		z->re = 2.0 - z->re;
+    else if (z->re < -1.0)
+		z->re = -2.0 - z->re;
+    if (z->img > 1.0)
+		z->img = 2.0 - z->img;
+    else if (z->img < -1.0)
+		z->img = -2.0 - z->img;
+}
+
+//! Mandelbox z^2 + c
+void	ft_mandelbox_set(t_fractol *fractol, t_complex c, int x, int y)
+{
+	t_complex z = {0, 0};
+	int iter = 0;
+
+	while (iter < fractol->precision)
+	{
+		ft_box_fold(&z); // Folding transformation
+
+		// Mandelbox formula: z = zoom * z + c
+		z.re = fractol->scale * z.re + c.re;
+		z.img = fractol->scale * z.img + c.img;
+
+		// Check if it escapes
+		if ((z.re * z.re + z.img * z.img) > 4.0)
+		{
+			int color = ft_create_psychedelic_color(fractol, iter);
+			ft_my_optimized_pixel_put(fractol, &fractol->img, x, y, color);
+			return; // Stop further iterations and return
+		}
+		iter++;
+	}
+	
+	// If max iterations reached, it's inside the set → Black
 	ft_my_optimized_pixel_put(fractol, &fractol->img, x, y, 0x000000);
 }
