@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:57:35 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/05 15:13:18 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/06 13:48:50 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,19 @@ int	ft_mouse_hook(int button, int x, int y, void *param)
 	t_fractol	*fractol;
 
 	fractol = param;
-	if (button == 4)
+	if (button == INCREASE_PRECISION)
+		fractol->precision += PRECISION_FACTOR;
+	else if (button == DECREASE_PRECISION)
+		fractol->precision -= PRECISION_FACTOR;
+	else if (button == ZOOM_IN)
 	{
-		fractol->zoom *= 1.08;
-		ft_zoom_plan(fractol, 1.08, x, y, ZOOM_IN);
-		// ft_draw_fractal(fractol);
+		fractol->zoom *= ZOOM_FACTOR;
+		ft_zoom_plan(fractol, ZOOM_FACTOR, x, y, ZOOM_IN);
 	}
-	else if (button == 5)
+	else if (button == ZOOM_OUT)
 	{
-		fractol->zoom /= 1.08;
-		ft_zoom_plan(fractol, 1 / 1.08, x, y, ZOOM_OUT);
-		// ft_draw_fractal(fractol);
+		fractol->zoom /= ZOOM_FACTOR;
+		ft_zoom_plan(fractol, 1 / ZOOM_FACTOR, x, y, ZOOM_OUT);
 	}
 	return (EXIT_SUCCESS);
 }
@@ -64,26 +66,14 @@ int	ft_key_hook(int keycode, void *param)
 		ft_printf("Programme exit successfuly\n");
 		exit(EXIT_SUCCESS);
 	}
-	else if (keycode == PLUS)
-		fractol->precision += 2;
-	else if (keycode == MINUS)
-		fractol->precision -= 2;
-	else if (keycode == a)
-		fractol->smoth += 0.1;
-	else if (keycode == s)
-		fractol->smoth -= 0.1;
 	else if (keycode == LEFT)
-		ft_move_plan(fractol, -0.1 / fractol->zoom, 0);
+		ft_move_plan(fractol, -MOVE_FACTOR / fractol->zoom, 0);
 	else if (keycode == RIGHT)
-		ft_move_plan(fractol, 0.1 / fractol->zoom, 0);
+		ft_move_plan(fractol, MOVE_FACTOR / fractol->zoom, 0);
 	else if (keycode == UP)
-		ft_move_plan(fractol, 0, 0.1 / fractol->zoom);
+		ft_move_plan(fractol, 0, MOVE_FACTOR / fractol->zoom);
 	else if (keycode == DOWN)
-		ft_move_plan(fractol, 0, -0.1 / fractol->zoom);
-	else if (keycode == o)
-		fractol->color += 0.1;
-	else if (keycode == p)
-		fractol->color -= 0.1;
+		ft_move_plan(fractol, 0, -MOVE_FACTOR / fractol->zoom);
 	else if (keycode == t)
 	{
 		if (fractol->trick_mouse)	
@@ -91,6 +81,5 @@ int	ft_key_hook(int keycode, void *param)
 		else
 			fractol->trick_mouse = true;
 	}
-	// ft_draw_fractal(fractol);
 	return (EXIT_SUCCESS);
 }

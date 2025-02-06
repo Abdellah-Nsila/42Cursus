@@ -13,6 +13,23 @@
 #    define M_PI 3.14159265358979323846
 #endif
 
+	// fractol->zoom = 1.0;
+	// fractol->trick_mouse = false;
+	// fractol->img.img_ptr = NULL;
+	// fractol->precision = DEFAULT_ITERATIONS;
+	// fractol->smoth = 0.0;
+	// fractol->fixed_c_re = ((double)rand() / RAND_MAX) * 2.0 - 1.0; // Range: [-1, 1]
+	// fractol->fixed_c_img = ((double)rand() / RAND_MAX) * 2.0 - 1.0; // Range: [-1, 1]
+	// fractol->color = (double)rand() / RAND_MAX * 2 * M_PI;
+
+# define WIDTH 1000
+# define HEIGHT 1000
+# define ZOOM_FACTOR 1.08
+# define PRECISION_FACTOR 1.08
+# define MOVE_FACTOR 0.1
+# define INSIDE_COLOR 0x000000
+# define DEFAULT_ITERATIONS 30
+
 enum e_sets
 {
 	Mandelbrot_square,
@@ -25,6 +42,8 @@ enum e_sets
 
 enum e_events
 {
+	INCREASE_PRECISION = 1,
+	DECREASE_PRECISION = 3,
 	ZOOM_IN = 4,
 	ZOOM_OUT = 5,
 	LEFT = 65361,
@@ -34,12 +53,6 @@ enum e_events
 	ESCAPE = 65307,
 	PLUS = 65451,
 	MINUS = 65453,
-	a = 97,
-	s = 115,
-	q = 113,
-	w = 119,
-	o = 111,
-	p = 112,
 	t = 116,
 };
 
@@ -52,15 +65,6 @@ typedef struct s_img
 	int		endian;
 }				t_img;
 
-// Struct to store the random gradient coefficients
-typedef struct s_gradient
-{
-    double r_mult;
-    double g_mult;
-    double b_mult;
-} t_gradient;
-
-//Todo----------------- Init those structs from scratch -----------------------
 typedef struct s_fractol
 {
 	void	*mlx;
@@ -81,16 +85,12 @@ typedef struct s_fractol
 	int		precision;
 	double	smoth;
 	double	color;
+	int		start_color;
+	int		end_color;
 	double	fixed_c_re;
 	double	fixed_c_img;
 	t_bool	trick_mouse;
 }				t_fractol;
-
-// typedef	struct s_mondelbrot
-// {
-	
-// }				t_mondelbrot;
-//Todo -----------------------------------------------------------------------
 
 typedef struct s_complex
 {
@@ -121,24 +121,24 @@ void		ft_move_plan(t_fractol *fractol, double offset_x, double offset_y);
 
 // Draw functions
 void		ft_draw_fractal(t_fractol *fractol);
-void		ft_draw_square(t_fractol *fractol);
+void		ft_walk(t_fractol *fractol, int (*fractal_func)(t_fractol *, t_complex));
 
 // Sets
-void		ft_mandelbrot_sq_set(t_fractol *fractol, t_complex c, int x, int y);
-void		ft_mandelbrot_cub_set(t_fractol *fractol, t_complex c, int x, int y);
-void		ft_julia_sq_set(t_fractol *fractol, t_complex c, int x, int y);
-void		ft_julia_cub_set(t_fractol *fractol, t_complex c, int x, int y);
-void		ft_burningship_sq_set(t_fractol *fractol, t_complex c, int x, int y);
-void		ft_burningship_cub_set(t_fractol *fractol, t_complex c, int x, int y);
+int			ft_mandelbrot_sq_set(t_fractol *fractol, t_complex c);
+int			ft_mandelbrot_cub_set(t_fractol *fractol, t_complex c);
+int			ft_julia_sq_set(t_fractol *fractol, t_complex c);
+int			ft_julia_cub_set(t_fractol *fractol, t_complex c);
+int			ft_burningship_sq_set(t_fractol *fractol, t_complex c);
+int			ft_burningship_cub_set(t_fractol *fractol, t_complex c);
 
 // Fractol Utils
 int			ft_abs(int nbr);
 void		ft_my_optimized_pixel_put(t_fractol *fractol, t_img *img, int x, int y, int color);
-void		ft_put_escape_pixel(t_fractol *fractol, int iter, int x, int y);
-int			ft_create_psychedelic_color(t_fractol *fractol, int iter);
+int			ft_get_psychedelic_color(t_fractol *fractol, int iter);
+void		ft_generate_limits_color(t_fractol *fractol);
+
 
 // Others
 int			ft_loop_hook(t_fractol *fractol);
-double		ft_strtod(const char *nptr, char **endptr);
 
 #endif
