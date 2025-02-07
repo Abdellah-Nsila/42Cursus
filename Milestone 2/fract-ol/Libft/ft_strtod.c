@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 17:32:57 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/06 13:27:28 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/07 12:07:06 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,15 @@ double	ft_strtod(const char *nptr, char **endptr)
 	if (!nptr || !*nptr)
 		return 0.0;
 	sign = ft_get_sign(nptr, &i);
-	int_part = ft_get_integer_part(nptr, &i);
-	decimal_part = ft_get_decimal_part(nptr, &i);
-	if (endptr)
-		*endptr = (char *)(nptr + i);
+	if ((nptr[i] >= '0' && nptr[i] <= '9'))
+	{
+		int_part = ft_get_integer_part(nptr, &i);
+		decimal_part = ft_get_decimal_part(nptr, &i);
+		if (endptr)
+			*endptr = (char *)(nptr + i);
+	}
+	else
+		if (endptr)
+			*endptr = (char *)(nptr);
 	return ((int_part + decimal_part) * sign);
 }
