@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:18:14 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/06 11:23:42 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/07 11:35:15 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,16 @@ int	main(int ac, char **av)
 	ft_init_image_buffer(&fractol);
 	ft_draw_fractal(&fractol);
 
-	mlx_hook(fractol.win, 6, 1L<<6, ft_mouse_move_hook, &fractol);
 	mlx_mouse_hook(fractol.win, ft_mouse_hook, &fractol);
 	mlx_key_hook(fractol.win, ft_key_hook, &fractol);
+	
+	mlx_hook(fractol.win, ON_MOUSEMOVE, 1L<<6, ft_mouse_move_hook, &fractol);
+	mlx_hook(fractol.win, ON_DESTROY, 0L, ft_close, &fractol);
+	
 	mlx_loop_hook(fractol.mlx, ft_loop_hook, &fractol);
 	mlx_loop(fractol.mlx);
 
-	ft_clean_fractol(&fractol);
-	ft_printf("Programme exit successfuly\n");
-	exit(EXIT_SUCCESS);
+	ft_close(&fractol);
 }
 
 // int	main(int ac, char **av)
