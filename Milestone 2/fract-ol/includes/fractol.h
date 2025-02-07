@@ -9,21 +9,9 @@
 #include <time.h>
 # include <stdio.h>
 
-#ifndef M_PI
-#    define M_PI 3.14159265358979323846
-#endif
-
-	// fractol->zoom = 1.0;
-	// fractol->trick_mouse = false;
-	// fractol->img.img_ptr = NULL;
-	// fractol->precision = DEFAULT_ITERATIONS;
-	// fractol->smoth = 0.0;
-	// fractol->fixed_c_re = ((double)rand() / RAND_MAX) * 2.0 - 1.0; // Range: [-1, 1]
-	// fractol->fixed_c_img = ((double)rand() / RAND_MAX) * 2.0 - 1.0; // Range: [-1, 1]
-	// fractol->color = (double)rand() / RAND_MAX * 2 * M_PI;
-
 # define WIDTH 1000
 # define HEIGHT 1000
+# define DEFAULT_ZOOM 2
 # define ZOOM_FACTOR 1.08
 # define PRECISION_FACTOR 1.08
 # define MOVE_FACTOR 0.1
@@ -64,12 +52,6 @@ enum e_events_inputs
 	SHIFT_KEY = 65505,
 	SPACE_KEY = 32,
 };
-
-	// double	percent;
-	// double scaled_percent;
-	// int index1;
-	// int index2;
-	// double fractional;
 
 typedef struct s_rgb
 {
@@ -118,12 +100,9 @@ typedef struct s_fractol
 	int		zoom_target_x;
 	int		zoom_target_y;
 	int		precision;
-	double	color;
-	int		start_color;
-	int		end_color;
 	double	fixed_c_re;
 	double	fixed_c_img;
-	int		trick_mouse;
+	t_bool	trick_mouse;
 	int		palette[PALETTE_SIZE];
 }				t_fractol;
 
@@ -145,7 +124,7 @@ int			ft_mouse_move_hook(int x, int y, t_fractol *fractol);
 // 2D logical plane Utils
 void		ft_init_complex_plan(t_fractol *fractol);
 t_complex	ft_map_to_complex(t_fractol *fractol, int x, int y);
-void		ft_zoom_plan(t_fractol *fractol, double zoom_factor, int mouse_x, int mouse_y, int type);
+void		ft_zoom_plan(t_fractol *fractol, double zoom_factor, int mouse_x, int mouse_y);
 void		ft_move_plan(t_fractol *fractol, double offset_x, double offset_y);
 
 
