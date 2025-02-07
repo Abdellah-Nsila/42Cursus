@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:57:35 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/06 13:48:50 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/07 12:18:28 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,9 @@ int	ft_loop_hook(t_fractol *fractol)
 	return (0);
 }
 
-int	ft_mouse_move_hook(int x, int y, void *param)
+int	ft_mouse_move_hook(int x, int y, t_fractol *fractol)
 {
-	t_fractol	*fractol;
-	
-	fractol = param;
-	if (fractol->trick_mouse)
+	if (fractol->trick_mouse == 1)
 	{	
 		fractol->fixed_c_re = (double)x / fractol->width * 2.0 - 1.0;
 		fractol->fixed_c_img = (double)y / fractol->height * 2.0 - 1.0;
@@ -33,14 +30,11 @@ int	ft_mouse_move_hook(int x, int y, void *param)
 	return (0);
 }
 
-int	ft_mouse_hook(int button, int x, int y, void *param)
+int	ft_mouse_hook(int button, int x, int y, t_fractol *fractol)
 {
-	t_fractol	*fractol;
-
-	fractol = param;
-	if (button == INCREASE_PRECISION)
+	if (button == INCREASE_BUTTON)
 		fractol->precision += PRECISION_FACTOR;
-	else if (button == DECREASE_PRECISION)
+	else if (button == DECREASE_BUTTON)
 		fractol->precision -= PRECISION_FACTOR;
 	else if (button == ZOOM_IN)
 	{
@@ -55,31 +49,21 @@ int	ft_mouse_hook(int button, int x, int y, void *param)
 	return (EXIT_SUCCESS);
 }
 
-int	ft_key_hook(int keycode, void *param)
+int	ft_key_hook(int keycode, t_fractol *fractol)
 {
-	t_fractol	*fractol;
-
-	fractol = param;
-	if (keycode == ESCAPE)
-	{
-		ft_clean_fractol(fractol);
-		ft_printf("Programme exit successfuly\n");
-		exit(EXIT_SUCCESS);
-	}
-	else if (keycode == LEFT)
+	if (keycode == ESCAPE_KEY)
+		ft_close(fractol);
+	else if (keycode == LEFT_KEY)
 		ft_move_plan(fractol, -MOVE_FACTOR / fractol->zoom, 0);
-	else if (keycode == RIGHT)
+	else if (keycode == RIGHT_KEY)
 		ft_move_plan(fractol, MOVE_FACTOR / fractol->zoom, 0);
-	else if (keycode == UP)
+	else if (keycode == UP_KEY)
 		ft_move_plan(fractol, 0, MOVE_FACTOR / fractol->zoom);
-	else if (keycode == DOWN)
+	else if (keycode == DOWN_KEY)
 		ft_move_plan(fractol, 0, -MOVE_FACTOR / fractol->zoom);
-	else if (keycode == t)
-	{
-		if (fractol->trick_mouse)	
-			fractol->trick_mouse = false;
-		else
-			fractol->trick_mouse = true;
-	}
+	else if (keycode == SHIFT_KEY)
+		ft_generate_limits_color(fractol);
+	else if (keycode == SPACE_KEY)
+		fractol->trick_mouse = 1 - (fractol->trick_mouse / 1);
 	return (EXIT_SUCCESS);
 }
