@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:54:11 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/06 10:46:27 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/07 11:40:44 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_mandelbrot_sq_set(t_fractol *fractol, t_complex c)
 	{
 		z_re_sq = z.re * z.re;	
 		z_img_sq = z.img * z.img;
-		if (z_re_sq + z_img_sq > 4.0)
+		if (z_re_sq + z_img_sq > ESCAPE_LIMITE)
 			return (ft_get_psychedelic_color(fractol, iter));
 		z.img = 2 * z.re * z.img + c.img;
 		z.re = z_re_sq - z_img_sq + c.re;
@@ -45,11 +45,11 @@ int	ft_mandelbrot_cub_set(t_fractol *fractol, t_complex c)
 	iter = 0;
 	z.re = 0;
 	z.img = 0;
-	while (iter < (int)fractol->precision)
+	while (iter < fractol->precision)
 	{
 		z_re_sq = z.re * z.re;	
 		z_img_sq = z.img * z.img;
-		if (z_re_sq + z_img_sq > 4.0)
+		if (z_re_sq + z_img_sq > ESCAPE_LIMITE)
 			return (ft_get_psychedelic_color(fractol, iter));
 		z.re = (z_re_sq * z.re) - (3 * z.re * z_img_sq) + c.re;
 		z.img = (3 * z_re_sq * z.img) - (z_img_sq  * z.img) + c.img;
@@ -69,11 +69,11 @@ int	ft_julia_sq_set(t_fractol *fractol, t_complex c)
 	iter = 0;
 	z.re = c.re;
 	z.img = c.img;
-	while (iter < (int)fractol->precision)
+	while (iter < fractol->precision)
 	{
 		z_re_sq = z.re * z.re;	
 		z_img_sq = z.img * z.img;
-		if (z_re_sq + z_img_sq > 4.0)
+		if (z_re_sq + z_img_sq > ESCAPE_LIMITE)
 			return (ft_get_psychedelic_color(fractol, iter));
 		temp = z_re_sq - z_img_sq + fractol->fixed_c_re;
 		z.img = (2 * z.re * z.img) + fractol->fixed_c_img;
@@ -94,11 +94,11 @@ int	ft_julia_cub_set(t_fractol *fractol, t_complex c)
 	iter = 0;
 	z.re = c.re;
 	z.img = c.img;
-	while (iter < (int)fractol->precision)
+	while (iter < fractol->precision)
 	{
 		z_re_sq = z.re * z.re;	
 		z_img_sq = z.img * z.img;
-		if (z_re_sq + z_img_sq > 4.0)
+		if (z_re_sq + z_img_sq > ESCAPE_LIMITE)
 			return (ft_get_psychedelic_color(fractol, iter));
 		temp = (z_re_sq * z.re) - (3 * z.re * z_img_sq ) + fractol->fixed_c_re;
 		z.img = (3 * z_re_sq * z.img) - (z_img_sq * z.img) + fractol->fixed_c_img;
@@ -124,7 +124,7 @@ int	ft_burningship_sq_set(t_fractol *fractol, t_complex c)
 		z.img = fabs(z.img);
 		z_re_sq = z.re * z.re;	
 		z_img_sq = z.img * z.img;
-		if (z_re_sq + z_img_sq > 4.0)
+		if (z_re_sq + z_img_sq > ESCAPE_LIMITE)
 			return (ft_get_psychedelic_color(fractol, iter));
 		z.img = 2 * z.re * z.img - c.img;
 		z.re = z_re_sq - z_img_sq - c.re;
@@ -150,7 +150,7 @@ int	ft_burningship_cub_set(t_fractol *fractol, t_complex c)
 		z.img = fabs(z.img);
 		z_re_sq = z.re * z.re;	
 		z_img_sq = z.img * z.img;
-		if (z_re_sq + z_img_sq > 4.0)
+		if (z_re_sq + z_img_sq > ESCAPE_LIMITE)
 			return (ft_get_psychedelic_color(fractol, iter));
 		z.re = fabs(z_re_sq * z.re - 3 * z.re * z_img_sq) + c.re;
 		z.img = fabs(3 * z_re_sq * z.img - z_img_sq * z.img) + c.img;
