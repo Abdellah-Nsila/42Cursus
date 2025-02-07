@@ -6,14 +6,11 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 12:19:13 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/06 13:41:27 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/07 12:09:52 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
-
-//TODO Use you ft-strtod to get x, y for Julia set and complete the parsing and strture files and check norm
-//TODO You can check for an other random method for coloring, optimize, leaks check , smothly also, clean code , utils file, go to others repo / internet and get some ideas 
 
 t_bool	ft_get_julia_cord(t_fractol *fractol, char **av, int i)
 {
@@ -46,14 +43,14 @@ t_bool	ft_is_julia(t_fractol *fractol, int ac, char **av)
 		i = 2;
 		fractol->set_type = Julia_square;
 	}
-	if (ft_check_set_arg("Julia", av[1], "square", av[2]))
+	else if (ac == 5 && ft_check_set_arg("Julia", av[1], "square", av[2]))
 	{	
 		i = 3;
 		fractol->set_type = Julia_square;
 	}
-	else if (ft_check_set_arg("Julia", av[1], "cube", av[2]))
+	else if (ac == 5 && ft_check_set_arg("Julia", av[1], "cube", av[2]))
 	{	
-		i = 4;
+		i = 3;
 		fractol->set_type = Julia_cube;
 	}
 	if (i)
@@ -85,16 +82,16 @@ void	ft_check_parse(t_fractol *fractol, int ac, char **av)
 		if (ac == 2 && ft_strlcmp("Julia", av[1]))
 			ft_exit_on_error();
 		else if ((ac == 2 && ft_strlcmp("Mandelbrot", av[1]))
-			|| ft_check_set_arg("Mandelbrot", av[1], "square", av[2]))
+			|| (ac == 3 && ft_check_set_arg("Mandelbrot", av[1], "square", av[2])))
 			fractol->set_type = Mandelbrot_square;
-		else if (ft_check_set_arg("Mandelbrot", av[1], "cube", av[2]))
+		else if (ac == 3 && ft_check_set_arg("Mandelbrot", av[1], "cube", av[2]))
 			fractol->set_type = Mandelbrot_cube;
 		else if (ft_is_julia(fractol, ac, av))
 			return ;
 		else if ((ac == 2 && ft_strlcmp("Burningship", av[1]))
-			|| ft_check_set_arg("Burningship", av[1], "square", av[2]))
+			|| (ac == 3 && ft_check_set_arg("Burningship", av[1], "square", av[2])))
 			fractol->set_type = Burningship_square;
-		else if (ft_check_set_arg("Burningship", av[1], "cube", av[2]))
+		else if (ac == 3 && ft_check_set_arg("Burningship", av[1], "cube", av[2]))
 			fractol->set_type = Burningship_cube;
 		else
 			ft_exit_on_error();
