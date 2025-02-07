@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:18:14 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/07 11:35:15 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/07 15:48:57 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ void	ft_walk(t_fractol *fractol, int (*fractal_func)(t_fractol *, t_complex))
 	int			x;
 	int			y;
 	t_complex	c;
-	int			offset;
 
-	ft_init_image_buffer(fractol);
 	x = 0;
 	while (x < fractol->width)
 	{
@@ -27,10 +25,8 @@ void	ft_walk(t_fractol *fractol, int (*fractal_func)(t_fractol *, t_complex))
 		while (y < fractol->height)
 		{
 			c = ft_map_to_complex(fractol, x, y);
-			// ft_my_optimized_pixel_put(fractol, &fractol->img, x, y, fractal_func(fractol, c));
-			// Draw pixel directly to image buffer
-            offset = (y * fractol->img.line_length) + (x * (fractol->img.bits_per_pixel / 8));
-            *(unsigned int *)(fractol->img.img_pixels_ptr + offset) = fractal_func(fractol, c);
+			*(unsigned int *)(fractol->img.img_pixels_ptr + ((y * fractol->img.line_length)
+				+ (x * (fractol->img.bits_per_pixel / 8)))) = fractal_func(fractol, c);
 			y++;
 		}
 		x++;
@@ -54,7 +50,6 @@ void	ft_draw_fractal(t_fractol *fractol)
 		ft_walk(fractol, &ft_burningship_cub_set);
 }
 
-// TODO add Other set ... fix norm, coloring ,shadow, 
 int	main(int ac, char **av)
 {
 	t_fractol	fractol;
@@ -77,13 +72,3 @@ int	main(int ac, char **av)
 
 	ft_close(&fractol);
 }
-
-// int	main(int ac, char **av)
-// {
-// 	char	*endptr;
-// 	if (ac != 3)
-// 		exit(EXIT_FAILURE);
-// 	printf("x: %f\n", ft_strtod(av[1], &endptr));
-// 	printf("y: %f\n", ft_strtod(av[2], &endptr));
-// 	exit(EXIT_SUCCESS);
-// }

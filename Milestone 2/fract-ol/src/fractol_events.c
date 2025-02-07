@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:57:35 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/07 12:18:28 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/07 16:19:53 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,7 @@ int	ft_mouse_move_hook(int x, int y, t_fractol *fractol)
 
 int	ft_mouse_hook(int button, int x, int y, t_fractol *fractol)
 {
-	if (button == INCREASE_BUTTON)
-		fractol->precision += PRECISION_FACTOR;
-	else if (button == DECREASE_BUTTON)
-		fractol->precision -= PRECISION_FACTOR;
-	else if (button == ZOOM_IN)
+	if (button == ZOOM_IN)
 	{
 		fractol->zoom *= ZOOM_FACTOR;
 		ft_zoom_plan(fractol, ZOOM_FACTOR, x, y, ZOOM_IN);
@@ -46,6 +42,10 @@ int	ft_mouse_hook(int button, int x, int y, t_fractol *fractol)
 		fractol->zoom /= ZOOM_FACTOR;
 		ft_zoom_plan(fractol, 1 / ZOOM_FACTOR, x, y, ZOOM_OUT);
 	}
+	else if (button == INCREASE_BUTTON)
+		fractol->precision += PRECISION_FACTOR;
+	else if (button == DECREASE_BUTTON)
+		fractol->precision -= PRECISION_FACTOR;
 	return (EXIT_SUCCESS);
 }
 
@@ -62,7 +62,8 @@ int	ft_key_hook(int keycode, t_fractol *fractol)
 	else if (keycode == DOWN_KEY)
 		ft_move_plan(fractol, 0, -MOVE_FACTOR / fractol->zoom);
 	else if (keycode == SHIFT_KEY)
-		ft_generate_limits_color(fractol);
+		ft_generate_random_gradient_color(fractol);
+		// ft_generate_limits_color(fractol);
 	else if (keycode == SPACE_KEY)
 		fractol->trick_mouse = 1 - (fractol->trick_mouse / 1);
 	return (EXIT_SUCCESS);

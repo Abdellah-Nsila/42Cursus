@@ -30,6 +30,7 @@
 # define INSIDE_COLOR 0x000000
 # define DEFAULT_ITERATIONS 30
 # define ESCAPE_LIMITE 4.0
+# define PALETTE_SIZE 13
 
 enum e_sets
 {
@@ -64,6 +65,26 @@ enum e_events_inputs
 	SPACE_KEY = 32,
 };
 
+	// double	percent;
+	// double scaled_percent;
+	// int index1;
+	// int index2;
+	// double fractional;
+
+typedef struct s_rgb
+{
+	int		r;
+	int		g;
+	int		b;
+	double	percent;
+	double	scaled_percent;
+	int		index1;
+	int		index2;
+	double	fractional;
+	int		color1;
+	int		color2;
+}				t_rgb;
+
 typedef struct s_img
 {
 	void	*img_ptr;
@@ -72,6 +93,12 @@ typedef struct s_img
 	int		line_length;
 	int		endian;
 }				t_img;
+
+typedef struct s_complex
+{
+	double	re;
+	double	img;
+}				t_complex;
 
 typedef struct s_fractol
 {
@@ -91,20 +118,14 @@ typedef struct s_fractol
 	int		zoom_target_x;
 	int		zoom_target_y;
 	int		precision;
-	double	smoth;
 	double	color;
 	int		start_color;
 	int		end_color;
 	double	fixed_c_re;
 	double	fixed_c_img;
 	int		trick_mouse;
+	int		palette[PALETTE_SIZE];
 }				t_fractol;
-
-typedef struct s_complex
-{
-	double	re;
-	double	img;
-}				t_complex;
 
 // Parsing
 t_bool		ft_check_set_arg(char *set, char *set_arg, char *power, char *power_arg);
@@ -143,9 +164,8 @@ int			ft_burningship_cub_set(t_fractol *fractol, t_complex c);
 // Fractol Utils
 int			ft_abs(int nbr);
 void		ft_my_optimized_pixel_put(t_fractol *fractol, t_img *img, int x, int y, int color);
+void		ft_generate_random_gradient_color(t_fractol *fractol);
 int			ft_get_psychedelic_color(t_fractol *fractol, int iter);
-void		ft_generate_limits_color(t_fractol *fractol);
-
 
 // Others
 int			ft_loop_hook(t_fractol *fractol);

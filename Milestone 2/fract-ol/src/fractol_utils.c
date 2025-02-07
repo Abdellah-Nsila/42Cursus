@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 14:37:37 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/06 13:45:52 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/07 18:55:13 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,35 @@ int	ft_abs(int nbr)
 	return ((nbr) * ((nbr >= 0) * 2 - 1));
 }
 
-void	ft_my_optimized_pixel_put(t_fractol *fractol, t_img *img, int x, int y, int color)
-{
-	int	offset;
-	if (x >= 0 && x < fractol->width && y >= 0 && y < fractol->height)
-	{
-		offset = (y * img->line_length) + (x * (img->bits_per_pixel / 8));
-		*(unsigned int *)(img->img_pixels_ptr + offset) = color;
-	}
-}
-
 int	ft_get_psychedelic_color(t_fractol *fractol, int iter)
 {
-	if (!fractol)
-		return (1);
-	return ((fractol->end_color - fractol->start_color) * iter / DEFAULT_ITERATIONS + fractol->start_color);
+	t_rgb	rgb;
+
+	rgb.percent = (double)iter / fractol->precision;
+	rgb.percent = log(rgb.percent + 1);
+	rgb.scaled_percent = rgb.percent * (PALETTE_SIZE - 1);
+	rgb.index1 = (int)rgb.scaled_percent;
+	rgb.index2 = (rgb.index1 + 1) % PALETTE_SIZE;
+	rgb.fractional = rgb.scaled_percent - rgb.index1;
+	rgb.color1 = fractol->palette[rgb.index1];
+	rgb.color2 = fractol->palette[rgb.index2];
+	rgb.r = (int)(((rgb.color2 >> 16) & 255) * rgb.fractional
+			+ ((rgb.color1 >> 16) & 255) * (1 - rgb.fractional));
+	rgb.g = (int)(((rgb.color2 >> 8) & 255) * rgb.fractional
+			+ ((rgb.color1 >> 8) & 255) * (1 - rgb.fractional));
+	rgb.b = (int)((rgb.color2 & 255) * rgb.fractional
+			+ (rgb.color1 & 255) * (1 - rgb.fractional));
+	return ((rgb.r << 16) | (rgb.g << 8) | rgb.b);
 }
 
-void	ft_generate_limits_color(t_fractol *fractol)
+void	ft_generate_random_gradient_color(t_fractol *fractol)
 {
-	fractol->start_color = rand() % 0xFFFFFF;
-	fractol->end_color = rand() % fractol->start_color;
+	int	i;
+
+	i = 0;
+	while (i < PALETTE_SIZE)
+	{
+		fractol->palette[i] = rand() % 0xFFFFFF;
+		i++;
+	}
 }

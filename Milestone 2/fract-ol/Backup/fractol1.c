@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 11:42:51 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/03 11:26:29 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/07 16:17:19 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,28 +159,28 @@ int ft_update_frame(t_fractol *fractol)
 }
 
 
-// int main(int ac, char **av)
-// {
-// 	t_fractol	fractol;
+int main(int ac, char **av)
+{
+	t_fractol	fractol;
 
-// 	ft_check_parse(&fractol, ac, av);
-// 	ft_init_fractol(&fractol);
-// 	ft_draw_fractol(&fractol);
+	ft_check_parse(&fractol, ac, av);
+	ft_init_fractol(&fractol);
+	ft_draw_fractol(&fractol);
 	
-// 	mlx_put_image_to_window(fractol.mlx,  fractol.win, fractol.img.img_ptr, 0, 0);
-// 	mlx_destroy_image(fractol.mlx, fractol.img.img_ptr);
+	mlx_put_image_to_window(fractol.mlx,  fractol.win, fractol.img.img_ptr, 0, 0);
+	mlx_destroy_image(fractol.mlx, fractol.img.img_ptr);
 
-// 	// Hook the update function to be called every frame
-// 	mlx_loop_hook(fractol.mlx, ft_update_frame, &fractol);
+	// Hook the update function to be called every frame
+	mlx_loop_hook(fractol.mlx, ft_update_frame, &fractol);
 
-// 	// Lisening for events
-// 	mlx_mouse_hook(fractol.win, ft_mouse_event, &fractol);
-// 	mlx_key_hook(fractol.win, ft_key_hook, &fractol);
-// 	mlx_loop(fractol.mlx);
+	// Lisening for events
+	mlx_mouse_hook(fractol.win, ft_mouse_event, &fractol);
+	mlx_key_hook(fractol.win, ft_key_hook, &fractol);
+	mlx_loop(fractol.mlx);
 
-// 	// Clean Up
-// 	mlx_destroy_window(fractol.mlx, fractol.win);
-// 	mlx_destroy_display(fractol.mlx);
-// 	free(fractol.mlx);
-// }
+	// Clean Up
+	mlx_destroy_window(fractol.mlx, fractol.win);
+	mlx_destroy_display(fractol.mlx);
+	free(fractol.mlx);
+}
 

@@ -77,5 +77,13 @@ void	ft_draw_square(t_fractol *fractol)
 	mlx_put_image_to_window(fractol->mlx, fractol->win, fractol->img.img_ptr, 0, 0);
 }
 
-
+void	ft_my_optimized_pixel_put(t_fractol *fractol, t_img *img, int x, int y, int color)
+{
+	int	offset;
+	if (x >= 0 && x < fractol->width && y >= 0 && y < fractol->height)
+	{
+		offset = (y * img->line_length) + (x * (img->bits_per_pixel / 8));
+		*(unsigned int *)(img->img_pixels_ptr + offset) = color;
+	}
+}
 
