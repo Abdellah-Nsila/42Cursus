@@ -6,12 +6,13 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:18:14 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/08 18:48:54 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/08 17:50:04 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
+//! My Version
 void	ft_walk(t_fractol *fractol, int (*fractal_func)(t_fractol *, t_complex))
 {
 	int			x;
@@ -24,8 +25,6 @@ void	ft_walk(t_fractol *fractol, int (*fractal_func)(t_fractol *, t_complex))
 		y = 0;
 		while (y < fractol->height)
 		{
-			// c.re = (x - fractol->center.x) / fractol->re_factor;
-			// c.img = (y - fractol->center.y) / fractol->img_factor;
 			c = ft_map_to_complex(fractol, x, y);
 			*(unsigned int *)(fractol->img.img_pixels_ptr + ((y * fractol->img.line_length)
 				+ (x * (fractol->img.bits_per_pixel / 8)))) = fractal_func(fractol, c);
@@ -35,6 +34,31 @@ void	ft_walk(t_fractol *fractol, int (*fractal_func)(t_fractol *, t_complex))
 	}
 	mlx_put_image_to_window(fractol->mlx, fractol->win, fractol->img.img_ptr, 0, 0);
 }
+
+
+// void	ft_walk(t_fractol *fractol, int (*fractal_func)(t_fractol *, t_complex))
+// {
+// 	int			x;
+// 	int			y;
+// 	t_complex	c;
+
+// 	x = 0;
+// 	while (x < fractol->width)
+// 	{
+// 		y = 0;
+// 		while (y < fractol->height)
+// 		{
+// 			c.re = (x - fractol->center.x) / ((WIDTH / 4) * fractol->zoom);
+// 			c.img = (y - fractol->center.y) / ((HEIGHT / 4) * fractol->zoom);
+// 			*(unsigned int *)(fractol->img.img_pixels_ptr + ((y * fractol->img.line_length)
+// 				+ (x * (fractol->img.bits_per_pixel / 8)))) = fractal_func(fractol, c);
+// 			y++;
+// 		}
+// 		x++;
+// 	}
+// 	mlx_put_image_to_window(fractol->mlx, fractol->win, fractol->img.img_ptr, 0, 0);
+// }
+
 
 void	ft_draw_fractal(t_fractol *fractol)
 {

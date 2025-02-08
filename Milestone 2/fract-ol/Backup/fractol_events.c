@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:57:35 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/08 19:03:17 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/08 17:50:17 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	ft_loop_hook(t_fractol *fractol)
 {
 	if (!fractol)
 		return (1);
+	// ft_draw_fractal(fractol);
 	ft_draw_fractal(fractol);
 	mlx_string_put(fractol->mlx, fractol->win, 600, 400, 0xFFFFFF, "Fract-ol");
 	return (0);
@@ -33,29 +34,32 @@ int	ft_mouse_move_hook(int x, int y, t_fractol *fractol)
 
 int	ft_mouse_hook(int button, int x, int y, t_fractol *fractol)
 {
+	//! My Version
 	if (button == ZOOM_IN)
-    {
-        if (fractol->zoom * ZOOM_FACTOR > ZOOM_MAX)
-            return (0);
-        ft_zoom_plan(fractol, ZOOM_FACTOR, x, y);
-    }
-    else if (button == ZOOM_OUT)
-    {
-        if (fractol->zoom / ZOOM_FACTOR < ZOOM_MIN)
-            return (0);
-        ft_zoom_plan(fractol, 1 / ZOOM_FACTOR, x, y);
-    }
+	{
+		fractol->zoom *= ZOOM_FACTOR;
+		ft_zoom_plan(fractol, ZOOM_FACTOR, x, y);
+	}
+	else if (button == ZOOM_OUT)
+	{
+		fractol->zoom /= ZOOM_FACTOR;
+		ft_zoom_plan(fractol, 1 / ZOOM_FACTOR, x, y);
+	}
 	// if (button == ZOOM_IN)
 	// {
 	// 	if (fractol->zoom * ZOOM_FACTOR > ZOOM_MAX)
 	// 		return (0);
-	// 	ft_zoom_plan(fractol, ZOOM_FACTOR, x, y);
+	// 	fractol->center.x = x + (fractol->center.x - x) * ZOOM_FACTOR;
+	// 	fractol->center.y = y + (fractol->center.y - y) * ZOOM_FACTOR;
+	// 	fractol->zoom *= ZOOM_FACTOR;
 	// }
 	// else if (button == ZOOM_OUT)
 	// {
 	// 	if (fractol->zoom / ZOOM_FACTOR < ZOOM_MIN)
 	// 		return (0);
-	// 	ft_zoom_plan(fractol, 1 / ZOOM_FACTOR, x, y);
+	// 	fractol->center.x = x + (fractol->center.x - x) / ZOOM_FACTOR;
+	// 	fractol->center.y = y + (fractol->center.y - y) / ZOOM_FACTOR;
+	// 	fractol->zoom /= ZOOM_FACTOR;
 	// }
 	else if (button == INCREASE_BUTTON)
 		fractol->precision += PRECISION_FACTOR;

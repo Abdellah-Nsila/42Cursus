@@ -25,7 +25,7 @@ $(NAME): $(OBJS)
 # $(NAME): $(OBJS) $(UTILSOBJS)
 # 		$(CC) $(CFLAGS) $(OBJS) $(UTILSOBJS) $(LIBFT) $(INCLUDES) -o $(NAME) libmlx_Linux.a -L/usr/lib -Imlx_linux -lXext -lX11 -lm
 
-%.o: %.c
+%.o: %.c ./includes/fractol.h
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(LIBFT):

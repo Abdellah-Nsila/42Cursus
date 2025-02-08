@@ -11,9 +11,11 @@
 
 # define WIDTH 1000
 # define HEIGHT 1000
-# define DEFAULT_ZOOM 2
+# define DEFAULT_ZOOM 1
 # define ZOOM_FACTOR 1.08
-# define PRECISION_FACTOR 1.08
+# define ZOOM_MAX 3764317556241755.0
+# define ZOOM_MIN 0.01
+# define PRECISION_FACTOR 5
 # define MOVE_FACTOR 0.1
 # define INSIDE_COLOR 0x000000
 # define DEFAULT_ITERATIONS 30
@@ -56,14 +58,21 @@ enum e_events_inputs
 typedef struct s_rgb
 {
 	int		r;
-	int		g;
+	int		g; // 8
+
+	double	percent; // 8
+	
 	int		b;
-	double	percent;
-	double	scaled_percent;
-	int		index1;
+	int		index1; // 8
+
 	int		index2;
-	double	fractional;
-	int		color1;
+	int		color1; // 8
+
+
+	double	scaled_percent; // 8
+	
+	double	fractional; // 8
+
 	int		color2;
 }				t_rgb;
 
@@ -82,12 +91,19 @@ typedef struct s_complex
 	double	img;
 }				t_complex;
 
+typedef struct s_cor
+{
+	double		x;
+	double		y;
+}				t_cor;
+
 typedef struct s_fractol
 {
 	void	*mlx;
 	void	*win;
 	int		width;
 	int		height;
+	t_cor	center;
 	t_img	img;
 	int		set_type;
 	double	min_re;
