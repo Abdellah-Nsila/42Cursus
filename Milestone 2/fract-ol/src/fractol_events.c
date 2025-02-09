@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:57:35 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/09 13:06:14 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/09 16:05:56 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ int	ft_loop_hook(t_fractol *fractol)
 	if (!fractol)
 		return (1);
 	ft_draw_fractal(fractol);
-	// TODO fix h menu event
-	ft_draw_menu(fractol);
+	mlx_string_put(fractol->mlx, fractol->win, 15, 15, 0xFFFFFF,
+		"Settings Menu: h Key");
+	if (fractol->toggle_menu)
+		ft_draw_menu(fractol);
 	return (0);
 }
 
@@ -69,10 +71,6 @@ int	ft_key_hook(int keycode, t_fractol *fractol)
 		fractol->trick_mouse = !fractol->trick_mouse;
 	else if (keycode == h_KEY)
 		fractol->toggle_menu = !fractol->toggle_menu;
-	// else if (keycode == SPACE_KEY)
-	// 	fractol->trick_mouse = true - (fractol->trick_mouse / true);
-	// else if (keycode == h_KEY)
-	// 	fractol->toggle_menu = true - (fractol->toggle_menu / true);
 	return (EXIT_SUCCESS);
 }
 

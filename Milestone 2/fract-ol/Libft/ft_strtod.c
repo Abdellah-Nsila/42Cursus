@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 17:32:57 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/07 12:07:06 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/09 16:36:46 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	ft_get_sign(const char *nptr, int *i)
 	while (nptr[*i] && ft_isspace(nptr[*i]))
 		(*i)++;
 	if (nptr[*i] == '+' || nptr[*i] == '-')
-	{	
+	{
 		if (nptr[*i] == '-')
 			sign = -1;
 		(*i)++;
@@ -35,8 +35,9 @@ static int	ft_get_sign(const char *nptr, int *i)
 
 static double	ft_get_integer_part(const char *nptr, int *i)
 {
-	double	int_part = 0.0;
+	double	int_part;
 
+	int_part = 0.0;
 	while (nptr[*i] >= '0' && nptr[*i] <= '9')
 	{
 		int_part = (int_part * 10.0) + (nptr[*i] - '0');
@@ -47,11 +48,13 @@ static double	ft_get_integer_part(const char *nptr, int *i)
 
 static double	ft_get_decimal_part(const char *nptr, int *i)
 {
-	double	decimal_part = 0.0;
-	double	divisor = 1.0;
+	double	decimal_part;
+	double	divisor;
 
+	decimal_part = 0.0;
+	divisor = 1.0;
 	if (nptr[*i] == '.')
-	{	
+	{
 		(*i)++;
 		while (nptr[*i] >= '0' && nptr[*i] <= '9')
 		{
@@ -65,13 +68,14 @@ static double	ft_get_decimal_part(const char *nptr, int *i)
 
 double	ft_strtod(const char *nptr, char **endptr)
 {
-	int		i = 0;
+	int		i;
 	int		sign;
 	double	int_part;
 	double	decimal_part;
-	
+
+	i = 0;
 	if (!nptr || !*nptr)
-		return 0.0;
+		return (0.0);
 	sign = ft_get_sign(nptr, &i);
 	if ((nptr[i] >= '0' && nptr[i] <= '9'))
 	{

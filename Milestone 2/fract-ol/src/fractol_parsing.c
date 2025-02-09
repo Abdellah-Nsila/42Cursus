@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 12:19:13 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/09 12:45:27 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/09 16:26:05 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_bool	ft_check_set_arg(char *set, char *set_arg, char *power, char *power_arg)
 
 void	ft_exit_on_error(void)
 {
-	ft_putstr_fd("\nUsage: ./fractol <set> <type>\n\
+	ft_putstr_fd("Usage: ./fractol <set> <type>\n\
 	[1] ./fractol Mandelbrot\n\
 	[3] ./fractol Mandelbrot <square, cube>\n\
 	[2] ./fractol Julia <fixed_x> <fixed_y>\n\

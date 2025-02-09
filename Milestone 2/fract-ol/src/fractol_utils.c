@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 14:37:37 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/09 13:05:52 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/09 13:51:23 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,31 +52,27 @@ void	ft_generate_random_gradient_color(t_fractol *fractol)
 
 void	ft_draw_menu(t_fractol *fractol)
 {
-	int x = 20;  // Left margin for the text
-	int y = 20;  // Top margin for the text
-	int color = 0xFFFFFF;  // White color for the text
+	int	x;
+	int	y;
+	int	color;
 
+	x = 40;
+	y = 40;
+	color = 0xFFFFFF;
 	mlx_string_put(fractol->mlx, fractol->win, x, y, color,
 		"Zoom In: Scroll Up (Mouse Button 4)");
-	y += 20;
-	mlx_string_put(fractol->mlx, fractol->win, x, y, color,
+	mlx_string_put(fractol->mlx, fractol->win, x, y + 20, color,
 		"Zoom Out: Scroll Down (Mouse Button 5)");
-	y += 20;
-	mlx_string_put(fractol->mlx, fractol->win, x, y, color,
+	mlx_string_put(fractol->mlx, fractol->win, x, y + 40, color,
 		"Increase Iterations: Left Mouse Button (Button 1)");
-	y += 20;
-	mlx_string_put(fractol->mlx, fractol->win, x, y, color,
+	mlx_string_put(fractol->mlx, fractol->win, x, y + 60, color,
 		"Decrease Iterations: Right Mouse Button (Button 3)");
-	y += 20;
-	mlx_string_put(fractol->mlx, fractol->win, x, y, color,
+	mlx_string_put(fractol->mlx, fractol->win, x, y + 80, color,
 		"Move: Arrow Keys");
-	y += 20;
-	mlx_string_put(fractol->mlx, fractol->win, x, y, color,
+	mlx_string_put(fractol->mlx, fractol->win, x, y + 100, color,
 		"Change Colors: Shift Key");
-	y += 20;
-	mlx_string_put(fractol->mlx, fractol->win, x, y, color,
+	mlx_string_put(fractol->mlx, fractol->win, x, y + 120, color,
 		"Toggle Mouse Interaction (Julia only): Space Key");
-	y += 20;
-	mlx_string_put(fractol->mlx, fractol->win, x, y, color,
+	mlx_string_put(fractol->mlx, fractol->win, x, y + 140, color,
 		"Exit: Escape Key");
 }
