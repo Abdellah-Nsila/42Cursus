@@ -32,6 +32,9 @@ all: $(NAME)
 $(NAME): $(OBJS) $(OBJSB)
 	$(LIBC) $(NAME) $(OBJS) $(OBJSB)
 
+%.o: %.c ${INCLUDES}/libft.h ${INCLUDES}/ft_printf.h ${INCLUDES}/get_next_line.h ${INCLUDES}/malloc.h ${INCLUDES}/ft_linked_lst.h ${INCLUDES}/struct.h ${INCLUDES}/t_bool.h
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
 clean:
 	$(RM) $(OBJS) $(OBJSB)
 
