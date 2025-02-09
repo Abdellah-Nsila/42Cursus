@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:18:14 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/08 18:48:54 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/09 11:29:10 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void	ft_walk(t_fractol *fractol, int (*fractal_func)(t_fractol *, t_complex))
 		y = 0;
 		while (y < fractol->height)
 		{
-			// c.re = (x - fractol->center.x) / fractol->re_factor;
-			// c.img = (y - fractol->center.y) / fractol->img_factor;
 			c = ft_map_to_complex(fractol, x, y);
 			*(unsigned int *)(fractol->img.img_pixels_ptr + ((y * fractol->img.line_length)
 				+ (x * (fractol->img.bits_per_pixel / 8)))) = fractal_func(fractol, c);

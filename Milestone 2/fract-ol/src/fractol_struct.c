@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:47:38 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/08 18:48:23 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/09 11:31:16 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,12 @@ void	ft_init_fractol(t_fractol *fractol)
 	fractol->mlx = mlx_init();
 	if (!fractol->mlx)
 		exit(EXIT_FAILURE);
-	// fractol->width = 1280;
-	// fractol->height = 800;
-	fractol->width = 900;
-	fractol->height = 700;
+	fractol->width = WIDTH;
+	fractol->height = HEIGHT;
 	fractol->win = mlx_new_window(fractol->mlx, fractol->width,
 			fractol->height, "Fract-ol");
 	if (!fractol->win)
-	{
-		ft_clean_fractol(fractol);
-		exit(EXIT_FAILURE);
-	}
+		ft_close(fractol);
 	fractol->img.img_ptr = NULL;
 	fractol->zoom = DEFAULT_ZOOM;
 	fractol->precision = DEFAULT_ITERATIONS;
