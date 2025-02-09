@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 12:19:13 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/08 13:26:05 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/09 12:45:27 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,17 @@ t_bool	ft_is_julia(t_fractol *fractol, int ac, char **av)
 
 	i = 0;
 	if (ac == 4 && ft_strlcmp("Julia", av[1]))
-	{	
+	{
 		i = 2;
 		fractol->set_type = Julia_square;
 	}
 	else if (ac == 5 && ft_check_set_arg("Julia", av[1], "square", av[2]))
-	{	
+	{
 		i = 3;
 		fractol->set_type = Julia_square;
 	}
 	else if (ac == 5 && ft_check_set_arg("Julia", av[1], "cube", av[2]))
-	{	
+	{
 		i = 3;
 		fractol->set_type = Julia_cube;
 	}
@@ -59,7 +59,7 @@ t_bool	ft_is_julia(t_fractol *fractol, int ac, char **av)
 }
 
 t_bool	ft_check_set_arg(char *set, char *set_arg, char *power, char *power_arg)
-{ 
+{
 	return (ft_strlcmp(set, set_arg) && ft_strlcmp(power, power_arg));
 }
 
@@ -82,16 +82,20 @@ void	ft_check_parse(t_fractol *fractol, int ac, char **av)
 		if (ac == 2 && ft_strlcmp("Julia", av[1]))
 			ft_exit_on_error();
 		else if ((ac == 2 && ft_strlcmp("Mandelbrot", av[1]))
-			|| (ac == 3 && ft_check_set_arg("Mandelbrot", av[1], "square", av[2])))
+			|| (ac == 3 && ft_check_set_arg("Mandelbrot", av[1],
+					"square", av[2])))
 			fractol->set_type = Mandelbrot_square;
-		else if (ac == 3 && ft_check_set_arg("Mandelbrot", av[1], "cube", av[2]))
+		else if (ac == 3 && ft_check_set_arg("Mandelbrot", av[1],
+				"cube", av[2]))
 			fractol->set_type = Mandelbrot_cube;
 		else if (ft_is_julia(fractol, ac, av))
 			return ;
 		else if ((ac == 2 && ft_strlcmp("Burningship", av[1]))
-			|| (ac == 3 && ft_check_set_arg("Burningship", av[1], "square", av[2])))
+			|| (ac == 3 && ft_check_set_arg("Burningship", av[1],
+					"square", av[2])))
 			fractol->set_type = Burningship_square;
-		else if (ac == 3 && ft_check_set_arg("Burningship", av[1], "cube", av[2]))
+		else if (ac == 3 && ft_check_set_arg("Burningship", av[1],
+				"cube", av[2]))
 			fractol->set_type = Burningship_cube;
 		else
 			ft_exit_on_error();

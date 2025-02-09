@@ -55,6 +55,7 @@ typedef struct s_fractol
 	int		precision;
 	int		palette[PALETTE_SIZE];
 	t_bool	trick_mouse;
+	t_bool	toggle_menu;
 } t_fractol;
 
 #endif

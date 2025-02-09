@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:47:38 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/09 11:31:16 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/09 12:58:29 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ft_init_fractol(t_fractol *fractol)
 	fractol->zoom = DEFAULT_ZOOM;
 	fractol->precision = DEFAULT_ITERATIONS;
 	fractol->trick_mouse = false;
+	fractol->toggle_menu = false;
 	ft_generate_random_gradient_color(fractol);
 }
 
@@ -35,9 +36,11 @@ void	ft_init_image_buffer(t_fractol *fractol)
 {
 	if (fractol->img.img_ptr)
 		mlx_destroy_image(fractol->mlx, fractol->img.img_ptr);
-	fractol->img.img_ptr = mlx_new_image(fractol->mlx, fractol->width, fractol->height);
-	fractol->img.img_pixels_ptr = mlx_get_data_addr(fractol->img.img_ptr, &fractol->img.bits_per_pixel, &fractol->img.line_length,
-								&fractol->img.endian);
+	fractol->img.img_ptr = mlx_new_image(fractol->mlx,
+			fractol->width, fractol->height);
+	fractol->img.img_pixels_ptr = mlx_get_data_addr(fractol->img.img_ptr,
+			&fractol->img.bits_per_pixel, &fractol->img.line_length,
+			&fractol->img.endian);
 }
 
 void	ft_clean_fractol(t_fractol *fractol)

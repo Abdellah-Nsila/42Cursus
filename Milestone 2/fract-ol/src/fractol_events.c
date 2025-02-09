@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:57:35 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/09 12:27:04 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/09 13:06:14 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,15 @@ int	ft_loop_hook(t_fractol *fractol)
 	if (!fractol)
 		return (1);
 	ft_draw_fractal(fractol);
-	// mlx_string_put(fractol->mlx, fractol->win, 600, 400, 0xFFFFFF, "Fract-ol");
+	// TODO fix h menu event
+	ft_draw_menu(fractol);
 	return (0);
 }
 
 int	ft_mouse_move_hook(int x, int y, t_fractol *fractol)
 {
 	if (fractol->trick_mouse)
-	{	
+	{
 		fractol->fixed_c_re = (double)x / fractol->width * 2.5 - 1.0;
 		fractol->fixed_c_img = (double)y / fractol->height * 2.5 - 1.0;
 	}
@@ -65,6 +66,21 @@ int	ft_key_hook(int keycode, t_fractol *fractol)
 	else if (keycode == SHIFT_KEY)
 		ft_generate_random_gradient_color(fractol);
 	else if (keycode == SPACE_KEY)
-		fractol->trick_mouse = true - (fractol->trick_mouse / true);
+		fractol->trick_mouse = !fractol->trick_mouse;
+	else if (keycode == h_KEY)
+		fractol->toggle_menu = !fractol->toggle_menu;
+	// else if (keycode == SPACE_KEY)
+	// 	fractol->trick_mouse = true - (fractol->trick_mouse / true);
+	// else if (keycode == h_KEY)
+	// 	fractol->toggle_menu = true - (fractol->toggle_menu / true);
 	return (EXIT_SUCCESS);
+}
+
+void	ft_init_events(t_fractol *fractol)
+{
+	mlx_mouse_hook(fractol->win, ft_mouse_hook, fractol);
+	mlx_key_hook(fractol->win, ft_key_hook, fractol);
+	mlx_hook(fractol->win, ON_MOUSEMOVE, 1L << 6, ft_mouse_move_hook, fractol);
+	mlx_hook(fractol->win, ON_DESTROY, 0L, ft_close, fractol);
+	mlx_loop_hook(fractol->mlx, ft_loop_hook, fractol);
 }

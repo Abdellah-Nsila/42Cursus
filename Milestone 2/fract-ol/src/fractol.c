@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:18:14 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/09 11:29:10 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/09 12:40:42 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,16 @@ void	ft_walk(t_fractol *fractol, int (*fractal_func)(t_fractol *, t_complex))
 		while (y < fractol->height)
 		{
 			c = ft_map_to_complex(fractol, x, y);
-			*(unsigned int *)(fractol->img.img_pixels_ptr + ((y * fractol->img.line_length)
-				+ (x * (fractol->img.bits_per_pixel / 8)))) = fractal_func(fractol, c);
+			*(unsigned int *)(fractol->img.img_pixels_ptr
+					+ ((y * fractol->img.line_length)
+						+ (x * (fractol->img.bits_per_pixel / 8))))
+				= fractal_func(fractol, c);
 			y++;
 		}
 		x++;
 	}
-	mlx_put_image_to_window(fractol->mlx, fractol->win, fractol->img.img_ptr, 0, 0);
+	mlx_put_image_to_window(fractol->mlx, fractol->win,
+		fractol->img.img_ptr, 0, 0);
 }
 
 void	ft_draw_fractal(t_fractol *fractol)
@@ -57,17 +60,8 @@ int	main(int ac, char **av)
 	ft_check_parse(&fractol, ac, av);
 	ft_init_fractol(&fractol);
 	ft_init_complex_plan(&fractol);
-
 	ft_init_image_buffer(&fractol);
-
-	mlx_mouse_hook(fractol.win, ft_mouse_hook, &fractol);
-	mlx_key_hook(fractol.win, ft_key_hook, &fractol);
-	
-	mlx_hook(fractol.win, ON_MOUSEMOVE, 1L<<6, ft_mouse_move_hook, &fractol);
-	mlx_hook(fractol.win, ON_DESTROY, 0L, ft_close, &fractol);
-	
-	mlx_loop_hook(fractol.mlx, ft_loop_hook, &fractol);
+	ft_init_events(&fractol);
 	mlx_loop(fractol.mlx);
-
 	ft_close(&fractol);
 }

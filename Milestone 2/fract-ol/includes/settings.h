@@ -48,6 +48,7 @@ enum e_events_inputs
 	ESCAPE_KEY = 65307,
 	SHIFT_KEY = 65505,
 	SPACE_KEY = 32,
+	h_KEY = 140,
 };
 
 #endif

@@ -21,6 +21,7 @@ int			ft_close(t_fractol *fractol);
 int			ft_mouse_hook(int button, int x, int y, t_fractol *fractol);
 int			ft_key_hook(int keycode, t_fractol *fractol);
 int			ft_mouse_move_hook(int x, int y, t_fractol *fractol);
+void    	ft_init_events(t_fractol *fractol);
 
 // 2D logical plane Utils
 void		ft_init_complex_plan(t_fractol *fractol);
@@ -46,6 +47,7 @@ int			ft_abs(int nbr);
 void		ft_my_optimized_pixel_put(t_fractol *fractol, t_img *img, int x, int y, int color);
 void		ft_generate_random_gradient_color(t_fractol *fractol);
 int			ft_get_psychedelic_color(t_fractol *fractol, int iter);
+void		ft_draw_menu(t_fractol *fractol);
 
 // Others
 int			ft_loop_hook(t_fractol *fractol);
