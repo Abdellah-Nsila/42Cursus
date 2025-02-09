@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:57:35 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/08 19:03:17 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/09 12:27:04 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_loop_hook(t_fractol *fractol)
 	if (!fractol)
 		return (1);
 	ft_draw_fractal(fractol);
-	mlx_string_put(fractol->mlx, fractol->win, 600, 400, 0xFFFFFF, "Fract-ol");
+	// mlx_string_put(fractol->mlx, fractol->win, 600, 400, 0xFFFFFF, "Fract-ol");
 	return (0);
 }
 
@@ -25,41 +25,27 @@ int	ft_mouse_move_hook(int x, int y, t_fractol *fractol)
 {
 	if (fractol->trick_mouse)
 	{	
-		fractol->fixed_c_re = (double)x / fractol->width * 2.0 - 1.0;
-		fractol->fixed_c_img = (double)y / fractol->height * 2.0 - 1.0;
+		fractol->fixed_c_re = (double)x / fractol->width * 2.5 - 1.0;
+		fractol->fixed_c_img = (double)y / fractol->height * 2.5 - 1.0;
 	}
 	return (0);
 }
 
 int	ft_mouse_hook(int button, int x, int y, t_fractol *fractol)
 {
-	if (button == ZOOM_IN)
-    {
-        if (fractol->zoom * ZOOM_FACTOR > ZOOM_MAX)
-            return (0);
-        ft_zoom_plan(fractol, ZOOM_FACTOR, x, y);
-    }
-    else if (button == ZOOM_OUT)
-    {
-        if (fractol->zoom / ZOOM_FACTOR < ZOOM_MIN)
-            return (0);
-        ft_zoom_plan(fractol, 1 / ZOOM_FACTOR, x, y);
-    }
-	// if (button == ZOOM_IN)
-	// {
-	// 	if (fractol->zoom * ZOOM_FACTOR > ZOOM_MAX)
-	// 		return (0);
-	// 	ft_zoom_plan(fractol, ZOOM_FACTOR, x, y);
-	// }
-	// else if (button == ZOOM_OUT)
-	// {
-	// 	if (fractol->zoom / ZOOM_FACTOR < ZOOM_MIN)
-	// 		return (0);
-	// 	ft_zoom_plan(fractol, 1 / ZOOM_FACTOR, x, y);
-	// }
-	else if (button == INCREASE_BUTTON)
+	if (button == ZOOM_IN && (fractol->zoom < MAX_ZOOM))
+	{
+		fractol->zoom *= ZOOM_FACTOR;
+		ft_zoom_plan(fractol, ZOOM_FACTOR, x, y);
+	}
+	else if (button == ZOOM_OUT && (fractol->zoom > MIN_ZOOM))
+	{
+		fractol->zoom /= ZOOM_FACTOR;
+		ft_zoom_plan(fractol, 1 / ZOOM_FACTOR, x, y);
+	}
+	else if (button == INCREASE_BUTTON && fractol->precision < MAX_PRECISION)
 		fractol->precision += PRECISION_FACTOR;
-	else if (button == DECREASE_BUTTON)
+	else if (button == DECREASE_BUTTON && fractol->precision > MIN_PRECISION)
 		fractol->precision -= PRECISION_FACTOR;
 	return (EXIT_SUCCESS);
 }
