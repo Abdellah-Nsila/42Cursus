@@ -11,10 +11,10 @@ optimization in computer graphics and practice event handling
 exploration program. First, you have to know what
 a fractal is
 
-## [Complex Numbers](https://github.com/Abdellah-Nsila/42cursus/blob/master/Milestone%202/fract-ol/Markdown/Complex_Numbers.md)
+## [Complex Numbers](https://github.com/Abdellah-Nsila/42cursus/blob/master/Milestone%202/fract-ol/Others/Markdown/Complex_Numbers.md)
 
-## [Map To Logical Plan](https://github.com/Abdellah-Nsila/42cursus/blob/master/Milestone%202/fract-ol/Markdown/Map_To_Logical_Plan.md)
+## [Map To Logical Plan](https://github.com/Abdellah-Nsila/42cursus/blob/master/Milestone%202/fract-ol/Others/Markdown/Map_To_Logical_Plan.md)
 
-## [Zoom](https://github.com/Abdellah-Nsila/42cursus/blob/master/Milestone%202/fract-ol/Markdown/Zoom.md)
+## [Zoom](https://github.com/Abdellah-Nsila/42cursus/blob/master/Milestone%202/fract-ol/Others/Markdown/Zoom.md)
 
-## [Mandelbrot Set](https://github.com/Abdellah-Nsila/42cursus/blob/master/Milestone%202/fract-ol/Markdown/Mandelbrot_Set.md)
+## [Mandelbrot Set](https://github.com/Abdellah-Nsila/42cursus/blob/master/Milestone%202/fract-ol/Others/Markdown/Mandelbrot_Set.md)
