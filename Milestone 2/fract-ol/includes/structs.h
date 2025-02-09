@@ -1,5 +1,17 @@
-#ifndef FT_STRUCTS_H
-# define FT_STRUCTS_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   structs.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/09 16:41:35 by abnsila           #+#    #+#             */
+/*   Updated: 2025/02/09 16:42:34 by abnsila          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef STRUCTS_H
+# define STRUCTS_H
 
 # include "../Libft/includes/libft.h"
 # include "settings.h"
@@ -16,8 +28,7 @@ typedef struct s_rgb
 	int		index2;
 	int		color1;
 	int		color2;
-} t_rgb;
-
+}				t_rgb;
 
 typedef struct s_img
 {
@@ -26,8 +37,7 @@ typedef struct s_img
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-} t_img;
-
+}				t_img;
 
 typedef struct s_complex
 {
@@ -56,6 +66,6 @@ typedef struct s_fractol
 	int		palette[PALETTE_SIZE];
 	t_bool	trick_mouse;
 	t_bool	toggle_menu;
-} t_fractol;
+}				t_fractol;
 
 #endif
