@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 16:37:35 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/09 16:41:22 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/09 16:49:21 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int			ft_burningship_cub_set(t_fractol *fractol, t_complex c);
 
 // Fractol Utils
 int			ft_abs(int nbr);
-void		ft_generate_random_gradient_color(t_fractol *fractol);
 int			ft_get_psychedelic_color(t_fractol *fractol, int iter);
 void		ft_draw_menu(t_fractol *fractol);
 
