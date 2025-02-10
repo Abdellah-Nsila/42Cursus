@@ -18,3 +18,40 @@ a fractal is
 ## [Zoom](https://github.com/Abdellah-Nsila/42cursus/blob/master/Milestone%202/fract-ol/Others/Markdown/Zoom.md)
 
 ## [Mandelbrot Set](https://github.com/Abdellah-Nsila/42cursus/blob/master/Milestone%202/fract-ol/Others/Markdown/Mandelbrot_Set.md)
+
+
+## Mandelbrot square set
+
+![Mandelbrot by abnsila](https://github.com/Abdellah-Nsila/42cursus/blob/master/Milestone%202/fract-ol/Others/Images/Mandelbrot_sq_1.png)
+![Mandelbrot by abnsila](https://github.com/Abdellah-Nsila/42cursus/blob/master/Milestone%202/fract-ol/Others/Images/Mandelbrot_sq_2.png)
+![Mandelbrot by abnsila](https://github.com/Abdellah-Nsila/42cursus/blob/master/Milestone%202/fract-ol/Others/Images/Mandelbrot_sq_3.png)
+
+## Mandelbrot cube set
+
+![Mandelbrot by abnsila](https://github.com/Abdellah-Nsila/42cursus/blob/master/Milestone%202/fract-ol/Others/Images/Mandelbrot_cub_1.png)
+![Mandelbrot by abnsila](https://github.com/Abdellah-Nsila/42cursus/blob/master/Milestone%202/fract-ol/Others/Images/Mandelbrot_cub_2.png)
+![Mandelbrot by abnsila](https://github.com/Abdellah-Nsila/42cursus/blob/master/Milestone%202/fract-ol/Others/Images/Mandelbrot_cub_3.png)
+
+## Julia square set
+
+![Julia by abnsila](https://github.com/Abdellah-Nsila/42cursus/blob/master/Milestone%202/fract-ol/Others/Images/Julia_sq_1.png)
+![Julia by abnsila](https://github.com/Abdellah-Nsila/42cursus/blob/master/Milestone%202/fract-ol/Others/Images/Julia_sq_2.png)
+![Julia by abnsila](https://github.com/Abdellah-Nsila/42cursus/blob/master/Milestone%202/fract-ol/Others/Images/Julia_sq_3.png)
+
+## Julia cube set
+
+![Julia by abnsila](https://github.com/Abdellah-Nsila/42cursus/blob/master/Milestone%202/fract-ol/Others/Images/Julia_cub_1.png)
+![Julia by abnsila](https://github.com/Abdellah-Nsila/42cursus/blob/master/Milestone%202/fract-ol/Others/Images/Julia_cub_2.png)
+![Julia by abnsila](https://github.com/Abdellah-Nsila/42cursus/blob/master/Milestone%202/fract-ol/Others/Images/Julia_cub_3.png)
+
+## Burningship square set
+
+![Burningship by abnsila](https://github.com/Abdellah-Nsila/42cursus/blob/master/Milestone%202/fract-ol/Others/Images/Burningship_sq_1.png)
+![Burningship by abnsila](https://github.com/Abdellah-Nsila/42cursus/blob/master/Milestone%202/fract-ol/Others/Images/Burningship_sq_2.png)
+![Burningship by abnsila](https://github.com/Abdellah-Nsila/42cursus/blob/master/Milestone%202/fract-ol/Others/Images/Burningship_sq_3.png)
+
+## Burningship cub set
+
+![Burningship by abnsila](https://github.com/Abdellah-Nsila/42cursus/blob/master/Milestone%202/fract-ol/Others/Images/Burningship_cub_1.png)
+![Burningship by abnsila](https://github.com/Abdellah-Nsila/42cursus/blob/master/Milestone%202/fract-ol/Others/Images/Burningship_cub_2.png)
+![Burningship by abnsila](https://github.com/Abdellah-Nsila/42cursus/blob/master/Milestone%202/fract-ol/Others/Images/Burningship_cub_3.png)
