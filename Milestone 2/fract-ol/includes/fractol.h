@@ -6,14 +6,14 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 16:37:35 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/10 10:25:07 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/10 16:34:15 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include "../minilibx-linux/mlx.h"
+# include <mlx.h>
 # include <math.h>
 # include <time.h>
 # include "structs.h"

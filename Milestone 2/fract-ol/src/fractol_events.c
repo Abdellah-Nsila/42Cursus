@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:57:35 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/10 11:28:43 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/10 14:24:20 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int	ft_loop_hook(t_fractol *fractol)
 	if (!fractol)
 		return (1);
 	ft_draw_fractal(fractol);
-	// mlx_string_put(fractol->mlx, fractol->win, 15, 15, 0xFFFFFF,
-	// 	"Settings Menu: h Key");
-	// if (fractol->toggle_menu)
-	// 	ft_draw_menu(fractol);
+	mlx_string_put(fractol->mlx, fractol->win, 15, 15, 0xFFFFFF,
+		"Settings Menu: h Key");
+	if (fractol->toggle_menu)
+		ft_draw_menu(fractol);
 	return (0);
 }
 

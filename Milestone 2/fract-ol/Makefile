@@ -15,7 +15,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(LIBFT) $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(INCLUDES) -o $(NAME) libmlx_Linux.a -L/usr/lib -Imlx_linux -lXext -lX11 -lm
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(INCLUDES) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 %.o: %.c ./includes/fractol.h
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
