@@ -17,7 +17,7 @@ all: $(LIBFT) $(NAME)
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(INCLUDES) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
-%.o: %.c ./includes/fractol.h
+%.o: %.c ./includes/fractol.h ./includes/settings.h ./includes/structs.h
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(LIBFT):

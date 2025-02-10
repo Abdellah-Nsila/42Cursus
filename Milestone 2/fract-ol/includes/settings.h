@@ -6,15 +6,15 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 16:41:38 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/09 16:41:39 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/10 18:35:14 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SETTINGS_H
 # define SETTINGS_H
 
-# define WIDTH 900
-# define HEIGHT 700
+# define WIDTH 800
+# define HEIGHT 600
 # define CENTER_X -0.0
 # define CENTER_Y 0.0
 # define RANGE_X 4.0
