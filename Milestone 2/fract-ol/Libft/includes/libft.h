@@ -6,21 +6,16 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 10:12:03 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/05 17:33:53 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/10 10:30:29 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <stdlib.h>
-# include <unistd.h>
 # include <limits.h>
-# include <string.h>
-# include "t_bool.h"
 # include "ft_printf.h"
 # include "get_next_line.h"
-# include "ft_linked_lst.h"
 # include "ft_malloc.h"
 
 int		ft_isalpha(int c);
@@ -68,14 +63,14 @@ void	ft_putnbr_fd(int n, int fd);
 int		ft_isnumber(char *str);
 int		ft_wordscount(const char *s, char c);
 
-t_list	*ft_lstnew(void *content);
-void	ft_lstadd_front(t_list **lst, t_list *new);
-int		ft_lstsize(t_list *lst);
-t_list	*ft_lstlast(t_list *lst);
-void	ft_lstadd_back(t_list **lst, t_list *new);
-void	ft_lstdelone(t_list *lst, void (*del)(void *));
-void	ft_lstclear(t_list **lst, void (*del)(void *));
-void	ft_lstiter(t_list *lst, void (*f)(void *));
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+// t_list	*ft_lstnew(void *content);
+// void	ft_lstadd_front(t_list **lst, t_list *new);
+// int		ft_lstsize(t_list *lst);
+// t_list	*ft_lstlast(t_list *lst);
+// void	ft_lstadd_back(t_list **lst, t_list *new);
+// void	ft_lstdelone(t_list *lst, void (*del)(void *));
+// void	ft_lstclear(t_list **lst, void (*del)(void *));
+// void	ft_lstiter(t_list *lst, void (*f)(void *));
+// t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 #endif
