@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 16:41:38 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/10 18:35:14 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/12 10:21:11 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,12 @@ enum e_events_hooks
 {
 	ON_MOUSEMOVE = 6,
 	ON_DESTROY = 17,
+};
+
+enum e_events_masks
+{
+	PointerMotionMask = 1L << 6,
+	DestroyNotify = 0L,
 };
 
 enum e_events_inputs

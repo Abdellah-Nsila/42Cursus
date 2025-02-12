@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:57:35 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/12 10:10:22 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/12 10:21:26 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	ft_init_events(t_fractol *fractol)
 {
 	mlx_mouse_hook(fractol->win, ft_mouse_hook, fractol);
 	mlx_key_hook(fractol->win, ft_key_hook, fractol);
-	mlx_hook(fractol->win, ON_MOUSEMOVE, 1L << 6, ft_mouse_move_hook, fractol);
-	mlx_hook(fractol->win, ON_DESTROY, 0L, ft_close, fractol);
+	mlx_hook(fractol->win, ON_MOUSEMOVE, PointerMotionMask, ft_mouse_move_hook, fractol);
+	mlx_hook(fractol->win, ON_DESTROY, DestroyNotify, ft_close, fractol);
 	mlx_loop_hook(fractol->mlx, ft_loop_hook, fractol);
 }
