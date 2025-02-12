@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:57:35 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/10 14:24:20 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/12 10:10:22 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	ft_mouse_move_hook(int x, int y, t_fractol *fractol)
 {
 	if (fractol->trick_mouse)
 	{
-		fractol->fixed_c_re = (double)x / fractol->width * 2.5 - 1.0;
-		fractol->fixed_c_img = (double)y / fractol->height * 2.5 - 1.0;
+		fractol->fixed_c_re = fractol->min_re + x * fractol->re_factor;
+		fractol->fixed_c_img = fractol->max_img - y * fractol->img_factor;
 	}
 	return (0);
 }
