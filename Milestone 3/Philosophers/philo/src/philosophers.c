@@ -6,11 +6,20 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 15:48:15 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/13 16:49:33 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/14 08:45:22 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
+
+// TODO return a num and get it
+void	*ft_random_num(void *arg)
+{
+	int	i;
+
+	i = (rand() % 6) + 1;
+	return (NULL);
+}
 
 void	*ft_routine(void *arg)
 {
