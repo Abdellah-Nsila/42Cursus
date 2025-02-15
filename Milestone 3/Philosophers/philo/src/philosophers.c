@@ -6,22 +6,21 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 15:48:15 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/15 15:02:20 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/15 16:04:44 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
 pthread_mutex_t	mutex;
-// int	arr[10] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29};
-int	arr[3] = {1, 2, 3};
+int	arr[THREADS] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29};
 
 void	ft_init_philo(t_philo *philo)
 {
 	srand(time(NULL));
-	
 	pthread_mutex_init(&philo->mutex, NULL);
-	philo->score = 0;
+	ft_bzero(philo, sizeof(t_philo));
+	pthread_mutex_init(&philo->mutex, NULL);
 }
 
 void	*ft_get_unique_num(void *arg)
@@ -44,9 +43,7 @@ int	main()
 	int			*temp = 0;
 	int			sum = 0;
 
-	pthread_mutex_init(&philo.mutex, NULL);
 	ft_init_philo(&philo);
-	
 	while (i < THREADS)
 	{	
 		int *a = malloc(sizeof(int));
