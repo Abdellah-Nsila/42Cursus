@@ -6,25 +6,24 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 11:45:07 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/14 17:42:48 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/15 15:29:00 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILOSOPHERS_H
 # define PHILOSOPHERS_H
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
+# include "functions.h"
 # include <time.h>
 # include <sys/wait.h>
 # include <pthread.h>
 
-# define THREADS 10
+# define THREADS 3
 
 typedef struct s_philo
 {
 	pthread_mutex_t	mutex;
+	int				*i;
 	int				score;
 }				t_philo;
 
