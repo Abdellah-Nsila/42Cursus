@@ -6,77 +6,66 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 15:48:15 by abnsila           #+#    #+#             */
-/*   Updated: 2025/02/14 19:10:40 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/02/15 13:36:02 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-pthread_mutex_t	mutex;
-int	arr[10] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29};
 
-void	ft_init_philo(t_philo *philo)
-{
-	srand(time(NULL));
-	pthread_mutex_init(&philo->mutex, NULL);
-	philo->score = 0;
-}
 
-// void	*ft_get_prime(void *arg)
+//! You 10 threades, an array of numbers, each tread, print a unique prime number
+// pthread_mutex_t	mutex;
+// int	arr[10] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29};
+
+// void	ft_init_philo(t_philo *philo)
 // {
-// 	int	*arr;
+// 	srand(time(NULL));
+// 	pthread_mutex_init(&philo->mutex, NULL);
+// 	philo->score = 0;
+// }
+
+// void	*ft_get_unique_num(void *arg)
+// {
+// 	int	i;
 
 // 	pthread_mutex_lock(&mutex);
-// 	arr = (int *)arg;
-// 	printf("%d\n", *arr);
+// 	i = *((int *)arg);
+// 	printf("%d\n", arr[i]);
+// 	free(arg);
 // 	pthread_mutex_unlock(&mutex);
 // 	return (NULL);
 // }
 
-void	*ft_get_unique_num(void *arg)
-{
-	int	i;
+// int	main()
+// {
+// 	t_philo		philo;
+// 	pthread_t	threads[THREADS];
+// 	int			i = 0;
 
-	pthread_mutex_lock(&mutex);
-	i = *((int *)arg);
-	printf("%d\n", arr[i]);
-	free(arg);
-	pthread_mutex_unlock(&mutex);
-	return (NULL);
-}
-
-//TODO You 10 threades, an array of numbers, each tread, print a unique prime number
-
-int	main()
-{
-	t_philo		philo;
-	pthread_t	threads[THREADS];
-	int			i = 0;
-
-	pthread_mutex_init(&mutex, NULL);
-	ft_init_philo(&philo);
+// 	pthread_mutex_init(&mutex, NULL);
+// 	ft_init_philo(&philo);
 	
-	while (i < THREADS)
-	{	
-		// if (pthread_create(&threads[i], NULL, &ft_get_unique_num, (arr + i)) != 0)
-		// 	return (EXIT_FAILURE);
-
-		int *a = malloc(sizeof(int));
-		*a = i;
-		if (pthread_create(&threads[i], NULL, &ft_get_unique_num, (void *) a) != 0)
-			return (EXIT_FAILURE);
-		i++;
-	}
-	i = 0;
-	while (i < THREADS)
-	{
-		if (pthread_join(threads[i], NULL) != 0)
-			return (EXIT_FAILURE);
-		i++;
-	}
-	pthread_mutex_destroy(&mutex);
-	return (0);
-}
+// 	while (i < THREADS)
+// 	{	
+// 		// if (pthread_create(&threads[i], NULL, &ft_get_unique_num, (arr + i)) != 0)
+// 		// 	return (EXIT_FAILURE);
+// 		int *a = malloc(sizeof(int));
+// 		*a = i;
+// 		if (pthread_create(&threads[i], NULL, &ft_get_unique_num, (void *) a) != 0)
+// 			return (EXIT_FAILURE);
+// 		i++;
+// 	}
+// 	i = 0;
+// 	while (i < THREADS)
+// 	{
+// 		if (pthread_join(threads[i], NULL) != 0)
+// 			return (EXIT_FAILURE);
+// 		i++;
+// 	}
+// 	pthread_mutex_destroy(&mutex);
+// 	return (0);
+// }
 
 
 //! Get the return of a function from tread
