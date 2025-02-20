@@ -27,6 +27,6 @@ I'm a 42 student at 1337 Benguerir (White Promo 2024).
 I enjoy tackling complex problems, optimizing code, and exploring creative solutions in low-level programming, system design, and algorithmic challenges.  
 This repository showcases my journey through the 42 Cursus and the diverse projects that have helped shape my skills.
 
-Feel free to explore my work, and if you're interested in collaborating or learning more, don't hesitate to reach out!
+Feel free to explore my work, or learning more, don't hesitate to reach out!
 
 ---
