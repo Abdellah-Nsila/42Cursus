@@ -30,3 +30,7 @@ This repository showcases my journey through the 42 Cursus and the diverse proje
 Feel free to explore my work, or learning more, don't hesitate to reach out!
 
 ---
+
+## Best Book to Get Deeper into C Programming in Linux
+
+[The Linux Programming Interface](https://github.com/Abdellah-Nsila/42cursus/tree/master/Sources/The Linux Programming Interface.pdf)
