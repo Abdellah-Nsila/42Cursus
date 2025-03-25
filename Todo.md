@@ -1,2 +1,2 @@
-[ ] You nedd to add a custom libft thst include more powerfull functionality
-[ ] Add a Readme file for each project
+[x] You nedd to add a custom libft thst include more powerfull functionality
+[x] Add a Readme file for each project
