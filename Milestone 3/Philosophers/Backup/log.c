@@ -1,4 +1,5 @@
 
+
 void	ft_colored_msg(time_t timestamp, int id, int type)
 {
 	char	*format;
