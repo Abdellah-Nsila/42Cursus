@@ -3,5 +3,5 @@
 *.out
 *.o
 *.a
-*gch
+*.gch
 *vscodeSetting.json
