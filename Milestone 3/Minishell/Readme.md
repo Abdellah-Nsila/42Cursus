@@ -56,7 +56,7 @@ Handles:
 ## 🚀 Run Instructions
 
 To run the shell:
-1. Clone [Minishell](https://github.com/Minishell13) repositorie.
+1. Clone [Minishell](https://github.com/Minishell13/Minishell) repositorie.
 2. `make` or `make re`.
 3. run `./minishell` for standart execution, or `make vg` for valgrind tracking memory and fds leaks.
 
