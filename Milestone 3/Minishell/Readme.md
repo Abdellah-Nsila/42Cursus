@@ -56,9 +56,9 @@ Handles:
 ## 🚀 Run Instructions
 
 To run the shell:
-1. Clone both repositories.
-2. Follow the `README.md` in each repo to build the parser and executor.
-3. Use a script or combined Makefile to integrate both sides.
+1. Clone [Minishell](https://github.com/Minishell13) repositorie.
+2. `make` or `make re`.
+3. run `./minishell` for standart execution, or `make vg` for valgrind tracking memory and fds leaks.
 
 ---
 
