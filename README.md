@@ -18,7 +18,7 @@ Each Milestone folder contains projects that showcase my growth, skills, and cre
 | 02         | [Pipex](https://github.com/Abdellah-Nsila/42cursus/tree/master/Milestone%202/pipex)                     | C, UNIX                                    | A project that mimics Unix pipes to chain multiple commands together.                                   | 125%   |
 | 02         | [fract-ol](https://github.com/Abdellah-Nsila/42cursus/tree/master/Milestone%202/fract-ol)               | C, MinilibX                          | A graphical exploration of fractals, visualizing complex sets with interactive zoom and pan features.  | 125%   |
 | 03         | [Philosophers](https://github.com/Abdellah-Nsila/42cursus/tree/master/Milestone%203/Philosophers)       | C                                    | A parallel programming project solving the Dining Philosophers problem with threads and synchronization. | 125%  |
-| 03         | [Minishell](https://github.com/Abdellah-Nsila/42cursus/tree/master/Milestone%203/minishell)             | C, UNIX                                    | A simple shell implementation that handles command parsing and execution.                              | 0%   |
+| 03         | [Minishell](https://github.com/Abdellah-Nsila/42cursus/tree/master/Milestone%203/minishell)             | C, UNIX                                    | A simple shell implementation that handles command parsing and execution.                              | 125%   |
 ---
 
 ## About Me
