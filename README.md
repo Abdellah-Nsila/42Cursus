@@ -39,4 +39,3 @@ Feel free to explore my work, or learning more, don't hesitate to reach out!
 ## Best Book to Get Deeper into C Programming in Linux:
 
 [The Linux Programming Interface](https://github.com/Abdellah-Nsila/42Cursus/blob/master/Sources/The%20Linux%20Programming%20Interface.pdf).
-.
