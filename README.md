@@ -24,7 +24,7 @@ Each Milestone folder contains projects that showcase my growth, skills, and cre
 | 05         | [CPP-Modules (05-09)](https://github.com/Abdellah-Nsila/CPP-Modules)                                    | C++                                   |     C++ is a general-purpose programming language created by Bjarne Stroustrup as an ex- tension of the C programming language, or "C with Classes".                              | 100%   |
 | 05         | [Webserv](https://github.com/Web-serv-42/Webserv)             | C, C++, UNIX                                    | This project is about writing your own HTTP server.                              | 125%   |
 | 05         | [Inception](https://github.com/Abdellah-Nsila/Inception)             | Docker, VM, UNIX,                                     | This project consists of having you set up a small infrastructure composed of different services under specific rules                              | 125%   |
-| 06         | [ft_transcendence](https://github.com/um6p-rackets)             | NestJs, NesxtJs, PostreSQL, RabbitMQ, Nginx, Docker, VM, UNIX                                     | UM6P Rackets is a microservice-driven web platform designed for managing campus racket sports clubs, real-time match tracking, dynamic player rankings, and instant notifications.                              | 125%   |
+| 06         | [ft_transcendence](https://github.com/um6p-rackets)             | NestJs, NextJs, PostreSQL, RabbitMQ, Nginx, Docker, VM, UNIX                                     | UM6P Rackets is a microservice-driven web platform designed for managing campus racket sports clubs, real-time match tracking, dynamic player rankings, and instant notifications.                              | 125%   |
 ---
 
 ## About Me
