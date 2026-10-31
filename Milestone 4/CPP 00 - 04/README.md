@@ -9,3 +9,7 @@ Core!
 You will discover new concepts step-by-step. The exercises will progressively increase
 in complexity.
 
+## Repository
+
+[CPP Modules](https://github.com/Abdellah-Nsila/CPP-Modules)
+
