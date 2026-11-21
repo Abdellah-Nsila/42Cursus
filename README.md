@@ -29,7 +29,7 @@ Each Milestone folder contains projects that showcase my growth, skills, and cre
 
 ## About Me
 
-I'm a Software Engineering student at 1337 Coding School | 42 Network | UM6P University Mohammed VI Polytechnic Benguerir (White Promo 2024).  
+I'm a Software Engineering student at `1337 Coding School` | `42 Network` | UM6P University Mohammed VI Polytechnic` Benguerir (White Promo 2024).  
 I enjoy tackling complex problems, optimizing code, and exploring creative solutions in low-level programming, system design, and algorithmic challenges.  
 This repository showcases my journey through the 42 Cursus and the diverse projects that have helped shape my skills.
 
