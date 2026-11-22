@@ -1,6 +1,6 @@
 # 42Cursus
 
-Welcome to my repository for the 42 Network projects at 1337 Benguerir.  
+Welcome to my repository for the `42 Network` projects at `1337` Benguerir.  
 This repository documents my progress through the 42 Cursus (White Promo 2024).  
 Each Milestone folder contains projects that showcase my growth, skills, and creative solutions.
 
